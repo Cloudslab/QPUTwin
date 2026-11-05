@@ -1,0 +1,90 @@
+# QPUTwin: Calibration-Faithful Digital Twins of Trapped-Ion and Superconducting Quantum Processors
+# Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+[project]
+name = "qputwin"
+version = "0.1.0"
+description = "QPUTwin: Calibration-Faithful Digital Twins of Trapped-Ion and Superconducting Quantum Processors — a multi-vendor QPU emulator with calibrated noise models, OpenQASM 2/3, native-gate compilation, SABRE routing and benchmark telemetry."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [
+    { name = "Koustav Kumar Mondal", email = "erkoustavkumar@gmail.com" }
+]
+maintainers = [
+    { name = "Koustav Kumar Mondal", email = "erkoustavkumar@gmail.com" }
+]
+keywords = [
+    "QPUTwin", "digital twin", "quantum digital twin", "quantum computing", "quantum emulator",
+    "quantum simulator", "QPU", "quantum processor", "noise model", "noisy quantum simulation",
+    "density matrix", "quantum trajectories", "trapped ion", "superconducting qubits", "transmon",
+    "OpenQASM", "native gate compilation", "qubit routing", "SABRE", "quantum benchmarking",
+    "IonQ", "Quantinuum", "Rigetti", "IQM", "calibration", "statevector",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Framework :: FastAPI",
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+engine = [
+    "numpy>=2.5.4",
+    "scipy>=1.18.1",
+]
+worker = [
+    "fastapi>=0.156.8",
+    "numpy>=2.5.4",
+    "scipy>=1.18.1",
+    "uvicorn[standard]>=0.54.0",
+]
+orchestrator = [
+    "fastapi>=0.156.8",
+    "httpx>=0.28.1",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[project.scripts]
+qputwin-orchestrator = "qputwin_orchestrator.__main__:main"
+qputwin-worker = "qputwin_worker.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qputwin_core", "src/qputwin_orchestrator", "src/qputwin_worker"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = [
+    # starlette's TestClient nudges towards httpx2; QPUTwin deliberately uses httpx
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated",
+]
+markers = [
+    "integration: requires the live docker compose stack",
+]
+
+[dependency-groups]
+bench = [
+    "matplotlib>=3.11.2",
+]
+# `uv run pytest` installs the dev group by default; it pulls in every extra so the
+# unit tests (numpy engine + FastAPI apps) run from a fresh checkout.
+dev = [
+    "qputwin[engine,worker,orchestrator]",
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+]
+docs = [
+    "mkdocs>=1.6.1,<2",
+    "mkdocs-material>=9.7.7,<10",
+]

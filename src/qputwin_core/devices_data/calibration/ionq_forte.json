@@ -1,0 +1,69 @@
+{
+ "device": "ionq_forte",
+ "label": "IonQ Forte - nominal medians",
+ "snapshot_date": null,
+ "gates": {
+  "gpi": {
+   "fidelity": 0.9998,
+   "duration_ns": 135000.0
+  },
+  "gpi2": {
+   "fidelity": 0.9998,
+   "duration_ns": 135000.0
+  },
+  "rz": {
+   "fidelity": 1.0,
+   "duration_ns": 0.0
+  },
+  "ms": {
+   "fidelity": 0.996,
+   "duration_ns": 600000.0
+  },
+  "zz": {
+   "fidelity": 0.996,
+   "duration_ns": 600000.0
+  }
+ },
+ "readout": {
+  "fidelity": 0.995,
+  "duration_ns": 300000.0
+ },
+ "reset": {
+  "duration_ns": 50000.0
+ },
+ "coherence": {
+  "t1_us": 10000000.0,
+  "t2_us": 1000000.0
+ },
+ "provenance": {
+  "gates.gpi.fidelity": "published: ~0.02% 1Q error, i.e. 99.98% (IonQ Forte / Forte Enterprise system page)",
+  "gates.gpi2.fidelity": "published: as gpi (IonQ Forte system page)",
+  "gates.ms.fidelity": "published: ~0.4% 2Q error, i.e. 99.6% (IonQ Forte / Forte Enterprise system page)",
+  "gates.zz.fidelity": "assumed: equal to the published MS fidelity",
+  "readout.fidelity": "published: ~0.5% SPAM error, i.e. 99.5% (IonQ Forte system page); applied as symmetric readout error",
+  "gates.gpi.duration_ns": "assumed: 135 us is IonQ *Aria*'s single-qubit gate time (Azure Quantum IonQ page); no Forte figure is published",
+  "gates.gpi2.duration_ns": "assumed: as gpi (Aria figure)",
+  "gates.ms.duration_ns": "assumed: 600 us is IonQ *Aria*'s two-qubit gate time (Azure Quantum IonQ page); no Forte figure is published",
+  "gates.zz.duration_ns": "assumed: as ms (Aria figure)",
+  "readout.duration_ns": "assumed: placeholder (no Forte readout time published)",
+  "reset.duration_ns": "assumed: placeholder",
+  "coherence.t1_us": "assumed: 10 s, lower end of the 10-100 s quoted for IonQ *Aria* (Azure Quantum IonQ page), not Forte",
+  "coherence.t2_us": "assumed: 1 s, quoted for IonQ *Aria* (Azure Quantum IonQ page), not Forte",
+  "shot_overhead_us": "unknown: per-shot overhead is not published; job-time estimates exclude it unless set",
+  "parallelism": "assumed: one entangling gate at a time in a single ion chain sharing one motional bus (IonQ does not publish its gate parallelism)"
+ },
+ "sources": [
+  "https://ionq.com/quantum-systems/forte-enterprise",
+  "https://ionq.com/quantum-systems/forte",
+  "https://learn.microsoft.com/en-us/azure/quantum/provider-ionq"
+ ],
+ "fidelity_convention": "average_gate_fidelity",
+ "feedforward_latency_ns": null,
+ "shot_overhead_us": null,
+ "note": "Nominal device-median values for QPUTwin's noise and gate-duration models. Every field is tagged in 'provenance' as 'published' (with its source) or 'assumed' (placeholder typical of the technology class, NOT vendor data). Replace with a calibration snapshot via QPUTWIN_CALIBRATION before quoting results.",
+ "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>",
+ "parallelism": {
+  "max_parallel_one_qubit": null,
+  "max_parallel_two_qubit": 1
+ }
+}

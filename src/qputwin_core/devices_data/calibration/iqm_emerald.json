@@ -1,0 +1,52 @@
+{
+ "device": "iqm_emerald",
+ "label": "IQM Emerald - nominal medians",
+ "snapshot_date": null,
+ "gates": {
+  "prx": {
+   "fidelity": 0.9993,
+   "duration_ns": 40.0
+  },
+  "rz": {
+   "fidelity": 1.0,
+   "duration_ns": 0.0
+  },
+  "cz": {
+   "fidelity": 0.995,
+   "duration_ns": 60.0
+  }
+ },
+ "readout": {
+  "fidelity": 0.97,
+  "duration_ns": 1500.0
+ },
+ "reset": {
+  "duration_ns": 2000.0
+ },
+ "coherence": {
+  "t1_us": 54.7,
+  "t2_us": 16.6
+ },
+ "provenance": {
+  "gates.cz.fidelity": "published: 99.5% median two-qubit (CZ) fidelity (IQM Resonance / Amazon Braket launch, 2025)",
+  "gates.prx.fidelity": "published: 99.93% median single-qubit fidelity (Amazon Braket launch coverage, 2025)",
+  "coherence.t1_us": "published (third-party snapshot): median T1 = 54.7 us, arXiv:2608.30176 (Aug 2026)",
+  "coherence.t2_us": "published (third-party snapshot): median T2 = 16.6 us, arXiv:2608.30176 (Aug 2026)",
+  "gates.prx.duration_ns": "assumed: placeholder",
+  "gates.cz.duration_ns": "assumed: placeholder",
+  "readout.fidelity": "assumed: IQM Radiance typical readout (product family, not Emerald-specific)",
+  "readout.duration_ns": "assumed: placeholder",
+  "reset.duration_ns": "assumed: placeholder",
+  "shot_overhead_us": "unknown: per-shot overhead (cooling / state prep / rep delay) is not published; job-time estimates exclude it unless set"
+ },
+ "sources": [
+  "https://meetiqm.com/?p=13583",
+  "https://quantumcomputingreport.com/amazon-braket-launches-iqm-emerald-54-qubit-superconducting-quantum-processor/",
+  "https://arxiv.org/pdf/2608.30176"
+ ],
+ "fidelity_convention": "average_gate_fidelity",
+ "feedforward_latency_ns": null,
+ "shot_overhead_us": null,
+ "note": "Nominal device-median values for QPUTwin's noise and gate-duration models. Every field is tagged in 'provenance' as 'published' (with its source) or 'assumed' (placeholder typical of the technology class, NOT vendor data). Replace with a calibration snapshot via QPUTWIN_CALIBRATION before quoting results.",
+ "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+}

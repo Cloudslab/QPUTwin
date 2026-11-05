@@ -1,0 +1,13 @@
+mode,qubits,total_ms_median,route_ms_median
+reject,4,3.6864,0.0
+reject,6,2.5621,0.0
+reject,8,3.6011,0.0
+reject,10,2.9068,0.0
+reject,12,3.1338,0.0
+reject,14,3.5481,0.0
+route,4,5.5674,0.5569
+route,6,12.7079,7.752
+route,8,18.1263,12.5105
+route,10,22.5801,16.0039
+route,12,30.4764,22.473
+route,14,38.9332,30.4827

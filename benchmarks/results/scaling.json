@@ -1,0 +1,432 @@
+{
+ "experiment": "scaling",
+ "generated_utc": "2026-10-28T07:24:41+00:00",
+ "environment": {
+  "qputwin": "0.1.0",
+  "python": "3.13.17",
+  "numpy": "2.5.4",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+  "logical_cpus": 12,
+  "load_average": [
+   0.6806640625,
+   2.13818359375,
+   2.751953125
+  ],
+  "omp_num_threads": "1",
+  "docker": "29.9.2"
+ },
+ "workload": "GHZ chain, 1024 shots; noisy engines use the Helios calibration; 3 repetitions",
+ "data": [
+  {
+   "engine": "statevector_c128",
+   "qubits": 4,
+   "qpu_ms_median": 0.437793,
+   "qpu_ms": [
+    0.6114269999999999,
+    0.437793,
+    0.419577
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 6,
+   "qpu_ms_median": 0.5980989999999999,
+   "qpu_ms": [
+    0.631054,
+    0.5980989999999999,
+    0.59458
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 8,
+   "qpu_ms_median": 0.677928,
+   "qpu_ms": [
+    0.731243,
+    0.6741710000000001,
+    0.677928
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 10,
+   "qpu_ms_median": 0.803939,
+   "qpu_ms": [
+    0.797625,
+    0.803939,
+    0.8257399999999999
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 12,
+   "qpu_ms_median": 0.971986,
+   "qpu_ms": [
+    0.9534509999999999,
+    0.971986,
+    0.9741
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 14,
+   "qpu_ms_median": 1.161832,
+   "qpu_ms": [
+    1.229054,
+    1.1389099999999999,
+    1.161832
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 16,
+   "qpu_ms_median": 1.7988119999999999,
+   "qpu_ms": [
+    2.005691,
+    1.745464,
+    1.7988119999999999
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 18,
+   "qpu_ms_median": 3.841664,
+   "qpu_ms": [
+    3.8783950000000003,
+    3.7846460000000004,
+    3.841664
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 20,
+   "qpu_ms_median": 9.025122,
+   "qpu_ms": [
+    8.744189,
+    9.025122,
+    9.253817999999999
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 22,
+   "qpu_ms_median": 32.197878,
+   "qpu_ms": [
+    64.618707,
+    32.197878,
+    32.127089999999995
+   ]
+  },
+  {
+   "engine": "statevector_c128",
+   "qubits": 24,
+   "qpu_ms_median": 87.32953,
+   "qpu_ms": [
+    88.222083,
+    87.32953,
+    86.24427299999999
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 4,
+   "qpu_ms_median": 0.409801,
+   "qpu_ms": [
+    2.462893,
+    0.409801,
+    0.389533
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 6,
+   "qpu_ms_median": 0.589555,
+   "qpu_ms": [
+    4.353772,
+    0.589555,
+    0.555918
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 8,
+   "qpu_ms_median": 0.660676,
+   "qpu_ms": [
+    0.6630550000000001,
+    0.660531,
+    0.660676
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 10,
+   "qpu_ms_median": 0.809911,
+   "qpu_ms": [
+    0.809911,
+    0.806248,
+    0.81424
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 12,
+   "qpu_ms_median": 0.9749270000000001,
+   "qpu_ms": [
+    0.964577,
+    0.9749270000000001,
+    0.977585
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 14,
+   "qpu_ms_median": 1.1723949999999999,
+   "qpu_ms": [
+    1.1723949999999999,
+    1.205929,
+    1.160442
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 16,
+   "qpu_ms_median": 1.5408529999999998,
+   "qpu_ms": [
+    1.76795,
+    1.539469,
+    1.5408529999999998
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 18,
+   "qpu_ms_median": 2.89872,
+   "qpu_ms": [
+    3.604387,
+    2.8917140000000003,
+    2.89872
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 20,
+   "qpu_ms_median": 7.344414,
+   "qpu_ms": [
+    8.69627,
+    7.344414,
+    7.224189000000001
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 22,
+   "qpu_ms_median": 24.579749999999997,
+   "qpu_ms": [
+    25.43746,
+    24.579749999999997,
+    23.023132
+   ]
+  },
+  {
+   "engine": "statevector_c64",
+   "qubits": 24,
+   "qpu_ms_median": 68.339952,
+   "qpu_ms": [
+    68.339952,
+    68.581132,
+    68.001168
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 2,
+   "qpu_ms_median": 0.54598,
+   "qpu_ms": [
+    4.119363,
+    0.54598,
+    0.51362
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 3,
+   "qpu_ms_median": 0.878893,
+   "qpu_ms": [
+    1.3427289999999998,
+    0.878893,
+    0.8188099999999999
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 4,
+   "qpu_ms_median": 1.069446,
+   "qpu_ms": [
+    1.051396,
+    1.098224,
+    1.069446
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 5,
+   "qpu_ms_median": 1.3068460000000002,
+   "qpu_ms": [
+    1.3068460000000002,
+    1.3191439999999999,
+    1.281625
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 6,
+   "qpu_ms_median": 1.601911,
+   "qpu_ms": [
+    1.601911,
+    1.5768360000000001,
+    1.6231209999999998
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 7,
+   "qpu_ms_median": 2.013734,
+   "qpu_ms": [
+    2.040686,
+    2.013734,
+    2.012869
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 8,
+   "qpu_ms_median": 2.8329500000000003,
+   "qpu_ms": [
+    4.847049,
+    2.8329500000000003,
+    2.758105
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 9,
+   "qpu_ms_median": 4.563243,
+   "qpu_ms": [
+    5.313306,
+    4.563243,
+    4.534216000000001
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 10,
+   "qpu_ms_median": 16.344865000000002,
+   "qpu_ms": [
+    18.197089,
+    16.344865000000002,
+    15.984989
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 11,
+   "qpu_ms_median": 62.782242000000004,
+   "qpu_ms": [
+    66.239896,
+    62.782242000000004,
+    61.960725000000004
+   ]
+  },
+  {
+   "engine": "density_matrix",
+   "qubits": 12,
+   "qpu_ms_median": 249.458938,
+   "qpu_ms": [
+    252.79338399999997,
+    249.458938,
+    241.807295
+   ]
+  },
+  {
+   "engine": "trajectory_T32",
+   "qubits": 4,
+   "qpu_ms_median": 6.297585,
+   "qpu_ms": [
+    6.39687,
+    6.297585,
+    6.275301000000001
+   ]
+  },
+  {
+   "engine": "trajectory_T32",
+   "qubits": 6,
+   "qpu_ms_median": 9.50544,
+   "qpu_ms": [
+    9.459935999999999,
+    9.520537000000001,
+    9.50544
+   ]
+  },
+  {
+   "engine": "trajectory_T32",
+   "qubits": 8,
+   "qpu_ms_median": 13.56199,
+   "qpu_ms": [
+    13.454689,
+    13.582009000000001,
+    13.56199
+   ]
+  },
+  {
+   "engine": "trajectory_T32",
+   "qubits": 10,
+   "qpu_ms_median": 20.710596,
+   "qpu_ms": [
+    20.805321999999997,
+    20.641216,
+    20.710596
+   ]
+  },
+  {
+   "engine": "trajectory_T32",
+   "qubits": 12,
+   "qpu_ms_median": 39.685939999999995,
+   "qpu_ms": [
+    39.685939999999995,
+    39.983383,
+    39.261604
+   ]
+  },
+  {
+   "engine": "trajectory_T32",
+   "qubits": 14,
+   "qpu_ms_median": 117.316623,
+   "qpu_ms": [
+    117.35722100000001,
+    117.316623,
+    116.370444
+   ]
+  },
+  {
+   "engine": "trajectory_T32",
+   "qubits": 16,
+   "qpu_ms_median": 559.504711,
+   "qpu_ms": [
+    559.504711,
+    556.8711430000001,
+    585.114707
+   ]
+  },
+  {
+   "engine": "trajectory_T32",
+   "qubits": 18,
+   "qpu_ms_median": 2813.320272,
+   "qpu_ms": [
+    2977.580925,
+    2752.473732,
+    2813.320272
+   ]
+  }
+ ]
+}

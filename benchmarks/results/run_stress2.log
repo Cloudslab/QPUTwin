@@ -1,0 +1,66 @@
+[circuits] E11 — nine circuit families × four devices: compiled cost, engine time and noisy fidelity.
+  qft     n= 3  quant 0.985  ionq 0.905  riget 0.667  iqm 0.772
+  qft     n= 4  quant 0.970  ionq 0.822  riget 0.442  iqm 0.601
+  qft     n= 5  quant 0.958  ionq 0.745  riget 0.239  iqm 0.426
+  qft     n= 6  quant 0.939  ionq 0.634  riget 0.127  iqm 0.288
+  qft     n= 7  quant 0.920  ionq 0.534  riget 0.057  iqm 0.187
+  qft     n= 8  quant 0.894  ionq 0.421  riget 0.025  iqm 0.081
+  qft     n=10  quant 0.843  ionq 0.233  riget 0.004  iqm 0.015
+  qft: cost table done (n ≤ 20)
+  saved results/circuits.json
+  (1767.3 s)
+[fairshare] E17 — scheduler isolation: a light client's queue wait while a heavy client floods the queue.
+  same client (FIFO)       light wait p50     334.6 ms  max    2084.9 ms
+  fair share (priority 5)  light wait p50       2.0 ms  max      80.4 ms
+  priority 9               light wait p50       2.2 ms  max      73.5 ms
+  saved results/fairshare.json
+  (90.7 s)
+[load_closed] E13 — closed-loop load: throughput and tail latency vs concurrent clients (sync API).
+  light_emerald     c=  1:   152.1 jobs/s  p50     4.68  p99     6.67 ms  errors 0
+  light_emerald     c=  2:   229.1 jobs/s  p50     6.24  p99    11.87 ms  errors 0
+  light_emerald     c=  4:   284.5 jobs/s  p50    11.05  p99    20.40 ms  errors 0
+  light_emerald     c=  8:   304.1 jobs/s  p50    22.73  p99    45.05 ms  errors 0
+  light_emerald     c= 16:   275.1 jobs/s  p50    53.41  p99   114.29 ms  errors 0
+  light_emerald     c= 32:   231.8 jobs/s  p50   113.64  p99   412.90 ms  errors 0
+  light_emerald     c= 64:   266.6 jobs/s  p50   177.81  p99   885.69 ms  errors 0
+  light_emerald     c=128:   232.5 jobs/s  p50   387.51  p99  2143.84 ms  errors 0
+  light_emerald     c=256:   185.9 jobs/s  p50   972.64  p99  5236.65 ms  errors 0
+  heavy_forte       c=  1:     7.0 jobs/s  p50   134.65  p99   185.92 ms  errors 0
+  heavy_forte       c=  2:     9.7 jobs/s  p50   200.81  p99   246.19 ms  errors 0
+  heavy_forte       c=  4:     9.5 jobs/s  p50   415.88  p99   492.85 ms  errors 0
+  heavy_forte       c=  8:     9.4 jobs/s  p50   843.91  p99   936.95 ms  errors 0
+  heavy_forte       c= 16:     9.4 jobs/s  p50  1681.53  p99  1848.47 ms  errors 0
+  heavy_forte       c= 32:     9.7 jobs/s  p50  3271.17  p99  4099.45 ms  errors 0
+  heavy_forte       c= 64:     9.3 jobs/s  p50  6714.66  p99 10956.23 ms  errors 0
+  heavy_forte_x4    c=  1:     7.0 jobs/s  p50   133.15  p99   184.48 ms  errors 0
+  heavy_forte_x4    c=  2:    12.2 jobs/s  p50   153.59  p99   216.64 ms  errors 0
+  heavy_forte_x4    c=  4:    17.4 jobs/s  p50   213.24  p99   367.52 ms  errors 0
+  heavy_forte_x4    c=  8:    19.2 jobs/s  p50   369.15  p99   564.42 ms  errors 0
+  heavy_forte_x4    c= 16:    20.2 jobs/s  p50   705.88  p99  1107.96 ms  errors 0
+  heavy_forte_x4    c= 32:    19.4 jobs/s  p50  1387.22  p99  2928.85 ms  errors 0
+  heavy_forte_x4    c= 64:    19.7 jobs/s  p50  2706.21  p99  7443.87 ms  errors 0
+  mixed_4_backends  c=  1:   141.9 jobs/s  p50     5.11  p99     7.50 ms  errors 0
+  mixed_4_backends  c=  2:   216.5 jobs/s  p50     6.89  p99    10.48 ms  errors 0
+  mixed_4_backends  c=  4:   311.3 jobs/s  p50     9.51  p99    14.81 ms  errors 0
+  mixed_4_backends  c=  8:   377.7 jobs/s  p50    15.63  p99    25.58 ms  errors 0
+  mixed_4_backends  c= 16:   370.7 jobs/s  p50    32.51  p99    51.05 ms  errors 0
+  mixed_4_backends  c= 32:   298.0 jobs/s  p50    19.98  p99   160.25 ms  errors 0
+  mixed_4_backends  c= 64:   286.1 jobs/s  p50   179.20  p99   540.30 ms  errors 0
+  mixed_4_backends  c=128:   181.7 jobs/s  p50    15.48  p99    78.34 ms  errors 0
+  mixed_4_backends  c=256:   141.5 jobs/s  p50    17.32  p99   275.96 ms  errors 0
+  saved results/load_closed.json
+  (847.8 s)
+[load_open] E14 — open-loop Poisson load vs utilisation, compared with the M/G/1 (Pollaczek–Khinchine) model.
+  service E[S] = 100.11 ms (cv 0.051); capacity 10.0 jobs/s
+  ρ=0.10: mean   140.42 ms (P-K   141.51)  p99   190.00
+  ρ=0.30: mean   157.29 ms (P-K   157.45)  p99   298.34
+  ρ=0.50: mean   204.60 ms (P-K   186.12)  p99   492.50
+  ρ=0.60: mean   211.18 ms (P-K   211.22)  p99   419.61
+  ρ=0.70: mean   247.57 ms (P-K   253.04)  p99   544.92
+  ρ=0.80: mean   479.53 ms (P-K   336.69)  p99  1456.04
+  ρ=0.85: mean   387.62 ms (P-K   420.33)  p99  1023.71
+  ρ=0.90: mean   472.73 ms (P-K   587.63)  p99  1209.48
+  ρ=0.95: mean  1181.45 ms (P-K  1089.50)  p99  2410.43
+  ρ=1.20: mean  3434.46 ms (P-K      nan)  p99  6880.79
+  saved results/load_open.json
+  (437.3 s)

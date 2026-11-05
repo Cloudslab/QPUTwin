@@ -1,0 +1,165 @@
+# =============================================================================
+# QPUTwin — multi-vendor QPU emulator stack
+# Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+#
+#   docker compose up -d --build        # build with uv and start all services
+#   curl localhost:8000/v1/backends     # list emulated QPUs
+#
+# Only the orchestrator publishes a host port; the four vendor workers are
+# reachable solely on the internal `qputwin-net` bridge network.
+#
+# Horizontal scaling: set QPUTWIN_<DEVICE>_REPLICAS in .env (or use
+#   docker compose up -d --scale worker-ionq-forte=3
+# ); the orchestrator discovers every replica through Compose DNS.
+#
+# Calibrated data: drop coupling maps / calibration snapshots into
+# ./config/devices and point QPUTWIN_<DEVICE>_COUPLING_MAP / QPUTWIN_<DEVICE>_CALIBRATION
+# at /app/config/devices/<file>.json (empty = packaged defaults).
+#
+# High availability: async jobs live in a SQLite store on ./data shared by every
+# orchestrator replica. Run several replicas behind the nginx gateway:
+#   QPUTWIN_ORCHESTRATOR_REPLICAS=3 QPUTWIN_ORCHESTRATOR_PORTS=8000-8002 \
+#     docker compose --profile ha up -d        # gateway on :8080
+# =============================================================================
+name: qputwin
+
+x-worker: &worker
+  build:
+    context: .
+    dockerfile: docker/worker.Dockerfile
+  image: qputwin/worker:0.1.0
+  restart: unless-stopped
+  networks: [qputwin-net]
+  init: true
+  volumes:
+    - ./config/devices:/app/config/devices:ro
+  deploy:
+    resources:
+      limits:
+        cpus: "${QPUTWIN_WORKER_CPUS:-4}"
+        memory: "${QPUTWIN_WORKER_MEM:-12g}"
+  labels:
+    org.qputwin.contact: "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+    org.qputwin.role: "vendor-worker"
+
+x-worker-env: &worker-env
+  QPUTWIN_PRECISION: "${QPUTWIN_PRECISION:-complex128}"
+  QPUTWIN_REQUIRE_PUBLISHED_CALIBRATION: "${QPUTWIN_REQUIRE_PUBLISHED_CALIBRATION:-0}"
+  QPUTWIN_MAX_TRAJECTORIES: "${QPUTWIN_MAX_TRAJECTORIES:-2000}"
+  QPUTWIN_MEMORY_GUARD: "1"
+  QPUTWIN_WORKER_CONCURRENCY: "1"
+  QPUTWIN_ENGINE_THREADS: "${QPUTWIN_ENGINE_THREADS:-}"      # empty = the worker's CPU quota (QPUTWIN_WORKER_CPUS)
+  OMP_NUM_THREADS: "1"                                         # the engine threads itself; keep BLAS serial
+
+services:
+  worker-quantinuum-helios:
+    <<: *worker
+    deploy:
+      replicas: ${QPUTWIN_HELIOS_REPLICAS:-1}
+      resources:
+        limits:
+          cpus: "${QPUTWIN_WORKER_CPUS:-4}"
+          memory: "${QPUTWIN_WORKER_MEM:-12g}"
+    environment:
+      <<: *worker-env
+      QPUTWIN_VENDOR: quantinuum_helios
+      QPUTWIN_COUPLING_MAP: "${QPUTWIN_HELIOS_COUPLING_MAP:-}"
+      QPUTWIN_CALIBRATION: "${QPUTWIN_HELIOS_CALIBRATION:-}"
+      QPUTWIN_MAX_SIM_QUBITS: "${QPUTWIN_HELIOS_MAX_QUBITS:-98}"
+
+  worker-ionq-forte:
+    <<: *worker
+    deploy:
+      replicas: ${QPUTWIN_FORTE_REPLICAS:-1}
+      resources:
+        limits:
+          cpus: "${QPUTWIN_WORKER_CPUS:-4}"
+          memory: "${QPUTWIN_WORKER_MEM:-12g}"
+    environment:
+      <<: *worker-env
+      QPUTWIN_VENDOR: ionq_forte
+      QPUTWIN_COUPLING_MAP: "${QPUTWIN_FORTE_COUPLING_MAP:-}"
+      QPUTWIN_CALIBRATION: "${QPUTWIN_FORTE_CALIBRATION:-}"
+      QPUTWIN_MAX_SIM_QUBITS: "${QPUTWIN_FORTE_MAX_QUBITS:-36}"
+
+  worker-rigetti-ankaa3:
+    <<: *worker
+    deploy:
+      replicas: ${QPUTWIN_ANKAA3_REPLICAS:-1}
+      resources:
+        limits:
+          cpus: "${QPUTWIN_WORKER_CPUS:-4}"
+          memory: "${QPUTWIN_WORKER_MEM:-12g}"
+    environment:
+      <<: *worker-env
+      QPUTWIN_VENDOR: rigetti_ankaa_3
+      QPUTWIN_COUPLING_MAP: "${QPUTWIN_ANKAA3_COUPLING_MAP:-}"
+      QPUTWIN_CALIBRATION: "${QPUTWIN_ANKAA3_CALIBRATION:-}"
+      QPUTWIN_MAX_SIM_QUBITS: "${QPUTWIN_ANKAA3_MAX_QUBITS:-84}"
+
+  worker-iqm-emerald:
+    <<: *worker
+    deploy:
+      replicas: ${QPUTWIN_EMERALD_REPLICAS:-1}
+      resources:
+        limits:
+          cpus: "${QPUTWIN_WORKER_CPUS:-4}"
+          memory: "${QPUTWIN_WORKER_MEM:-12g}"
+    environment:
+      <<: *worker-env
+      QPUTWIN_VENDOR: iqm_emerald
+      QPUTWIN_COUPLING_MAP: "${QPUTWIN_EMERALD_COUPLING_MAP:-}"
+      QPUTWIN_CALIBRATION: "${QPUTWIN_EMERALD_CALIBRATION:-}"
+      QPUTWIN_MAX_SIM_QUBITS: "${QPUTWIN_EMERALD_MAX_QUBITS:-54}"
+
+  orchestrator:
+    build:
+      context: .
+      dockerfile: docker/orchestrator.Dockerfile
+    image: qputwin/orchestrator:0.1.0
+    restart: unless-stopped
+    init: true
+    user: "${QPUTWIN_UID:-1000}:${QPUTWIN_GID:-1000}"
+    deploy:
+      replicas: ${QPUTWIN_ORCHESTRATOR_REPLICAS:-1}
+    stop_grace_period: 30s
+    ports:
+      - "${QPUTWIN_ORCHESTRATOR_PORTS:-8000}:8000"
+    volumes:
+      - ./config:/app/config:ro
+      - ./data:/app/data
+    environment:
+      QPUTWIN_BACKENDS_CONFIG: /app/config/backends.toml
+      QPUTWIN_TELEMETRY_PATH: /app/data/telemetry.jsonl
+      QPUTWIN_DISCOVERY: dns
+      QPUTWIN_JOB_STORE: sqlite
+      QPUTWIN_JOB_STORE_PATH: /app/data/jobs.sqlite3
+      QPUTWIN_API_KEYS: "${QPUTWIN_API_KEYS:-}"
+    networks: [qputwin-net]
+    depends_on:
+      worker-quantinuum-helios: { condition: service_healthy }
+      worker-ionq-forte: { condition: service_healthy }
+      worker-rigetti-ankaa3: { condition: service_healthy }
+      worker-iqm-emerald: { condition: service_healthy }
+    labels:
+      org.qputwin.contact: "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+      org.qputwin.role: "orchestrator"
+
+  gateway:
+    image: nginx:1.27.5-alpine
+    profiles: [ha]
+    restart: unless-stopped
+    ports:
+      - "${QPUTWIN_GATEWAY_PORT:-8080}:8080"
+    volumes:
+      - ./docker/gateway/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks: [qputwin-net]
+    depends_on:
+      orchestrator: { condition: service_healthy }
+    labels:
+      org.qputwin.contact: "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+      org.qputwin.role: "gateway"
+
+networks:
+  qputwin-net:
+    driver: bridge

@@ -1,0 +1,67 @@
+{
+ "device": "rigetti_ankaa_3",
+ "label": "EXAMPLE ONLY - synthetic Ankaa-3 calibration snapshot with per-qubit and per-coupler outliers",
+ "snapshot_date": "2026-10-24",
+ "gates": {
+  "rx": {
+   "fidelity": 0.999,
+   "duration_ns": 40.0
+  },
+  "rz": {
+   "fidelity": 1.0,
+   "duration_ns": 0.0
+  },
+  "cz": {
+   "fidelity": 0.99,
+   "duration_ns": 72.0
+  },
+  "iswap": {
+   "fidelity": 0.99,
+   "duration_ns": 72.0
+  }
+ },
+ "readout": {
+  "fidelity": 0.97,
+  "duration_ns": 1500.0
+ },
+ "reset": {
+  "duration_ns": 1000.0
+ },
+ "coherence": {
+  "t1_us": 30.0,
+  "t2_us": 20.0
+ },
+ "provenance": {
+  "*": "EXAMPLE ONLY - synthetic values derived from the packaged nominal file; not vendor data"
+ },
+ "sources": [
+  "https://www.rigetti.com/news/rigetti-computing-launches-84-qubit-ankaa-3-system-achieves-99-5-median-two-qubit-gate-fidelity-milestone"
+ ],
+ "fidelity_convention": "average_gate_fidelity",
+ "feedforward_latency_ns": null,
+ "shot_overhead_us": null,
+ "note": "Nominal device-median values for QPUTwin's noise and gate-duration models. Every field is tagged in 'provenance' as 'published' (with its source) or 'assumed' (placeholder typical of the technology class, NOT vendor data). Replace with a calibration snapshot via QPUTWIN_CALIBRATION before quoting results.",
+ "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>",
+ "qubits": {
+  "0": {
+   "t1_us": 12.0,
+   "t2_us": 8.0,
+   "readout_fidelity": 0.9
+  },
+  "1": {
+   "gates": {
+    "rx": {
+     "fidelity": 0.995
+    }
+   }
+  }
+ },
+ "couplers": {
+  "0-1": {
+   "cz": {
+    "fidelity": 0.95,
+    "duration_ns": 120.0
+   }
+  }
+ }
+}

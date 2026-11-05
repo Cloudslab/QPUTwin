@@ -1,0 +1,274 @@
+{
+ "experiment": "fidelity",
+ "generated_utc": "2026-10-28T07:24:46+00:00",
+ "environment": {
+  "qputwin": "0.1.0",
+  "python": "3.13.17",
+  "numpy": "2.5.4",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+  "logical_cpus": 12,
+  "load_average": [
+   0.70654296875,
+   2.119140625,
+   2.7421875
+  ],
+  "omp_num_threads": "1",
+  "docker": "29.9.2"
+ },
+ "workload": "GHZ along a native path, calibrated device noise, 100 000 shots",
+ "data": [
+  {
+   "backend": "quantinuum_helios",
+   "qubits": 2,
+   "ghz_success": 0.99893,
+   "esp": 0.9984757407889695,
+   "purity": 0.9982462174444303
+  },
+  {
+   "backend": "quantinuum_helios",
+   "qubits": 3,
+   "ghz_success": 0.99759,
+   "esp": 0.9973078409998468,
+   "purity": 0.9962830526705573
+  },
+  {
+   "backend": "quantinuum_helios",
+   "qubits": 4,
+   "ghz_success": 0.99637,
+   "esp": 0.9961413072828896,
+   "purity": 0.9943236936742236
+  },
+  {
+   "backend": "quantinuum_helios",
+   "qubits": 5,
+   "ghz_success": 0.99523,
+   "esp": 0.9949761380402269,
+   "purity": 0.9923682708275492
+  },
+  {
+   "backend": "quantinuum_helios",
+   "qubits": 6,
+   "ghz_success": 0.99407,
+   "esp": 0.9938123316758569,
+   "purity": 0.990416776136354
+  },
+  {
+   "backend": "quantinuum_helios",
+   "qubits": 7,
+   "ghz_success": 0.99303,
+   "esp": 0.9926498865956445,
+   "purity": 0.9884692015504939
+  },
+  {
+   "backend": "quantinuum_helios",
+   "qubits": 8,
+   "ghz_success": 0.99204,
+   "esp": 0.9914888012073186,
+   "purity": 0.986525539036584
+  },
+  {
+   "backend": "quantinuum_helios",
+   "qubits": 9,
+   "ghz_success": 0.99088,
+   "esp": 0.9903290739204715,
+   "purity": 0.9845857805780005
+  },
+  {
+   "backend": "quantinuum_helios",
+   "qubits": 10,
+   "ghz_success": 0.9896,
+   "esp": 0.989170703146556,
+   "purity": 0.9826499181748467
+  },
+  {
+   "backend": "ionq_forte",
+   "qubits": 2,
+   "ghz_success": 0.98702,
+   "esp": 0.985670513482596,
+   "purity": 0.9905861404425265
+  },
+  {
+   "backend": "ionq_forte",
+   "qubits": 3,
+   "ghz_success": 0.9778,
+   "esp": 0.9764285036673815,
+   "purity": 0.9793681365920673
+  },
+  {
+   "backend": "ionq_forte",
+   "qubits": 4,
+   "ghz_success": 0.96889,
+   "esp": 0.9672731503405736,
+   "purity": 0.9675374262023175
+  },
+  {
+   "backend": "ionq_forte",
+   "qubits": 5,
+   "ghz_success": 0.95951,
+   "esp": 0.9582036409790167,
+   "purity": 0.9551293284221415
+  },
+  {
+   "backend": "ionq_forte",
+   "qubits": 6,
+   "ghz_success": 0.95047,
+   "esp": 0.9492191706780707,
+   "purity": 0.9421773200104685
+  },
+  {
+   "backend": "ionq_forte",
+   "qubits": 7,
+   "ghz_success": 0.94173,
+   "esp": 0.940318942080179,
+   "purity": 0.9287166970509562
+  },
+  {
+   "backend": "ionq_forte",
+   "qubits": 8,
+   "ghz_success": 0.93222,
+   "esp": 0.931502165304102,
+   "purity": 0.9147843526467296
+  },
+  {
+   "backend": "ionq_forte",
+   "qubits": 9,
+   "ghz_success": 0.92307,
+   "esp": 0.9227680578748184,
+   "purity": 0.9004185344972644
+  },
+  {
+   "backend": "ionq_forte",
+   "qubits": 10,
+   "ghz_success": 0.91409,
+   "esp": 0.9141158446540805,
+   "purity": 0.8856585974718635
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "qubits": 2,
+   "ghz_success": 0.93419,
+   "esp": 0.9286993205415089,
+   "purity": 0.9685302023098571
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "qubits": 3,
+   "ghz_success": 0.89019,
+   "esp": 0.8900471894309365,
+   "purity": 0.9263068451281422
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "qubits": 4,
+   "ghz_success": 0.84498,
+   "esp": 0.8530037460908232,
+   "purity": 0.8748976512727092
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "qubits": 5,
+   "ghz_success": 0.80016,
+   "esp": 0.8175020375157729,
+   "purity": 0.816327542981653
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "qubits": 6,
+   "ghz_success": 0.75422,
+   "esp": 0.7834778972603506,
+   "purity": 0.7527407053484071
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "qubits": 7,
+   "ghz_success": 0.70728,
+   "esp": 0.750869829463461,
+   "purity": 0.6862815771040645
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "qubits": 8,
+   "ghz_success": 0.66088,
+   "esp": 0.7196188976995915,
+   "purity": 0.6189741177147947
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "qubits": 9,
+   "ghz_success": 0.61441,
+   "esp": 0.6896686184560232,
+   "purity": 0.5526234700367094
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "qubits": 10,
+   "ghz_success": 0.56881,
+   "esp": 0.6609648590434867,
+   "purity": 0.48874591032784986
+  },
+  {
+   "backend": "iqm_emerald",
+   "qubits": 2,
+   "ghz_success": 0.93816,
+   "esp": 0.9342308653362699,
+   "purity": 0.9782720012938573
+  },
+  {
+   "backend": "iqm_emerald",
+   "qubits": 3,
+   "ghz_success": 0.89957,
+   "esp": 0.9004110194114803,
+   "purity": 0.9466802032653868
+  },
+  {
+   "backend": "iqm_emerald",
+   "qubits": 4,
+   "ghz_success": 0.86009,
+   "esp": 0.8678154768369819,
+   "purity": 0.9047812421352595
+  },
+  {
+   "backend": "iqm_emerald",
+   "qubits": 5,
+   "ghz_success": 0.81975,
+   "esp": 0.8363999169290889,
+   "purity": 0.8543414332542096
+  },
+  {
+   "backend": "iqm_emerald",
+   "qubits": 6,
+   "ghz_success": 0.77995,
+   "esp": 0.8061216234455323,
+   "purity": 0.7973595227533541
+  },
+  {
+   "backend": "iqm_emerald",
+   "qubits": 7,
+   "ghz_success": 0.73795,
+   "esp": 0.776939426503499,
+   "purity": 0.7359285019772285
+  },
+  {
+   "backend": "iqm_emerald",
+   "qubits": 8,
+   "ghz_success": 0.69547,
+   "esp": 0.748813646600279,
+   "purity": 0.6721020796796697
+  },
+  {
+   "backend": "iqm_emerald",
+   "qubits": 9,
+   "ghz_success": 0.6537,
+   "esp": 0.7217060406604072,
+   "purity": 0.6077793473807839
+  },
+  {
+   "backend": "iqm_emerald",
+   "qubits": 10,
+   "ghz_success": 0.61166,
+   "esp": 0.695579750035938,
+   "purity": 0.5446161808309671
+  }
+ ]
+}

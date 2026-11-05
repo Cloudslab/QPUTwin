@@ -1,0 +1,56 @@
+{
+ "device": "quantinuum_helios",
+ "label": "Quantinuum Helios - nominal medians",
+ "snapshot_date": null,
+ "gates": {
+  "u1q": {
+   "fidelity": 0.999975,
+   "duration_ns": 10000.0
+  },
+  "rz": {
+   "fidelity": 1.0,
+   "duration_ns": 0.0
+  },
+  "zzmax": {
+   "fidelity": 0.99921,
+   "duration_ns": 100000.0
+  },
+  "rzz": {
+   "fidelity": 0.99921,
+   "duration_ns": 100000.0
+  }
+ },
+ "readout": {
+  "fidelity": 0.99967,
+  "duration_ns": 150000.0
+ },
+ "reset": {
+  "duration_ns": 50000.0
+ },
+ "coherence": {
+  "t1_us": null,
+  "t2_us": null
+ },
+ "provenance": {
+  "gates.u1q.fidelity": "published: 99.9975% single-qubit fidelity (Quantinuum Helios launch blog, Nov 2025)",
+  "gates.zzmax.fidelity": "published: 99.921% two-qubit fidelity across all pairs (Quantinuum Helios launch blog)",
+  "gates.rzz.fidelity": "assumed: equal to the published ZZMax fidelity",
+  "readout.fidelity": "published: 99.967% SPAM fidelity (Sandia/Quantinuum Helios benchmark); applied as symmetric readout error",
+  "gates.u1q.duration_ns": "assumed: order-of-magnitude placeholder; Quantinuum does not publish per-gate durations",
+  "gates.zzmax.duration_ns": "assumed: placeholder excluding QCCD ion-transport and cooling time",
+  "gates.rzz.duration_ns": "assumed: as zzmax",
+  "readout.duration_ns": "assumed: placeholder",
+  "reset.duration_ns": "assumed: placeholder",
+  "coherence": "not modelled: hyperfine-qubit T1/T2 are far longer than circuit durations; memory error is folded into gate infidelity",
+  "shot_overhead_us": "unknown: per-shot overhead (cooling / state prep / rep delay) is not published; job-time estimates exclude it unless set"
+ },
+ "sources": [
+  "https://quantinuum.com/blog/introducing-helios-the-most-accurate-quantum-computer-in-the-world",
+  "https://quantumcomputingreport.com/sandia-national-laboratories-and-quantinuum-validate-98-qubit-helios-trapped-ion-framework/amp/"
+ ],
+ "fidelity_convention": "average_gate_fidelity",
+ "feedforward_latency_ns": null,
+ "shot_overhead_us": null,
+ "note": "Nominal device-median values for QPUTwin's noise and gate-duration models. Every field is tagged in 'provenance' as 'published' (with its source) or 'assumed' (placeholder typical of the technology class, NOT vendor data). Replace with a calibration snapshot via QPUTWIN_CALIBRATION before quoting results.",
+ "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+}

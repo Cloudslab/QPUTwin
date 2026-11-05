@@ -1,0 +1,1983 @@
+{
+ "experiment": "correctness",
+ "generated_utc": "2026-10-28T03:00:38+00:00",
+ "environment": {
+  "python": "3.13.17",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+  "logical_cpus": 12,
+  "load_average": [
+   1.04248046875,
+   1.1376953125,
+   1.2880859375
+  ],
+  "threads": 1,
+  "versions": {
+   "qiskit": "2.6.1",
+   "qiskit-aer": "0.18.2",
+   "amazon-braket-sdk": "1.127.6",
+   "amazon-braket-default-simulator": "1.42.0",
+   "cirq-core": "1.7.0",
+   "qsimcirq": "0.22.1",
+   "qulacs": "0.6.14",
+   "numpy": "2.5.4"
+  },
+  "qputwin": {
+   "base_url": "http://localhost:8000",
+   "status": "ok",
+   "service": "orchestrator",
+   "version": "0.1.0",
+   "worker_precision": "complex128",
+   "worker_threads": "1 (OMP_NUM_THREADS=1 in the container)",
+   "worker_cpu_quota": "4 CPUs / 12 GiB"
+  }
+ },
+ "reference": "Qiskit Aer statevector",
+ "workload": "nine circuit families from benchmarks/circuits.py (seed 1); exact probabilities of the measured bits; QPUTwin via return_statevector on quantinuum_helios (all-to-all, no routing); qsim runs in complex64",
+ "data": [
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "support": 2,
+   "max_abs_dp_vs_aer": 3.3306690738754696e-16,
+   "tv_vs_aer": 1.6653345369377348e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.6653345369377348e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.6653345369377348e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.6653345369377348e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "qsim",
+   "support": 2,
+   "max_abs_dp_vs_aer": 2.9802322498717615e-08,
+   "tv_vs_aer": 2.9802322387695312e-08,
+   "tv_vs_qputwin": 2.980232222116186e-08
+  },
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "Qulacs",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.6653345369377348e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "support": 2,
+   "max_abs_dp_vs_aer": 4.996003610813204e-16,
+   "tv_vs_aer": 3.885780586188048e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.885780586188048e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.885780586188048e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.885780586188048e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "qsim",
+   "support": 2,
+   "max_abs_dp_vs_aer": 2.9802322498717615e-08,
+   "tv_vs_aer": 2.9802322387695312e-08,
+   "tv_vs_qputwin": 2.9802321999117254e-08
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "Qulacs",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.885780586188048e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "support": 2,
+   "max_abs_dp_vs_aer": 8.326672684688674e-16,
+   "tv_vs_aer": 5.551115123125783e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "qsim",
+   "support": 2,
+   "max_abs_dp_vs_aer": 2.9802322498717615e-08,
+   "tv_vs_aer": 2.9802322387695312e-08,
+   "tv_vs_qputwin": 2.98023218325838e-08
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "Qulacs",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "support": 2,
+   "max_abs_dp_vs_aer": 8.326672684688674e-16,
+   "tv_vs_aer": 4.718447854656915e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.718447854656915e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.718447854656915e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.718447854656915e-16
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "qsim",
+   "support": 2,
+   "max_abs_dp_vs_aer": 2.9802322498717615e-08,
+   "tv_vs_aer": 2.9802322387695312e-08,
+   "tv_vs_qputwin": 2.9802321915850527e-08
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "support": 2,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.718447854656915e-16
+  },
+  {
+   "family": "qft",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.4424906541753444e-15,
+   "tv_vs_aer": 1.2212453270876722e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qft",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.2212453270876722e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.2212453270876722e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.2212453270876722e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 4,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.4239713127714958e-14,
+   "tv_vs_aer": 9.121752548485777e-15,
+   "tv_vs_qputwin": 1.0342997875573449e-14
+  },
+  {
+   "family": "qft",
+   "qubits": 4,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.2212453270876722e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 5.329070518200751e-15,
+   "tv_vs_aer": 2.6645352591003757e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qft",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 2.6645352591003757e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 2.7755575615628914e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 2.7755575615628914e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 8,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.7950528894252263e-14,
+   "tv_vs_aer": 4.367867000543713e-14,
+   "tv_vs_qputwin": 4.6343205264537504e-14
+  },
+  {
+   "family": "qft",
+   "qubits": 8,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 2.6645352591003757e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.3100631690576847e-14,
+   "tv_vs_aer": 6.5503158452884236e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qft",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 6.5503158452884236e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 4.440892098500626e-16,
+   "tv_vs_aer": 2.220446049250313e-16,
+   "tv_vs_qputwin": 6.328271240363392e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 4.440892098500626e-16,
+   "tv_vs_aer": 2.220446049250313e-16,
+   "tv_vs_qputwin": 6.328271240363392e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 12,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 4.0967307535699424e-14,
+   "tv_vs_aer": 1.0183520338679202e-13,
+   "tv_vs_qputwin": 1.0794143002223038e-13
+  },
+  {
+   "family": "qft",
+   "qubits": 12,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 6.5503158452884236e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "support": 5,
+   "max_abs_dp_vs_aer": 1.9095836023552692e-14,
+   "tv_vs_aer": 9.547918012025604e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "support": 5,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 9.547918012025604e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "support": 5,
+   "max_abs_dp_vs_aer": 1.3322676295501878e-15,
+   "tv_vs_aer": 6.661338179416938e-16,
+   "tv_vs_qputwin": 1.02140518299673e-14
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "support": 5,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230557586349e-16,
+   "tv_vs_qputwin": 9.436895712676437e-15
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "qsim",
+   "support": 5,
+   "max_abs_dp_vs_aer": 5.928590951498336e-14,
+   "tv_vs_aer": 1.6139254663062888e-13,
+   "tv_vs_qputwin": 1.7094046464215597e-13
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "support": 5,
+   "max_abs_dp_vs_aer": 1.5543122344752192e-15,
+   "tv_vs_aer": 7.7715612149355755e-16,
+   "tv_vs_qputwin": 1.0325074133519163e-14
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "support": 16,
+   "max_abs_dp_vs_aer": 4.163336342344337e-16,
+   "tv_vs_aer": 9.276433787785976e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "support": 16,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 9.276433787785976e-16
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "support": 16,
+   "max_abs_dp_vs_aer": 3.191891195797325e-16,
+   "tv_vs_aer": 4.163336342344337e-16,
+   "tv_vs_qputwin": 7.194765616613807e-16
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "support": 16,
+   "max_abs_dp_vs_aer": 2.7755575615628914e-16,
+   "tv_vs_aer": 7.517857864014488e-16,
+   "tv_vs_qputwin": 6.143089509302868e-16
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "qsim",
+   "support": 16,
+   "max_abs_dp_vs_aer": 7.939718014993158e-08,
+   "tv_vs_aer": 2.4221751757070274e-07,
+   "tv_vs_qputwin": 2.422175173881231e-07
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "Qulacs",
+   "support": 16,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 9.276433787785976e-16
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "support": 256,
+   "max_abs_dp_vs_aer": 1.2836953722228372e-16,
+   "tv_vs_aer": 3.33879466093848e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "support": 256,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.33879466093848e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "support": 256,
+   "max_abs_dp_vs_aer": 4.5102810375396984e-17,
+   "tv_vs_aer": 7.906942448335751e-16,
+   "tv_vs_qputwin": 3.3576589317067806e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "support": 256,
+   "max_abs_dp_vs_aer": 7.45931094670027e-17,
+   "tv_vs_aer": 1.3151058950058685e-15,
+   "tv_vs_qputwin": 2.4837343824430508e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "qsim",
+   "support": 256,
+   "max_abs_dp_vs_aer": 2.18058392037479e-08,
+   "tv_vs_aer": 3.468613204677387e-07,
+   "tv_vs_qputwin": 3.4686131988044754e-07
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "Qulacs",
+   "support": 256,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.33879466093848e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 2.0166160408230382e-17,
+   "tv_vs_aer": 3.743598558795505e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qv",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.743598558795505e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 6.938893903907228e-18,
+   "tv_vs_aer": 1.2879123468438484e-15,
+   "tv_vs_qputwin": 3.820196685824935e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 6.071532165918825e-18,
+   "tv_vs_aer": 1.301176093253956e-15,
+   "tv_vs_qputwin": 3.690428671977726e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 12,
+   "simulator": "qsim",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 2.961247056159494e-09,
+   "tv_vs_aer": 5.460548041001023e-07,
+   "tv_vs_qputwin": 5.460548039886681e-07
+  },
+  {
+   "family": "qv",
+   "qubits": 12,
+   "simulator": "Qulacs",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.743598558795505e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 2.520770051028798e-18,
+   "tv_vs_aer": 5.129229354960882e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.129229354960882e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 7.047314121155779e-19,
+   "tv_vs_aer": 1.8008357867856934e-15,
+   "tv_vs_qputwin": 4.685371885058552e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 7.182839392716467e-19,
+   "tv_vs_aer": 1.9526323319402364e-15,
+   "tv_vs_qputwin": 4.44818087521166e-15
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "qsim",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 2.9443741481136997e-10,
+   "tv_vs_aer": 7.262408847674218e-07,
+   "tv_vs_qputwin": 7.262408848783301e-07
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 8.673617379884035e-19,
+   "tv_vs_aer": 1.9328418959913817e-15,
+   "tv_vs_qputwin": 4.646568910779015e-15
+  },
+  {
+   "family": "qaoa",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "support": 16,
+   "max_abs_dp_vs_aer": 1.6653345369377348e-16,
+   "tv_vs_aer": 3.2959746043559335e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qaoa",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "support": 16,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.2959746043559335e-16
+  },
+  {
+   "family": "qaoa",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "support": 16,
+   "max_abs_dp_vs_aer": 1.3877787807814457e-16,
+   "tv_vs_aer": 2.740863092043355e-16,
+   "tv_vs_qputwin": 5.412337245047638e-16
+  },
+  {
+   "family": "qaoa",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "support": 16,
+   "max_abs_dp_vs_aer": 8.326672684688674e-17,
+   "tv_vs_aer": 2.185751579730777e-16,
+   "tv_vs_qputwin": 5.065392549852277e-16
+  },
+  {
+   "family": "qaoa",
+   "qubits": 4,
+   "simulator": "qsim",
+   "support": 16,
+   "max_abs_dp_vs_aer": 2.5273364151479072e-08,
+   "tv_vs_aer": 8.176860898101435e-08,
+   "tv_vs_qputwin": 8.176860911632278e-08
+  },
+  {
+   "family": "qaoa",
+   "qubits": 4,
+   "simulator": "Qulacs",
+   "support": 16,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.2959746043559335e-16
+  },
+  {
+   "family": "qaoa",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "support": 256,
+   "max_abs_dp_vs_aer": 1.3877787807814457e-16,
+   "tv_vs_aer": 7.037149725788727e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qaoa",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "support": 256,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 7.037149725788727e-16
+  },
+  {
+   "family": "qaoa",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "support": 256,
+   "max_abs_dp_vs_aer": 3.469446951953614e-17,
+   "tv_vs_aer": 2.448535081286951e-16,
+   "tv_vs_qputwin": 7.573152174811248e-16
+  },
+  {
+   "family": "qaoa",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "support": 256,
+   "max_abs_dp_vs_aer": 5.551115123125783e-17,
+   "tv_vs_aer": 3.4371919373221704e-16,
+   "tv_vs_qputwin": 9.279008767945629e-16
+  },
+  {
+   "family": "qaoa",
+   "qubits": 8,
+   "simulator": "qsim",
+   "support": 256,
+   "max_abs_dp_vs_aer": 4.7989658885638775e-08,
+   "tv_vs_aer": 1.6000310785868187e-07,
+   "tv_vs_qputwin": 1.6000310782573568e-07
+  },
+  {
+   "family": "qaoa",
+   "qubits": 8,
+   "simulator": "Qulacs",
+   "support": 256,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 7.037149725788727e-16
+  },
+  {
+   "family": "qaoa",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 7.632783294297951e-17,
+   "tv_vs_aer": 1.0152784464403769e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qaoa",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.0152784464403769e-15
+  },
+  {
+   "family": "qaoa",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 6.938893903907228e-18,
+   "tv_vs_aer": 2.550377161257786e-16,
+   "tv_vs_qputwin": 9.848186519661896e-16
+  },
+  {
+   "family": "qaoa",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 2.7755575615628914e-17,
+   "tv_vs_aer": 3.709824049774748e-16,
+   "tv_vs_qputwin": 1.2317953937609654e-15
+  },
+  {
+   "family": "qaoa",
+   "qubits": 12,
+   "simulator": "qsim",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 9.372065956636533e-09,
+   "tv_vs_aer": 1.418356238607462e-07,
+   "tv_vs_qputwin": 1.418356237225877e-07
+  },
+  {
+   "family": "qaoa",
+   "qubits": 12,
+   "simulator": "Qulacs",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.0152784464403769e-15
+  },
+  {
+   "family": "qaoa",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 6.245004513516506e-17,
+   "tv_vs_aer": 1.6982579670705284e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "qaoa",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.6982579670705284e-15
+  },
+  {
+   "family": "qaoa",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 2.42861286636753e-17,
+   "tv_vs_aer": 4.937588201710075e-16,
+   "tv_vs_qputwin": 1.3338276546133685e-15
+  },
+  {
+   "family": "qaoa",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 2.7755575615628914e-17,
+   "tv_vs_aer": 4.486255773103491e-16,
+   "tv_vs_qputwin": 1.4064965694373293e-15
+  },
+  {
+   "family": "qaoa",
+   "qubits": 16,
+   "simulator": "qsim",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 4.923749795035515e-09,
+   "tv_vs_aer": 1.595338701568674e-07,
+   "tv_vs_qputwin": 1.5953387012665094e-07
+  },
+  {
+   "family": "qaoa",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 2.42861286636753e-17,
+   "tv_vs_aer": 4.853904826108295e-16,
+   "tv_vs_qputwin": 1.3841730475646925e-15
+  },
+  {
+   "family": "hea",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "support": 16,
+   "max_abs_dp_vs_aer": 3.608224830031759e-16,
+   "tv_vs_aer": 8.131516293641283e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "hea",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "support": 16,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 8.131516293641283e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "support": 16,
+   "max_abs_dp_vs_aer": 5.551115123125783e-17,
+   "tv_vs_aer": 1.4268100589909238e-16,
+   "tv_vs_qputwin": 8.335346302068558e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "support": 16,
+   "max_abs_dp_vs_aer": 1.249000902703301e-16,
+   "tv_vs_aer": 2.259477327459791e-16,
+   "tv_vs_qputwin": 7.381248390281314e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 4,
+   "simulator": "qsim",
+   "support": 16,
+   "max_abs_dp_vs_aer": 4.098669761920526e-08,
+   "tv_vs_aer": 1.1515169551180524e-07,
+   "tv_vs_qputwin": 1.1515169509070111e-07
+  },
+  {
+   "family": "hea",
+   "qubits": 4,
+   "simulator": "Qulacs",
+   "support": 16,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 8.131516293641283e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "support": 256,
+   "max_abs_dp_vs_aer": 4.163336342344337e-17,
+   "tv_vs_aer": 8.776413298362817e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "hea",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "support": 256,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 8.776413298362817e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "support": 256,
+   "max_abs_dp_vs_aer": 3.469446951953614e-17,
+   "tv_vs_aer": 3.1019066506457645e-16,
+   "tv_vs_qputwin": 8.24826707992608e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "support": 256,
+   "max_abs_dp_vs_aer": 3.469446951953614e-17,
+   "tv_vs_aer": 3.2607210930912095e-16,
+   "tv_vs_qputwin": 8.167947180702691e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 8,
+   "simulator": "qsim",
+   "support": 256,
+   "max_abs_dp_vs_aer": 9.916677302240773e-09,
+   "tv_vs_aer": 1.5006281786804377e-07,
+   "tv_vs_qputwin": 1.5006281802655667e-07
+  },
+  {
+   "family": "hea",
+   "qubits": 8,
+   "simulator": "Qulacs",
+   "support": 256,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 8.776413298362817e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 9.107298248878237e-18,
+   "tv_vs_aer": 9.475919811731495e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "hea",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 9.475919811731495e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 4.336808689942018e-18,
+   "tv_vs_aer": 3.3193601707333743e-16,
+   "tv_vs_qputwin": 9.971271830262205e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 6.071532165918825e-18,
+   "tv_vs_aer": 3.600276281953711e-16,
+   "tv_vs_qputwin": 1.0081569474531649e-15
+  },
+  {
+   "family": "hea",
+   "qubits": 12,
+   "simulator": "qsim",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 3.0950800282078528e-09,
+   "tv_vs_aer": 1.5332016342518966e-07,
+   "tv_vs_qputwin": 1.5332016338620775e-07
+  },
+  {
+   "family": "hea",
+   "qubits": 12,
+   "simulator": "Qulacs",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 9.475919811731495e-16
+  },
+  {
+   "family": "hea",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 7.37257477290143e-18,
+   "tv_vs_aer": 1.5136634783585268e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "hea",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.5136634783585268e-15
+  },
+  {
+   "family": "hea",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 2.3852447794681098e-18,
+   "tv_vs_aer": 4.732795537805005e-16,
+   "tv_vs_qputwin": 1.460387513168749e-15
+  },
+  {
+   "family": "hea",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 2.3852447794681098e-18,
+   "tv_vs_aer": 4.57065197108115e-16,
+   "tv_vs_qputwin": 1.5226459430847013e-15
+  },
+  {
+   "family": "hea",
+   "qubits": 16,
+   "simulator": "qsim",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 7.66920674102195e-10,
+   "tv_vs_aer": 1.8201282257795442e-07,
+   "tv_vs_qputwin": 1.8201282288907336e-07
+  },
+  {
+   "family": "hea",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 1.0842021724855044e-18,
+   "tv_vs_aer": 4.445943537279204e-16,
+   "tv_vs_qputwin": 1.5641911412492982e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "support": 16,
+   "max_abs_dp_vs_aer": 3.885780586188048e-16,
+   "tv_vs_aer": 8.454608541041964e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "ising",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "support": 16,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 8.454608541041964e-16
+  },
+  {
+   "family": "ising",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "support": 16,
+   "max_abs_dp_vs_aer": 8.326672684688674e-17,
+   "tv_vs_aer": 9.280770596475918e-17,
+   "tv_vs_qputwin": 8.949004731695354e-16
+  },
+  {
+   "family": "ising",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "support": 16,
+   "max_abs_dp_vs_aer": 3.3306690738754696e-16,
+   "tv_vs_aer": 6.336077496005288e-16,
+   "tv_vs_qputwin": 1.4773338802287483e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 4,
+   "simulator": "qsim",
+   "support": 16,
+   "max_abs_dp_vs_aer": 3.445295328197151e-08,
+   "tv_vs_aer": 7.905813538761422e-08,
+   "tv_vs_qputwin": 7.905813525685944e-08
+  },
+  {
+   "family": "ising",
+   "qubits": 4,
+   "simulator": "Qulacs",
+   "support": 16,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 8.454608541041964e-16
+  },
+  {
+   "family": "ising",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "support": 256,
+   "max_abs_dp_vs_aer": 2.983724378680108e-16,
+   "tv_vs_aer": 2.000794312401275e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "ising",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "support": 256,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 2.000794312401275e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "support": 256,
+   "max_abs_dp_vs_aer": 1.734723475976807e-17,
+   "tv_vs_aer": 1.6060803471125602e-16,
+   "tv_vs_qputwin": 2.0618116013061596e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "support": 256,
+   "max_abs_dp_vs_aer": 1.3183898417423734e-16,
+   "tv_vs_aer": 1.1527356082478499e-15,
+   "tv_vs_qputwin": 3.145073143703738e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 8,
+   "simulator": "qsim",
+   "support": 256,
+   "max_abs_dp_vs_aer": 1.693605984273705e-08,
+   "tv_vs_aer": 1.1951131525098385e-07,
+   "tv_vs_qputwin": 1.1951131487307163e-07
+  },
+  {
+   "family": "ising",
+   "qubits": 8,
+   "simulator": "Qulacs",
+   "support": 256,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 2.000794312401275e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 8.326672684688674e-17,
+   "tv_vs_aer": 2.881744510478352e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "ising",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 2.881744510478352e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 1.3010426069826053e-17,
+   "tv_vs_aer": 3.4355284357512957e-16,
+   "tv_vs_qputwin": 3.0542609725028646e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 5.0306980803327406e-17,
+   "tv_vs_aer": 2.0092494028287907e-15,
+   "tv_vs_qputwin": 4.887262179997453e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 12,
+   "simulator": "qsim",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 4.886559042821537e-09,
+   "tv_vs_aer": 1.6743340471214655e-07,
+   "tv_vs_qputwin": 1.6743340556170646e-07
+  },
+  {
+   "family": "ising",
+   "qubits": 12,
+   "simulator": "Qulacs",
+   "support": 4096,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 2.881744510478352e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 2.5153490401663703e-17,
+   "tv_vs_aer": 4.127803747456791e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "ising",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.127803747456791e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 4.553649124439119e-18,
+   "tv_vs_aer": 4.965641177345346e-16,
+   "tv_vs_qputwin": 3.9684084559514716e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 1.0191500421363742e-17,
+   "tv_vs_aer": 1.6635176736845692e-15,
+   "tv_vs_qputwin": 5.785952056436235e-15
+  },
+  {
+   "family": "ising",
+   "qubits": 16,
+   "simulator": "qsim",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 8.994244533183648e-10,
+   "tv_vs_aer": 1.8989283907390451e-07,
+   "tv_vs_qputwin": 1.8989284008110268e-07
+  },
+  {
+   "family": "ising",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "support": 65536,
+   "max_abs_dp_vs_aer": 4.553649124439119e-18,
+   "tv_vs_aer": 5.55380727139972e-16,
+   "tv_vs_qputwin": 3.751807608009929e-15
+  },
+  {
+   "family": "bv",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "bv",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 4,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.1920928977282585e-07,
+   "tv_vs_aer": 5.960464488641293e-08,
+   "tv_vs_qputwin": 5.960464477539063e-08
+  },
+  {
+   "family": "bv",
+   "qubits": 4,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "bv",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 8,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.1920928977282585e-07,
+   "tv_vs_aer": 5.960464488641293e-08,
+   "tv_vs_qputwin": 5.960464477539063e-08
+  },
+  {
+   "family": "bv",
+   "qubits": 8,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "bv",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "bv",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 12,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 5.960464455334602e-08,
+   "tv_vs_aer": 2.980232227667301e-08,
+   "tv_vs_qputwin": 2.9802322387695312e-08
+  },
+  {
+   "family": "bv",
+   "qubits": 12,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.1102230246251565e-16
+  },
+  {
+   "family": "bv",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_aer": 5.551115123125783e-17,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "bv",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-17
+  },
+  {
+   "family": "bv",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 5.551115123125783e-17
+  },
+  {
+   "family": "bv",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-17
+  },
+  {
+   "family": "bv",
+   "qubits": 16,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 5.960464455334602e-08,
+   "tv_vs_aer": 2.980232227667301e-08,
+   "tv_vs_qputwin": 2.980232222116186e-08
+  },
+  {
+   "family": "bv",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-17
+  },
+  {
+   "family": "adder",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.1102230246251565e-15,
+   "tv_vs_aer": 5.551115123125783e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "adder",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-16
+  },
+  {
+   "family": "adder",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 4.440892098500626e-16
+  },
+  {
+   "family": "adder",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-16
+  },
+  {
+   "family": "adder",
+   "qubits": 4,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-16
+  },
+  {
+   "family": "adder",
+   "qubits": 4,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 5.551115123125783e-16
+  },
+  {
+   "family": "adder",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 3.9968028886505635e-15,
+   "tv_vs_aer": 1.9984014443252818e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "adder",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.9984014443252818e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 4.440892098500626e-16,
+   "tv_vs_aer": 2.220446049250313e-16,
+   "tv_vs_qputwin": 1.7763568394002505e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.9984014443252818e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 8,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.9984014443252818e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 8,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.9984014443252818e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 7.771561172376096e-15,
+   "tv_vs_aer": 3.885780586188048e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "adder",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.885780586188048e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 4.440892098500626e-16,
+   "tv_vs_aer": 2.220446049250313e-16,
+   "tv_vs_qputwin": 3.6637359812630166e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 3.9968028886505635e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 12,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.1102237657789854e-15,
+   "tv_vs_aer": 1.7444869071224522e-15,
+   "tv_vs_qputwin": 5.6302674933105e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 12,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 3.885780586188048e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 9.547918011776346e-15,
+   "tv_vs_aer": 4.773959005888173e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "adder",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.773959005888173e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.3322676295501878e-15,
+   "tv_vs_aer": 6.661338147750939e-16,
+   "tv_vs_qputwin": 4.107825191113079e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.773959005888173e-15
+  },
+  {
+   "family": "adder",
+   "qubits": 16,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 5.4038834327175666e-15,
+   "tv_vs_aer": 1.636239728117114e-14,
+   "tv_vs_qputwin": 2.1136356287059313e-14
+  },
+  {
+   "family": "adder",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.773959005888173e-15
+  },
+  {
+   "family": "mirror",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 4.440892098500626e-16,
+   "tv_vs_aer": 2.220446049250313e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "mirror",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 2.220446049250313e-16
+  },
+  {
+   "family": "mirror",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 2.220446049250313e-16
+  },
+  {
+   "family": "mirror",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 4.440892098500626e-16,
+   "tv_vs_aer": 2.220446049250313e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "mirror",
+   "qubits": 4,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 3.556184819818349e-15,
+   "tv_vs_aer": 4.608888378094308e-15,
+   "tv_vs_qputwin": 4.3868437731692765e-15
+  },
+  {
+   "family": "mirror",
+   "qubits": 4,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 2.220446049250313e-16
+  },
+  {
+   "family": "mirror",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.3322676295501878e-15,
+   "tv_vs_aer": 6.661338147750939e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "mirror",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 6.661338147750939e-16
+  },
+  {
+   "family": "mirror",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 6.661338147750939e-16
+  },
+  {
+   "family": "mirror",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 1.3322676295501878e-15,
+   "tv_vs_aer": 6.661338147750939e-16,
+   "tv_vs_qputwin": 1.3322676295501878e-15
+  },
+  {
+   "family": "mirror",
+   "qubits": 8,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 5.7329828377801744e-15,
+   "tv_vs_aer": 2.735687482507615e-14,
+   "tv_vs_qputwin": 2.8023008639851244e-14
+  },
+  {
+   "family": "mirror",
+   "qubits": 8,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 6.661338147750939e-16
+  },
+  {
+   "family": "mirror",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 8.881784197001252e-16,
+   "tv_vs_aer": 4.440892098500626e-16,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "mirror",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.440892098500626e-16
+  },
+  {
+   "family": "mirror",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.220446049250313e-16,
+   "tv_vs_aer": 1.1102230246251565e-16,
+   "tv_vs_qputwin": 5.551115123125783e-16
+  },
+  {
+   "family": "mirror",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.6645352591003757e-15,
+   "tv_vs_aer": 1.3322676295501878e-15,
+   "tv_vs_qputwin": 1.7763568394002505e-15
+  },
+  {
+   "family": "mirror",
+   "qubits": 12,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.914479774055248e-14,
+   "tv_vs_aer": 7.934271177579478e-14,
+   "tv_vs_qputwin": 7.978680098564485e-14
+  },
+  {
+   "family": "mirror",
+   "qubits": 12,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 4.440892098500626e-16
+  },
+  {
+   "family": "mirror",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "support": 1,
+   "max_abs_dp_vs_aer": 2.6645352591003757e-15,
+   "tv_vs_aer": 1.3322676295501878e-15,
+   "tv_vs_qputwin": 0.0
+  },
+  {
+   "family": "mirror",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.3322676295501878e-15
+  },
+  {
+   "family": "mirror",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.3322676295501878e-15
+  },
+  {
+   "family": "mirror",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "support": 1,
+   "max_abs_dp_vs_aer": 6.661338147750939e-16,
+   "tv_vs_aer": 3.3306690738754696e-16,
+   "tv_vs_qputwin": 1.6653345369377348e-15
+  },
+  {
+   "family": "mirror",
+   "qubits": 16,
+   "simulator": "qsim",
+   "support": 1,
+   "max_abs_dp_vs_aer": 3.7639494656922096e-14,
+   "tv_vs_aer": 8.123156560201872e-14,
+   "tv_vs_qputwin": 8.256383323156891e-14
+  },
+  {
+   "family": "mirror",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "support": 1,
+   "max_abs_dp_vs_aer": 0.0,
+   "tv_vs_aer": 0.0,
+   "tv_vs_qputwin": 1.3322676295501878e-15
+  }
+ ]
+}

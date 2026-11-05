@@ -1,0 +1,2710 @@
+{
+ "experiment": "qv",
+ "generated_utc": "2026-10-28T07:29:43+00:00",
+ "environment": {
+  "qputwin": "0.1.0",
+  "python": "3.13.17",
+  "numpy": "2.5.4",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+  "logical_cpus": 12,
+  "load_average": [
+   1.35302734375,
+   1.529296875,
+   2.3046875
+  ],
+  "omp_num_threads": "1",
+  "docker": "29.9.2"
+ },
+ "workload": "QV-style circuits (m layers of random 3-CX two-qubit blocks; generic, not Haar SU(4)), 12 circuits per width, 20 000 shots, exact calibrated noise; pass = mean HOP \u2212 2\u03c3_mean > 2/3",
+ "data": [
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 0,
+   "hop": 0.6503,
+   "ideal_hop": 0.656225472944993,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 1,
+   "hop": 0.73735,
+   "ideal_hop": 0.7363921012521535,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 2,
+   "hop": 0.86935,
+   "ideal_hop": 0.8745596578463104,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 3,
+   "hop": 0.71885,
+   "ideal_hop": 0.7246962044001692,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 4,
+   "hop": 0.7881,
+   "ideal_hop": 0.7931297806612565,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 5,
+   "hop": 0.70145,
+   "ideal_hop": 0.7002148052139372,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 6,
+   "hop": 0.75955,
+   "ideal_hop": 0.7591518170625269,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 7,
+   "hop": 0.66375,
+   "ideal_hop": 0.6712287496255505,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 8,
+   "hop": 0.77655,
+   "ideal_hop": 0.7746562390318761,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 9,
+   "hop": 0.75615,
+   "ideal_hop": 0.7566664475962638,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 10,
+   "hop": 0.8499,
+   "ideal_hop": 0.8540456962642575,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 2,
+   "circuit": 11,
+   "hop": 0.78855,
+   "ideal_hop": 0.792184469270516,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 0,
+   "hop": 0.64295,
+   "ideal_hop": 0.656225472944993,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 1,
+   "hop": 0.7257,
+   "ideal_hop": 0.7363921012521535,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 2,
+   "hop": 0.8508,
+   "ideal_hop": 0.8745596578463104,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 3,
+   "hop": 0.708,
+   "ideal_hop": 0.7246962044001692,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 4,
+   "hop": 0.776,
+   "ideal_hop": 0.7931297806612565,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 5,
+   "hop": 0.69255,
+   "ideal_hop": 0.7002148052139372,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 6,
+   "hop": 0.7487,
+   "ideal_hop": 0.7591518170625269,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 7,
+   "hop": 0.6567,
+   "ideal_hop": 0.6712287496255505,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 8,
+   "hop": 0.76435,
+   "ideal_hop": 0.7746562390318761,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 9,
+   "hop": 0.7442,
+   "ideal_hop": 0.7566664475962638,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 10,
+   "hop": 0.83375,
+   "ideal_hop": 0.8540456962642575,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 2,
+   "circuit": 11,
+   "hop": 0.7717,
+   "ideal_hop": 0.792184469270516,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 0,
+   "hop": 0.6286,
+   "ideal_hop": 0.656225472944993,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 1,
+   "hop": 0.6896,
+   "ideal_hop": 0.7363921012521535,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 2,
+   "hop": 0.78885,
+   "ideal_hop": 0.8745596578463104,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 3,
+   "hop": 0.6731,
+   "ideal_hop": 0.7246962044001692,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 4,
+   "hop": 0.7446,
+   "ideal_hop": 0.7931297806612565,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 5,
+   "hop": 0.6593,
+   "ideal_hop": 0.7002148052139372,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 6,
+   "hop": 0.7212,
+   "ideal_hop": 0.7591518170625269,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 7,
+   "hop": 0.6398,
+   "ideal_hop": 0.6712287496255505,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 8,
+   "hop": 0.73555,
+   "ideal_hop": 0.7746562390318761,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 9,
+   "hop": 0.70635,
+   "ideal_hop": 0.7566664475962638,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 10,
+   "hop": 0.7942,
+   "ideal_hop": 0.8540456962642575,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 2,
+   "circuit": 11,
+   "hop": 0.72285,
+   "ideal_hop": 0.792184469270516,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 0,
+   "hop": 0.6362,
+   "ideal_hop": 0.656225472944993,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 1,
+   "hop": 0.7018,
+   "ideal_hop": 0.7363921012521535,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 2,
+   "hop": 0.8095,
+   "ideal_hop": 0.8745596578463104,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 3,
+   "hop": 0.68505,
+   "ideal_hop": 0.7246962044001692,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 4,
+   "hop": 0.7607,
+   "ideal_hop": 0.7931297806612565,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 5,
+   "hop": 0.6711,
+   "ideal_hop": 0.7002148052139372,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 6,
+   "hop": 0.7368,
+   "ideal_hop": 0.7591518170625269,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 7,
+   "hop": 0.6488,
+   "ideal_hop": 0.6712287496255505,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 8,
+   "hop": 0.74875,
+   "ideal_hop": 0.7746562390318761,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 9,
+   "hop": 0.72285,
+   "ideal_hop": 0.7566664475962638,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 10,
+   "hop": 0.81475,
+   "ideal_hop": 0.8540456962642575,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 2,
+   "circuit": 11,
+   "hop": 0.74075,
+   "ideal_hop": 0.792184469270516,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 0,
+   "hop": 0.91025,
+   "ideal_hop": 0.9104443877722949,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 1,
+   "hop": 0.82175,
+   "ideal_hop": 0.8248989797452899,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 2,
+   "hop": 0.8428,
+   "ideal_hop": 0.8443640783046505,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 3,
+   "hop": 0.72885,
+   "ideal_hop": 0.7269094058232777,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 4,
+   "hop": 0.9997,
+   "ideal_hop": 1.0000000000000004,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 5,
+   "hop": 0.7844,
+   "ideal_hop": 0.7893665533778226,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 6,
+   "hop": 0.79135,
+   "ideal_hop": 0.7917928283663832,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 7,
+   "hop": 0.84905,
+   "ideal_hop": 0.8527321400998326,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 8,
+   "hop": 0.73165,
+   "ideal_hop": 0.7367911172262716,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 9,
+   "hop": 0.75585,
+   "ideal_hop": 0.7487471558241634,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 10,
+   "hop": 0.8647,
+   "ideal_hop": 0.8664139083548186,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 3,
+   "circuit": 11,
+   "hop": 0.92575,
+   "ideal_hop": 0.9275416380749504,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 0,
+   "hop": 0.88665,
+   "ideal_hop": 0.9104443877722949,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 1,
+   "hop": 0.80635,
+   "ideal_hop": 0.8248989797452899,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 2,
+   "hop": 0.81865,
+   "ideal_hop": 0.8443640783046505,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 3,
+   "hop": 0.7161,
+   "ideal_hop": 0.7269094058232777,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 4,
+   "hop": 0.9946,
+   "ideal_hop": 1.0000000000000004,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 5,
+   "hop": 0.766,
+   "ideal_hop": 0.7893665533778226,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 6,
+   "hop": 0.77375,
+   "ideal_hop": 0.7917928283663832,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 7,
+   "hop": 0.82735,
+   "ideal_hop": 0.8527321400998326,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 8,
+   "hop": 0.71685,
+   "ideal_hop": 0.7367911172262716,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 9,
+   "hop": 0.74465,
+   "ideal_hop": 0.7487471558241634,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 10,
+   "hop": 0.84685,
+   "ideal_hop": 0.8664139083548186,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 3,
+   "circuit": 11,
+   "hop": 0.90725,
+   "ideal_hop": 0.9275416380749504,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 0,
+   "hop": 0.8121,
+   "ideal_hop": 0.9104443877722949,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 1,
+   "hop": 0.76005,
+   "ideal_hop": 0.8248989797452899,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 2,
+   "hop": 0.73865,
+   "ideal_hop": 0.8443640783046505,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 3,
+   "hop": 0.66755,
+   "ideal_hop": 0.7269094058232777,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 4,
+   "hop": 0.9685,
+   "ideal_hop": 1.0000000000000004,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 5,
+   "hop": 0.70305,
+   "ideal_hop": 0.7893665533778226,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 6,
+   "hop": 0.71585,
+   "ideal_hop": 0.7917928283663832,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 7,
+   "hop": 0.7657,
+   "ideal_hop": 0.8527321400998326,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 8,
+   "hop": 0.6781,
+   "ideal_hop": 0.7367911172262716,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 9,
+   "hop": 0.69875,
+   "ideal_hop": 0.7487471558241634,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 10,
+   "hop": 0.80545,
+   "ideal_hop": 0.8664139083548186,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 3,
+   "circuit": 11,
+   "hop": 0.8429,
+   "ideal_hop": 0.9275416380749504,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 0,
+   "hop": 0.8463,
+   "ideal_hop": 0.9104443877722949,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 1,
+   "hop": 0.77615,
+   "ideal_hop": 0.8248989797452899,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 2,
+   "hop": 0.7665,
+   "ideal_hop": 0.8443640783046505,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 3,
+   "hop": 0.68415,
+   "ideal_hop": 0.7269094058232777,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 4,
+   "hop": 0.9697,
+   "ideal_hop": 1.0000000000000004,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 5,
+   "hop": 0.7285,
+   "ideal_hop": 0.7893665533778226,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 6,
+   "hop": 0.7353,
+   "ideal_hop": 0.7917928283663832,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 7,
+   "hop": 0.7889,
+   "ideal_hop": 0.8527321400998326,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 8,
+   "hop": 0.69675,
+   "ideal_hop": 0.7367911172262716,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 9,
+   "hop": 0.7179,
+   "ideal_hop": 0.7487471558241634,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 10,
+   "hop": 0.82405,
+   "ideal_hop": 0.8664139083548186,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 3,
+   "circuit": 11,
+   "hop": 0.87645,
+   "ideal_hop": 0.9275416380749504,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 0,
+   "hop": 0.8112,
+   "ideal_hop": 0.8116924464536268,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 1,
+   "hop": 0.86235,
+   "ideal_hop": 0.8748871866202503,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 2,
+   "hop": 0.8374,
+   "ideal_hop": 0.8450350110884465,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 3,
+   "hop": 0.9569,
+   "ideal_hop": 0.9624186314278225,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 4,
+   "hop": 0.8205,
+   "ideal_hop": 0.8272328171400243,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 5,
+   "hop": 0.78675,
+   "ideal_hop": 0.799306495544178,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 6,
+   "hop": 0.81365,
+   "ideal_hop": 0.81666650824901,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 7,
+   "hop": 0.83445,
+   "ideal_hop": 0.8418854452990385,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 8,
+   "hop": 0.8707,
+   "ideal_hop": 0.8809179611409321,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 9,
+   "hop": 0.8271,
+   "ideal_hop": 0.8352989517469157,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 10,
+   "hop": 0.8789,
+   "ideal_hop": 0.8868103635391595,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 4,
+   "circuit": 11,
+   "hop": 0.7596,
+   "ideal_hop": 0.7659577605252004,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 0,
+   "hop": 0.7748,
+   "ideal_hop": 0.8116924464536268,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 1,
+   "hop": 0.8058,
+   "ideal_hop": 0.8748871866202503,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 2,
+   "hop": 0.8077,
+   "ideal_hop": 0.8450350110884465,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 3,
+   "hop": 0.9152,
+   "ideal_hop": 0.9624186314278225,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 4,
+   "hop": 0.7821,
+   "ideal_hop": 0.8272328171400243,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 5,
+   "hop": 0.749,
+   "ideal_hop": 0.799306495544178,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 6,
+   "hop": 0.7769,
+   "ideal_hop": 0.81666650824901,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 7,
+   "hop": 0.7907,
+   "ideal_hop": 0.8418854452990385,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 8,
+   "hop": 0.82,
+   "ideal_hop": 0.8809179611409321,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 9,
+   "hop": 0.78385,
+   "ideal_hop": 0.8352989517469157,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 10,
+   "hop": 0.82375,
+   "ideal_hop": 0.8868103635391595,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 4,
+   "circuit": 11,
+   "hop": 0.7298,
+   "ideal_hop": 0.7659577605252004,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 0,
+   "hop": 0.6912,
+   "ideal_hop": 0.8116924464536268,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 1,
+   "hop": 0.68675,
+   "ideal_hop": 0.8748871866202503,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 2,
+   "hop": 0.74375,
+   "ideal_hop": 0.8450350110884465,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 3,
+   "hop": 0.82365,
+   "ideal_hop": 0.9624186314278225,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 4,
+   "hop": 0.69295,
+   "ideal_hop": 0.8272328171400243,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 5,
+   "hop": 0.66795,
+   "ideal_hop": 0.799306495544178,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 6,
+   "hop": 0.6923,
+   "ideal_hop": 0.81666650824901,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 7,
+   "hop": 0.68645,
+   "ideal_hop": 0.8418854452990385,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 8,
+   "hop": 0.7177,
+   "ideal_hop": 0.8809179611409321,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 9,
+   "hop": 0.6955,
+   "ideal_hop": 0.8352989517469157,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 10,
+   "hop": 0.69325,
+   "ideal_hop": 0.8868103635391595,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 4,
+   "circuit": 11,
+   "hop": 0.65955,
+   "ideal_hop": 0.7659577605252004,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 0,
+   "hop": 0.7364,
+   "ideal_hop": 0.8116924464536268,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 1,
+   "hop": 0.7391,
+   "ideal_hop": 0.8748871866202503,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 2,
+   "hop": 0.78255,
+   "ideal_hop": 0.8450350110884465,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 3,
+   "hop": 0.87225,
+   "ideal_hop": 0.9624186314278225,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 4,
+   "hop": 0.73995,
+   "ideal_hop": 0.8272328171400243,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 5,
+   "hop": 0.7069,
+   "ideal_hop": 0.799306495544178,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 6,
+   "hop": 0.7348,
+   "ideal_hop": 0.81666650824901,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 7,
+   "hop": 0.73945,
+   "ideal_hop": 0.8418854452990385,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 8,
+   "hop": 0.773,
+   "ideal_hop": 0.8809179611409321,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 9,
+   "hop": 0.7423,
+   "ideal_hop": 0.8352989517469157,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 10,
+   "hop": 0.7539,
+   "ideal_hop": 0.8868103635391595,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 4,
+   "circuit": 11,
+   "hop": 0.69625,
+   "ideal_hop": 0.7659577605252004,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 0,
+   "hop": 0.83675,
+   "ideal_hop": 0.8490596942464627,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 1,
+   "hop": 0.91665,
+   "ideal_hop": 0.9238850192316801,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 2,
+   "hop": 0.76515,
+   "ideal_hop": 0.772170289568567,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 3,
+   "hop": 0.85185,
+   "ideal_hop": 0.8612453032815944,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 4,
+   "hop": 0.7877,
+   "ideal_hop": 0.8022959070323118,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 5,
+   "hop": 0.8711,
+   "ideal_hop": 0.8816774308883008,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 6,
+   "hop": 0.81565,
+   "ideal_hop": 0.8220745145699682,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 7,
+   "hop": 0.83425,
+   "ideal_hop": 0.838420047688277,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 8,
+   "hop": 0.8828,
+   "ideal_hop": 0.8942187058875121,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 9,
+   "hop": 0.8494,
+   "ideal_hop": 0.8565717730094121,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 10,
+   "hop": 0.82535,
+   "ideal_hop": 0.8336876945518092,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 5,
+   "circuit": 11,
+   "hop": 0.9171,
+   "ideal_hop": 0.9285302311491097,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 0,
+   "hop": 0.78785,
+   "ideal_hop": 0.8490596942464627,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 1,
+   "hop": 0.8598,
+   "ideal_hop": 0.9238850192316801,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 2,
+   "hop": 0.71885,
+   "ideal_hop": 0.772170289568567,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 3,
+   "hop": 0.8046,
+   "ideal_hop": 0.8612453032815944,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 4,
+   "hop": 0.7358,
+   "ideal_hop": 0.8022959070323118,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 5,
+   "hop": 0.81775,
+   "ideal_hop": 0.8816774308883008,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 6,
+   "hop": 0.77105,
+   "ideal_hop": 0.8220745145699682,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 7,
+   "hop": 0.78235,
+   "ideal_hop": 0.838420047688277,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 8,
+   "hop": 0.8377,
+   "ideal_hop": 0.8942187058875121,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 9,
+   "hop": 0.8014,
+   "ideal_hop": 0.8565717730094121,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 10,
+   "hop": 0.775,
+   "ideal_hop": 0.8336876945518092,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 5,
+   "circuit": 11,
+   "hop": 0.8741,
+   "ideal_hop": 0.9285302311491097,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 0,
+   "hop": 0.66315,
+   "ideal_hop": 0.8490596942464627,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 1,
+   "hop": 0.7277,
+   "ideal_hop": 0.9238850192316801,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 2,
+   "hop": 0.63115,
+   "ideal_hop": 0.772170289568567,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 3,
+   "hop": 0.64845,
+   "ideal_hop": 0.8612453032815944,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 4,
+   "hop": 0.6177,
+   "ideal_hop": 0.8022959070323118,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 5,
+   "hop": 0.72085,
+   "ideal_hop": 0.8816774308883008,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 6,
+   "hop": 0.6649,
+   "ideal_hop": 0.8220745145699682,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 7,
+   "hop": 0.66035,
+   "ideal_hop": 0.838420047688277,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 8,
+   "hop": 0.73355,
+   "ideal_hop": 0.8942187058875121,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 9,
+   "hop": 0.6775,
+   "ideal_hop": 0.8565717730094121,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 10,
+   "hop": 0.6355,
+   "ideal_hop": 0.8336876945518092,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 5,
+   "circuit": 11,
+   "hop": 0.76525,
+   "ideal_hop": 0.9285302311491097,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 0,
+   "hop": 0.71955,
+   "ideal_hop": 0.8490596942464627,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 1,
+   "hop": 0.7964,
+   "ideal_hop": 0.9238850192316801,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 2,
+   "hop": 0.67275,
+   "ideal_hop": 0.772170289568567,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 3,
+   "hop": 0.70345,
+   "ideal_hop": 0.8612453032815944,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 4,
+   "hop": 0.6802,
+   "ideal_hop": 0.8022959070323118,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 5,
+   "hop": 0.77325,
+   "ideal_hop": 0.8816774308883008,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 6,
+   "hop": 0.7117,
+   "ideal_hop": 0.8220745145699682,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 7,
+   "hop": 0.71815,
+   "ideal_hop": 0.838420047688277,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 8,
+   "hop": 0.76465,
+   "ideal_hop": 0.8942187058875121,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 9,
+   "hop": 0.7247,
+   "ideal_hop": 0.8565717730094121,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 10,
+   "hop": 0.71745,
+   "ideal_hop": 0.8336876945518092,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 5,
+   "circuit": 11,
+   "hop": 0.8234,
+   "ideal_hop": 0.9285302311491097,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 0,
+   "hop": 0.8694,
+   "ideal_hop": 0.8864947006310154,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 1,
+   "hop": 0.84155,
+   "ideal_hop": 0.857458493046524,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 2,
+   "hop": 0.835,
+   "ideal_hop": 0.8598801836486981,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 3,
+   "hop": 0.8303,
+   "ideal_hop": 0.8488441742311273,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 4,
+   "hop": 0.84615,
+   "ideal_hop": 0.8605929949891247,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 5,
+   "hop": 0.764,
+   "ideal_hop": 0.773723845445099,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 6,
+   "hop": 0.83725,
+   "ideal_hop": 0.8581391186896545,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 7,
+   "hop": 0.8666,
+   "ideal_hop": 0.883932252094724,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 8,
+   "hop": 0.8369,
+   "ideal_hop": 0.8536849369207598,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 9,
+   "hop": 0.82215,
+   "ideal_hop": 0.8351265558342764,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 10,
+   "hop": 0.8377,
+   "ideal_hop": 0.8514780414335608,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 6,
+   "circuit": 11,
+   "hop": 0.8277,
+   "ideal_hop": 0.8471127017640889,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 0,
+   "hop": 0.7755,
+   "ideal_hop": 0.8864947006310154,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 1,
+   "hop": 0.753,
+   "ideal_hop": 0.857458493046524,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 2,
+   "hop": 0.74325,
+   "ideal_hop": 0.8598801836486981,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 3,
+   "hop": 0.74005,
+   "ideal_hop": 0.8488441742311273,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 4,
+   "hop": 0.76485,
+   "ideal_hop": 0.8605929949891247,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 5,
+   "hop": 0.686,
+   "ideal_hop": 0.773723845445099,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 6,
+   "hop": 0.738,
+   "ideal_hop": 0.8581391186896545,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 7,
+   "hop": 0.7767,
+   "ideal_hop": 0.883932252094724,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 8,
+   "hop": 0.73775,
+   "ideal_hop": 0.8536849369207598,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 9,
+   "hop": 0.74345,
+   "ideal_hop": 0.8351265558342764,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 10,
+   "hop": 0.75395,
+   "ideal_hop": 0.8514780414335608,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 6,
+   "circuit": 11,
+   "hop": 0.73605,
+   "ideal_hop": 0.8471127017640889,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 0,
+   "hop": 0.6235,
+   "ideal_hop": 0.8864947006310154,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 1,
+   "hop": 0.59995,
+   "ideal_hop": 0.857458493046524,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 2,
+   "hop": 0.61925,
+   "ideal_hop": 0.8598801836486981,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 3,
+   "hop": 0.5983,
+   "ideal_hop": 0.8488441742311273,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 4,
+   "hop": 0.6297,
+   "ideal_hop": 0.8605929949891247,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 5,
+   "hop": 0.58895,
+   "ideal_hop": 0.773723845445099,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 6,
+   "hop": 0.57355,
+   "ideal_hop": 0.8581391186896545,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 7,
+   "hop": 0.6497,
+   "ideal_hop": 0.883932252094724,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 8,
+   "hop": 0.5912,
+   "ideal_hop": 0.8536849369207598,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 9,
+   "hop": 0.6253,
+   "ideal_hop": 0.8351265558342764,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 10,
+   "hop": 0.63345,
+   "ideal_hop": 0.8514780414335608,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 6,
+   "circuit": 11,
+   "hop": 0.58055,
+   "ideal_hop": 0.8471127017640889,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 0,
+   "hop": 0.69085,
+   "ideal_hop": 0.8864947006310154,
+   "native_two_qubit": 72
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 1,
+   "hop": 0.7016,
+   "ideal_hop": 0.857458493046524,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 2,
+   "hop": 0.68185,
+   "ideal_hop": 0.8598801836486981,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 3,
+   "hop": 0.65885,
+   "ideal_hop": 0.8488441742311273,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 4,
+   "hop": 0.6634,
+   "ideal_hop": 0.8605929949891247,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 5,
+   "hop": 0.63725,
+   "ideal_hop": 0.773723845445099,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 6,
+   "hop": 0.6463,
+   "ideal_hop": 0.8581391186896545,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 7,
+   "hop": 0.7161,
+   "ideal_hop": 0.883932252094724,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 8,
+   "hop": 0.6586,
+   "ideal_hop": 0.8536849369207598,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 9,
+   "hop": 0.67635,
+   "ideal_hop": 0.8351265558342764,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 10,
+   "hop": 0.69715,
+   "ideal_hop": 0.8514780414335608,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 6,
+   "circuit": 11,
+   "hop": 0.6588,
+   "ideal_hop": 0.8471127017640889,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 0,
+   "hop": 0.83435,
+   "ideal_hop": 0.861252005207888,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 1,
+   "hop": 0.8234,
+   "ideal_hop": 0.844935997269856,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 2,
+   "hop": 0.8285,
+   "ideal_hop": 0.8460059112251582,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 3,
+   "hop": 0.85575,
+   "ideal_hop": 0.8772885024857077,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 4,
+   "hop": 0.82525,
+   "ideal_hop": 0.8469200363368505,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 5,
+   "hop": 0.859,
+   "ideal_hop": 0.8787615184602706,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 6,
+   "hop": 0.84845,
+   "ideal_hop": 0.8699265278274785,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 7,
+   "hop": 0.84775,
+   "ideal_hop": 0.8634767135569462,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 8,
+   "hop": 0.84875,
+   "ideal_hop": 0.8620103879624889,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 9,
+   "hop": 0.8313,
+   "ideal_hop": 0.8525857445496684,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 10,
+   "hop": 0.82605,
+   "ideal_hop": 0.844385671565065,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 7,
+   "circuit": 11,
+   "hop": 0.83845,
+   "ideal_hop": 0.8613711045235418,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 0,
+   "hop": 0.7339,
+   "ideal_hop": 0.861252005207888,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 1,
+   "hop": 0.71665,
+   "ideal_hop": 0.844935997269856,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 2,
+   "hop": 0.7254,
+   "ideal_hop": 0.8460059112251582,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 3,
+   "hop": 0.73545,
+   "ideal_hop": 0.8772885024857077,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 4,
+   "hop": 0.71795,
+   "ideal_hop": 0.8469200363368505,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 5,
+   "hop": 0.7442,
+   "ideal_hop": 0.8787615184602706,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 6,
+   "hop": 0.74255,
+   "ideal_hop": 0.8699265278274785,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 7,
+   "hop": 0.7519,
+   "ideal_hop": 0.8634767135569462,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 8,
+   "hop": 0.7465,
+   "ideal_hop": 0.8620103879624889,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 9,
+   "hop": 0.7277,
+   "ideal_hop": 0.8525857445496684,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 10,
+   "hop": 0.72555,
+   "ideal_hop": 0.844385671565065,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 7,
+   "circuit": 11,
+   "hop": 0.739,
+   "ideal_hop": 0.8613711045235418,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 0,
+   "hop": 0.5674,
+   "ideal_hop": 0.861252005207888,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 1,
+   "hop": 0.5464,
+   "ideal_hop": 0.844935997269856,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 2,
+   "hop": 0.5728,
+   "ideal_hop": 0.8460059112251582,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 3,
+   "hop": 0.5682,
+   "ideal_hop": 0.8772885024857077,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 4,
+   "hop": 0.55315,
+   "ideal_hop": 0.8469200363368505,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 5,
+   "hop": 0.5703,
+   "ideal_hop": 0.8787615184602706,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 6,
+   "hop": 0.5734,
+   "ideal_hop": 0.8699265278274785,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 7,
+   "hop": 0.6105,
+   "ideal_hop": 0.8634767135569462,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 8,
+   "hop": 0.5782,
+   "ideal_hop": 0.8620103879624889,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 9,
+   "hop": 0.55385,
+   "ideal_hop": 0.8525857445496684,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 10,
+   "hop": 0.55255,
+   "ideal_hop": 0.844385671565065,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 7,
+   "circuit": 11,
+   "hop": 0.5806,
+   "ideal_hop": 0.8613711045235418,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 0,
+   "hop": 0.61245,
+   "ideal_hop": 0.861252005207888,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 1,
+   "hop": 0.6229,
+   "ideal_hop": 0.844935997269856,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 2,
+   "hop": 0.62715,
+   "ideal_hop": 0.8460059112251582,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 3,
+   "hop": 0.626,
+   "ideal_hop": 0.8772885024857077,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 4,
+   "hop": 0.63165,
+   "ideal_hop": 0.8469200363368505,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 5,
+   "hop": 0.6049,
+   "ideal_hop": 0.8787615184602706,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 6,
+   "hop": 0.62015,
+   "ideal_hop": 0.8699265278274785,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 7,
+   "hop": 0.6609,
+   "ideal_hop": 0.8634767135569462,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 8,
+   "hop": 0.64905,
+   "ideal_hop": 0.8620103879624889,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 9,
+   "hop": 0.6142,
+   "ideal_hop": 0.8525857445496684,
+   "native_two_qubit": 84
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 10,
+   "hop": 0.6225,
+   "ideal_hop": 0.844385671565065,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 7,
+   "circuit": 11,
+   "hop": 0.6304,
+   "ideal_hop": 0.8613711045235418,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 0,
+   "hop": 0.83195,
+   "ideal_hop": 0.8577662850507847,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 1,
+   "hop": 0.825,
+   "ideal_hop": 0.8530212030047868,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 2,
+   "hop": 0.8394,
+   "ideal_hop": 0.8660823128125782,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 3,
+   "hop": 0.81865,
+   "ideal_hop": 0.8484186022966682,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 4,
+   "hop": 0.83285,
+   "ideal_hop": 0.8623799731852878,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 5,
+   "hop": 0.8134,
+   "ideal_hop": 0.8466538181871243,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 6,
+   "hop": 0.819,
+   "ideal_hop": 0.8541896143447844,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 7,
+   "hop": 0.83315,
+   "ideal_hop": 0.862745338518294,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 8,
+   "hop": 0.82565,
+   "ideal_hop": 0.8535196545869658,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 9,
+   "hop": 0.82305,
+   "ideal_hop": 0.8542637204745201,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 10,
+   "hop": 0.80985,
+   "ideal_hop": 0.838340693795234,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "quantinuum_helios",
+   "width": 8,
+   "circuit": 11,
+   "hop": 0.8261,
+   "ideal_hop": 0.854852159872672,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 0,
+   "hop": 0.68745,
+   "ideal_hop": 0.8577662850507847,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 1,
+   "hop": 0.67,
+   "ideal_hop": 0.8530212030047868,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 2,
+   "hop": 0.7014,
+   "ideal_hop": 0.8660823128125782,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 3,
+   "hop": 0.67015,
+   "ideal_hop": 0.8484186022966682,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 4,
+   "hop": 0.6768,
+   "ideal_hop": 0.8623799731852878,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 5,
+   "hop": 0.66855,
+   "ideal_hop": 0.8466538181871243,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 6,
+   "hop": 0.66105,
+   "ideal_hop": 0.8541896143447844,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 7,
+   "hop": 0.68725,
+   "ideal_hop": 0.862745338518294,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 8,
+   "hop": 0.6811,
+   "ideal_hop": 0.8535196545869658,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 9,
+   "hop": 0.67345,
+   "ideal_hop": 0.8542637204745201,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 10,
+   "hop": 0.658,
+   "ideal_hop": 0.838340693795234,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ionq_forte",
+   "width": 8,
+   "circuit": 11,
+   "hop": 0.67705,
+   "ideal_hop": 0.854852159872672,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 0,
+   "hop": 0.5382,
+   "ideal_hop": 0.8577662850507847,
+   "native_two_qubit": 114
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 1,
+   "hop": 0.541,
+   "ideal_hop": 0.8530212030047868,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 2,
+   "hop": 0.5612,
+   "ideal_hop": 0.8660823128125782,
+   "native_two_qubit": 120
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 3,
+   "hop": 0.53245,
+   "ideal_hop": 0.8484186022966682,
+   "native_two_qubit": 123
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 4,
+   "hop": 0.51585,
+   "ideal_hop": 0.8623799731852878,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 5,
+   "hop": 0.5333,
+   "ideal_hop": 0.8466538181871243,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 6,
+   "hop": 0.51645,
+   "ideal_hop": 0.8541896143447844,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 7,
+   "hop": 0.5221,
+   "ideal_hop": 0.862745338518294,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 8,
+   "hop": 0.5322,
+   "ideal_hop": 0.8535196545869658,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 9,
+   "hop": 0.53875,
+   "ideal_hop": 0.8542637204745201,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 10,
+   "hop": 0.52285,
+   "ideal_hop": 0.838340693795234,
+   "native_two_qubit": 132
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "width": 8,
+   "circuit": 11,
+   "hop": 0.535,
+   "ideal_hop": 0.854852159872672,
+   "native_two_qubit": 117
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 0,
+   "hop": 0.61355,
+   "ideal_hop": 0.8577662850507847,
+   "native_two_qubit": 111
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 1,
+   "hop": 0.57855,
+   "ideal_hop": 0.8530212030047868,
+   "native_two_qubit": 132
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 2,
+   "hop": 0.60805,
+   "ideal_hop": 0.8660823128125782,
+   "native_two_qubit": 114
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 3,
+   "hop": 0.57305,
+   "ideal_hop": 0.8484186022966682,
+   "native_two_qubit": 117
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 4,
+   "hop": 0.58685,
+   "ideal_hop": 0.8623799731852878,
+   "native_two_qubit": 120
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 5,
+   "hop": 0.55245,
+   "ideal_hop": 0.8466538181871243,
+   "native_two_qubit": 123
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 6,
+   "hop": 0.5741,
+   "ideal_hop": 0.8541896143447844,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 7,
+   "hop": 0.5471,
+   "ideal_hop": 0.862745338518294,
+   "native_two_qubit": 129
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 8,
+   "hop": 0.60165,
+   "ideal_hop": 0.8535196545869658,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 9,
+   "hop": 0.56395,
+   "ideal_hop": 0.8542637204745201,
+   "native_two_qubit": 129
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 10,
+   "hop": 0.558,
+   "ideal_hop": 0.838340693795234,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "iqm_emerald",
+   "width": 8,
+   "circuit": 11,
+   "hop": 0.59025,
+   "ideal_hop": 0.854852159872672,
+   "native_two_qubit": 126
+  }
+ ]
+}

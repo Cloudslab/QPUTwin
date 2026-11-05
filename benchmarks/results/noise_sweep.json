@@ -1,0 +1,202 @@
+{
+ "experiment": "noise_sweep",
+ "generated_utc": "2026-10-28T07:27:55+00:00",
+ "environment": {
+  "qputwin": "0.1.0",
+  "python": "3.13.17",
+  "numpy": "2.5.4",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+  "logical_cpus": 12,
+  "load_average": [
+   0.85302734375,
+   1.59912109375,
+   2.42724609375
+  ],
+  "omp_num_threads": "1",
+  "docker": "29.9.2"
+ },
+ "workload": "GHZ_5 along a native path, density matrix, 100 000 shots",
+ "data": [
+  {
+   "backend": "quantinuum_helios",
+   "scale": 0.0,
+   "ghz_success": 1.0
+  },
+  {
+   "backend": "quantinuum_helios",
+   "scale": 0.25,
+   "ghz_success": 0.99869
+  },
+  {
+   "backend": "quantinuum_helios",
+   "scale": 0.5,
+   "ghz_success": 0.9974
+  },
+  {
+   "backend": "quantinuum_helios",
+   "scale": 0.75,
+   "ghz_success": 0.9963
+  },
+  {
+   "backend": "quantinuum_helios",
+   "scale": 1.0,
+   "ghz_success": 0.99521
+  },
+  {
+   "backend": "quantinuum_helios",
+   "scale": 1.5,
+   "ghz_success": 0.99285
+  },
+  {
+   "backend": "quantinuum_helios",
+   "scale": 2.0,
+   "ghz_success": 0.99065
+  },
+  {
+   "backend": "quantinuum_helios",
+   "scale": 3.0,
+   "ghz_success": 0.9857
+  },
+  {
+   "backend": "quantinuum_helios",
+   "scale": 4.0,
+   "ghz_success": 0.98095
+  },
+  {
+   "backend": "ionq_forte",
+   "scale": 0.0,
+   "ghz_success": 1.0
+  },
+  {
+   "backend": "ionq_forte",
+   "scale": 0.25,
+   "ghz_success": 0.98947
+  },
+  {
+   "backend": "ionq_forte",
+   "scale": 0.5,
+   "ghz_success": 0.9792
+  },
+  {
+   "backend": "ionq_forte",
+   "scale": 0.75,
+   "ghz_success": 0.96926
+  },
+  {
+   "backend": "ionq_forte",
+   "scale": 1.0,
+   "ghz_success": 0.95859
+  },
+  {
+   "backend": "ionq_forte",
+   "scale": 1.5,
+   "ghz_success": 0.93817
+  },
+  {
+   "backend": "ionq_forte",
+   "scale": 2.0,
+   "ghz_success": 0.91861
+  },
+  {
+   "backend": "ionq_forte",
+   "scale": 3.0,
+   "ghz_success": 0.88027
+  },
+  {
+   "backend": "ionq_forte",
+   "scale": 4.0,
+   "ghz_success": 0.84549
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "scale": 0.0,
+   "ghz_success": 1.0
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "scale": 0.25,
+   "ghz_success": 0.94507
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "scale": 0.5,
+   "ghz_success": 0.8935
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "scale": 0.75,
+   "ghz_success": 0.84588
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "scale": 1.0,
+   "ghz_success": 0.80034
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "scale": 1.5,
+   "ghz_success": 0.714
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "scale": 2.0,
+   "ghz_success": 0.63878
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "scale": 3.0,
+   "ghz_success": 0.51108
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "scale": 4.0,
+   "ghz_success": 0.40822
+  },
+  {
+   "backend": "iqm_emerald",
+   "scale": 0.0,
+   "ghz_success": 1.0
+  },
+  {
+   "backend": "iqm_emerald",
+   "scale": 0.25,
+   "ghz_success": 0.95139
+  },
+  {
+   "backend": "iqm_emerald",
+   "scale": 0.5,
+   "ghz_success": 0.90497
+  },
+  {
+   "backend": "iqm_emerald",
+   "scale": 0.75,
+   "ghz_success": 0.86135
+  },
+  {
+   "backend": "iqm_emerald",
+   "scale": 1.0,
+   "ghz_success": 0.82088
+  },
+  {
+   "backend": "iqm_emerald",
+   "scale": 1.5,
+   "ghz_success": 0.74189
+  },
+  {
+   "backend": "iqm_emerald",
+   "scale": 2.0,
+   "ghz_success": 0.67073
+  },
+  {
+   "backend": "iqm_emerald",
+   "scale": 3.0,
+   "ghz_success": 0.54741
+  },
+  {
+   "backend": "iqm_emerald",
+   "scale": 4.0,
+   "ghz_success": 0.44683
+  }
+ ]
+}

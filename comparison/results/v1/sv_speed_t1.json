@@ -1,0 +1,2016 @@
+{
+ "experiment": "sv_speed_t1",
+ "generated_utc": "2026-10-28T01:33:28+00:00",
+ "environment": {
+  "python": "3.13.17",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+  "logical_cpus": 12,
+  "load_average": [
+   3.5244140625,
+   4.2333984375,
+   3.49267578125
+  ],
+  "threads": 1,
+  "versions": {
+   "qiskit": "2.6.1",
+   "qiskit-aer": "0.18.2",
+   "amazon-braket-sdk": "1.127.6",
+   "amazon-braket-default-simulator": "1.42.0",
+   "cirq-core": "1.7.0",
+   "qsimcirq": "0.22.1",
+   "qulacs": "0.6.14",
+   "numpy": "2.5.4"
+  },
+  "qputwin": {
+   "base_url": "http://localhost:8000",
+   "status": "ok",
+   "service": "orchestrator",
+   "version": "0.1.0",
+   "worker_precision": "complex128",
+   "worker_threads": "1 (OMP_NUM_THREADS=1 in the container)",
+   "worker_cpu_quota": "4 CPUs / 12 GiB"
+  }
+ },
+ "shots": 1024,
+ "cap_s": 60.0,
+ "workload": "ideal circuits flattened to U/CX (QPUTwin receives the source QASM and compiles it to Helios natives); run_s = simulate + sample 1024 shots in-process, or the client-measured HTTP round trip for QPUTwin (engine_s = QPUTwin's simulation + sampling from telemetry); a simulator stops at the first width whose median exceeds 60 s",
+ "data": [
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 6,
+   "convert_s": 0.001841538999997283,
+   "run_s_median": 0.005232819999946514,
+   "run_s": [
+    0.005669546000035552,
+    0.005232819999946514,
+    0.004920108999840522
+   ],
+   "engine_s": 0.000378302,
+   "worker_service_ms": 2.402072,
+   "simulated_qubits": 6
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 10,
+   "convert_s": 0.001988866000147027,
+   "run_s_median": 0.006813519999923301,
+   "run_s": [
+    0.006511681999882057,
+    0.007006392999983291,
+    0.006813519999923301
+   ],
+   "engine_s": 0.000694174,
+   "worker_service_ms": 3.239424,
+   "simulated_qubits": 10
+  },
+  {
+   "family": "ghz",
+   "qubits": 14,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 14,
+   "convert_s": 0.0019277910000710108,
+   "run_s_median": 0.011053149999952439,
+   "run_s": [
+    0.011053149999952439,
+    0.010881297000196355,
+    0.01152866899997207
+   ],
+   "engine_s": 0.003845631,
+   "worker_service_ms": 7.068506,
+   "simulated_qubits": 14
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 16,
+   "convert_s": 0.0023975159999736206,
+   "run_s_median": 0.02327805000004446,
+   "run_s": [
+    0.02327805000004446,
+    0.02361428199992588,
+    0.02300179000008029
+   ],
+   "engine_s": 0.015064946000000001,
+   "worker_service_ms": 18.748307,
+   "simulated_qubits": 16
+  },
+  {
+   "family": "ghz",
+   "qubits": 18,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 18,
+   "convert_s": 0.0022889440001563344,
+   "run_s_median": 0.07828058500012958,
+   "run_s": [
+    0.08200536100002864,
+    0.07695979899995109,
+    0.07828058500012958
+   ],
+   "engine_s": 0.073244441,
+   "worker_service_ms": 77.455264,
+   "simulated_qubits": 18
+  },
+  {
+   "family": "ghz",
+   "qubits": 20,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 20,
+   "convert_s": 0.0022373660001449025,
+   "run_s_median": 0.4390114259999791,
+   "run_s": [
+    0.47434783199992125,
+    0.4188735249999809,
+    0.4390114259999791
+   ],
+   "engine_s": 0.46530127499999996,
+   "worker_service_ms": 469.809372,
+   "simulated_qubits": 20
+  },
+  {
+   "family": "ghz",
+   "qubits": 22,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 22,
+   "convert_s": 0.002544113999874753,
+   "run_s_median": 2.208722048000027,
+   "run_s": [
+    2.208722048000027
+   ],
+   "engine_s": 2.1991422800000002,
+   "worker_service_ms": 2204.138079,
+   "simulated_qubits": 22
+  },
+  {
+   "family": "ghz",
+   "qubits": 24,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 24,
+   "convert_s": 0.0023752509998757887,
+   "run_s_median": 9.175581397000087,
+   "run_s": [
+    9.175581397000087
+   ],
+   "engine_s": 9.164629487000001,
+   "worker_service_ms": 9170.13908,
+   "simulated_qubits": 24
+  },
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 6,
+   "convert_s": 0.001759920999802489,
+   "run_s_median": 0.0011268910000126198,
+   "run_s": [
+    0.0012246269998286152,
+    0.0011268910000126198,
+    0.0009555450001244026
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 10,
+   "convert_s": 0.0017979070000819775,
+   "run_s_median": 0.0014443350000874489,
+   "run_s": [
+    0.0015249699999912991,
+    0.0014153140000416897,
+    0.0014443350000874489
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 14,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 14,
+   "convert_s": 0.0019529149999470974,
+   "run_s_median": 0.0023763470001085807,
+   "run_s": [
+    0.0023669869999594084,
+    0.002413226000044233,
+    0.0023763470001085807
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 16,
+   "convert_s": 0.003955023999878904,
+   "run_s_median": 0.006319877999885648,
+   "run_s": [
+    0.006346044000110851,
+    0.006319877999885648,
+    0.006020924000040395
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 18,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 18,
+   "convert_s": 0.001985533000151918,
+   "run_s_median": 0.020106952999867644,
+   "run_s": [
+    0.0213704760001292,
+    0.020106952999867644,
+    0.019846716000074593
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 20,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 20,
+   "convert_s": 0.0021431910001865617,
+   "run_s_median": 0.08762002100002064,
+   "run_s": [
+    0.0872358050000912,
+    0.08762002100002064,
+    0.08789687700004833
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 22,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 22,
+   "convert_s": 0.002995125000097687,
+   "run_s_median": 0.40120818600007624,
+   "run_s": [
+    0.4140837330000977,
+    0.40120818600007624,
+    0.394539610000038
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 24,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 24,
+   "convert_s": 0.0023980379999102297,
+   "run_s_median": 1.735049282000091,
+   "run_s": [
+    1.735049282000091,
+    1.7172336189998987,
+    1.7364824589999444
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 6,
+   "convert_s": 0.0018910639998921397,
+   "run_s_median": 0.000921431000051598,
+   "run_s": [
+    0.0010894059998918237,
+    0.000921431000051598,
+    0.0008557209998798498
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 10,
+   "convert_s": 0.001872990000038044,
+   "run_s_median": 0.0013761410000370233,
+   "run_s": [
+    0.0016911600000639737,
+    0.0013761410000370233,
+    0.0012577550000969495
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 14,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 14,
+   "convert_s": 0.0021165949999613076,
+   "run_s_median": 0.0016053930000907712,
+   "run_s": [
+    0.0017348859998946864,
+    0.0016053930000907712,
+    0.0015684850000070583
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 16,
+   "convert_s": 0.0020675810001193895,
+   "run_s_median": 0.0021909070001129294,
+   "run_s": [
+    0.002376493999918239,
+    0.0021909070001129294,
+    0.002143539000144301
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 18,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 18,
+   "convert_s": 0.002741002999982811,
+   "run_s_median": 0.004251886000020022,
+   "run_s": [
+    0.004382821000035619,
+    0.004251886000020022,
+    0.0041160230000514275
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 20,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 20,
+   "convert_s": 0.002239916999997149,
+   "run_s_median": 0.013379788000065673,
+   "run_s": [
+    0.014368850999971983,
+    0.013080701000035333,
+    0.013379788000065673
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 22,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 22,
+   "convert_s": 0.0023542910000742268,
+   "run_s_median": 0.07415301400010321,
+   "run_s": [
+    0.07364747700012231,
+    0.07415301400010321,
+    0.07656409099990924
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 24,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 24,
+   "convert_s": 0.002490602000079889,
+   "run_s_median": 0.2677630279999903,
+   "run_s": [
+    0.2853975599998648,
+    0.2677630279999903,
+    0.264774091000163
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 6,
+   "convert_s": 0.0018202580001798196,
+   "run_s_median": 2.1525999954974395e-05,
+   "run_s": [
+    3.673699984574341e-05,
+    2.1525999954974395e-05,
+    1.874800000223331e-05
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 10,
+   "convert_s": 0.0015759269999762182,
+   "run_s_median": 3.472899993539613e-05,
+   "run_s": [
+    5.191199988985318e-05,
+    3.472899993539613e-05,
+    3.2488999977431376e-05
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 14,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 14,
+   "convert_s": 0.0016866660000687261,
+   "run_s_median": 0.0001134090000505239,
+   "run_s": [
+    0.0001424540000698471,
+    0.0001134090000505239,
+    0.00011069099991800613
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 16,
+   "convert_s": 0.001717337999934898,
+   "run_s_median": 0.0004030289999263914,
+   "run_s": [
+    0.0004825759999675938,
+    0.0004030289999263914,
+    0.00039326000000983186
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 18,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 18,
+   "convert_s": 0.0017328590001852717,
+   "run_s_median": 0.0033570949999557342,
+   "run_s": [
+    0.003663340999992215,
+    0.0033570949999557342,
+    0.003193804999909844
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 20,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 20,
+   "convert_s": 0.00221595899984095,
+   "run_s_median": 0.014782903999957853,
+   "run_s": [
+    0.018375414000047385,
+    0.014782903999957853,
+    0.014422628999909648
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 22,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 22,
+   "convert_s": 0.00265751500000988,
+   "run_s_median": 0.09377257300002384,
+   "run_s": [
+    0.09897636699997747,
+    0.09377257300002384,
+    0.09144147100005284
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 24,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 24,
+   "convert_s": 0.0023667750001550303,
+   "run_s_median": 0.387152376999893,
+   "run_s": [
+    0.38601365199997417,
+    0.38716436899994733,
+    0.387152376999893
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 6,
+   "convert_s": 0.001997884000047634,
+   "run_s_median": 0.0075776189999032795,
+   "run_s": [
+    0.010503462000087893,
+    0.007246705999932601,
+    0.0075776189999032795
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 10,
+   "convert_s": 0.0018392300000869,
+   "run_s_median": 0.009580013000004328,
+   "run_s": [
+    0.010474144999989221,
+    0.009549235999884331,
+    0.009580013000004328
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 14,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 14,
+   "convert_s": 0.002298878999908993,
+   "run_s_median": 0.014435826000180896,
+   "run_s": [
+    0.5378100069999618,
+    0.014435826000180896,
+    0.014103682000040862
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 16,
+   "convert_s": 0.002072638000072402,
+   "run_s_median": 0.016492018999997526,
+   "run_s": [
+    0.016492018999997526,
+    0.01618959100005668,
+    0.018830684000022302
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 18,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 18,
+   "convert_s": 0.0021934520000286284,
+   "run_s_median": 0.02459287100009533,
+   "run_s": [
+    0.6969231530001707,
+    0.02459287100009533,
+    0.02171492700017552
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 20,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 20,
+   "convert_s": 0.0022676410001167824,
+   "run_s_median": 0.05649155100013559,
+   "run_s": [
+    0.6143279199998233,
+    0.05649155100013559,
+    0.05525121100004071
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 22,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 22,
+   "convert_s": 0.002575258999968355,
+   "run_s_median": 0.2025752790000297,
+   "run_s": [
+    0.8598879070000294,
+    0.2025752790000297,
+    0.1998091680000016
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 24,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 24,
+   "convert_s": 0.0024658759998601454,
+   "run_s_median": 0.7432265159998224,
+   "run_s": [
+    1.311800033000054,
+    0.7432265159998224,
+    0.7397366759998931
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 6,
+   "convert_s": 0.0018203810000159137,
+   "run_s_median": 0.0022839879998173274,
+   "run_s": [
+    0.0024868099999366677,
+    0.0022839879998173274,
+    0.002055229000006875
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 10,
+   "convert_s": 0.0017555849999553175,
+   "run_s_median": 0.0031823980000353913,
+   "run_s": [
+    0.0033223410000573494,
+    0.0031823980000353913,
+    0.0029843869999695016
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 14,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 14,
+   "convert_s": 0.0020129029999225168,
+   "run_s_median": 0.004511440000214861,
+   "run_s": [
+    0.004511440000214861,
+    0.004515021000088382,
+    0.004349374999947031
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 16,
+   "convert_s": 0.002452999000070122,
+   "run_s_median": 0.005728928000053202,
+   "run_s": [
+    0.007132907000141131,
+    0.005728928000053202,
+    0.0057109399999717425
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 18,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 18,
+   "convert_s": 0.002109599999812417,
+   "run_s_median": 0.011208303000103115,
+   "run_s": [
+    0.013535206999904403,
+    0.01078812800005835,
+    0.011208303000103115
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 20,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 20,
+   "convert_s": 0.002269218000037654,
+   "run_s_median": 0.03842796799995085,
+   "run_s": [
+    0.03713269800005037,
+    0.03874315499979275,
+    0.03842796799995085
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 22,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 22,
+   "convert_s": 0.002344087999972544,
+   "run_s_median": 0.1412536180000643,
+   "run_s": [
+    0.14315936399998463,
+    0.1408658479999758,
+    0.1412536180000643
+   ]
+  },
+  {
+   "family": "ghz",
+   "qubits": 24,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 24,
+   "convert_s": 0.0024299939998400077,
+   "run_s_median": 0.5460686619999251,
+   "run_s": [
+    0.5460686619999251,
+    0.578369278000082,
+    0.5447148160001234
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 198,
+   "convert_s": 0.004915195999956268,
+   "run_s_median": 0.026270571000168275,
+   "run_s": [
+    0.026270571000168275,
+    0.0418672929999957,
+    0.025574667999990197
+   ],
+   "engine_s": 0.001987721,
+   "worker_service_ms": 14.387884,
+   "simulated_qubits": 6
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 550,
+   "convert_s": 0.010403933000134202,
+   "run_s_median": 0.06597862800003895,
+   "run_s": [
+    0.06487236499992832,
+    0.06638328200006072,
+    0.06597862800003895
+   ],
+   "engine_s": 0.007350018999999999,
+   "worker_service_ms": 41.523455,
+   "simulated_qubits": 10
+  },
+  {
+   "family": "qv",
+   "qubits": 14,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 1078,
+   "convert_s": 0.01913828600004308,
+   "run_s_median": 0.1723278439999376,
+   "run_s": [
+    0.17448781099983535,
+    0.1715306569999484,
+    0.1723278439999376
+   ],
+   "engine_s": 0.065036725,
+   "worker_service_ms": 131.148247,
+   "simulated_qubits": 14
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 1408,
+   "convert_s": 0.02219723799998974,
+   "run_s_median": 0.5233020150001266,
+   "run_s": [
+    0.45944028400003845,
+    0.5233020150001266,
+    0.5259417560000657
+   ],
+   "engine_s": 0.324048338,
+   "worker_service_ms": 405.881848,
+   "simulated_qubits": 16
+  },
+  {
+   "family": "qv",
+   "qubits": 18,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 1782,
+   "convert_s": 0.028952688999879683,
+   "run_s_median": 2.384110693000139,
+   "run_s": [
+    2.384110693000139
+   ],
+   "engine_s": 2.1842311920000004,
+   "worker_service_ms": 2318.000639,
+   "simulated_qubits": 18
+  },
+  {
+   "family": "qv",
+   "qubits": 20,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 2200,
+   "convert_s": 0.03364028600003621,
+   "run_s_median": 11.758784447999915,
+   "run_s": [
+    11.758784447999915
+   ],
+   "engine_s": 11.526171327,
+   "worker_service_ms": 11660.328886,
+   "simulated_qubits": 20
+  },
+  {
+   "family": "qv",
+   "qubits": 22,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 2662,
+   "convert_s": 0.1907147790000181,
+   "run_s_median": 68.29689284999995,
+   "run_s": [
+    68.29689284999995
+   ],
+   "engine_s": 68.03696818,
+   "worker_service_ms": 68197.580466,
+   "simulated_qubits": 22
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 198,
+   "convert_s": 0.0074339330001294,
+   "run_s_median": 0.003241137000031813,
+   "run_s": [
+    0.0035727800000131538,
+    0.003241137000031813,
+    0.0030789559998538607
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 550,
+   "convert_s": 0.011351998000009189,
+   "run_s_median": 0.008733278000136124,
+   "run_s": [
+    0.008852846000081627,
+    0.008701479999899675,
+    0.008733278000136124
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 14,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 1078,
+   "convert_s": 0.01795911499993963,
+   "run_s_median": 0.052846839000039836,
+   "run_s": [
+    0.0521644150001066,
+    0.052846839000039836,
+    0.0553442550001364
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 1408,
+   "convert_s": 0.024158227000043553,
+   "run_s_median": 0.05549350399996911,
+   "run_s": [
+    0.05549350399996911,
+    0.05443981899998107,
+    0.056079974000113
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 18,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 1782,
+   "convert_s": 0.0295879910001986,
+   "run_s_median": 0.21586027700004706,
+   "run_s": [
+    0.21930710200012982,
+    0.2153474400001869,
+    0.21586027700004706
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 20,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 2200,
+   "convert_s": 0.03924437199998465,
+   "run_s_median": 0.953392765999979,
+   "run_s": [
+    0.9472780040000544,
+    0.953392765999979,
+    0.9599960600000941
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 22,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 2662,
+   "convert_s": 0.0425361539998903,
+   "run_s_median": 4.278515935999849,
+   "run_s": [
+    4.278515935999849
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 24,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 3168,
+   "convert_s": 0.05154264099996908,
+   "run_s_median": 20.14827245499987,
+   "run_s": [
+    20.14827245499987
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 198,
+   "convert_s": 0.004875023000067813,
+   "run_s_median": 0.003442531000018789,
+   "run_s": [
+    0.0037533249999341933,
+    0.003393842000150471,
+    0.003442531000018789
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 550,
+   "convert_s": 0.01008509099983712,
+   "run_s_median": 0.00835402100005922,
+   "run_s": [
+    0.008317215000033684,
+    0.008368066000002727,
+    0.00835402100005922
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 14,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 1078,
+   "convert_s": 0.016931072000033964,
+   "run_s_median": 0.016881815000033384,
+   "run_s": [
+    0.017099745999985316,
+    0.016757520999817643,
+    0.016881815000033384
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 1408,
+   "convert_s": 0.022088537999934488,
+   "run_s_median": 0.025381942999956664,
+   "run_s": [
+    0.025179131999948368,
+    0.025381942999956664,
+    0.02651528900014455
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 18,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 1782,
+   "convert_s": 0.027343524999878355,
+   "run_s_median": 0.04847684600008506,
+   "run_s": [
+    0.04805339499989714,
+    0.04847684600008506,
+    0.05139536000001499
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 20,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 2200,
+   "convert_s": 0.0354847379999228,
+   "run_s_median": 0.1499408649999623,
+   "run_s": [
+    0.16131181299988384,
+    0.1499408649999623,
+    0.14791168700003254
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 22,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 2662,
+   "convert_s": 0.041572269999960554,
+   "run_s_median": 0.6156354569998257,
+   "run_s": [
+    0.6111714660000871,
+    0.6156354569998257,
+    0.619273739999926
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 24,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 3168,
+   "convert_s": 0.04982272699999157,
+   "run_s_median": 2.7157984369998758,
+   "run_s": [
+    2.7157984369998758
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 198,
+   "convert_s": 0.004885174000037296,
+   "run_s_median": 8.60760001160088e-05,
+   "run_s": [
+    0.00011167800016664842,
+    8.60760001160088e-05,
+    8.063300015237473e-05
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 550,
+   "convert_s": 0.009301377999918259,
+   "run_s_median": 0.0008690079998814326,
+   "run_s": [
+    0.0008733629999824188,
+    0.0008690079998814326,
+    0.0008530820000487438
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 14,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 1078,
+   "convert_s": 0.01770947999989403,
+   "run_s_median": 0.0219338950000747,
+   "run_s": [
+    0.0219338950000747,
+    0.021796685000026628,
+    0.022244664000027115
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 1408,
+   "convert_s": 0.022290787999963868,
+   "run_s_median": 0.11705736799990518,
+   "run_s": [
+    0.11705736799990518,
+    0.11682452100012597,
+    0.11775386299996171
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 18,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 1782,
+   "convert_s": 0.028725118000011207,
+   "run_s_median": 0.70322886200006,
+   "run_s": [
+    0.7010444019999795,
+    0.7061737730000459,
+    0.70322886200006
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 20,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 2200,
+   "convert_s": 0.03436590899991643,
+   "run_s_median": 3.2450614720000885,
+   "run_s": [
+    3.2450614720000885
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 22,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 2662,
+   "convert_s": 0.039647449000085544,
+   "run_s_median": 15.997697535000043,
+   "run_s": [
+    15.997697535000043
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 24,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 3168,
+   "convert_s": 0.04810740600009922,
+   "run_s_median": 81.08927286799985,
+   "run_s": [
+    81.08927286799985
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 198,
+   "convert_s": 0.0048813359999257955,
+   "run_s_median": 0.054715633000114394,
+   "run_s": [
+    0.05146089799995934,
+    0.05528600599996025,
+    0.054715633000114394
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 550,
+   "convert_s": 0.014011622999987594,
+   "run_s_median": 0.14008984699989924,
+   "run_s": [
+    0.13946590299997297,
+    0.27649734700003137,
+    0.14008984699989924
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 14,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 1078,
+   "convert_s": 0.018716129000040382,
+   "run_s_median": 0.33086632999993526,
+   "run_s": [
+    0.3045298939998702,
+    0.45804566300012084,
+    0.33086632999993526
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 1408,
+   "convert_s": 0.022827440000128263,
+   "run_s_median": 0.6322469199999432,
+   "run_s": [
+    0.6322469199999432,
+    0.4574030040000707,
+    0.6323873960000128
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 18,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 1782,
+   "convert_s": 0.029537677000007534,
+   "run_s_median": 0.7939400600000681,
+   "run_s": [
+    0.7939400600000681,
+    0.6831436739998935,
+    0.920552200999964
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 20,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 2200,
+   "convert_s": 0.037419560999978785,
+   "run_s_median": 3.2910792010000023,
+   "run_s": [
+    3.2910792010000023
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 22,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 2662,
+   "convert_s": 0.04542992300002879,
+   "run_s_median": 16.69140995099997,
+   "run_s": [
+    16.69140995099997
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 24,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 3168,
+   "convert_s": 0.05220571200015911,
+   "run_s_median": 66.94955734099995,
+   "run_s": [
+    66.94955734099995
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 198,
+   "convert_s": 0.005661120000013398,
+   "run_s_median": 0.008751835000111896,
+   "run_s": [
+    0.008768122999981642,
+    0.008672925999917425,
+    0.008751835000111896
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 550,
+   "convert_s": 0.01117639899985079,
+   "run_s_median": 0.023283222999907593,
+   "run_s": [
+    0.022405013000025065,
+    0.023283222999907593,
+    0.023707969000042795
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 14,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 1078,
+   "convert_s": 0.021825389000014184,
+   "run_s_median": 0.09567661899995983,
+   "run_s": [
+    0.09567661899995983,
+    0.09619767099979981,
+    0.0927596149999772
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 1408,
+   "convert_s": 0.025058624999928725,
+   "run_s_median": 0.4540817639999659,
+   "run_s": [
+    0.4547962970000299,
+    0.4540817639999659,
+    0.42850195999994867
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 18,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 1782,
+   "convert_s": 0.0312744450000082,
+   "run_s_median": 2.9561291950001305,
+   "run_s": [
+    2.9561291950001305
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 20,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 2200,
+   "convert_s": 0.26042036700005156,
+   "run_s_median": 16.339063771999918,
+   "run_s": [
+    16.339063771999918
+   ]
+  },
+  {
+   "family": "qv",
+   "qubits": 22,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 2662,
+   "convert_s": 0.04604843500010247,
+   "run_s_median": 88.12578321900014,
+   "run_s": [
+    88.12578321900014
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 6,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 188,
+   "convert_s": 0.003839321999976164,
+   "run_s_median": 0.02015425299987328,
+   "run_s": [
+    0.022751264000135052,
+    0.019886387000042305,
+    0.02015425299987328
+   ],
+   "engine_s": 0.0023084769999999998,
+   "worker_service_ms": 13.756583,
+   "simulated_qubits": 6
+  },
+  {
+   "family": "qft",
+   "qubits": 10,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 514,
+   "convert_s": 0.0066575539999575994,
+   "run_s_median": 0.04744469199999912,
+   "run_s": [
+    0.04744469199999912,
+    0.047296890000097846,
+    0.04771796699992592
+   ],
+   "engine_s": 0.010075607,
+   "worker_service_ms": 35.385717,
+   "simulated_qubits": 10
+  },
+  {
+   "family": "qft",
+   "qubits": 14,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 999,
+   "convert_s": 0.01074071399989407,
+   "run_s_median": 0.14409948100001202,
+   "run_s": [
+    0.13912814500008608,
+    0.14409948100001202,
+    0.15049403299985897
+   ],
+   "engine_s": 0.072691277,
+   "worker_service_ms": 120.37584,
+   "simulated_qubits": 14
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 1303,
+   "convert_s": 0.01601914800016857,
+   "run_s_median": 0.473881886999834,
+   "run_s": [
+    0.44191043800014995,
+    0.4793009190000248,
+    0.473881886999834
+   ],
+   "engine_s": 0.35333965,
+   "worker_service_ms": 417.666207,
+   "simulated_qubits": 16
+  },
+  {
+   "family": "qft",
+   "qubits": 18,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 1646,
+   "convert_s": 0.015620390999856681,
+   "run_s_median": 2.62762726699998,
+   "run_s": [
+    2.62762726699998
+   ],
+   "engine_s": 2.526966691,
+   "worker_service_ms": 2600.747659,
+   "simulated_qubits": 18
+  },
+  {
+   "family": "qft",
+   "qubits": 20,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 2029,
+   "convert_s": 0.018969366999954218,
+   "run_s_median": 19.31109921799998,
+   "run_s": [
+    19.31109921799998
+   ],
+   "engine_s": 19.155278826999997,
+   "worker_service_ms": 19278.534528,
+   "simulated_qubits": 20
+  },
+  {
+   "family": "qft",
+   "qubits": 22,
+   "simulator": "QPUTwin",
+   "threads": 1,
+   "gates": 2451,
+   "convert_s": 0.027783492000025944,
+   "run_s_median": 69.2472287879998,
+   "run_s": [
+    69.2472287879998
+   ],
+   "engine_s": 69.08997775099999,
+   "worker_service_ms": 69208.532005,
+   "simulated_qubits": 22
+  },
+  {
+   "family": "qft",
+   "qubits": 6,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 188,
+   "convert_s": 0.005431331999716349,
+   "run_s_median": 0.003035990000171296,
+   "run_s": [
+    0.0031301340000027267,
+    0.002869281000130286,
+    0.003035990000171296
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 10,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 514,
+   "convert_s": 0.0054610039996987325,
+   "run_s_median": 0.007288708000032784,
+   "run_s": [
+    0.00734127499981696,
+    0.0072851230002015654,
+    0.007288708000032784
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 14,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 999,
+   "convert_s": 0.00988854099978198,
+   "run_s_median": 0.0348822249998193,
+   "run_s": [
+    0.0348822249998193,
+    0.034941270999752305,
+    0.0347146200001589
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 1303,
+   "convert_s": 0.012309468999774253,
+   "run_s_median": 0.056438360000356624,
+   "run_s": [
+    0.056105018999915046,
+    0.05746876200009865,
+    0.056438360000356624
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 18,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 1646,
+   "convert_s": 0.0140182109998932,
+   "run_s_median": 0.21806447900007697,
+   "run_s": [
+    0.21806447900007697,
+    0.23711888600018938,
+    0.21785826399991493
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 20,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 2029,
+   "convert_s": 0.019334376999722735,
+   "run_s_median": 0.9876415089997863,
+   "run_s": [
+    1.0000547730001017,
+    0.9809585530001641,
+    0.9876415089997863
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 22,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 2451,
+   "convert_s": 0.021359379999921657,
+   "run_s_median": 4.359817659999862,
+   "run_s": [
+    4.359817659999862
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 24,
+   "simulator": "Qiskit Aer",
+   "threads": 1,
+   "gates": 2915,
+   "convert_s": 0.024828915999933088,
+   "run_s_median": 21.800257226000213,
+   "run_s": [
+    21.800257226000213
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 6,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 188,
+   "convert_s": 0.0037254129997563723,
+   "run_s_median": 0.004081747999862273,
+   "run_s": [
+    0.004081747999862273,
+    0.0040079109999169305,
+    0.004138405000048806
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 10,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 514,
+   "convert_s": 0.005864583999937167,
+   "run_s_median": 0.009071505000065372,
+   "run_s": [
+    0.009082549000140716,
+    0.009071505000065372,
+    0.009015747999910673
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 14,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 999,
+   "convert_s": 0.009833481999976357,
+   "run_s_median": 0.018556924000222352,
+   "run_s": [
+    0.01829020600007425,
+    0.020061131000147725,
+    0.018556924000222352
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 1303,
+   "convert_s": 0.01161703200023112,
+   "run_s_median": 0.029281312999955844,
+   "run_s": [
+    0.029943279000235634,
+    0.029281312999955844,
+    0.029231768000045122
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 18,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 1646,
+   "convert_s": 0.014548571999966953,
+   "run_s_median": 0.07105640899999344,
+   "run_s": [
+    0.07059462099960001,
+    0.0713320240001849,
+    0.07105640899999344
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 20,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 2029,
+   "convert_s": 0.017685469000298326,
+   "run_s_median": 0.3063906570000654,
+   "run_s": [
+    0.3003516859998854,
+    0.3118309900000895,
+    0.3063906570000654
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 22,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 2451,
+   "convert_s": 0.022245263000058912,
+   "run_s_median": 1.380660263000209,
+   "run_s": [
+    1.4185227459997805,
+    1.380660263000209,
+    1.3550896699998702
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 24,
+   "simulator": "qsim",
+   "threads": 1,
+   "gates": 2915,
+   "convert_s": 0.025859466999918368,
+   "run_s_median": 6.407641793000039,
+   "run_s": [
+    6.407641793000039
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 6,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 188,
+   "convert_s": 0.004623168999842164,
+   "run_s_median": 7.023600028333021e-05,
+   "run_s": [
+    8.808600023257895e-05,
+    6.75380001666781e-05,
+    7.023600028333021e-05
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 10,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 514,
+   "convert_s": 0.006117736999840417,
+   "run_s_median": 0.0007262649996846449,
+   "run_s": [
+    0.0007262649996846449,
+    0.000803425999947649,
+    0.0006998949997978343
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 14,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 999,
+   "convert_s": 0.010403537000001961,
+   "run_s_median": 0.018364330000167683,
+   "run_s": [
+    0.018545254999935423,
+    0.018364330000167683,
+    0.018163913999615033
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 1303,
+   "convert_s": 0.012746377999974356,
+   "run_s_median": 0.09474099399994884,
+   "run_s": [
+    0.1065333900000951,
+    0.09474099399994884,
+    0.09406494199993176
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 18,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 1646,
+   "convert_s": 0.01583292099985556,
+   "run_s_median": 0.60622020899973,
+   "run_s": [
+    0.6088089679997211,
+    0.60622020899973,
+    0.5760845410000002
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 20,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 2029,
+   "convert_s": 0.1903861189998679,
+   "run_s_median": 3.5114058429999204,
+   "run_s": [
+    3.5114058429999204
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 22,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 2451,
+   "convert_s": 0.022328980000111187,
+   "run_s_median": 16.95920871899989,
+   "run_s": [
+    16.95920871899989
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 24,
+   "simulator": "Qulacs",
+   "threads": 1,
+   "gates": 2915,
+   "convert_s": 0.030740002000129607,
+   "run_s_median": 78.28779355699999,
+   "run_s": [
+    78.28779355699999
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 6,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 188,
+   "convert_s": 0.003999845000180358,
+   "run_s_median": 0.04826223899999604,
+   "run_s": [
+    0.052574634999928094,
+    0.04826223899999604,
+    0.04811602500012668
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 10,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 514,
+   "convert_s": 0.006429828999898746,
+   "run_s_median": 0.1263381369999479,
+   "run_s": [
+    0.12660926299986386,
+    0.1263381369999479,
+    0.12379044599992994
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 14,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 999,
+   "convert_s": 0.010001489999922342,
+   "run_s_median": 0.2885654340002475,
+   "run_s": [
+    0.2885654340002475,
+    0.280103758000223,
+    0.45926681199989616
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 1303,
+   "convert_s": 0.012509589999808668,
+   "run_s_median": 0.4004738490002637,
+   "run_s": [
+    0.4004738490002637,
+    0.5964504249996025,
+    0.3891280719999486
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 18,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 1646,
+   "convert_s": 0.01623219799967046,
+   "run_s_median": 0.9007585959998323,
+   "run_s": [
+    0.9007585959998323,
+    0.8097321919999558,
+    0.9461175850001382
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 20,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 2029,
+   "convert_s": 0.019578367000121943,
+   "run_s_median": 3.6297757010001988,
+   "run_s": [
+    3.6297757010001988
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 22,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 2451,
+   "convert_s": 0.027563364000343427,
+   "run_s_median": 14.377359072000218,
+   "run_s": [
+    14.377359072000218
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 24,
+   "simulator": "Braket local",
+   "threads": 1,
+   "gates": 2915,
+   "convert_s": 0.025908604000051128,
+   "run_s_median": 57.9814207710001,
+   "run_s": [
+    57.9814207710001
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 6,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 188,
+   "convert_s": 0.003952441999899747,
+   "run_s_median": 0.008773190999818326,
+   "run_s": [
+    0.008773190999818326,
+    0.008568790000026638,
+    0.008823815999676299
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 10,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 514,
+   "convert_s": 0.0063561950000803336,
+   "run_s_median": 0.022130351000214432,
+   "run_s": [
+    0.022048869000173,
+    0.022130351000214432,
+    0.023550184999749035
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 14,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 999,
+   "convert_s": 0.010723862999839184,
+   "run_s_median": 0.07834177500035366,
+   "run_s": [
+    0.08576870600018083,
+    0.07834177500035366,
+    0.07832764099975975
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 16,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 1303,
+   "convert_s": 0.01263024999980189,
+   "run_s_median": 0.304272776000289,
+   "run_s": [
+    0.3033283980003034,
+    0.304272776000289,
+    0.3064325979999012
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 18,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 1646,
+   "convert_s": 0.015566757000215148,
+   "run_s_median": 1.984063279000111,
+   "run_s": [
+    1.984063279000111,
+    2.120555464000063,
+    1.9615843289998338
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 20,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 2029,
+   "convert_s": 0.01899564300038037,
+   "run_s_median": 11.438787219000005,
+   "run_s": [
+    11.438787219000005
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 22,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 2451,
+   "convert_s": 0.02303512700018473,
+   "run_s_median": 59.99513147500011,
+   "run_s": [
+    59.99513147500011
+   ]
+  },
+  {
+   "family": "qft",
+   "qubits": 24,
+   "simulator": "Cirq",
+   "threads": 1,
+   "gates": 2915,
+   "convert_s": 0.025707576000058907,
+   "run_s_median": 279.6569278940001,
+   "run_s": [
+    279.6569278940001
+   ]
+  }
+ ]
+}

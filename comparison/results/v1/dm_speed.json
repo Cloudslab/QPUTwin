@@ -1,0 +1,674 @@
+{
+ "experiment": "dm_speed",
+ "generated_utc": "2026-10-28T01:54:20+00:00",
+ "environment": {
+  "python": "3.13.17",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+  "logical_cpus": 12,
+  "load_average": [
+   4.13818359375,
+   5.615234375,
+   4.83935546875
+  ],
+  "threads": 1,
+  "versions": {
+   "qiskit": "2.6.1",
+   "qiskit-aer": "0.18.2",
+   "amazon-braket-sdk": "1.127.6",
+   "amazon-braket-default-simulator": "1.42.0",
+   "cirq-core": "1.7.0",
+   "qsimcirq": "0.22.1",
+   "qulacs": "0.6.14",
+   "numpy": "2.5.4"
+  },
+  "qputwin": {
+   "base_url": "http://localhost:8000",
+   "status": "ok",
+   "service": "orchestrator",
+   "version": "0.1.0",
+   "worker_precision": "complex128",
+   "worker_threads": "1 (OMP_NUM_THREADS=1 in the container)",
+   "worker_cpu_quota": "4 CPUs / 12 GiB"
+  }
+ },
+ "shots": 1024,
+ "cap_s": 120.0,
+ "depolarizing_lambda": [
+  0.001,
+  0.01
+ ],
+ "workload": "noisy density-matrix simulation; QPUTwin: full calibrated Helios noise model on its native gates (engine forced to density_matrix); others: depolarising \u03bb = 1e-3 after every U and 1e-2 after every CX of the identical U/CX gate list",
+ "data": [
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "gates": 4,
+   "run_s_median": 0.00791660499999125,
+   "run_s": [
+    0.009543158000269614,
+    0.00791660499999125,
+    0.0071579680002287205
+   ],
+   "engine_s": 0.000694018
+  },
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "QPUTwin",
+   "gates": 6,
+   "run_s_median": 0.009418290999747114,
+   "run_s": [
+    0.009418290999747114,
+    0.009300303999680182,
+    0.009420489000149246
+   ],
+   "engine_s": 0.001900216
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "gates": 8,
+   "run_s_median": 0.032480479999776435,
+   "run_s": [
+    0.032480479999776435,
+    0.03301123800019923,
+    0.02704617800009146
+   ],
+   "engine_s": 0.022978883
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "QPUTwin",
+   "gates": 10,
+   "run_s_median": 0.7054879049996998,
+   "run_s": [
+    0.7054879049996998,
+    0.7051075919998766,
+    0.7257184320001215
+   ],
+   "engine_s": 0.692536478
+  },
+  {
+   "family": "ghz",
+   "qubits": 11,
+   "simulator": "QPUTwin",
+   "gates": 11,
+   "run_s_median": 3.488178531000358,
+   "run_s": [
+    3.488178531000358
+   ],
+   "engine_s": 3.4774646750000002
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "gates": 12,
+   "run_s_median": 14.57008509399975,
+   "run_s": [
+    14.57008509399975
+   ],
+   "engine_s": 14.558647878
+  },
+  {
+   "family": "ghz",
+   "qubits": 13,
+   "simulator": "QPUTwin",
+   "gates": 13,
+   "run_s_median": 62.67716084099993,
+   "run_s": [
+    62.67716084099993
+   ],
+   "engine_s": 62.655480525
+  },
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "gates": 4,
+   "run_s_median": 0.0015745540003990754,
+   "run_s": [
+    0.0015745540003990754,
+    0.0018218189998151502,
+    0.001450954000119964
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "Qiskit Aer",
+   "gates": 6,
+   "run_s_median": 0.0020025779999741644,
+   "run_s": [
+    0.0020025779999741644,
+    0.0020114079998165835,
+    0.001962193000053958
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "gates": 8,
+   "run_s_median": 0.00874613899986798,
+   "run_s": [
+    0.00865647299997363,
+    0.00898289399992791,
+    0.00874613899986798
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "Qiskit Aer",
+   "gates": 10,
+   "run_s_median": 0.14196875200013892,
+   "run_s": [
+    0.14397437199977503,
+    0.14194979300009436,
+    0.14196875200013892
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 11,
+   "simulator": "Qiskit Aer",
+   "gates": 11,
+   "run_s_median": 0.6461013240000284,
+   "run_s": [
+    0.6499704670000028,
+    0.6461013240000284,
+    0.6335807159998694
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "gates": 12,
+   "run_s_median": 2.805744589999904,
+   "run_s": [
+    2.805744589999904
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 13,
+   "simulator": "Qiskit Aer",
+   "gates": 13,
+   "run_s_median": 12.38580973299986,
+   "run_s": [
+    12.38580973299986
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "gates": 4,
+   "run_s_median": 0.012035129999730998,
+   "run_s": [
+    0.7316440370000237,
+    0.012035129999730998,
+    0.011684630000218021
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "Braket local",
+   "gates": 6,
+   "run_s_median": 0.24292382900011944,
+   "run_s": [
+    0.45749865100015086,
+    0.020443894999971235,
+    0.24292382900011944
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "gates": 8,
+   "run_s_median": 0.03268400900014967,
+   "run_s": [
+    0.48206248200040136,
+    0.03268400900014967,
+    0.02526009899975179
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "Braket local",
+   "gates": 10,
+   "run_s_median": 0.26588954899989403,
+   "run_s": [
+    0.7263562990001446,
+    0.2511203420003767,
+    0.26588954899989403
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 11,
+   "simulator": "Braket local",
+   "gates": 11,
+   "run_s_median": 0.9477944769996611,
+   "run_s": [
+    1.4749049959996228,
+    0.9451410699998632,
+    0.9477944769996611
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "gates": 12,
+   "run_s_median": 4.4215792689997215,
+   "run_s": [
+    4.4215792689997215
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 13,
+   "simulator": "Braket local",
+   "gates": 13,
+   "run_s_median": 21.376824643999953,
+   "run_s": [
+    21.376824643999953
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "gates": 4,
+   "run_s_median": 0.005704047000108403,
+   "run_s": [
+    0.006179167000027519,
+    0.005704047000108403,
+    0.005686260999937076
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 6,
+   "simulator": "Cirq",
+   "gates": 6,
+   "run_s_median": 0.01665740199996435,
+   "run_s": [
+    0.01665740199996435,
+    0.016840646999753517,
+    0.016488847999880818
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "gates": 8,
+   "run_s_median": 0.16487718200005475,
+   "run_s": [
+    0.16487718200005475,
+    0.1660797409999759,
+    0.16439032100015538
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 10,
+   "simulator": "Cirq",
+   "gates": 10,
+   "run_s_median": 2.527385690999836,
+   "run_s": [
+    2.527385690999836
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 11,
+   "simulator": "Cirq",
+   "gates": 11,
+   "run_s_median": 10.0814699929997,
+   "run_s": [
+    10.0814699929997
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 12,
+   "simulator": "Cirq",
+   "gates": 12,
+   "run_s_median": 17.567125114999726,
+   "run_s": [
+    17.567125114999726
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "ghz",
+   "qubits": 13,
+   "simulator": "Cirq",
+   "gates": 13,
+   "run_s_median": 49.25375907300031,
+   "run_s": [
+    49.25375907300031
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "QPUTwin",
+   "gates": 88,
+   "run_s_median": 0.038061577000007674,
+   "run_s": [
+    0.038061577000007674,
+    0.05335727900001075,
+    0.020440987000256428
+   ],
+   "engine_s": 0.004168008
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "QPUTwin",
+   "gates": 198,
+   "run_s_median": 0.043934924000041065,
+   "run_s": [
+    0.04402006200007236,
+    0.043934924000041065,
+    0.04369683400000213
+   ],
+   "engine_s": 0.013172012
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "QPUTwin",
+   "gates": 352,
+   "run_s_median": 0.29618636599980164,
+   "run_s": [
+    0.29618636599980164,
+    0.3047791839999263,
+    0.28872995599977
+   ],
+   "engine_s": 0.246119226
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "QPUTwin",
+   "gates": 550,
+   "run_s_median": 10.746071088000008,
+   "run_s": [
+    10.746071088000008
+   ],
+   "engine_s": 10.618928857
+  },
+  {
+   "family": "qv",
+   "qubits": 11,
+   "simulator": "QPUTwin",
+   "gates": 605,
+   "run_s_median": 52.371964945999935,
+   "run_s": [
+    52.371964945999935
+   ],
+   "engine_s": 52.275613342
+  },
+  {
+   "family": "qv",
+   "qubits": 12,
+   "simulator": "QPUTwin",
+   "gates": 792,
+   "run_s_median": 210.794601178,
+   "run_s": [
+    210.794601178
+   ],
+   "engine_s": 210.67516777199998
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "Qiskit Aer",
+   "gates": 88,
+   "run_s_median": 0.002643353999701503,
+   "run_s": [
+    0.002840059000391193,
+    0.002643353999701503,
+    0.00262964799958354
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "Qiskit Aer",
+   "gates": 198,
+   "run_s_median": 0.013454041999921174,
+   "run_s": [
+    0.013669223999841051,
+    0.013454041999921174,
+    0.01296210499958761
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "Qiskit Aer",
+   "gates": 352,
+   "run_s_median": 0.03523284999982934,
+   "run_s": [
+    0.03546958700007963,
+    0.03479934400002094,
+    0.03523284999982934
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "Qiskit Aer",
+   "gates": 550,
+   "run_s_median": 0.6619504860000234,
+   "run_s": [
+    0.6620017230002304,
+    0.6619504860000234,
+    0.6593907389997185
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 11,
+   "simulator": "Qiskit Aer",
+   "gates": 605,
+   "run_s_median": 2.9829754470001717,
+   "run_s": [
+    2.9829754470001717
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 12,
+   "simulator": "Qiskit Aer",
+   "gates": 792,
+   "run_s_median": 15.199471250999977,
+   "run_s": [
+    15.199471250999977
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 13,
+   "simulator": "Qiskit Aer",
+   "gates": 858,
+   "run_s_median": 67.14760524100029,
+   "run_s": [
+    67.14760524100029
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "Braket local",
+   "gates": 88,
+   "run_s_median": 0.08212664700022287,
+   "run_s": [
+    0.08212664700022287,
+    0.08042219399976602,
+    0.08221197200009556
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "Braket local",
+   "gates": 198,
+   "run_s_median": 0.1991999079996276,
+   "run_s": [
+    0.1991999079996276,
+    0.19112138599984974,
+    0.36430904100006956
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "Braket local",
+   "gates": 352,
+   "run_s_median": 0.4333631590002369,
+   "run_s": [
+    0.4333631590002369,
+    0.4250557889999982,
+    0.5806574180001007
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "Braket local",
+   "gates": 550,
+   "run_s_median": 4.459982513999876,
+   "run_s": [
+    4.459982513999876
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 11,
+   "simulator": "Braket local",
+   "gates": 605,
+   "run_s_median": 16.936932269999943,
+   "run_s": [
+    16.936932269999943
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 12,
+   "simulator": "Braket local",
+   "gates": 792,
+   "run_s_median": 82.32883299900004,
+   "run_s": [
+    82.32883299900004
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 13,
+   "simulator": "Braket local",
+   "gates": 858,
+   "run_s_median": 417.84948558099995,
+   "run_s": [
+    417.84948558099995
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 4,
+   "simulator": "Cirq",
+   "gates": 88,
+   "run_s_median": 0.046749086000090756,
+   "run_s": [
+    0.046749086000090756,
+    0.05362614600016968,
+    0.04380055599995103
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 6,
+   "simulator": "Cirq",
+   "gates": 198,
+   "run_s_median": 0.2373281219997807,
+   "run_s": [
+    0.23648017800041998,
+    0.24094642099998964,
+    0.2373281219997807
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 8,
+   "simulator": "Cirq",
+   "gates": 352,
+   "run_s_median": 5.274051463999967,
+   "run_s": [
+    5.274051463999967
+   ],
+   "engine_s": null
+  },
+  {
+   "family": "qv",
+   "qubits": 10,
+   "simulator": "Cirq",
+   "gates": 550,
+   "run_s_median": 145.771915627,
+   "run_s": [
+    145.771915627
+   ],
+   "engine_s": null
+  }
+ ]
+}

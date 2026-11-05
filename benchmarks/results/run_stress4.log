@@ -1,0 +1,30 @@
+[load_ha] E13b — orchestrator scale-out: light jobs over all four QPUs, direct vs nginx gateway with 1 or 3 orchestrators.
+  direct_1_orch   c=  1:   137.8 jobs/s  client p50     6.90  p99    10.08 ms  errors 0  client CPU 0.17 core/proc
+  direct_1_orch   c=  2:   234.9 jobs/s  client p50     8.17  p99    12.48 ms  errors 0  client CPU 0.17 core/proc
+  direct_1_orch   c=  4:   337.2 jobs/s  client p50    11.54  p99    17.31 ms  errors 0  client CPU 0.17 core/proc
+  direct_1_orch   c=  8:   385.4 jobs/s  client p50    20.41  p99    30.37 ms  errors 0  client CPU 0.19 core/proc
+  direct_1_orch   c= 16:   378.8 jobs/s  client p50    41.40  p99    57.31 ms  errors 0  client CPU 0.19 core/proc
+  direct_1_orch   c= 32:   343.1 jobs/s  client p50    86.43  p99   191.47 ms  errors 0  client CPU 0.17 core/proc
+  direct_1_orch   c= 64:   290.1 jobs/s  client p50   196.62  p99   546.05 ms  errors 0  client CPU 0.15 core/proc
+  direct_1_orch   c=128:   267.7 jobs/s  client p50   396.86  p99  1525.94 ms  errors 0  client CPU 0.14 core/proc
+  direct_1_orch   c=256:   215.9 jobs/s  client p50   929.53  p99  4139.15 ms  errors 0  client CPU 0.13 core/proc
+  gateway_1_orch  c=  1:   133.8 jobs/s  client p50     7.10  p99     9.94 ms  errors 0  client CPU 0.17 core/proc
+  gateway_1_orch  c=  2:   227.0 jobs/s  client p50     8.53  p99    12.24 ms  errors 0  client CPU 0.17 core/proc
+  gateway_1_orch  c=  4:   327.8 jobs/s  client p50    11.94  p99    17.81 ms  errors 0  client CPU 0.17 core/proc
+  gateway_1_orch  c=  8:   348.5 jobs/s  client p50    22.55  p99    31.99 ms  errors 0  client CPU 0.18 core/proc
+  gateway_1_orch  c= 16:   296.3 jobs/s  client p50    51.14  p99    80.20 ms  errors 0  client CPU 0.17 core/proc
+  gateway_1_orch  c= 32:   280.9 jobs/s  client p50   113.09  p99   164.19 ms  errors 0  client CPU 0.17 core/proc
+  gateway_1_orch  c= 64:   271.4 jobs/s  client p50   232.95  p99   278.73 ms  errors 0  client CPU 0.17 core/proc
+  gateway_1_orch  c=128:   289.5 jobs/s  client p50   449.09  p99   502.00 ms  errors 0  client CPU 0.17 core/proc
+  gateway_1_orch  c=256:   288.9 jobs/s  client p50   869.23  p99  1134.34 ms  errors 0  client CPU 0.20 core/proc
+  gateway_3_orch  c=  1:   118.0 jobs/s  client p50     8.41  p99    11.63 ms  errors 0  client CPU 0.18 core/proc
+  gateway_3_orch  c=  2:   220.9 jobs/s  client p50     8.74  p99    12.70 ms  errors 0  client CPU 0.17 core/proc
+  gateway_3_orch  c=  4:   373.3 jobs/s  client p50    10.29  p99    16.70 ms  errors 0  client CPU 0.20 core/proc
+  gateway_3_orch  c=  8:   517.3 jobs/s  client p50    14.81  p99    27.78 ms  errors 0  client CPU 0.29 core/proc
+  gateway_3_orch  c= 16:   592.1 jobs/s  client p50    25.44  p99    57.24 ms  errors 0  client CPU 0.36 core/proc
+  gateway_3_orch  c= 32:   627.8 jobs/s  client p50    46.95  p99   112.95 ms  errors 0  client CPU 0.39 core/proc
+  gateway_3_orch  c= 64:   579.8 jobs/s  client p50    90.48  p99   452.69 ms  errors 0  client CPU 0.47 core/proc
+  gateway_3_orch  c=128:   458.9 jobs/s  client p50   147.70  p99  1448.86 ms  errors 0  client CPU 0.75 core/proc
+  gateway_3_orch  c=256:   419.3 jobs/s  client p50   403.51  p99  2934.86 ms  errors 0  client CPU 0.80 core/proc
+  saved results/load_ha.json
+  (570.9 s)

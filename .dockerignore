@@ -1,0 +1,21 @@
+# QPUTwin build context — Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# The images only need pyproject.toml, uv.lock, README.md, LICENSE, NOTICE, src/ and config/.
+.git
+.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.ruff_cache
+.mypy_cache
+data
+site
+docs
+benchmarks
+scripts
+tests
+test_benchmark.py
+*.md
+!README.md
+docker-compose.yml
+.env
+.env.*

@@ -1,0 +1,51 @@
+# QPUTwin backend registry
+# Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+#
+# Each backend maps to one or more vendor-emulator worker replicas. URLs use
+# Docker Compose service names on the internal `qputwin-net` network. Override
+# any URL with QPUTWIN_BACKEND_URL_<BACKEND_ID_UPPERCASE> (comma-separate several
+# replicas), e.g. QPUTWIN_BACKEND_URL_IONQ_FORTE=http://a:8001,http://b:8001.
+# A backend may also list static replicas with `urls = [...]`.
+
+[orchestrator]
+request_timeout_s = 600.0     # long enough for large-width statevector runs
+connect_timeout_s = 5.0
+max_qasm_bytes = 1048576      # 1 MiB
+max_shots = 1000000
+telemetry_buffer = 10000      # in-memory ring buffer behind GET /v1/telemetry
+
+# Replica discovery: "static" (the URLs below) or "dns" (resolve each host name to
+# all of its addresses, e.g. `docker compose up --scale worker-ionq-forte=3`).
+# docker-compose.yml sets QPUTWIN_DISCOVERY=dns for the containerised stack.
+discovery = "static"
+discovery_interval_s = 10.0
+
+# Asynchronous jobs (POST /v1/jobs?mode=async -> 202, then GET /v1/jobs/{id})
+async_max_queued = 10000              # waiting jobs, all backends
+async_retention = 10000               # finished jobs kept for polling
+async_ttl_s = 3600.0                  # finished jobs expire after this long
+async_per_replica_concurrency = 1     # in-flight jobs per worker replica
+max_poll_wait_s = 30.0                # cap for GET /v1/jobs/{id}?wait=
+
+# Job store: "memory" (single instance) or "sqlite" (durable; shared by every
+# orchestrator replica on one host). docker-compose.yml selects sqlite on ./data.
+job_store = "memory"
+job_lease_s = 30.0                    # running-job lease, renewed every lease/3
+job_max_attempts = 3                  # re-executions after a lost instance before FAILED
+job_poll_interval_s = 0.2             # how often other instances' submissions are noticed
+
+[backends.quantinuum_helios]
+url = "http://worker-quantinuum-helios:8001"
+description = "Quantinuum Helios - trapped ion, 98 qubits, all-to-all"
+
+[backends.ionq_forte]
+url = "http://worker-ionq-forte:8001"
+description = "IonQ Forte - trapped ion, 36 qubits, all-to-all"
+
+[backends.rigetti_ankaa_3]
+url = "http://worker-rigetti-ankaa3:8001"
+description = "Rigetti Ankaa-3 - superconducting, 84 qubits, square-lattice nearest-neighbour"
+
+[backends.iqm_emerald]
+url = "http://worker-iqm-emerald:8001"
+description = "IQM Emerald - superconducting, 54 qubits, square-lattice nearest-neighbour"

@@ -1,0 +1,43 @@
+# QPUTwin — Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+
+# --- Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# --- packaging / build output
+build/
+dist/
+*.egg-info/
+*.whl
+
+# --- documentation site (rebuilt by `mkdocs build`)
+site/
+
+# --- runtime state written by the Docker stack (job store, telemetry dataset)
+data/*
+!data/.gitkeep
+
+# --- local secrets and overrides (.env holds only non-secret defaults and is tracked)
+.env.local
+.env.*.local
+*.local.env
+api_keys*.txt
+
+# --- editors and operating systems
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db

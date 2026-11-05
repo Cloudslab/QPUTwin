@@ -1,0 +1,57 @@
+threads,workload,simulator,qputwin_precision,time_relative_to_qputwin
+t1,sv ghz 24,Qiskit Aer,complex128,18.563
+t1,sv ghz 24,qsim,complex128,3.018
+t1,sv ghz 24,qsim,complex64,3.771
+t1,sv ghz 24,Qulacs,complex128,4.416
+t1,sv ghz 24,Braket local,complex128,8.458
+t1,sv ghz 24,Cirq,complex128,6.167
+t1,sv qv 20,Qiskit Aer,complex128,2.202
+t1,sv qv 20,qsim,complex128,0.359
+t1,sv qv 20,qsim,complex64,0.597
+t1,sv qv 20,Qulacs,complex128,8.415
+t1,sv qv 20,Braket local,complex128,6.311
+t1,sv qv 20,Cirq,complex128,28.063
+t1,sv qv 24,Qiskit Aer,complex128,2.541
+t1,sv qv 24,qsim,complex128,0.345
+t1,sv qv 24,qsim,complex64,0.607
+t1,sv qv 24,Qulacs,complex128,9.996
+t1,sv qv 24,Braket local,complex128,5.934
+t1,sv qft 20,Qiskit Aer,complex128,1.513
+t1,sv qft 20,qsim,complex128,0.423
+t1,sv qft 20,qsim,complex64,0.779
+t1,sv qft 20,Qulacs,complex128,4.36
+t1,sv qft 20,Braket local,complex128,3.854
+t1,sv qft 20,Cirq,complex128,12.485
+t1,sv qft 24,Qiskit Aer,complex128,1.428
+t1,sv qft 24,qsim,complex128,0.397
+t1,sv qft 24,qsim,complex64,0.767
+t1,sv qft 24,Qulacs,complex128,4.407
+t1,sv qft 24,Braket local,complex128,2.791
+t1,sv qft 24,Cirq,complex128,13.698
+t1,dm ghz 12,Qiskit Aer,complex128,10.641
+t1,dm ghz 12,Braket local,complex128,12.351
+t1,dm ghz 12,Cirq,complex128,61.678
+t1,dm qv 12,Qiskit Aer,complex128,3.049
+t1,dm qv 12,Braket local,complex128,16.033
+t4,sv ghz 24,Qiskit Aer,complex128,6.556
+t4,sv ghz 24,qsim,complex128,2.819
+t4,sv ghz 24,qsim,complex64,2.905
+t4,sv ghz 24,Qulacs,complex128,3.745
+t4,sv qv 20,Qiskit Aer,complex128,1.646
+t4,sv qv 20,qsim,complex128,0.395
+t4,sv qv 20,qsim,complex64,0.572
+t4,sv qv 20,Qulacs,complex128,5.741
+t4,sv qv 24,Qiskit Aer,complex128,2.121
+t4,sv qv 24,qsim,complex128,0.337
+t4,sv qv 24,qsim,complex64,0.579
+t4,sv qv 24,Qulacs,complex128,14.168
+t4,sv qft 20,Qiskit Aer,complex128,1.125
+t4,sv qft 20,qsim,complex128,0.378
+t4,sv qft 20,qsim,complex64,0.672
+t4,sv qft 20,Qulacs,complex128,3.109
+t4,sv qft 24,Qiskit Aer,complex128,1.38
+t4,sv qft 24,qsim,complex128,0.389
+t4,sv qft 24,qsim,complex64,0.752
+t4,sv qft 24,Qulacs,complex128,6.507
+t4,dm ghz 12,Qiskit Aer,complex128,6.195
+t4,dm qv 12,Qiskit Aer,complex128,2.787

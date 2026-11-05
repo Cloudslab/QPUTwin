@@ -1,0 +1,180 @@
+[circuits] E11 — nine circuit families × four devices: compiled cost, engine time and noisy fidelity.
+  ghz     n= 3  quant 0.998  ionq 0.978  riget 0.889  iqm 0.899
+  ghz     n= 4  quant 0.997  ionq 0.968  riget 0.844  iqm 0.860
+  ghz     n= 5  quant 0.995  ionq 0.959  riget 0.798  iqm 0.819
+  ghz     n= 6  quant 0.994  ionq 0.950  riget 0.752  iqm 0.777
+  ghz     n= 7  quant 0.993  ionq 0.941  riget 0.634  iqm 0.702
+  ghz     n= 8  quant 0.992  ionq 0.932  riget 0.606  iqm 0.666
+  ghz     n=10  quant 0.990  ionq 0.913  riget 0.487  iqm 0.539
+  ghz: cost table done (n ≤ 20)
+  qft     n= 3  quant 1.000  ionq 1.000  riget 1.000  iqm 1.000
+  qft     n= 4  quant 1.000  ionq 1.000  riget 0.999  iqm 1.000
+  qft     n= 5  quant 1.000  ionq 1.000  riget 0.998  iqm 0.999
+  qft     n= 6  quant 1.000  ionq 1.000  riget 0.991  iqm 0.998
+  qft     n= 7  quant 0.999  ionq 0.999  riget 0.993  iqm 0.998
+  qft     n= 8  quant 0.999  ionq 0.999  riget 0.986  iqm 0.996
+  qft     n=10  quant 0.995  ionq 0.995  riget 0.981  iqm 0.983
+  qft: cost table done (n ≤ 20)
+  qv      n= 3  quant 1.000  ionq 0.998  riget 0.980  iqm 0.990
+  qv      n= 4  quant 1.000  ionq 0.992  riget 0.957  iqm 0.973
+  qv      n= 5  quant 0.999  ionq 0.989  riget 0.919  iqm 0.952
+  qv      n= 6  quant 0.998  ionq 0.962  riget 0.821  iqm 0.889
+  qv      n= 7  quant 0.997  ionq 0.958  riget 0.826  iqm 0.860
+  qv      n= 8  quant 0.995  ionq 0.932  riget 0.823  iqm 0.847
+  qv      n=10  quant 0.987  ionq 0.872  riget 0.782  iqm 0.788
+  qv: cost table done (n ≤ 20)
+  qaoa    n= 3  quant 1.000  ionq 0.996  riget 0.955  iqm 0.978
+  qaoa    n= 4  quant 1.000  ionq 0.998  riget 0.985  iqm 0.990
+  qaoa    n= 5  quant 1.000  ionq 0.984  riget 0.849  iqm 0.906
+  qaoa    n= 6  quant 0.999  ionq 0.976  riget 0.824  iqm 0.901
+  qaoa    n= 7  quant 0.999  ionq 0.992  riget 0.916  iqm 0.948
+  qaoa    n= 8  quant 0.999  ionq 0.966  riget 0.813  iqm 0.846
+  qaoa    n=10  quant 0.994  ionq 0.943  riget 0.740  iqm 0.825
+  qaoa: cost table done (n ≤ 20)
+  hea     n= 3  quant 1.000  ionq 0.999  riget 0.991  iqm 0.995
+  hea     n= 4  quant 1.000  ionq 0.999  riget 0.988  iqm 0.993
+  hea     n= 5  quant 1.000  ionq 0.996  riget 0.972  iqm 0.981
+  hea     n= 6  quant 1.000  ionq 0.992  riget 0.953  iqm 0.969
+  hea     n= 7  quant 0.999  ionq 0.993  riget 0.956  iqm 0.973
+  hea     n= 8  quant 0.998  ionq 0.988  riget 0.922  iqm 0.958
+  hea     n=10  quant 0.994  ionq 0.980  riget 0.906  iqm 0.942
+  hea: cost table done (n ≤ 20)
+  ising   n= 3  quant 1.000  ionq 0.996  riget 0.973  iqm 0.982
+  ising   n= 4  quant 1.000  ionq 0.991  riget 0.947  iqm 0.965
+  ising   n= 5  quant 1.000  ionq 0.986  riget 0.929  iqm 0.954
+  ising   n= 6  quant 0.999  ionq 0.982  riget 0.910  iqm 0.941
+  ising   n= 7  quant 0.999  ionq 0.977  riget 0.889  iqm 0.928
+  ising   n= 8  quant 0.998  ionq 0.972  riget 0.868  iqm 0.914
+  ising   n=10  quant 0.994  ionq 0.958  riget 0.825  iqm 0.881
+  ising: cost table done (n ≤ 20)
+  bv      n= 3  quant 0.999  ionq 0.987  riget 0.931  iqm 0.935
+  bv      n= 4  quant 0.998  ionq 0.982  riget 0.903  iqm 0.907
+  bv      n= 5  quant 0.998  ionq 0.978  riget 0.876  iqm 0.880
+  bv      n= 6  quant 0.997  ionq 0.969  riget 0.839  iqm 0.847
+  bv      n= 7  quant 0.996  ionq 0.959  riget 0.796  iqm 0.812
+  bv      n= 8  quant 0.995  ionq 0.950  riget 0.706  iqm 0.748
+  bv      n=10  quant 0.993  ionq 0.936  riget 0.652  iqm 0.690
+  bv: cost table done (n ≤ 20)
+  adder   n= 4  quant 0.985  ionq 0.907  riget 0.567  iqm 0.748
+  adder   n= 6  quant 0.972  ionq 0.820  riget 0.320  iqm 0.501
+  adder   n= 8  quant 0.960  ionq 0.729  riget 0.126  iqm 0.330
+  adder   n=10  quant 0.947  ionq 0.641  riget 0.058  iqm 0.168
+  adder: cost table done (n ≤ 20)
+  mirror  n= 3  quant 0.996  ionq 0.966  riget 0.857  iqm 0.884
+  mirror  n= 4  quant 0.992  ionq 0.940  riget 0.790  iqm 0.838
+  mirror  n= 5  quant 0.991  ionq 0.932  riget 0.742  iqm 0.796
+  mirror  n= 6  quant 0.982  ionq 0.871  riget 0.634  iqm 0.672
+  mirror  n= 7  quant 0.982  ionq 0.861  riget 0.355  iqm 0.637
+  mirror  n= 8  quant 0.969  ionq 0.763  riget 0.251  iqm 0.391
+  mirror  n=10  quant 0.950  ionq 0.645  riget 0.041  iqm 0.141
+  mirror: cost table done (n ≤ 20)
+  saved results/circuits.json
+  (1733.8 s)
+[qv] E12 — quantum-volume-style heavy-output probability vs width (exact noise, 12 circuits per width).
+  m=2 quantinuum_helios  HOP 0.755 (2σ lower 0.717) PASS
+  m=2 ionq_forte         HOP 0.743 (2σ lower 0.707) PASS
+  m=2 rigetti_ankaa_3    HOP 0.709 (2σ lower 0.678) PASS
+  m=2 iqm_emerald        HOP 0.723 (2σ lower 0.690) PASS
+  m=3 quantinuum_helios  HOP 0.834 (2σ lower 0.786) PASS
+  m=3 ionq_forte         HOP 0.817 (2σ lower 0.769) PASS
+  m=3 rigetti_ankaa_3    HOP 0.763 (2σ lower 0.713) PASS
+  m=3 iqm_emerald        HOP 0.784 (2σ lower 0.736) PASS
+  m=4 quantinuum_helios  HOP 0.838 (2σ lower 0.809) PASS
+  m=4 ionq_forte         HOP 0.797 (2σ lower 0.770) PASS
+  m=4 rigetti_ankaa_3    HOP 0.705 (2σ lower 0.681) PASS
+  m=4 iqm_emerald        HOP 0.726 (2σ lower 0.697) PASS
+  m=5 quantinuum_helios  HOP 0.846 (2σ lower 0.819) PASS
+  m=5 ionq_forte         HOP 0.797 (2σ lower 0.771) PASS
+  m=5 rigetti_ankaa_3    HOP 0.677 (2σ lower 0.649) fail
+  m=5 iqm_emerald        HOP 0.723 (2σ lower 0.696) PASS
+  m=6 quantinuum_helios  HOP 0.835 (2σ lower 0.819) PASS
+  m=6 ionq_forte         HOP 0.746 (2σ lower 0.732) PASS
+  m=6 rigetti_ankaa_3    HOP 0.594 (2σ lower 0.578) fail
+  m=6 iqm_emerald        HOP 0.664 (2σ lower 0.646) fail
+  m=7 quantinuum_helios  HOP 0.839 (2σ lower 0.832) PASS
+  m=7 ionq_forte         HOP 0.734 (2σ lower 0.727) PASS
+  m=7 rigetti_ankaa_3    HOP 0.567 (2σ lower 0.557) fail
+  m=7 iqm_emerald        HOP 0.614 (2σ lower 0.598) fail
+  m=8 quantinuum_helios  HOP 0.825 (2σ lower 0.820) PASS
+  m=8 ionq_forte         HOP 0.676 (2σ lower 0.669) PASS
+  m=8 rigetti_ankaa_3    HOP 0.523 (2σ lower 0.514) fail
+  m=8 iqm_emerald        HOP 0.565 (2σ lower 0.552) fail
+  saved results/qv.json
+  (109.1 s)
+[load_closed] E13 — closed-loop load: throughput and tail latency vs concurrent clients (sync API).
+  light_emerald     c=  1:   142.1 jobs/s  p50     4.86  p99     9.13 ms  errors 0
+  light_emerald     c=  2:   229.3 jobs/s  p50     5.85  p99    13.17 ms  errors 0
+  light_emerald     c=  4:   279.3 jobs/s  p50    11.17  p99    21.56 ms  errors 0
+  light_emerald     c=  8:   295.8 jobs/s  p50    23.51  p99    43.83 ms  errors 0
+  light_emerald     c= 16:   298.5 jobs/s  p50    48.31  p99   107.78 ms  errors 0
+  light_emerald     c= 32:   248.2 jobs/s  p50    99.96  p99   406.88 ms  errors 0
+  light_emerald     c= 64:   244.5 jobs/s  p50   186.33  p99   923.95 ms  errors 0
+  light_emerald     c=128:   226.7 jobs/s  p50   392.24  p99  1939.65 ms  errors 0
+  light_emerald     c=256:   195.3 jobs/s  p50   797.64  p99  4043.28 ms  errors 0
+  heavy_forte       c=  1:     6.9 jobs/s  p50   136.66  p99   187.76 ms  errors 0
+  heavy_forte       c=  2:     9.5 jobs/s  p50   200.85  p99   280.75 ms  errors 0
+  heavy_forte       c=  4:     9.6 jobs/s  p50   402.72  p99   510.51 ms  errors 0
+  heavy_forte       c=  8:     9.3 jobs/s  p50   804.58  p99   929.04 ms  errors 0
+  heavy_forte       c= 16:     8.8 jobs/s  p50  1627.08  p99  2134.39 ms  errors 0
+  heavy_forte       c= 32:     5.8 jobs/s  p50  4272.76  p99  4862.09 ms  errors 0
+  heavy_forte       c= 64:     4.7 jobs/s  p50  7009.97  p99 15877.50 ms  errors 0
+  heavy_forte_x4    c=  1:     6.9 jobs/s  p50   136.50  p99   185.39 ms  errors 0
+  heavy_forte_x4    c=  2:    13.5 jobs/s  p50   139.96  p99   184.14 ms  errors 0
+  heavy_forte_x4    c=  4:    20.6 jobs/s  p50   180.42  p99   257.25 ms  errors 0
+  heavy_forte_x4    c=  8:    22.8 jobs/s  p50   303.47  p99   486.17 ms  errors 0
+  heavy_forte_x4    c= 16:    23.0 jobs/s  p50   596.45  p99   892.72 ms  errors 0
+  heavy_forte_x4    c= 32:    22.1 jobs/s  p50  1134.76  p99  2511.84 ms  errors 0
+  heavy_forte_x4    c= 64:    19.6 jobs/s  p50  2270.80  p99  6375.12 ms  errors 0
+  mixed_4_backends  c=  1:   132.0 jobs/s  p50     5.40  p99     8.18 ms  errors 0
+  mixed_4_backends  c=  2:   205.3 jobs/s  p50     7.23  p99    10.76 ms  errors 0
+  mixed_4_backends  c=  4:   300.7 jobs/s  p50     9.92  p99    15.43 ms  errors 0
+  mixed_4_backends  c=  8:   371.1 jobs/s  p50    15.90  p99    24.80 ms  errors 0
+  mixed_4_backends  c= 16:   353.5 jobs/s  p50    34.25  p99    58.89 ms  errors 0
+  mixed_4_backends  c= 32:   316.6 jobs/s  p50    78.02  p99   200.66 ms  errors 0
+  mixed_4_backends  c= 64:   246.8 jobs/s  p50   177.62  p99   593.96 ms  errors 0
+  mixed_4_backends  c=128:   234.8 jobs/s  p50   385.37  p99  1543.73 ms  errors 0
+  mixed_4_backends  c=256:    84.8 jobs/s  p50    17.84  p99   101.16 ms  errors 0
+  saved results/load_closed.json
+  (617.8 s)
+[load_open] E14 — open-loop Poisson load vs utilisation, compared with the M/G/1 (Pollaczek–Khinchine) model.
+  service E[S] = 99.31 ms (cv 0.060); capacity 10.1 jobs/s
+  ρ=0.10: mean   140.70 ms (P-K   142.34)  p99   194.87
+  ρ=0.30: mean   153.72 ms (P-K   158.16)  p99   293.46
+  ρ=0.50: mean   202.39 ms (P-K   186.63)  p99   482.06
+  ρ=0.60: mean   219.43 ms (P-K   211.55)  p99   463.75
+  ρ=0.70: mean   262.00 ms (P-K   253.08)  p99   610.81
+  ρ=0.80: mean   423.31 ms (P-K   336.15)  p99  1057.45
+  ρ=0.85: mean   364.29 ms (P-K   419.21)  p99   908.52
+  ρ=0.90: mean   542.94 ms (P-K   585.33)  p99  1332.44
+  ρ=0.95: mean  1437.84 ms (P-K  1083.70)  p99  2599.29
+  ρ=1.05: mean   529.65 ms (P-K      nan)  p99  1071.16
+  saved results/load_open.json
+  (305.8 s)
+[soak] E15 — five-minute soak: steady Poisson load over all four QPUs, latency and memory over time.
+  36155 ok / 36155 requests, p50 7.08 ms, p99 18.16 ms
+  saved results/soak.json
+  (310.1 s)
+[async_burst] E16 — async burst: 2 000 queued jobs over four QPUs, queue depth and drain throughput.
+  accepted 2000 jobs in 7.11 s (281/s, p50 accept 15.28 ms); 2000 completed
+  saved results/async_burst.json
+  (12.7 s)
+[fairshare] E17 — scheduler isolation: a light client's queue wait while a heavy client floods the queue.
+  same client (FIFO)       light wait p50    1069.5 ms  max    2014.0 ms
+  fair share (priority 5)  light wait p50     955.6 ms  max    1925.5 ms
+  priority 9               light wait p50       4.3 ms  max      25.8 ms
+  saved results/fairshare.json
+  (16.1 s)
+[shots] E18 — latency and response size vs shots (live, GHZ_12).
+  quantinuum_helios: 1e6 shots median 71.39 ms
+  ionq_forte: 1e6 shots median 73.73 ms
+  rigetti_ankaa_3: 1e6 shots median 77.48 ms
+  iqm_emerald: 1e6 shots median 83.58 ms
+  saved results/shots.json
+  (4.0 s)
+[gate_scaling] E19 — front-end throughput: parse / route / compile time vs circuit size (live, 10 qubits).
+  quantinuum_helios: 30k gates parse 905 ms, route 0 ms, compile 659 ms
+  ionq_forte: 30k gates parse 843 ms, route 0 ms, compile 4131 ms
+  rigetti_ankaa_3: 30k gates parse 795 ms, route 9817 ms, compile 2338 ms
+  iqm_emerald: 30k gates parse 816 ms, route 9746 ms, compile 1708 ms
+  saved results/gate_scaling.json
+  (172.2 s)

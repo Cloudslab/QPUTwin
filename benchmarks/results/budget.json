@@ -1,0 +1,102 @@
+{
+ "experiment": "budget",
+ "generated_utc": "2026-10-28T07:24:47+00:00",
+ "environment": {
+  "qputwin": "0.1.0",
+  "python": "3.13.17",
+  "numpy": "2.5.4",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
+  "logical_cpus": 12,
+  "load_average": [
+   0.70654296875,
+   2.119140625,
+   2.7421875
+  ],
+  "omp_num_threads": "1",
+  "docker": "29.9.2"
+ },
+ "workload": "GHZ_6 along a native path, density matrix, 200 000 shots",
+ "data": [
+  {
+   "backend": "quantinuum_helios",
+   "condition": "gate depolarising",
+   "infidelity": 0.0040799999999999725
+  },
+  {
+   "backend": "quantinuum_helios",
+   "condition": "T1/T2 relaxation",
+   "infidelity": 0.0
+  },
+  {
+   "backend": "quantinuum_helios",
+   "condition": "readout",
+   "infidelity": 0.0020299999999999763
+  },
+  {
+   "backend": "quantinuum_helios",
+   "condition": "all channels",
+   "infidelity": 0.006005000000000038
+  },
+  {
+   "backend": "ionq_forte",
+   "condition": "gate depolarising",
+   "infidelity": 0.020625000000000004
+  },
+  {
+   "backend": "ionq_forte",
+   "condition": "T1/T2 relaxation",
+   "infidelity": 0.00380999999999998
+  },
+  {
+   "backend": "ionq_forte",
+   "condition": "readout",
+   "infidelity": 0.030200000000000005
+  },
+  {
+   "backend": "ionq_forte",
+   "condition": "all channels",
+   "infidelity": 0.05049499999999996
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "condition": "gate depolarising",
+   "infidelity": 0.05530500000000005
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "condition": "T1/T2 relaxation",
+   "infidelity": 0.07025499999999996
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "condition": "readout",
+   "infidelity": 0.16764999999999997
+  },
+  {
+   "backend": "rigetti_ankaa_3",
+   "condition": "all channels",
+   "infidelity": 0.24660000000000004
+  },
+  {
+   "backend": "iqm_emerald",
+   "condition": "gate depolarising",
+   "infidelity": 0.030469999999999997
+  },
+  {
+   "backend": "iqm_emerald",
+   "condition": "T1/T2 relaxation",
+   "infidelity": 0.05866499999999997
+  },
+  {
+   "backend": "iqm_emerald",
+   "condition": "readout",
+   "infidelity": 0.16764999999999997
+  },
+  {
+   "backend": "iqm_emerald",
+   "condition": "all channels",
+   "infidelity": 0.221225
+  }
+ ]
+}

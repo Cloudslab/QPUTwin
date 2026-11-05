@@ -1,0 +1,23 @@
+[project]
+name = "qputwin-comparison"
+version = "0.1.0"
+description = "Comparative benchmark of QPUTwin against Qiskit Aer, Amazon Braket local simulators and Cirq."
+authors = [{ name = "Koustav Kumar Mondal", email = "erkoustavkumar@gmail.com" }]
+license = "Apache-2.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "httpx>=0.28",
+    "numpy>=2.0",
+    "matplotlib>=3.10",
+    "qiskit>=2.0",
+    "qiskit-aer>=0.17",
+    "amazon-braket-sdk>=1.90",
+    "cirq-core>=1.5",
+    "ply>=3.11",
+    "qsimcirq>=0.22",
+    "qulacs>=0.6",
+]
+
+
+[tool.uv]
+package = false

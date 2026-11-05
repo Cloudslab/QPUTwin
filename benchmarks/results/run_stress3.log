@@ -1,0 +1,21 @@
+[load_ha] E13b — orchestrator scale-out: the mixed light workload through the nginx gateway, 1 vs 3 orchestrators.
+  gateway, 1 orchestrator(s) c=  1:   126.9 jobs/s  client p50     7.56  p99    10.31 ms  errors 0
+  gateway, 1 orchestrator(s) c=  2:   191.7 jobs/s  client p50    10.26  p99    14.50 ms  errors 0
+  gateway, 1 orchestrator(s) c=  4:   302.6 jobs/s  client p50    12.89  p99    18.94 ms  errors 0
+  gateway, 1 orchestrator(s) c=  8:   345.7 jobs/s  client p50    22.73  p99    33.86 ms  errors 0
+  gateway, 1 orchestrator(s) c= 16:   338.3 jobs/s  client p50    46.71  p99    58.42 ms  errors 0
+  gateway, 1 orchestrator(s) c= 32:   332.6 jobs/s  client p50    95.36  p99   119.47 ms  errors 0
+  gateway, 1 orchestrator(s) c= 64:   244.1 jobs/s  client p50   186.99  p99  1216.17 ms  errors 0
+  gateway, 1 orchestrator(s) c=128:   229.1 jobs/s  client p50   377.81  p99  3711.59 ms  errors 0
+  gateway, 1 orchestrator(s) c=256:   175.5 jobs/s  client p50   848.29  p99  7342.96 ms  errors 0
+  gateway, 3 orchestrator(s) c=  1:   121.6 jobs/s  client p50     8.21  p99    10.86 ms  errors 0
+  gateway, 3 orchestrator(s) c=  2:   204.7 jobs/s  client p50     9.49  p99    13.95 ms  errors 0
+  gateway, 3 orchestrator(s) c=  4:   350.2 jobs/s  client p50    11.08  p99    17.31 ms  errors 0
+  gateway, 3 orchestrator(s) c=  8:   464.3 jobs/s  client p50    16.37  p99    31.13 ms  errors 0
+  gateway, 3 orchestrator(s) c= 16:   346.5 jobs/s  client p50    25.71  p99   237.58 ms  errors 0
+  gateway, 3 orchestrator(s) c= 32:   292.7 jobs/s  client p50    46.44  p99   602.87 ms  errors 0
+  gateway, 3 orchestrator(s) c= 64:   254.9 jobs/s  client p50   163.43  p99  1245.98 ms  errors 0
+  gateway, 3 orchestrator(s) c=128:   212.3 jobs/s  client p50   395.55  p99  3756.30 ms  errors 0
+  gateway, 3 orchestrator(s) c=256:   160.1 jobs/s  client p50   934.85  p99  7557.54 ms  errors 0
+  saved results/load_ha.json
+  (363.1 s)
