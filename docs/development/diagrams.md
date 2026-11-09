@@ -7,7 +7,7 @@ description: QPUTwin's architecture diagrams, rebuilding the publication-ready b
 
 ## Architecture diagrams
 
-The eighteen architecture, process and data diagrams used by this site and the README are pre-rendered SVGs in `docs/assets/diagrams/`. Each embeds the subset of fonts it uses, so it renders identically as an `<img>` on this site and on GitHub.
+The sixteen architecture, process and data diagrams used by this site and the README are pre-rendered SVGs in `docs/assets/diagrams/`. Each embeds the subset of fonts it uses, so it renders identically as an `<img>` on this site and on GitHub.
 
 ## Benchmark figures
 
