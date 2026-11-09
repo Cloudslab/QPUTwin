@@ -1,6 +1,6 @@
 ---
 title: Validation
-description: How QPUTwin's physics and system behaviour are validated — 502 unit and in-process tests and 32 live-stack tests, with the exact properties each proves.
+description: How QPUTwin's physics and system behaviour are validated — 615 unit and in-process tests and 47 live-stack tests, with the exact properties each proves.
 ---
 
 # Validation
@@ -21,7 +21,7 @@ JUnit reports are saved in `benchmarks/results/*.junit.xml`.
 | Modifiers | `inv`, `pow` and `ctrl` are exact (multi-control via Barenco Lemma 7.9) |
 | Native compilation | random circuits on every vendor: native unitary = source unitary (global phase included); synthesis error < 1e-12 |
 | Statevector kernels | agree with an independent `tensordot` reference (complex128 1e-12, complex64 2e-5) |
-| Fused execution | fused statevector and fused superoperator density matrix equal the per-gate reference kernels to < 1e-12 on random circuits for all four devices, block widths 1–5 and 1 or 3 threads, including every large-state branch (chunked gathers, cached and per-row phase tables) forced on small states; lazy activation keeps untouched qubits out of the state; the marginal read from the permuted state equals the reference; the two-level sampler draws the same inverse-CDF outcomes and never an empty bin; dropping trailing diagonals leaves every probability unchanged |
+| Fused execution | fused statevector and fused superoperator density matrix equal the per-gate reference kernels to < 1e-12 on random circuits for all seven devices, block widths 1–5 and 1 or 3 threads, including every large-state branch (chunked gathers, cached and per-row phase tables) forced on small states; lazy activation keeps untouched qubits out of the state; the marginal read from the permuted state equals the reference; the two-level sampler draws the same inverse-CDF outcomes and never an empty bin; dropping trailing diagonals leaves every probability unchanged |
 | Cross-simulator | ideal distributions of nine circuit families equal Qiskit Aer, Braket, Cirq and Qulacs to ≤ 2e-14 at 4–16 qubits ([comparison](simulator-comparison.md)) |
 | Sampling | χ² goodness of fit; seed reproducibility; teleportation with feed-forward (4 branches) |
 | Density-matrix kernels | unitary, Kraus, depolarising, reset and projection all equal an explicit dense reference |

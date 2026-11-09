@@ -30,6 +30,8 @@ By default QPUTwin **rejects** circuits that violate a device's connectivity, as
 | `decay_reset` | int | 5 | 1 … 1000 | SWAPs between decay resets |
 | `bridge` | bool | false | | execute distance-2 CX as a bridge when the best SWAP does not help E |
 | `optimize` | bool | true | | commutation-aware cancellation after routing |
+| `noise_aware` | bool | true | | after routing, move the circuit to the best-calibrated physical qubits with the same couplings (see below) |
+| `noise_aware_budget` | int | 50 000 | 0 … 10⁷ | search steps of that calibrated re-layout |
 
 The heuristic scores every SWAP on a coupler touching the front layer F:
 
@@ -44,6 +46,20 @@ Before SABRE, the router looks for a placement that needs **no SWAPs at all**: a
 ## Choosing among SABRE trials
 
 Every trial (a compact BFS start plus seeded random starts, each refined by forward/backward passes) **routes the whole circuit and runs cancellation**. The trial whose emitted circuit has the fewest two-qubit gates (a SWAP counts as three CX) is kept. Scoring the real output, not an estimate, makes more trials monotonically better. `layout_trial_two_qubit_gates` reports every trial's cost.
+
+## Calibration-aware re-layout
+
+SABRE minimises SWAPs; it does not know which qubits are good. After routing, the router therefore looks for a better **placement of the routed circuit** on the same chip, as Qiskit's VF2PostLayout pass does. It searches for every injective map of the used physical qubits onto other physical qubits that keeps each used coupler a coupler (a subgraph monomorphism), and scores each candidate with the twin's own calibration:
+
+$$C = \sum_{\text{couplers}} -\ln F_{2q}(e) + \sum_{\text{qubits}} -\ln F_{1q}(q) + \sum_{\text{measured}} -\ln\big(1-\bar\epsilon_{\text{ro}}(q)\big),$$
+
+where $F_{2q}$ is the fidelity of the device's entangling gate on that coupler, $F_{1q}$ that of the first non-virtual one-qubit pulse on the qubit, and $\bar\epsilon_{\text{ro}}$ the mean read-out error. The search is branch and bound with an admissible lower bound, up to `noise_aware_budget` steps. The circuit moves only to a strictly cheaper placement, so the SWAP count, the gate list and the ideal output are unchanged, and the cost never rises.
+
+* It runs only when the twin has per-qubit or per-coupler calibration (IBM Heron, IBM Nighthawk and Google Willow snapshots). Twins with device medians only (IQM Emerald, Rigetti Ankaa-3, IonQ Forte, Quantinuum Helios) have nothing to choose between.
+* An explicit or `trivial` initial layout is a request to use those qubits; it is respected.
+* The report adds `calibrated_relayout`: `applied`, `cost_before`, `cost_after`, `search_steps` and `search_complete`.
+
+On the Heron snapshot, plain routing puts a 7-qubit GHZ state on qubit 46 (T₁ 8 µs, 8 % read-out error); the re-layout avoids it and raises the predicted GHZ fidelity by more than 0.05.
 
 ## What routing preserves
 
@@ -69,6 +85,7 @@ Every trial (a compact BFS start plus seeded random starts, each refined by forw
 | `initial_layout_method` | `exact`, `sabre`, `trivial` or `explicit` |
 | `layout_trial_swaps`, `layout_trial_two_qubit_gates` | SWAPs and routed two-qubit gates of each SABRE trial |
 | `release_valve_activations`, `deferred_final_measurements` | diagnostics |
+| `calibrated_relayout` | calibration-aware re-layout: `applied`, `cost_before`, `cost_after`, `search_steps`, `search_complete` (absent when it did not run) |
 
 `telemetry.breakdown.worker_route_ms` measures the routing time.
 

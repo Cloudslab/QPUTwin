@@ -16,6 +16,8 @@ dependencies = [
     "ply>=3.11",
     "qsimcirq>=0.22",
     "qulacs>=0.6",
+    "qiskit-ibm-runtime>=0.51",
+    "cirq-google>=1.7",
 ]
 
 

@@ -5,10 +5,10 @@ description: Run and extend QPUTwin's test suites — unit and in-process integr
 
 # Testing
 
-## Unit and in-process integration (502 tests)
+## Unit and in-process integration (615 tests)
 
 ```bash
-uv run pytest                    # ~25 s, no Docker needed
+uv run pytest                    # ~1 min, no Docker needed
 uv run pytest tests/test_noise_extended.py -k ramsey -v
 uv run pytest --junitxml=benchmarks/results/unit_tests.junit.xml
 ```
@@ -21,12 +21,15 @@ uv run pytest --junitxml=benchmarks/results/unit_tests.junit.xml
 | `test_noise.py`, `test_noise_extended.py` | density matrix, every noise term, trajectories versus exact |
 | `test_routing.py` | SABRE equivalence, bridges, cancellation, defects |
 | `test_calibration.py`, `test_braket_import.py` | calibration, scheduling, overrides, importers |
-| `test_simulators.py` | topology, limits, memory guard |
+| `test_simulators.py` | topology, limits, memory guard, the single-buffer executor under a tight budget |
+| `test_fused.py` | fused statevector and density matrix against per-gate kernels, two-buffer against single-buffer executor, peak memory |
+| `test_trajectory_batched.py` | batched trajectories against the exact density matrix and the sequential walk, thread independence, the cost-model engine choice |
+| `test_calibrated_layout.py` | calibration-aware re-layout: never more expensive, same SWAPs and ideal output, avoids Heron's poor qubit, respects pinned layouts |
 | `test_orchestrator.py`, `test_async_jobs.py`, `test_job_store.py` | HTTP API, telemetry identities, async queue, durability, auth, metrics |
 
 In-process integration wires the orchestrator to the workers through an `httpx` ASGI transport, with injectable latency and dead hosts, so queueing, failover and recovery are tested deterministically.
 
-## Live stack (32 tests)
+## Live stack (47 tests)
 
 ```bash
 QPUTWIN_FORTE_REPLICAS=2 docker compose up -d --wait   # 2 replicas so the scaling test runs

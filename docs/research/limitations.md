@@ -9,7 +9,7 @@ description: Documented limitations of QPUTwin — vendor data gaps, modelling b
 
 * **Superconducting coupling maps.** The packaged maps are synthetic lattices matching published qubit counts and connectivity class. A dated, calibrated map is one command away (`scripts/import_braket_device.py`), but it needs an AWS export.
 * **Calibration values.** Many packaged values are `assumed`, mainly gate durations and superconducting readout fidelity. Every job lists the assumed values it used; strict provenance mode refuses to run on them.
-* **Per-shot overhead and feed-forward latency** are not published for any of the four devices, so job-time estimates exclude them unless a calibration supplies them.
+* **Per-shot overhead and feed-forward latency.** Feed-forward latency is published for none of the devices. Of per-shot overhead, only IBM's repetition delay is published (250 µs on Heron r3, 4 ms on Nighthawk), so only the IBM job-time estimates include it.
 
 ## Modelling boundaries
 
@@ -30,10 +30,10 @@ description: Documented limitations of QPUTwin — vendor data gaps, modelling b
 * There is no built-in rate limiting or TLS; use an edge proxy.
 * Large statevectors are memory-bandwidth bound; replicas on one host give limited speed-up for 20+ qubit jobs.
 * **Server-side telemetry starts at the orchestrator's middleware.** Time spent in the kernel accept queue or waiting for a saturated event loop is invisible to `total_roundtrip_ms`, or shows up as `network_transit_ms`. Under overload, measure latency at the client as well ([measured](load-testing.md#where-the-queue-lives)).
-* **One Python process per orchestrator and per worker.** A worker sustains about 270 light jobs/s and an orchestrator about 370. Far past saturation, waiting connections cost event-loop and GIL time, and throughput sags (about −50 % at 256 clients on one worker). Bound concurrency with the asynchronous queue, or add replicas behind the gateway ([measured](load-testing.md#orchestrator-scale-out)).
-* **Large circuits are parsed twice**: once for validation in the orchestrator and once in the worker (about 0.9 s each at 30 000 gates).
+* **One Python process per orchestrator and per worker.** A worker sustains about 290 light jobs/s and an orchestrator about 360. Far past saturation, waiting connections cost event-loop and GIL time, and throughput sags (about −40 % at 256 clients on one worker). Bound concurrency with the asynchronous queue, or add replicas behind the gateway ([measured](load-testing.md#orchestrator-scale-out)).
+* **Large circuits are parsed twice**: once for validation in the orchestrator and once in the worker (about 1 s each at 30 000 gates).
 
 ## Emulation cost
 
-* **Routing can enlarge the simulated register.** On sparse lattices SABRE may move logical qubits through physical qubits the circuit never named, and all of them are simulated. A 20-qubit QFT adder needs 22 simulated qubits on Emerald and 24 on Ankaa-3; on Emerald the job takes 6.9× the worker time of all-to-all Helios ([measured](circuit-benchmarks.md#where-the-workers-time-goes)). Circuits whose interaction graph embeds in the lattice (chains, small stars, the HEA ladder) get an exact SWAP-free layout and cost the same as on Helios. Check `compilation.simulated_qubits`.
-* **Not the fastest ideal simulator everywhere.** On deep ideal circuits qsim's hand-vectorised C++ is 1.8–3.0× faster than QPUTwin's default double-precision engine (1.2–1.75× at matched single precision), and on circuits under ~16 qubits Qulacs is faster, because QPUTwin plans its fused blocks in Python. The trajectory engine still applies gates one at a time ([comparison](simulator-comparison.md)).
+* **Routing can enlarge the simulated register.** On sparse lattices SABRE may move logical qubits through physical qubits the circuit never named, and all of them are simulated. A 20-qubit QFT adder needs 22 simulated qubits on Emerald and Willow, 24 on Ankaa-3 and Heron r3 and 25 on Nighthawk; on Emerald the job takes 6.9× the worker time of all-to-all Helios ([measured](circuit-benchmarks.md#where-the-workers-time-goes)). Circuits whose interaction graph embeds in the lattice (chains, small stars, the HEA ladder) get an exact SWAP-free layout and cost the same as on Helios. Check `compilation.simulated_qubits`.
+* **Not the fastest ideal simulator everywhere.** On deep ideal circuits qsim's hand-vectorised C++ is 3.3–4.0× faster than QPUTwin's default double-precision engine (1.7–2.7× at matched single precision), and on circuits under ~16 qubits Qulacs is faster, because QPUTwin plans its fused blocks in Python. The trajectory engine still applies gates one at a time ([comparison](simulator-comparison.md)).

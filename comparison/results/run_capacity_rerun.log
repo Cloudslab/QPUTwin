@@ -1,0 +1,3 @@
+{'kind': 'sv', 'family': 'ghz', 'simulator': 'qputwin_c64', 'qubits': 31, 'threads': 16, 'status': 'ok', 'wall_s': 15.11301457999798, 'run_s': 14.154071784003463, 'peak_rss_bytes': 21666246656, 'in_place': False, 'estimated_peak_bytes': 38788923392, 'memory_budget_bytes': 64621015040}
+{'kind': 'sv', 'family': 'qv', 'simulator': 'qputwin_c64', 'qubits': 31, 'threads': 16, 'status': 'ok', 'wall_s': 94.93952905699553, 'run_s': 93.90158687100484, 'peak_rss_bytes': 34610671616, 'in_place': False, 'estimated_peak_bytes': 38788923392, 'memory_budget_bytes': 64619978752}
+updated

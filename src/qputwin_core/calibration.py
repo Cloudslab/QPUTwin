@@ -45,7 +45,9 @@ returns the *average* gate fidelity.
 
 Optional per-gate error terms (in ``gates.<g>``, ``qubits.<q>.gates.<g>`` or
 ``couplers.<a-b>.<g>``): ``overrotation`` (fractional coherent over-rotation ε,
-the gate becomes ``U^{1+ε}``), ``coherent_z_rad`` (a residual Z / ZZ phase after
+the gate becomes ``U^{1+ε}``), ``fsim_theta_rad`` / ``fsim_phi_rad`` (two-qubit gates: a
+residual ``PhasedFSim(θ, φ)`` swap angle and conditional phase after the gate, as in Cirq's
+Google noise model), ``coherent_z_rad`` (a residual Z / ZZ phase after
 the gate) and ``leakage`` (probability of leaving the computational subspace per
 gate and qubit). Device-level blocks add spectator ZZ ``crosstalk``,
 ``leakage.seepage_per_gate``, quasi-static detuning
@@ -95,6 +97,8 @@ class GateCalibration:
     overrotation: float | None = None          # fractional coherent over-rotation ε: U → U^{1+ε}
     coherent_z_rad: float | None = None        # residual Z (1Q) / ZZ (2Q) phase after the gate
     leakage: float | None = None               # leak probability per gate and qubit
+    fsim_theta_rad: float | None = None        # 2Q: residual swap angle θ of a PhasedFSim(θ, φ) after the gate
+    fsim_phi_rad: float | None = None          # 2Q: residual conditional phase φ of that PhasedFSim
 
     @classmethod
     def from_dict(cls, d: dict[str, Any], where: str) -> GateCalibration:
@@ -102,18 +106,22 @@ class GateCalibration:
                    _opt_float(d, "duration_ns", where, 0.0),
                    _opt_float(d, "overrotation", where, -0.5, 0.5),
                    _opt_float(d, "coherent_z_rad", where, -math.pi, math.pi),
-                   _opt_float(d, "leakage", where, 0.0, 0.5))
+                   _opt_float(d, "leakage", where, 0.0, 0.5),
+                   _opt_float(d, "fsim_theta_rad", where, -math.pi, math.pi),
+                   _opt_float(d, "fsim_phi_rad", where, -math.pi, math.pi))
 
     def merged(self, base: GateCalibration | None) -> GateCalibration:
         if base is None:
             return self
         return GateCalibration(*(a if a is not None else b for a, b in zip(
-            (self.fidelity, self.duration_ns, self.overrotation, self.coherent_z_rad, self.leakage),
-            (base.fidelity, base.duration_ns, base.overrotation, base.coherent_z_rad, base.leakage), strict=True)))
+            (self.fidelity, self.duration_ns, self.overrotation, self.coherent_z_rad, self.leakage,
+             self.fsim_theta_rad, self.fsim_phi_rad),
+            (base.fidelity, base.duration_ns, base.overrotation, base.coherent_z_rad, base.leakage,
+             base.fsim_theta_rad, base.fsim_phi_rad), strict=True)))
 
     def to_dict(self) -> dict[str, Any]:
         out = {"fidelity": self.fidelity, "duration_ns": self.duration_ns}
-        for k in ("overrotation", "coherent_z_rad", "leakage"):
+        for k in ("overrotation", "coherent_z_rad", "leakage", "fsim_theta_rad", "fsim_phi_rad"):
             if getattr(self, k) is not None:
                 out[k] = getattr(self, k)
         return out

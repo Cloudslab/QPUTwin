@@ -1,0 +1,25 @@
+[project]
+name = "qputwin-examples"
+version = "0.1.0"
+description = "Jupyter notebooks that demonstrate QPUTwin through its live HTTP API."
+authors = [{ name = "Koustav Kumar Mondal", email = "erkoustavkumar@gmail.com" }]
+license = "Apache-2.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "notebook>=7.4",
+    "ipykernel>=6.29",
+    "httpx>=0.28",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "matplotlib>=3.10",
+    "qiskit>=2.0",
+    "pylatexenc>=2.10",
+    # The QASM front end and native compiler, used only to draw compiled circuits.
+    "qputwin[engine]",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+qputwin = { path = "..", editable = true }

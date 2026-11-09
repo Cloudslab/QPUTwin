@@ -53,9 +53,10 @@ from typing import Any
 import numpy as np
 
 from qputwin_core.density import needs_branching, run_density
-from qputwin_core.trajectory import run_trajectories
+from qputwin_core.trajectory import batchable, run_trajectories
 from qputwin_core.devices import DeviceSpec
 from qputwin_core.engine import Program, prepare, run
+from qputwin_core.fused import in_place_mode
 from qputwin_core.errors import (
     CalibrationProvenanceError, InvalidRequestError, ResourceLimitError, TopologicalCompilationError,
     UnsupportedFeatureError,
@@ -63,7 +64,7 @@ from qputwin_core.errors import (
 from qputwin_core.ir import Circuit, Operation
 from qputwin_core.noise import TRAJECTORY_ONLY, NoiseModel, NoiseOptions, NoisyInstr, build_noisy_program
 from qputwin_core.qasm import BASE_PRIMITIVES, DEFAULT_MAX_OPS, load_circuit
-from qputwin_core.routing import RoutingOptions, RoutingResult, SabreRouter
+from qputwin_core.routing import RoutingOptions, RoutingResult, SabreRouter, calibrated_relayout
 from qputwin_core.scheduling import Schedule, asap_schedule, duration_report
 from qputwin_core.synthesis import NativeCircuit, NativeCompiler
 from qputwin_core.timing import SpanTimer
@@ -85,6 +86,17 @@ def _env_int(name: str, default: int | None) -> int | None:
     return int(v)
 
 
+def _in_place_setting(value: str) -> str:
+    v = value.strip().lower()
+    if v in ("1", "true", "yes", "always"):
+        return "always"
+    if v in ("0", "false", "no", "never"):
+        return "never"
+    if v in ("", "auto"):
+        return "auto"
+    raise ValueError(f"QPUTWIN_ENGINE_IN_PLACE must be auto, always or never, got {value!r}")
+
+
 @dataclass(slots=True)
 class SimulatorConfig:
     max_sim_qubits: int | None = None          # None => device's physical qubit count
@@ -96,10 +108,12 @@ class SimulatorConfig:
     max_memory_shots: int = 100_000
     max_statevector_qubits: int = 16
     max_density_matrix_qubits: int = 8
-    density_auto_max_qubits: int = 10          # engine="auto": density matrix up to this width, else trajectories
+    density_auto_max_qubits: int = 12          # engine="auto": density matrix at most this wide (see plan())
     max_trajectories: int = 2000
     require_published_calibration: bool = False
     max_ops: int = DEFAULT_MAX_OPS
+    engine_in_place: str = "auto"              # fused executor: "auto" (in place only when 2 buffers won't fit),
+                                               # "always" or "never"
 
     @classmethod
     def from_env(cls) -> SimulatorConfig:
@@ -116,11 +130,12 @@ class SimulatorConfig:
             max_memory_shots=_env_int("QPUTWIN_MAX_MEMORY_SHOTS", 100_000) or 100_000,
             max_statevector_qubits=_env_int("QPUTWIN_MAX_STATEVECTOR_QUBITS", 16) or 16,
             max_density_matrix_qubits=_env_int("QPUTWIN_MAX_DENSITY_MATRIX_QUBITS", 8) or 8,
-            density_auto_max_qubits=_env_int("QPUTWIN_DENSITY_AUTO_MAX_QUBITS", 10) or 10,
+            density_auto_max_qubits=_env_int("QPUTWIN_DENSITY_AUTO_MAX_QUBITS", 12) or 12,
             max_trajectories=_env_int("QPUTWIN_MAX_TRAJECTORIES", 2000) or 2000,
             require_published_calibration=os.environ.get("QPUTWIN_REQUIRE_PUBLISHED_CALIBRATION", "0").strip().lower()
             in ("1", "true", "yes"),
             max_ops=_env_int("QPUTWIN_MAX_OPS", DEFAULT_MAX_OPS) or DEFAULT_MAX_OPS,
+            engine_in_place=_in_place_setting(os.environ.get("QPUTWIN_ENGINE_IN_PLACE", "auto")),
         )
 
 
@@ -206,6 +221,7 @@ class _Plan:
     noise_model: NoiseModel | None = None
     instrs: list[NoisyInstr] | None = None
     trajectories: int = 0
+    in_place: bool = False                     # fused executor in single-buffer mode (memory-bound run)
 
     @property
     def density(self) -> bool:
@@ -261,7 +277,33 @@ class QPUSimulator(ABC):
             return None, {"method": options.method, "skipped": "all_to_all", "swaps_inserted": 0,
                           "added_cx": 0, "initial_layout": ident, "final_layout": ident}
         res = SabreRouter(cmap, options).run(circuit)
+        cal = self.spec.calibration
+        pinned = isinstance(options.initial_layout, tuple) or options.initial_layout == "trivial"
+        if options.noise_aware and not pinned and cal is not None and (cal.qubits or cal.couplers):
+            res = calibrated_relayout(res, cmap, budget=options.noise_aware_budget, **self._layout_costs())
         return res, res.stats
+
+    def _layout_costs(self) -> dict[str, Any]:
+        """Negative log-fidelities that score a placement: entangler per coupler, pulse per qubit, read-out."""
+        cal = self.spec.calibration
+        assert cal is not None
+        pulse = next((g for g in self.spec.native_1q if g not in self.spec.virtual_gates), None)
+        two = self.spec.entangler
+
+        def nlog(f: float | None) -> float:
+            return 50.0 if f is None or f <= 0.0 else -math.log(min(1.0, f))
+
+        def edge_cost(p: int, q: int) -> float:
+            return nlog(cal.gate_fidelity(two, (p, q)))
+
+        def qubit_cost(p: int) -> float:
+            return nlog(cal.gate_fidelity(pulse, (p,))) if pulse else 0.0
+
+        def readout_cost(p: int) -> float:
+            p01, p10 = cal.readout_errors(p)
+            return nlog(1.0 - 0.5 * (p01 + p10))
+
+        return {"edge_cost": edge_cost, "qubit_cost": qubit_cost, "readout_cost": readout_cost}
 
     # -------------------------------------------------------------- pipeline
     def parse(self, qasm: str) -> Circuit:
@@ -279,10 +321,15 @@ class QPUSimulator(ABC):
         self.check_topology(circuit)
         return self.compiler.compile(circuit, mode)
 
-    def memory_plan(self, program: Program, dtype: Any, *, density: bool = False) -> tuple[int, int | None]:
-        """Estimated peak bytes for this run, and the detected budget (None = unknown).
+    def memory_plan(self, program: Program, dtype: Any, *, density: bool = False, fused: bool = False,
+                    want_vector: bool = False, probs_in_state: bool = False) -> tuple[int, int | None, bool]:
+        """Estimated peak bytes, the detected budget (None = unknown) and whether to run in place.
 
         The trajectory engine needs what the statevector engine needs (``density=False``).
+        ``fused`` says the run uses the fused executor, which can switch to its single-buffer
+        (in-place) mode when the faster two-buffer mode does not fit the budget. ``probs_in_state``
+        says the run frees its spare buffer and writes the probabilities into the state's own memory
+        (the fused statevector path), so they cost no extra 16 B per basis state.
         """
         n = program.n_sim
         itemsize = np.dtype(dtype).itemsize
@@ -290,14 +337,28 @@ class QPUSimulator(ABC):
         # gate kernels ≈ 2×state (the density engine's kernels and partial traces stay within
         # that too); probability vector + temporary = 16 B per basis state; shot branching
         # keeps up to one extra state per pending branch.
-        required = 2 * state + (1 << n) * 16 + min(program.branch_points, 64) * state
-        if not self.config.memory_guard:
-            return required, None
-        budget = self.config.memory_budget_bytes
-        if budget is None:
-            avail = available_memory_bytes()
-            budget = None if avail is None else max(0, avail - self.config.memory_reserve_bytes)
-        return required, budget
+        if probs_in_state:
+            # two buffers, a returned copy of the statevector, a quarter state of slack for the marginal
+            # over a subset of the measured qubits, and the per-thread chunk buffers (measured peak:
+            # 2.07× the state at 25 qubits, 2.5× at 22 where the fixed part weighs more)
+            required = 2 * state + (state if want_vector else 0) + state // 4 + (128 << 20)
+        else:
+            required = 2 * state + (1 << n) * 16 + min(program.branch_points, 64) * state
+        budget = None
+        if self.config.memory_guard:
+            budget = self.config.memory_budget_bytes
+            if budget is None:
+                avail = available_memory_bytes()
+                budget = None if avail is None else max(0, avail - self.config.memory_reserve_bytes)
+        mode = self.config.engine_in_place
+        if fused and mode != "never" and (mode == "always" or (budget is not None and required > budget)):
+            # in place: one buffer, plus a copy of the (at most half-size) state while it grows, or a
+            # second buffer for the final transpose when the statevector itself is returned; the
+            # probabilities are written into the state's own memory
+            lean = state + (state if want_vector else state // 2) + ((1 << n) * 16 if density else 0)
+            if mode == "always" or lean < required:
+                return lean, budget, True
+        return required, budget, False
 
     def plan(self, qasm: str, options: ExecutionOptions, timer: SpanTimer) -> _Plan:
         if not 1 <= options.shots <= self.config.max_shots:
@@ -378,10 +439,16 @@ class QPUSimulator(ABC):
             if options.return_density_matrix or (noise is None and instrs is not None):
                 engine = "density_matrix"
             elif noise is not None:
-                dm_required, dm_budget = self.memory_plan(program, dtype, density=True)
+                dm_required, dm_budget, _ = self.memory_plan(
+                    program, dtype, density=True, fused=not needs_branching(program, instrs))
                 dm_fits = dm_budget is None or dm_required <= dm_budget
+                # cost model (measured): a fused density-matrix step costs ~4^n, a batched trajectory
+                # step ~T·2^n, so the density matrix wins while 2^n ≤ 4T. It is also exact for any shot
+                # count, so it is kept whenever the trajectories would not be one per shot.
+                t = noise.trajectories or min(options.shots, self.config.max_trajectories)
+                cheaper = (1 << n) <= 4 * t or t < options.shots
                 engine = ("density_matrix" if not trajectory_only and n <= self.config.density_auto_max_qubits
-                          and dm_fits else "trajectory")
+                          and cheaper and dm_fits else "trajectory")
             else:
                 engine = "statevector"
         if engine == "density_matrix" and trajectory_only:
@@ -398,7 +465,12 @@ class QPUSimulator(ABC):
                     "load a vendor calibration snapshot (QPUTWIN_CALIBRATION) or override them in options.noise",
                     details={"unpublished_parameters": unpublished, "device": self.spec.id})
         density = engine == "density_matrix"
-        required, budget = self.memory_plan(program, dtype, density=density)
+        fusable = (not program.branching) if engine == "statevector" else (
+            instrs is not None and (not needs_branching(program, instrs) if density else batchable(program, instrs)))
+        required, budget, in_place = self.memory_plan(
+            program, dtype, density=density, fused=fusable,
+            want_vector=options.return_statevector or options.return_density_matrix,
+            probs_in_state=engine == "statevector" and fusable)
         if budget is not None and required > budget:
             engine_name = "density-matrix" if density else engine.replace("_", " ")
             per_unit = required / (1 << (2 * n if density else n))
@@ -407,7 +479,8 @@ class QPUSimulator(ABC):
             raise ResourceLimitError(
                 f"a dense {n}-qubit {precision} {engine_name} run needs ~{_fmt_bytes(required)} but only "
                 f"{_fmt_bytes(budget)} is available to this worker; at most {feasible} simulated qubits "
-                "fit (use complex64 precision, raise the container memory limit, or touch fewer qubits)",
+                f"fit ({'use complex64 precision, ' if precision != 'complex64' else ''}raise the container memory "
+                "limit, or touch fewer qubits)",
                 details={"simulated_qubits": n, "required_bytes": required, "available_bytes": budget,
                          "max_feasible_qubits": feasible, "precision": precision, "device": self.spec.id,
                          "engine": engine})
@@ -438,7 +511,7 @@ class QPUSimulator(ABC):
             assert noise is not None
             trajectories = noise.trajectories or min(options.shots, self.config.max_trajectories)
         return _Plan(circuit, native, program, dtype, required, budget, self.max_sim_qubits,
-                     routed, routing_stats, schedule, engine, model, instrs, trajectories)
+                     routed, routing_stats, schedule, engine, model, instrs, trajectories, in_place)
 
     def execute(self, qasm: str, options: ExecutionOptions | None = None,
                 timer: SpanTimer | None = None) -> ExecutionResult:
@@ -452,27 +525,29 @@ class QPUSimulator(ABC):
         model = plan.noise_model
         readout = model.readout_errors if model is not None else (lambda q: (0.0, 0.0))
         groups = model.readout_groups if model is not None else None
-        if plan.engine == "density_matrix":
-            assert plan.instrs is not None
-            out, diag = run_density(plan.program, plan.instrs, shots=options.shots, rng=rng, readout=readout,
-                                    groups=groups, dtype=plan.dtype, timer=timer,
-                                    want_density_matrix=options.return_density_matrix,
-                                    want_memory=options.memory)
-            if out.statevector is not None:
-                dm = np.stack([out.statevector.real, out.statevector.imag], axis=-1).astype(float).tolist()
-        elif plan.engine == "trajectory":
-            assert plan.instrs is not None and model is not None
-            detuning = {plan.program.qmap[q]: model.quasi_static_khz(q) for q in plan.program.active}
-            out, diag = run_trajectories(plan.program, plan.instrs, shots=options.shots,
-                                         trajectories=plan.trajectories, rng=rng, readout=readout, groups=groups,
-                                         seepage=model.seepage(), detuning_khz=detuning, dtype=plan.dtype,
-                                         timer=timer, want_memory=options.memory)
-        else:
-            diag = {}
-            out = run(plan.program, shots=options.shots, rng=rng, dtype=plan.dtype, timer=timer,
-                      want_statevector=options.return_statevector, want_memory=options.memory)
-            if out.statevector is not None:
-                sv = np.stack([out.statevector.real, out.statevector.imag], axis=1).astype(float).tolist()
+        with in_place_mode(plan.in_place):
+            if plan.engine == "density_matrix":
+                assert plan.instrs is not None
+                out, diag = run_density(plan.program, plan.instrs, shots=options.shots, rng=rng, readout=readout,
+                                        groups=groups, dtype=plan.dtype, timer=timer,
+                                        want_density_matrix=options.return_density_matrix,
+                                        want_memory=options.memory)
+                if out.statevector is not None:
+                    dm = np.stack([out.statevector.real, out.statevector.imag], axis=-1).astype(float).tolist()
+            elif plan.engine == "trajectory":
+                assert plan.instrs is not None and model is not None
+                detuning = {plan.program.qmap[q]: model.quasi_static_khz(q) for q in plan.program.active}
+                out, diag = run_trajectories(plan.program, plan.instrs, shots=options.shots,
+                                             trajectories=plan.trajectories, rng=rng, readout=readout,
+                                             groups=groups, seepage=model.seepage(), detuning_khz=detuning,
+                                             dtype=plan.dtype, timer=timer, want_memory=options.memory,
+                                             memory_budget=plan.budget_bytes)
+            else:
+                diag = {}
+                out = run(plan.program, shots=options.shots, rng=rng, dtype=plan.dtype, timer=timer,
+                          want_statevector=options.return_statevector, want_memory=options.memory)
+                if out.statevector is not None:
+                    sv = np.stack([out.statevector.real, out.statevector.imag], axis=1).astype(float).tolist()
         if plan.engine != "statevector":
             measured = sorted({op.qubits[0] for op in plan.native.ops if op.name == "measure"})
             noise_report = model.report(plan.native, measured) if model is not None else {"model": "ideal"}
@@ -500,6 +575,7 @@ class QPUSimulator(ABC):
             "statevector_bytes": (1 << n) * itemsize,
             "state_bytes": (1 << (2 * n if plan.density else n)) * itemsize,
             "estimated_peak_bytes": plan.required_bytes,
+            "in_place": plan.in_place,
             "memory_budget_bytes": plan.budget_bytes,
             "max_sim_qubits": plan.max_sim_qubits,
             "shots": options.shots,
@@ -587,11 +663,15 @@ class SuperconductingSimulator(QPUSimulator):
                 gate = origin.gate if origin else op.name
                 line = origin.line if origin else None
                 text = origin.text if origin else f"{op.name} {p},{q}"
+                cm = self.spec.coupling
+                if cm.kind == "grid":            # e.g. "grid 6x9"
+                    shape = f"{cm.kind} {cm.layout['rows']}x{cm.layout['cols']}"
+                else:                            # e.g. "heavy-hex, 156 qubits, 175 couplers"
+                    shape = f"{cm.layout.get('kind', cm.kind).replace('_', '-')}, {cm.n_qubits} qubits, {cm.n_edges} couplers"
                 raise TopologicalCompilationError(
                     f"'{text}' (line {line}) requires a two-qubit interaction between physical qubits "
                     f"{p} and {q}, which are not coupled on {self.spec.id} "
-                    f"({self.spec.coupling.kind} {self.spec.coupling.layout.get('rows', '?')}x"
-                    f"{self.spec.coupling.layout.get('cols', '?')}, nearest-neighbour only; no routing)",
+                    f"({shape}, nearest-neighbour only; no routing)",
                     details={
                         "device": self.spec.id, "gate": gate, "primitive": op.name,
                         "qubits": [p, q], "line": line, "statement": text,

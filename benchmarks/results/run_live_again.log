@@ -1,0 +1,122 @@
+[async_scaling] E8 — async throughput vs worker replicas (IonQ Forte): cache-resident vs DRAM-bound statevectors.
+  replicas=1 n=14: 140.56 jobs/s, median worker 4 ms, 1 workers
+  replicas=1 n=20: 16.43 jobs/s, median worker 47 ms, 1 workers
+  replicas=2 n=14: 110.73 jobs/s, median worker 4 ms, 2 workers
+  replicas=2 n=20: 41.38 jobs/s, median worker 44 ms, 2 workers
+  replicas=3 n=14: 107.74 jobs/s, median worker 5 ms, 3 workers
+  replicas=3 n=20: 46.07 jobs/s, median worker 56 ms, 3 workers
+  saved results/async_scaling.json
+  (75.1 s)
+[load_closed] E13 — closed-loop load: throughput and tail latency vs concurrent clients (sync API).
+  light_emerald     c=  1:   156.3 jobs/s  p50     5.12  p99     7.03 ms  errors 0
+  light_emerald     c=  2:   257.1 jobs/s  p50     6.32  p99     9.48 ms  errors 0
+  light_emerald     c=  4:   289.6 jobs/s  p50    12.65  p99    16.66 ms  errors 0
+  light_emerald     c=  8:   289.7 jobs/s  p50    25.97  p99    42.71 ms  errors 0
+  light_emerald     c= 16:   287.3 jobs/s  p50    54.18  p99    99.88 ms  errors 0
+  light_emerald     c= 32:   262.9 jobs/s  p50   109.70  p99   339.58 ms  errors 0
+  light_emerald     c= 64:   223.1 jobs/s  p50   213.45  p99  1011.02 ms  errors 0
+  light_emerald     c=128:   198.7 jobs/s  p50   457.58  p99  2462.72 ms  errors 0
+  light_emerald     c=256:   177.5 jobs/s  p50  1052.81  p99  5706.62 ms  errors 0
+  heavy_forte       c=  1:     6.8 jobs/s  p50   138.92  p99   200.45 ms  errors 0
+  heavy_forte       c=  2:     9.9 jobs/s  p50   197.32  p99   231.07 ms  errors 0
+  heavy_forte       c=  4:     9.9 jobs/s  p50   405.63  p99   446.13 ms  errors 0
+  heavy_forte       c=  8:     9.7 jobs/s  p50   819.37  p99   911.21 ms  errors 0
+  heavy_forte       c= 16:     9.6 jobs/s  p50  1672.86  p99  1878.39 ms  errors 0
+  heavy_forte       c= 32:     9.6 jobs/s  p50  3349.39  p99  4312.07 ms  errors 0
+  heavy_forte       c= 64:     9.4 jobs/s  p50  6622.39  p99 10913.41 ms  errors 0
+  heavy_forte_x4    c=  1:     6.8 jobs/s  p50   139.07  p99   188.65 ms  errors 0
+  heavy_forte_x4    c=  2:    13.3 jobs/s  p50   140.24  p99   215.78 ms  errors 0
+  heavy_forte_x4    c=  4:    21.8 jobs/s  p50   173.11  p99   235.87 ms  errors 0
+  heavy_forte_x4    c=  8:    23.7 jobs/s  p50   309.15  p99   407.51 ms  errors 0
+  heavy_forte_x4    c= 16:    24.0 jobs/s  p50   590.65  p99   894.32 ms  errors 0
+  heavy_forte_x4    c= 32:    23.2 jobs/s  p50  1154.99  p99  2444.77 ms  errors 0
+  heavy_forte_x4    c= 64:    21.9 jobs/s  p50  2512.34  p99  7033.66 ms  errors 0
+  mixed_all_backends c=  1:   127.0 jobs/s  p50     6.58  p99     8.72 ms  errors 0
+  mixed_all_backends c=  2:   220.7 jobs/s  p50     7.58  p99    11.74 ms  errors 0
+  mixed_all_backends c=  4:   340.6 jobs/s  p50     9.42  p99    15.58 ms  errors 0
+  mixed_all_backends c=  8:   354.3 jobs/s  p50    19.36  p99    27.00 ms  errors 0
+  mixed_all_backends c= 16:   359.1 jobs/s  p50    37.57  p99    51.76 ms  errors 0
+  mixed_all_backends c= 32:   356.6 jobs/s  p50    74.42  p99   121.30 ms  errors 0
+  mixed_all_backends c= 64:   287.6 jobs/s  p50   177.83  p99   527.87 ms  errors 0
+  mixed_all_backends c=128:   218.1 jobs/s  p50   464.75  p99  1598.57 ms  errors 0
+  mixed_all_backends c=256:    89.2 jobs/s  p50    64.06  p99  2053.37 ms  errors 0
+  saved results/load_closed.json
+  (850.8 s)
+[load_ha] E13b — orchestrator scale-out: light jobs over all QPUs, direct vs nginx gateway with 1 or 3 orchestrators.
+  direct_1_orch   c=  1:   130.5 jobs/s  client p50     7.46  p99     9.79 ms  errors 0  client CPU 0.12 core/proc
+  direct_1_orch   c=  2:   211.9 jobs/s  client p50     9.72  p99    13.22 ms  errors 0  client CPU 0.11 core/proc
+  direct_1_orch   c=  4:   353.5 jobs/s  client p50    10.81  p99    16.94 ms  errors 0  client CPU 0.12 core/proc
+  direct_1_orch   c=  8:   353.1 jobs/s  client p50    22.32  p99    31.39 ms  errors 0  client CPU 0.12 core/proc
+  direct_1_orch   c= 16:   357.5 jobs/s  client p50    43.98  p99    57.78 ms  errors 0  client CPU 0.12 core/proc
+  direct_1_orch   c= 32:   352.5 jobs/s  client p50    86.65  p99   139.08 ms  errors 0  client CPU 0.12 core/proc
+  direct_1_orch   c= 64:   272.9 jobs/s  client p50   205.70  p99   627.28 ms  errors 0  client CPU 0.10 core/proc
+  direct_1_orch   c=128:   220.2 jobs/s  client p50   495.71  p99  1611.24 ms  errors 0  client CPU 0.09 core/proc
+  direct_1_orch   c=256:   352.7 jobs/s  client p50   716.29  p99   861.84 ms  errors 0  client CPU 0.16 core/proc
+  gateway_1_orch  c=  1:   130.6 jobs/s  client p50     7.43  p99     9.82 ms  errors 0  client CPU 0.12 core/proc
+  gateway_1_orch  c=  2:   210.1 jobs/s  client p50     9.34  p99    13.50 ms  errors 0  client CPU 0.11 core/proc
+  gateway_1_orch  c=  4:   326.3 jobs/s  client p50    11.74  p99    18.24 ms  errors 0  client CPU 0.11 core/proc
+  gateway_1_orch  c=  8:   327.4 jobs/s  client p50    23.90  p99    36.71 ms  errors 0  client CPU 0.11 core/proc
+  gateway_1_orch  c= 16:   336.9 jobs/s  client p50    46.82  p99    58.86 ms  errors 0  client CPU 0.12 core/proc
+  gateway_1_orch  c= 32:   336.1 jobs/s  client p50    93.64  p99   113.63 ms  errors 0  client CPU 0.12 core/proc
+  gateway_1_orch  c= 64:   345.2 jobs/s  client p50   184.74  p99   222.70 ms  errors 0  client CPU 0.12 core/proc
+  gateway_1_orch  c=128:   335.5 jobs/s  client p50   376.76  p99   420.72 ms  errors 0  client CPU 0.13 core/proc
+  gateway_1_orch  c=256:   344.7 jobs/s  client p50   737.00  p99   792.68 ms  errors 0  client CPU 0.14 core/proc
+  gateway_3_orch  c=  1:   123.0 jobs/s  client p50     7.83  p99    10.63 ms  errors 0  client CPU 0.12 core/proc
+  gateway_3_orch  c=  2:   211.1 jobs/s  client p50     9.21  p99    13.07 ms  errors 0  client CPU 0.11 core/proc
+  gateway_3_orch  c=  4:   411.8 jobs/s  client p50     9.18  p99    15.26 ms  errors 0  client CPU 0.14 core/proc
+  gateway_3_orch  c=  8:   650.7 jobs/s  client p50    11.53  p99    22.93 ms  errors 0  client CPU 0.22 core/proc
+  gateway_3_orch  c= 16:   864.3 jobs/s  client p50    17.13  p99    39.29 ms  errors 0  client CPU 0.28 core/proc
+  gateway_3_orch  c= 32:   897.3 jobs/s  client p50    31.21  p99    88.54 ms  errors 0  client CPU 0.30 core/proc
+  gateway_3_orch  c= 64:   926.7 jobs/s  client p50    66.20  p99   140.96 ms  errors 0  client CPU 0.31 core/proc
+  gateway_3_orch  c=128:   914.9 jobs/s  client p50   111.24  p99   383.11 ms  errors 0  client CPU 0.32 core/proc
+  gateway_3_orch  c=256:   944.5 jobs/s  client p50   289.11  p99   509.06 ms  errors 0  client CPU 0.35 core/proc
+  saved results/load_ha.json
+  (597.5 s)
+[load_open] E14 — open-loop Poisson load vs utilisation, compared with the M/G/1 (Pollaczek–Khinchine) model.
+  service E[S] = 96.29 ms (cv 0.070); capacity 10.4 jobs/s
+  ρ=0.10: mean   142.96 ms (P-K   139.09)  p99   195.22
+  ρ=0.30: mean   156.99 ms (P-K   154.45)  p99   283.72
+  ρ=0.50: mean   203.89 ms (P-K   182.10)  p99   470.49
+  ρ=0.60: mean   217.24 ms (P-K   206.29)  p99   473.71
+  ρ=0.70: mean   255.66 ms (P-K   246.61)  p99   589.11
+  ρ=0.80: mean   555.76 ms (P-K   327.24)  p99  1652.52
+  ρ=0.85: mean   496.06 ms (P-K   407.88)  p99  1381.32
+  ρ=0.90: mean   639.90 ms (P-K   569.15)  p99  1988.03
+  ρ=0.95: mean  2465.78 ms (P-K  1052.96)  p99  7046.75
+  ρ=1.20: mean  4013.88 ms (P-K      nan)  p99  9470.16
+  saved results/load_open.json
+  (446.3 s)
+[soak] E15 — five-minute soak: steady Poisson load over all QPUs, latency and memory over time.
+  36155 ok / 36155 requests, p50 7.26 ms, p99 17.92 ms
+  saved results/soak.json
+  (311.3 s)
+[async_burst] E16 — async burst: 500 queued jobs per QPU, queue depth and drain throughput.
+  accepted 3500 jobs in 8.65 s (405/s, p50 accept 9.21 ms); 3500 completed
+  saved results/async_burst.json
+  (18.7 s)
+[fairshare] E17 — scheduler isolation: a light client's queue wait while a heavy client floods the queue.
+  same client (FIFO)       light wait p50    1162.4 ms  max    2055.9 ms
+  fair share (priority 5)  light wait p50       4.1 ms  max     335.9 ms
+  priority 9               light wait p50       2.5 ms  max      60.5 ms
+  saved results/fairshare.json
+  (10.4 s)
+[shots] E18 — latency and response size vs shots (live, GHZ_12).
+  quantinuum_helios: 1e6 shots median 94.85 ms
+  ionq_forte: 1e6 shots median 94.13 ms
+  rigetti_ankaa_3: 1e6 shots median 95.35 ms
+  iqm_emerald: 1e6 shots median 94.65 ms
+  ibm_heron: 1e6 shots median 94.27 ms
+  ibm_nighthawk: 1e6 shots median 95.58 ms
+  google_willow: 1e6 shots median 93.36 ms
+  saved results/shots.json
+  (7.5 s)
+[gate_scaling] E19 — front-end throughput: parse / route / compile time vs circuit size (live, 10 qubits).
+  quantinuum_helios: 30k gates parse 983 ms, route 0 ms, compile 729 ms
+  ionq_forte: 30k gates parse 919 ms, route 0 ms, compile 783 ms
+  rigetti_ankaa_3: 30k gates parse 943 ms, route 11331 ms, compile 2428 ms
+  iqm_emerald: 30k gates parse 979 ms, route 10649 ms, compile 1972 ms
+  ibm_heron: 30k gates parse 911 ms, route 15800 ms, compile 4753 ms
+  ibm_nighthawk: 30k gates parse 949 ms, route 11570 ms, compile 2644 ms
+  google_willow: 30k gates parse 913 ms, route 10796 ms, compile 1711 ms
+  saved results/gate_scaling.json
+  (481.2 s)

@@ -46,6 +46,7 @@ import numpy as np  # noqa: E402
 from qputwin_core import __version__  # noqa: E402
 from qputwin_core.density import apply_readout_model  # noqa: E402
 from qputwin_core.devices import DEVICES  # noqa: E402
+from qputwin_core.errors import ResourceLimitError  # noqa: E402
 from qputwin_core.noise import NoiseModel, NoiseOptions  # noqa: E402
 from qputwin_core.simulators import ExecutionOptions, SimulatorConfig, simulator_for  # noqa: E402
 from qputwin_core.timing import SpanTimer  # noqa: E402
@@ -56,17 +57,63 @@ ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "benchmarks" / "results"
 BASE_URL = os.environ.get("QPUTWIN_BASE_URL", "http://localhost:8000")
 H2 = 'OPENQASM 2.0;\ninclude "qelib1.inc";\n'
-BACKENDS = ("quantinuum_helios", "ionq_forte", "rigetti_ankaa_3", "iqm_emerald")
+BACKENDS = tuple(DEVICES)           # all seven twins, in registry order
 
 
 # ================================================================ circuits
+_PATHS: dict[str, list[int]] = {}
+
+
+def _long_path(cmap: Any, budget: int = 200_000) -> list[int]:
+    """A long simple path through the coupling graph, deterministic.
+
+    Row-major lattices with every coupler working use the boustrophedon snake. Otherwise
+    (heavy-hex, Willow's diamond grid, or a lattice with inactive couplers) a depth-first
+    search from the lowest-numbered qubit, trying the neighbour with the fewest onward
+    options first (Warnsdorff's rule), keeps the longest path found within ``budget`` steps.
+    """
+    if "rows" in cmap.layout:
+        rows, cols = cmap.layout["rows"], cmap.layout["cols"]
+        snake = [r * cols + (c if r % 2 == 0 else cols - 1 - c) for r in range(rows) for c in range(cols)]
+        if all(cmap.coupled(a, b) for a, b in zip(snake, snake[1:], strict=False)):
+            return snake
+    best: list[int] = []
+    steps = 0
+    start = cmap.usable_qubits[0]
+    path, seen = [start], {start}
+
+    def options(q: int) -> list[int]:
+        return sorted((v for v in cmap.neighbors(q) if v not in seen),
+                      key=lambda v: (sum(w not in seen for w in cmap.neighbors(v)), v))
+
+    stack = [iter(options(start))]
+    while stack and steps < budget:
+        steps += 1
+        nxt = next(stack[-1], None)
+        if nxt is None:
+            stack.pop()
+            seen.discard(path.pop())
+            continue
+        path.append(nxt)
+        seen.add(nxt)
+        if len(path) > len(best):
+            best = list(path)
+            if len(best) == len(cmap.usable_qubits):
+                break
+        stack.append(iter(options(nxt)))
+    return best
+
+
 def ghz_path(backend: str, n: int) -> list[int]:
-    """Physical qubits of an n-qubit nearest-neighbour path: a line on ions, a snake on lattices."""
+    """Physical qubits of an n-qubit nearest-neighbour path: a line on ions, a long path on lattices."""
     cmap = DEVICES[backend].coupling
     if cmap.all_to_all:
         return list(range(n))
-    rows, cols = cmap.layout["rows"], cmap.layout["cols"]
-    path = [r * cols + (c if r % 2 == 0 else cols - 1 - c) for r in range(rows) for c in range(cols)]
+    if backend not in _PATHS:
+        _PATHS[backend] = _long_path(cmap)
+    path = _PATHS[backend]
+    if len(path) < n:
+        raise ValueError(f"{backend}: longest path found has {len(path)} qubits, need {n}")
     return path[:n]
 
 
@@ -77,6 +124,23 @@ def ghz(backend: str, n: int) -> str:
     body = f"h q[{qs[0]}];\n" + "".join(f"cx q[{a}],q[{b}];\n" for a, b in zip(qs, qs[1:], strict=False))
     meas = "".join(f"measure q[{q}] -> c[{k}];\n" for k, q in enumerate(qs))
     return H2 + f"qreg q[{size}];\ncreg c[{n}];\n" + body + meas
+
+
+def brickwork(backend: str, n: int, layers: int, seed: int = 0) -> str:
+    """``layers`` of random single-qubit rotations and CX on alternating pairs along ``ghz_path``.
+
+    Every CX is on a coupled pair, so no routing is needed on any twin, and the state stays dense
+    (all n qubits active) for the whole circuit: a long-lived, memory-bound job.
+    """
+    qs = ghz_path(backend, n)
+    rng = random.Random(seed)
+    body = []
+    for layer in range(layers):
+        body += [f"u3({rng.uniform(0, 3):.4f},{rng.uniform(-3, 3):.4f},{rng.uniform(-3, 3):.4f}) q[{q}];\n"
+                 for q in qs]
+        body += [f"cx q[{qs[i]}],q[{qs[i + 1]}];\n" for i in range(layer % 2, n - 1, 2)]
+    meas = "".join(f"measure q[{q}] -> c[{k}];\n" for k, q in enumerate(qs))
+    return H2 + f"qreg q[{max(qs) + 1}];\ncreg c[{n}];\n" + "".join(body) + meas
 
 
 def star_ghz(n: int) -> str:
@@ -307,7 +371,10 @@ def exp_convergence(seeds: int = 5) -> None:
 
 
 def _compose(replicas: int, orchestrators: int = 1) -> None:
-    env = {**os.environ, "QPUTWIN_FORTE_REPLICAS": str(replicas), "QPUTWIN_ORCHESTRATOR_REPLICAS": str(orchestrators),
+    # QPUTWIN_ENGINE_THREADS=1 is for this process's in-process experiments only; the containers must keep
+    # their default (engine threads = the worker's CPU quota), so it is not passed on to compose
+    env = {k: v for k, v in os.environ.items() if k != "QPUTWIN_ENGINE_THREADS"}
+    env |= {"QPUTWIN_FORTE_REPLICAS": str(replicas), "QPUTWIN_ORCHESTRATOR_REPLICAS": str(orchestrators),
            "QPUTWIN_ORCHESTRATOR_PORTS": "8000" if orchestrators == 1 else f"8000-{7999 + orchestrators}"}
     profile = ["--profile", "ha"] if orchestrators > 1 else []
     if orchestrators == 1:                                       # leave the default single-instance stack
@@ -318,9 +385,193 @@ def _compose(replicas: int, orchestrators: int = 1) -> None:
     time.sleep(12)                                               # DNS discovery interval (10 s) + margin
 
 
+REPLICA_ENV = {"quantinuum_helios": "QPUTWIN_HELIOS_REPLICAS", "ionq_forte": "QPUTWIN_FORTE_REPLICAS",
+               "rigetti_ankaa_3": "QPUTWIN_ANKAA3_REPLICAS", "iqm_emerald": "QPUTWIN_EMERALD_REPLICAS",
+               "ibm_heron": "QPUTWIN_HERON_REPLICAS", "ibm_nighthawk": "QPUTWIN_NIGHTHAWK_REPLICAS",
+               "google_willow": "QPUTWIN_WILLOW_REPLICAS"}
+
+
+def _compose_env(overrides: dict[str, str]) -> None:
+    """Restart the stack with ``overrides`` (replicas, worker CPU / memory limits); 1 orchestrator."""
+    env = {k: v for k, v in os.environ.items() if k != "QPUTWIN_ENGINE_THREADS"} | overrides
+    subprocess.run(["docker", "compose", "--profile", "ha", "rm", "-sf", "gateway"], cwd=ROOT, env=env,
+                   capture_output=True, timeout=120)
+    subprocess.run(["docker", "compose", "up", "-d", "--wait", "--remove-orphans", "--force-recreate"], cwd=ROOT,
+                   env=env, check=True, capture_output=True, timeout=900)
+    time.sleep(12)
+
+
+def _host_sample() -> dict[str, float]:
+    """Host CPU jiffies (busy, total) and memory from /proc (this runs on the docker host)."""
+    with open("/proc/stat") as f:
+        v = [int(x) for x in f.readline().split()[1:]]
+    idle = v[3] + v[4]
+    mem = {}
+    with open("/proc/meminfo") as f:
+        for line in f:
+            k, val = line.split(":")
+            mem[k] = int(val.split()[0]) * 1024
+    return {"busy": sum(v) - idle, "total": sum(v), "mem_used": mem["MemTotal"] - mem["MemAvailable"],
+            "mem_total": mem["MemTotal"]}
+
+
+def exp_saturation(duration: float = 600.0, light_rate: float = 150.0, replicas: int = 3, worker_mem: str = "7g",
+                   big: int = 28, too_big: int = 30) -> None:
+    """E22 — the whole host under mixed load: every twin, all vCPUs and most of the memory at once.
+
+    The stack runs ``replicas`` workers per twin (21 in all), each allowed every CPU of the host and
+    ``worker_mem`` of memory. For ``duration`` seconds: a Poisson stream of light synchronous jobs over
+    all twins; per twin one heavy asynchronous job in flight at all times (``big``-qubit states that fit
+    only in place within the worker's memory, deep 22-qubit QV-style circuits, 11-qubit noisy density
+    matrices); and a trickle of ``too_big``-qubit jobs that cannot fit and must be refused cleanly. Records host CPU and
+    memory, per-container stats, per-class latency and status, and container OOM kills and restarts.
+    """
+    overrides = {env: str(replicas) for env in REPLICA_ENV.values()} | {
+        "QPUTWIN_WORKER_CPUS": str(os.cpu_count() or 16), "QPUTWIN_WORKER_MEM": worker_mem}
+    _compose_env(overrides)
+    try:
+        c = api()
+        # two heavy streams per twin (one per replica): memory-bound big states, and compute-bound jobs
+        big_specs: dict[str, list[dict[str, Any]]] = {}
+        cpu_specs: dict[str, list[dict[str, Any]]] = {}
+        for b in BACKENDS:
+            a2a = DEVICES[b].coupling.all_to_all
+            big_specs[b] = [{"qasm": brickwork(b, big, 12, seed=k), "shots": 1024} for k in range(3)]
+            cpu_specs[b] = [{"qasm": ghz(b, 11), "shots": 1024, "options": {"noise": {}, "engine": "density_matrix"}}]
+            if a2a:
+                cpu_specs[b].append({"qasm": C.FAMILIES["qv"](22, seed=3), "shots": 1024})
+        oversized = {b: star_ghz(too_big) if DEVICES[b].coupling.all_to_all else ghz(b, too_big) for b in BACKENDS}
+        light = [_light_job(b) for b in BACKENDS]
+        heavy_rows: list[dict[str, Any]] = []
+        refused: list[dict[str, Any]] = []
+        host: list[dict[str, Any]] = []
+        stats: list[dict[str, Any]] = []
+
+        async def heavy_loop(b: str, stop: float, specs: list[dict[str, Any]], stream: str) -> None:
+            async with httpx.AsyncClient(base_url=BASE_URL, timeout=900.0) as ac:
+                t0, k = time.perf_counter(), 0
+                while time.perf_counter() - t0 < stop:
+                    spec = specs[k % len(specs)]
+                    s0 = time.perf_counter()
+                    r = await ac.post("/v1/jobs", params={"mode": "async"},
+                                      json={"backend": b, "seed": k, "priority": 1, **spec})
+                    jid = r.json().get("job_id")
+                    body: dict[str, Any] = {}
+                    deadline = time.perf_counter() + 900
+                    while jid and time.perf_counter() < deadline:
+                        body = (await ac.get(f"/v1/jobs/{jid}", params={"wait": 30})).json()
+                        if body.get("status") not in ("QUEUED", "RUNNING"):
+                            break
+                    wl = (body.get("telemetry") or {}).get("workload") or {}
+                    heavy_rows.append({"backend": b, "stream": stream, "kind": k % len(specs), "t": s0 - t0,
+                                       "latency_s": time.perf_counter() - s0, "status": body.get("status"),
+                                       "error": (body.get("error") or {}).get("type"),
+                                       "in_place": wl.get("in_place"), "simulated_qubits": wl.get("simulated_qubits"),
+                                       "engine": wl.get("engine")})
+                    k += 1
+
+        async def oversize_loop(stop: float) -> None:
+            async with httpx.AsyncClient(base_url=BASE_URL, timeout=120.0) as ac:
+                t0, k = time.perf_counter(), 0
+                while time.perf_counter() - t0 < stop:
+                    b = BACKENDS[k % len(BACKENDS)]
+                    s0 = time.perf_counter()
+                    r = await ac.post("/v1/jobs", json={"backend": b, "qasm": oversized[b], "shots": 16, "seed": k})
+                    body = r.json()
+                    refused.append({"backend": b, "status": r.status_code, "latency_s": time.perf_counter() - s0,
+                                    "error": (body.get("error") or {}).get("type"),
+                                    "details": {k2: v for k2, v in ((body.get("error") or {}).get("details") or {}
+                                                                    ).items() if k2 in ("required_bytes",
+                                                                                        "available_bytes",
+                                                                                        "max_feasible_qubits")}})
+                    k += 1
+                    await asyncio.sleep(5.0)
+
+        async def sampler(stop: float) -> None:
+            t0 = time.perf_counter()
+            prev = _host_sample()
+            while time.perf_counter() - t0 < stop:
+                await asyncio.sleep(1.0)
+                cur = _host_sample()
+                host.append({"t": time.perf_counter() - t0,
+                             "cpu_pct": 100.0 * (cur["busy"] - prev["busy"]) / max(1, cur["total"] - prev["total"]),
+                             "mem_used_gib": cur["mem_used"] / 2 ** 30, "mem_total_gib": cur["mem_total"] / 2 ** 30})
+                prev = cur
+                if len(host) % 9 == 1:
+                    stats.append({"t": host[-1]["t"], "containers": await asyncio.to_thread(_docker_stats)})
+
+        async def main() -> list[dict[str, Any]]:
+            res, *_ = await asyncio.gather(_open_loop(light, light_rate, duration, seed=7),
+                                           *(heavy_loop(b, duration, big_specs[b], "memory") for b in BACKENDS),
+                                           *(heavy_loop(b, duration, cpu_specs[b], "compute") for b in BACKENDS),
+                                           oversize_loop(duration), sampler(duration + 5))
+            return res
+
+        c.close()
+        import faulthandler                      # if the client ever stalls, log where (every 5 min after the window)
+        faulthandler.dump_traceback_later(duration + 300, repeat=True, file=sys.stderr)
+
+        async def guarded() -> list[dict[str, Any]]:
+            return await asyncio.wait_for(main(), timeout=duration + 900)   # hard stop: never hang the campaign
+
+        try:
+            light_res = asyncio.run(guarded())
+        finally:
+            faulthandler.cancel_dump_traceback_later()
+        inspect = subprocess.run(["docker", "ps", "-a", "--filter", "name=qputwin", "--format", "{{.Names}}"],
+                                 capture_output=True, text=True, timeout=30).stdout.split()
+        health = []
+        for name in inspect:
+            out = subprocess.run(["docker", "inspect", "--format",
+                                  "{{.State.OOMKilled}} {{.RestartCount}} {{.State.Status}}", name],
+                                 capture_output=True, text=True, timeout=30).stdout.split()
+            health.append({"name": name, "oom_killed": out[0] == "true", "restarts": int(out[1]), "state": out[2]})
+        ok = [r for r in light_res if r["status"] == 200]
+        cpu = [h["cpu_pct"] for h in host]
+        mem = [h["mem_used_gib"] for h in host]
+        print(f"  light {len(ok)}/{len(light_res)} ok, p50 {np.median([r['total_ms'] for r in ok]):.1f} ms; "
+              f"heavy {sum(h['status'] == 'COMPLETED' for h in heavy_rows)}/{len(heavy_rows)} completed "
+              f"({sum(bool(h['in_place']) for h in heavy_rows)} in place); refused {len(refused)} "
+              f"(statuses {sorted({r['status'] for r in refused})}); host CPU median {np.median(cpu):.0f} % "
+              f"max {max(cpu):.0f} %, memory max {max(mem):.1f} GiB; OOM kills "
+              f"{sum(h['oom_killed'] for h in health)}, restarts {sum(h['restarts'] for h in health)}", flush=True)
+        save("saturation", {"light": [_job_fields_compact(r) for r in light_res], "heavy": heavy_rows,
+                            "oversized": refused, "host": host, "containers": stats, "health": health},
+             duration_s=duration, light_rate_jobs_s=light_rate, replicas_per_twin=replicas, worker_mem=worker_mem,
+             worker_cpus=os.cpu_count(), summary=_summary(light_res, duration) | {
+                 "heavy_completed": sum(h["status"] == "COMPLETED" for h in heavy_rows),
+                 "heavy_total": len(heavy_rows), "heavy_in_place": sum(bool(h["in_place"]) for h in heavy_rows),
+                 "oversized_refused": sum(r["error"] == "ResourceLimitError" for r in refused),
+                 "oversized_total": len(refused), "host_cpu_pct_median": float(np.median(cpu)),
+                 "host_cpu_pct_max": float(max(cpu)), "host_mem_gib_max": float(max(mem)),
+                 "oom_kills": sum(h["oom_killed"] for h in health),
+                 "restarts": sum(h["restarts"] for h in health)},
+             workload=(f"whole-host saturation: {replicas} worker replicas per twin ({7 * replicas} workers, each "
+                       "allowed every CPU and "
+                       f"{worker_mem}), 1 orchestrator; Poisson light GHZ_8 jobs at {light_rate:.0f}/s over all twins; "
+                       f"per twin two heavy async streams, one job in flight each: {big}-qubit, 12-layer brickwork "
+                       "circuits along a native path (memory: a dense state held for seconds), and "
+                       "11-qubit noisy density matrices plus 22-qubit QV-style circuits on the all-to-all twins "
+                       f"(compute); one {too_big}-qubit job every 5 s that "
+                       "must be refused; host /proc samples every 1 s, docker stats every ~9 s"))
+    finally:
+        _compose_env({})
+
+
+def _job_fields_compact(r: dict[str, Any]) -> list[Any]:
+    return [round(r["t"], 3), round(r["total_ms"], 3) if r.get("total_ms") is not None else None, r["status"]]
+
+
 def exp_async_scaling() -> None:
-    """E8 — async throughput vs worker replicas (IonQ Forte): cache-resident vs DRAM-bound statevectors."""
-    workloads = {14: 96, 20: 24}                                   # qubits -> jobs (14q: 256 KiB state, 20q: 16 MiB)
+    """E8 — async throughput vs worker replicas (IonQ Forte): cache-resident vs DRAM-bound statevectors.
+
+    Each point is repeated ``REPEATS`` times; the row keeps every repetition and reports the median, because a
+    single short burst (well under a second of makespan) is too noisy to compare replica counts.
+    """
+    from concurrent.futures import ThreadPoolExecutor
+    workloads = {14: 480, 20: 120}                                 # qubits -> jobs (14q: 256 KiB state, 20q: 16 MiB)
+    repeats = 5
+    submitters = 16              # concurrent submission (~360 jobs/s, E16) outpaces any replica count tested here
     rows = []
 
     def ts(s: str) -> float:
@@ -332,32 +583,57 @@ def exp_async_scaling() -> None:
             c = api()
             for width, jobs in workloads.items():
                 qasm = star_ghz(width)
-                for k in range(3):                                 # warm-up every replica
+                for k in range(3 * replicas):                      # warm-up every replica
                     c.post("/v1/jobs", json={"backend": "ionq_forte", "qasm": qasm, "shots": 64, "seed": k})
-                ids = [c.post("/v1/jobs", params={"mode": "async"},
-                              json={"backend": "ionq_forte", "qasm": qasm, "shots": 64, "seed": 10 + k}
-                              ).json()["job_id"] for k in range(jobs)]
-                done = []
-                for j in ids:
-                    while True:
-                        b = c.get(f"/v1/jobs/{j}", params={"wait": 20}).json()
-                        if b["status"] not in ("QUEUED", "RUNNING"):
-                            done.append(b)
-                            break
-                makespan = max(ts(b["finished_at"]) for b in done) - min(ts(b["submitted_at"]) for b in done)
-                workers = {b["telemetry"]["environment"]["worker"]["worker_id"] for b in done}
+                runs = []
+                for rep in range(repeats):
+                    def submit(k: int) -> str:
+                        return c.post("/v1/jobs", params={"mode": "async"},
+                                      json={"backend": "ionq_forte", "qasm": qasm, "shots": 64, "seed": 10 + k}
+                                      ).json()["job_id"]
+                    with ThreadPoolExecutor(submitters) as ex:   # a serial submitter, not the workers, was the limit
+                        ids = list(ex.map(submit, range(jobs)))
+                    done = []
+                    for j in ids:
+                        while True:
+                            r = c.get(f"/v1/jobs/{j}", params={"wait": 20})
+                            b = r.json()
+                            if "status" not in b:            # transient (e.g. a replica restarting): retry
+                                print(f"  poll {j}: HTTP {r.status_code} {str(b)[:160]}", flush=True)
+                                time.sleep(0.5)
+                                continue
+                            if b["status"] not in ("QUEUED", "RUNNING"):
+                                done.append(b)
+                                break
+                    makespan = max(ts(b["finished_at"]) for b in done) - min(ts(b["submitted_at"]) for b in done)
+                    drain = max(ts(b["finished_at"]) for b in done) - min(ts(b["started_at"]) for b in done)
+                    runs.append({"makespan_s": makespan, "throughput_jobs_s": jobs / makespan,
+                                 "drain_jobs_s": jobs / drain,
+                                 "errors": sum(b["status"] != "COMPLETED" for b in done),
+                                 "workers": sorted({b["telemetry"]["environment"]["worker"]["worker_id"]
+                                                    for b in done}),
+                                 "queue_ms": [b["telemetry"]["breakdown"]["orchestrator_queue_ms"] for b in done],
+                                 "worker_service_ms": [b["telemetry"]["breakdown"]["worker_service_ms"] for b in done],
+                                 "qpu_ms": [b["telemetry"]["qpu_compute_time_ms"] for b in done]})
+                thr = [r["throughput_jobs_s"] for r in runs]
                 rows.append({"replicas": replicas, "qubits": width, "state_bytes": 16 << width, "jobs": jobs,
-                             "makespan_s": makespan, "throughput_jobs_s": jobs / makespan,
-                             "workers_used": len(workers),
-                             "queue_ms": [b["telemetry"]["breakdown"]["orchestrator_queue_ms"] for b in done],
-                             "worker_service_ms": [b["telemetry"]["breakdown"]["worker_service_ms"] for b in done],
-                             "qpu_ms": [b["telemetry"]["qpu_compute_time_ms"] for b in done]})
-                print(f"  replicas={replicas} n={width}: {jobs / makespan:.2f} jobs/s, "
-                      f"median worker {statistics.median(rows[-1]['worker_service_ms']):.0f} ms, {len(workers)} workers")
+                             "repeats": repeats, "throughput_jobs_s": statistics.median(thr),
+                             "throughput_runs": thr, "errors": sum(r["errors"] for r in runs),
+                             "workers_used": len({w for r in runs for w in r["workers"]}),
+                             "worker_service_ms": [v for r in runs for v in r["worker_service_ms"]],
+                             "queue_ms": [v for r in runs for v in r["queue_ms"]],
+                             "qpu_ms": [v for r in runs for v in r["qpu_ms"]],
+                             "runs": [{k: v for k, v in r.items() if k in ("makespan_s", "throughput_jobs_s", "drain_jobs_s",
+                                                                          "errors", "workers")} for r in runs]})
+                print(f"  replicas={replicas} n={width}: median {statistics.median(thr):.2f} jobs/s "
+                      f"(runs {', '.join(f'{v:.1f}' for v in thr)}), median worker "
+                      f"{statistics.median(rows[-1]['worker_service_ms']):.0f} ms, {rows[-1]['workers_used']} workers")
     finally:
         _compose(1)
-    save("async_scaling", rows, workload="async star GHZ jobs on IonQ Forte, 64 shots; 14 qubits (cache-resident "
-                                         "256 KiB state, 96 jobs) and 20 qubits (16 MiB, DRAM-bound, 24 jobs)")
+    save("async_scaling", rows, workload=f"async star GHZ jobs on IonQ Forte, 64 shots; 14 qubits (cache-resident "
+                                         f"256 KiB state, {workloads[14]} jobs) and 20 qubits (16 MiB, DRAM-bound, "
+                                         f"{workloads[20]} jobs); submitted by {submitters} concurrent clients; {repeats} repetitions "
+                                         f"per point, median reported")
 
 
 def exp_noise_sweep() -> None:
@@ -421,7 +697,7 @@ def ideal_distribution(qasm: str, ncl: int) -> dict[str, float]:
 
 
 def exp_circuits() -> None:
-    """E11 — nine circuit families × four devices: compiled cost, engine time and noisy fidelity."""
+    """E11 — nine circuit families × seven devices: compiled cost, engine time and noisy fidelity."""
     noisy_widths = (3, 4, 5, 6, 7, 8, 10)
     ideal_widths = (4, 8, 12, 16, 20)
     shots = 50_000
@@ -442,8 +718,13 @@ def exp_circuits() -> None:
             ideal = ideal_distribution(qasm, ncl)
             for b in BACKENDS:
                 sim = simulator_for(DEVICES[b])
-                r, qpu, wall = timed(sim, qasm, ExecutionOptions(shots=shots, seed=12, noise={},
-                                                                 engine="density_matrix", **_route_opts(b)))
+                try:
+                    r, qpu, wall = timed(sim, qasm, ExecutionOptions(shots=shots, seed=12, noise={},
+                                                                     engine="density_matrix", **_route_opts(b)))
+                except ResourceLimitError as exc:       # routing spread the circuit beyond the exact-DM limit
+                    rows.append({"family": fam, "backend": b, "qubits": n, "hellinger": None,
+                                 "skipped": str(exc), "simulated_qubits": exc.details.get("simulated_qubits")})
+                    continue
                 comp = r.compilation
                 rows.append({"family": fam, "backend": b, "qubits": n,
                              "hellinger": C.hellinger_fidelity(ideal, C.normalise(r.counts)),
@@ -456,7 +737,8 @@ def exp_circuits() -> None:
                              "circuit_duration_us": comp["hardware_time_estimate"]["circuit_duration_us"],
                              "density_matrix_ms": qpu, "wall_ms": wall, "ideal_support": len(ideal)})
             print(f"  {fam:7s} n={n:2d}  " + "  ".join(
-                f"{r['backend'].split('_')[0][:5]} {r['hellinger']:.3f}" for r in rows[-len(BACKENDS):]))
+                f"{r['backend'][:9]} " + (f"{r['hellinger']:.3f}" if r["hellinger"] is not None else "skip")
+                for r in rows[-len(BACKENDS):]))
         for n in ideal_widths:
             if fam == "adder" and n % 2:
                 continue
@@ -514,6 +796,8 @@ def exp_qv() -> None:
 def _job_fields(r: httpx.Response, t_start: float, t_end: float) -> dict[str, Any]:
     row = {"t": t_start, "t_end": t_end, "client_ms": (t_end - t_start) * 1e3, "status": r.status_code}
     try:
+        if r.status_code != 200:
+            row["error"] = f"{r.status_code} {(r.json().get('error') or {}).get('type', '')}".strip()
         tel = r.json().get("telemetry") or {}
         bd = tel.get("breakdown") or {}
         row.update(total_ms=tel.get("total_roundtrip_ms"), queue_ms=bd.get("worker_queue_ms"),
@@ -544,8 +828,9 @@ async def _closed_loop(jobs: list[dict[str, Any]], concurrency: int, duration: f
                 k += stride
                 try:
                     r = await c.post("/v1/jobs", json=job)
-                except httpx.HTTPError:
-                    out.append({"t": ts - t0 - warmup, "t_end": time.perf_counter() - t0 - warmup, "status": -1})
+                except httpx.HTTPError as exc:
+                    out.append({"t": ts - t0 - warmup, "t_end": time.perf_counter() - t0 - warmup, "status": -1,
+                                "error": type(exc).__name__})
                     continue
                 out.append(_job_fields(r, ts - t0 - warmup, time.perf_counter() - t0 - warmup))
 
@@ -570,8 +855,8 @@ async def _open_loop(jobs: list[dict[str, Any]], rate: float, duration: float, s
             try:
                 r = await c.post("/v1/jobs", json={**jobs[k % len(jobs)], "seed": k})
                 out.append(_job_fields(r, ts, time.perf_counter() - t0) | {"scheduled": at})
-            except httpx.HTTPError:
-                out.append({"t": ts, "status": -1, "scheduled": at})
+            except httpx.HTTPError as exc:
+                out.append({"t": ts, "status": -1, "scheduled": at, "error": type(exc).__name__})
 
         await asyncio.gather(*(one(k, at) for k, at in enumerate(arrivals)))
     return out
@@ -604,7 +889,13 @@ def _summary(rows: list[dict[str, Any]], duration: float) -> dict[str, Any]:
     ok = [r for r in rows if r["status"] == 200]
     lat = np.array([r["total_ms"] for r in ok]) if ok else np.array([np.nan])
     cl = np.array([r["client_ms"] for r in ok]) if ok else np.array([np.nan])
-    return {"completed": len(ok), "errors": len(rows) - len(ok), "throughput_jobs_s": len(ok) / duration,
+    failed = [r for r in rows if r["status"] != 200]
+    kinds: dict[str, int] = {}
+    for r in failed:                            # HTTP status, or the client-side exception (status -1)
+        k = r.get("error") or str(r["status"])
+        kinds[k] = kinds.get(k, 0) + 1
+    return {"completed": len(ok), "errors": len(rows) - len(ok), "error_kinds": kinds,
+            "throughput_jobs_s": len(ok) / duration,
             **{f"p{q}_ms": float(np.percentile(lat, q)) for q in (50, 90, 95, 99)},
             "mean_ms": float(lat.mean()), "client_p50_ms": float(np.percentile(cl, 50)),
             "client_p99_ms": float(np.percentile(cl, 99)), "client_mean_ms": float(cl.mean()),
@@ -628,7 +919,7 @@ def exp_load_closed(duration: float = 15.0) -> None:
     conditions = [("light_emerald", [_light_job("iqm_emerald")], 1, light, duration),
                   ("heavy_forte", [_heavy_job()], 1, heavy, 2 * duration),
                   ("heavy_forte_x4", [_heavy_job()], 4, heavy, 2 * duration),
-                  ("mixed_4_backends", [_light_job(b) for b in BACKENDS], 1, light, duration)]
+                  ("mixed_all_backends", [_light_job(b) for b in BACKENDS], 1, light, duration)]
     rows, raw = [], {}
     try:
         for name, jobs, replicas, levels, dur in conditions:
@@ -649,11 +940,11 @@ def exp_load_closed(duration: float = 15.0) -> None:
     save("load_closed", rows, latencies_ms=raw, warmup_s=2.0, workload=(
         "closed loop, N clients each sending the next job as soon as the last returns; light = GHZ_8 256 shots "
         "(IQM Emerald), heavy = QV-style 12 qubits 1024 shots (IonQ Forte, 1 or 4 worker replicas), mixed = "
-        "light jobs round-robin over the four QPUs"))
+        "light jobs round-robin over all QPUs"))
 
 
 def exp_load_ha(duration: float = 15.0, procs: int = 3) -> None:
-    """E13b — orchestrator scale-out: light jobs over all four QPUs, direct vs nginx gateway with 1 or 3 orchestrators.
+    """E13b — orchestrator scale-out: light jobs over all QPUs, direct vs nginx gateway with 1 or 3 orchestrators.
 
     The load is generated by ``procs`` client processes so that the generator is not the bottleneck.
     """
@@ -680,7 +971,7 @@ def exp_load_ha(duration: float = 15.0, procs: int = 3) -> None:
     finally:
         _compose(1)
     save("load_ha", rows, client_procs=procs, workload=(
-        "closed loop from 3 client processes; GHZ_8 256 shots round-robin over the four QPUs (1 worker each); "
+        "closed loop from 3 client processes; GHZ_8 256 shots round-robin over all QPUs (1 worker each); "
         "direct to one orchestrator, or through the nginx gateway (compose profile ha) to 1 or 3 orchestrators"))
 
 
@@ -728,7 +1019,7 @@ def _docker_stats() -> list[dict[str, Any]]:
 
 
 def exp_soak(duration: float = 300.0, rate: float = 120.0) -> None:
-    """E15 — five-minute soak: steady Poisson load over all four QPUs, latency and memory over time."""
+    """E15 — five-minute soak: steady Poisson load over all QPUs, latency and memory over time."""
     jobs = [_light_job(b) for b in BACKENDS]
     api()
     samples: list[dict[str, Any]] = []
@@ -752,11 +1043,11 @@ def exp_soak(duration: float = 300.0, rate: float = 120.0) -> None:
                   else [round(r["t"], 3), None, r["status"]] for r in res],
          stats=samples, rate_jobs_s=rate, duration_s=duration, summary=_summary(res, duration + 1e9) | {
              "throughput_jobs_s": len(ok) / duration},
-         workload="Poisson arrivals, GHZ_8 256 shots round-robin over the four QPUs, docker stats every ~5 s")
+         workload="Poisson arrivals, GHZ_8 256 shots round-robin over all QPUs, docker stats every ~5 s")
 
 
 def exp_async_burst(jobs_per_backend: int = 500) -> None:
-    """E16 — async burst: 2 000 queued jobs over four QPUs, queue depth and drain throughput."""
+    """E16 — async burst: 500 queued jobs per QPU, queue depth and drain throughput."""
     c = api()
 
     async def submit_all() -> list[tuple[str, float]]:
@@ -883,7 +1174,7 @@ EXPERIMENTS = {"latency": exp_latency, "scaling": exp_scaling, "routing": exp_ro
                "noise_sweep": exp_noise_sweep, "ramsey": exp_ramsey, "circuits": exp_circuits, "qv": exp_qv,
                "load_closed": exp_load_closed, "load_ha": exp_load_ha, "load_open": exp_load_open, "soak": exp_soak,
                "async_burst": exp_async_burst, "fairshare": exp_fairshare, "shots": exp_shots,
-               "gate_scaling": exp_gate_scaling}
+               "gate_scaling": exp_gate_scaling, "saturation": exp_saturation}
 
 
 def main(argv: list[str] | None = None) -> None:

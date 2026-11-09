@@ -7,7 +7,9 @@ After every **physical** gate ``U`` the error channel ``E = D_p ∘ R ∘ V`` is
 * ``V`` — **coherent error** (unitary): a fractional over-rotation ``U^ε``
   (``overrotation`` ε, via the principal matrix logarithm, so a rotation by θ
   becomes a rotation by θ(1+ε)) followed by a residual Z (1Q) or ZZ (2Q) phase
-  ``coherent_z_rad``;
+  ``coherent_z_rad`` and, on two-qubit gates, a residual ``PhasedFSim(θ, φ)``
+  (``fsim_theta_rad`` swap angle, ``fsim_phi_rad`` conditional phase; Google publishes
+  both per coupler);
 * ``R`` — **thermal relaxation** on each gate qubit for the gate duration ``t``:
   amplitude damping ``γ = 1 − e^{−t/T1}`` then pure dephasing with
   ``√(1−λ) = e^{−t/T2} / e^{−t/(2T1)}``, so coherences decay exactly as
@@ -424,6 +426,12 @@ class NoiseModel:
         if phi:
             z = G.rz(phi * o.scale) if len(op.qubits) == 1 else G.rzz(phi * o.scale)
             v = z if v is None else z @ v
+        if len(op.qubits) == 2:
+            f_theta = self._gate_attr(op, "fsim_theta_rad") or 0.0
+            f_phi = self._gate_attr(op, "fsim_phi_rad") or 0.0
+            if f_theta or f_phi:
+                f = G.fsim(f_theta * o.scale, f_phi * o.scale)
+                v = f if v is None else f @ v
         if v is not None:
             self.features.add("coherent")
         return v

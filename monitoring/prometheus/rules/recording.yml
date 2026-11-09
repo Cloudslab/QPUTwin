@@ -1,0 +1,33 @@
+# Precomputed series used by the dashboards. Rates sum across orchestrator replicas.
+groups:
+  - name: qputwin-recording
+    rules:
+      - record: qputwin:jobs:rate1m
+        expr: sum by (backend, status) (rate(qputwin_jobs_total[1m]))
+      - record: qputwin:roundtrip_ms:p50
+        expr: histogram_quantile(0.50, sum by (backend, le) (rate(qputwin_tel_roundtrip_ms_bucket[1m])))
+      - record: qputwin:roundtrip_ms:p95
+        expr: histogram_quantile(0.95, sum by (backend, le) (rate(qputwin_tel_roundtrip_ms_bucket[1m])))
+      - record: qputwin:roundtrip_ms:p99
+        expr: histogram_quantile(0.99, sum by (backend, le) (rate(qputwin_tel_roundtrip_ms_bucket[1m])))
+      # Mean span duration per job; the fourteen spans stack to the mean round trip.
+      - record: qputwin:span_ms:mean1m
+        expr: |
+          sum by (backend, span) (rate(qputwin_tel_span_ms_sum[1m]))
+            / sum by (backend, span) (rate(qputwin_tel_span_ms_count[1m]))
+
+  - name: qputwin-resources
+    rules:
+      # A compose service, in CPU cores, across all its replicas.
+      - record: service:cpu_cores:rate1m
+        expr: sum by (service) (rate(container_cpu_usage_seconds_total{service!=""}[1m]))
+      - record: service:memory_working_set:bytes
+        expr: sum by (service) (container_memory_working_set_bytes{service!=""})
+      - record: service:cpu_throttled:ratio1m
+        expr: |
+          sum by (service) (rate(container_cpu_cfs_throttled_periods_total{service!=""}[1m]))
+            / sum by (service) (rate(container_cpu_cfs_periods_total{service!=""}[1m]))
+      - record: host:cpu_busy:ratio1m
+        expr: 1 - avg(rate(node_cpu_seconds_total{mode="idle"}[1m]))
+      - record: host:memory_used:ratio
+        expr: 1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes

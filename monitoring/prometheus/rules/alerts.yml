@@ -1,0 +1,121 @@
+groups:
+  - name: qputwin
+    rules:
+      - alert: QPUTwinOrchestratorDown
+        expr: absent(up{job="qputwin-orchestrator"} == 1)
+        for: 1m
+        labels: { severity: critical }
+        annotations:
+          summary: No orchestrator is answering /metrics.
+      - alert: QPUTwinNotReady
+        expr: probe_success{job="qputwin-ready"} == 0
+        for: 1m
+        labels: { severity: critical }
+        annotations:
+          summary: "{{ $labels.instance }} fails its readiness probe."
+      - alert: QPUTwinWorkerDown
+        expr: probe_success{job=~"qputwin-workers.*"} == 0
+        for: 1m
+        labels: { severity: critical }
+        annotations:
+          summary: "{{ $labels.service }} fails its health probe ({{ $labels.instance }})."
+      - alert: QPUTwinJobsFailing
+        expr: sum by (backend) (rate(qputwin_jobs_total{status="FAILED"}[5m])) > 0
+        for: 2m
+        labels: { severity: warning }
+        annotations:
+          summary: "Jobs are failing on {{ $labels.backend }}."
+      - alert: QPUTwinWorkerConnectionFailures
+        expr: sum by (backend) (increase(qputwin_replica_failures_total[5m])) > 0
+        labels: { severity: warning }
+        annotations:
+          summary: "The orchestrator could not reach a {{ $labels.backend }} replica."
+      - alert: QPUTwinQueueBacklog
+        expr: max by (backend) (qputwin_async_jobs{state="queued"}) > 10 * max by (backend) (qputwin_async_capacity)
+        for: 5m
+        labels: { severity: warning }
+        annotations:
+          summary: "{{ $value }} jobs queued on {{ $labels.backend }}."
+      - alert: QPUTwinSlowJobs
+        expr: qputwin:roundtrip_ms:p95 > 1000
+        for: 10m
+        labels: { severity: warning }
+        annotations:
+          summary: "p95 round trip on {{ $labels.backend }} is {{ $value | humanize }} ms."
+      - alert: QPUTwinTelemetryIdentityBroken
+        expr: sum by (backend) (increase(qputwin_tel_identity_violations_total[5m])) > 0
+        labels: { severity: warning }
+        annotations:
+          summary: "Latency spans on {{ $labels.backend }} no longer sum to the round trip."
+      - alert: QPUTwinTelemetryExporterDown
+        expr: up{job="qputwin-telemetry"} == 0
+        for: 1m
+        labels: { severity: warning }
+        annotations:
+          summary: The telemetry exporter is down, so per-job dashboards are stale.
+
+  - name: containers
+    rules:
+      - alert: ContainerMemoryNearLimit
+        expr: |
+          container_memory_working_set_bytes{service!=""}
+            / (container_spec_memory_limit_bytes{service!=""} > 0) > 0.9
+        for: 5m
+        labels: { severity: warning }
+        annotations:
+          summary: "{{ $labels.name }} is above 90% of its memory limit."
+      - alert: ContainerCPUThrottled
+        expr: service:cpu_throttled:ratio1m > 0.5
+        for: 10m
+        labels: { severity: info }
+        annotations:
+          summary: "{{ $labels.service }} is hitting its CPU quota."
+      - alert: ContainerRestarting
+        expr: changes(container_start_time_seconds{service!=""}[10m]) > 2
+        labels: { severity: warning }
+        annotations:
+          summary: "{{ $labels.name }} restarted more than twice in ten minutes."
+
+  - name: host
+    rules:
+      - alert: NodeExporterDown
+        expr: up{job="node"} == 0
+        for: 1m
+        labels: { severity: warning }
+        annotations:
+          summary: "Node Exporter is unreachable. Check: systemctl --user status qputwin-node-exporter"
+      - alert: HostHighCPU
+        expr: host:cpu_busy:ratio1m > 0.9
+        for: 10m
+        labels: { severity: warning }
+        annotations:
+          summary: "Host CPU is {{ $value | humanizePercentage }} busy."
+      - alert: HostLowMemory
+        expr: host:memory_used:ratio > 0.9
+        for: 5m
+        labels: { severity: warning }
+        annotations:
+          summary: "Host memory is {{ $value | humanizePercentage }} used."
+      - alert: HostDiskFilling
+        expr: |
+          node_filesystem_avail_bytes{fstype!~"tmpfs|overlay|squashfs"}
+            / node_filesystem_size_bytes{fstype!~"tmpfs|overlay|squashfs"} < 0.1
+        for: 5m
+        labels: { severity: warning }
+        annotations:
+          summary: "{{ $labels.mountpoint }} has under 10% free."
+      - alert: HostHighTemperature
+        expr: max(node_hwmon_temp_celsius) > 90
+        for: 5m
+        labels: { severity: warning }
+        annotations:
+          summary: "The hottest sensor reads {{ $value }} °C. Timings may be affected by throttling."
+
+  - name: monitoring
+    rules:
+      - alert: MonitoringTargetDown
+        expr: up{job!~"qputwin-orchestrator|qputwin-telemetry|node"} == 0
+        for: 2m
+        labels: { severity: warning }
+        annotations:
+          summary: "Scrape target {{ $labels.job }} ({{ $labels.instance }}) is down."

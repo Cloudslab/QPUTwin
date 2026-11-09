@@ -1,82 +1,114 @@
 family,simulator,qubits,run_s_best,engine_s_best,threads
-ghz,QPUTwin (in-process),4,0.002396,0.001042,t1
-ghz,QPUTwin (in-process),6,0.003379,0.001585,t1
-ghz,QPUTwin (in-process),8,0.00496,0.002732,t1
-ghz,QPUTwin (in-process),10,0.017749,0.014254,t1
-ghz,QPUTwin (in-process),11,0.064691,0.061341,t1
-ghz,QPUTwin (in-process),12,0.244425,0.240665,t1
-ghz,QPUTwin (in-process),13,1.007805,1.002474,t1
-ghz,Qiskit Aer,4,0.001168,,t1
-ghz,Qiskit Aer,6,0.001615,,t1
-ghz,Qiskit Aer,8,0.007751,,t1
-ghz,Qiskit Aer,10,0.128552,,t1
-ghz,Qiskit Aer,11,0.581543,,t1
-ghz,Qiskit Aer,12,2.560862,,t1
-ghz,Qiskit Aer,13,11.538061,,t1
-ghz,Braket local,4,0.01075,,t1
-ghz,Braket local,6,0.014207,,t1
-ghz,Braket local,8,0.023196,,t1
-ghz,Braket local,10,0.176964,,t1
-ghz,Braket local,11,0.689999,,t1
-ghz,Braket local,12,2.972364,,t1
-ghz,Braket local,13,16.464986,,t1
-ghz,Cirq,4,0.004604,,t1
-ghz,Cirq,6,0.01473,,t1
-ghz,Cirq,8,0.148401,,t1
-ghz,Cirq,10,2.288456,,t1
-ghz,Cirq,11,9.123865,,t1
-ghz,Cirq,12,14.843806,,t1
-ghz,Cirq,13,37.063515,,t1
-qv,QPUTwin (in-process),4,0.011621,0.00495,t1
-qv,QPUTwin (in-process),6,0.025049,0.010824,t1
-qv,QPUTwin (in-process),8,0.051057,0.025958,t1
-qv,QPUTwin (in-process),10,0.273766,0.235012,t1
-qv,QPUTwin (in-process),11,1.028905,0.986126,t1
-qv,QPUTwin (in-process),12,4.882509,4.822598,t1
-qv,QPUTwin (in-process),13,20.883792,20.817849,t1
-qv,Qiskit Aer,4,0.002386,,t1
-qv,Qiskit Aer,6,0.012399,,t1
-qv,Qiskit Aer,8,0.034667,,t1
-qv,Qiskit Aer,10,0.655365,,t1
-qv,Qiskit Aer,11,2.965703,,t1
-qv,Qiskit Aer,12,14.703273,,t1
-qv,Qiskit Aer,13,64.733342,,t1
-qv,Braket local,4,0.081876,,t1
-qv,Braket local,6,0.178362,,t1
-qv,Braket local,8,0.399208,,t1
-qv,Braket local,10,4.154506,,t1
-qv,Braket local,11,16.063546,,t1
-qv,Braket local,12,77.321272,,t1
-qv,Braket local,13,371.780132,,t1
-qv,Cirq,4,0.042794,,t1
-qv,Cirq,6,0.229327,,t1
-qv,Cirq,8,4.740759,,t1
-qv,Cirq,10,121.942788,,t1
-ghz,QPUTwin,4,0.010223,0.00277,t4
-ghz,QPUTwin,6,0.009126,0.001775,t4
-ghz,QPUTwin,8,0.010567,0.003442,t4
-ghz,QPUTwin,10,0.016766,0.009053,t4
-ghz,QPUTwin,11,0.044016,0.033621,t4
-ghz,QPUTwin,12,0.12632,0.117211,t4
-ghz,QPUTwin,13,0.501043,0.489043,t4
-ghz,Qiskit Aer,4,0.000927,,t4
-ghz,Qiskit Aer,6,0.001424,,t4
-ghz,Qiskit Aer,8,0.004077,,t4
-ghz,Qiskit Aer,10,0.037852,,t4
-ghz,Qiskit Aer,11,0.168689,,t4
-ghz,Qiskit Aer,12,0.726157,,t4
-ghz,Qiskit Aer,13,3.393502,,t4
-qv,QPUTwin,4,0.020461,0.005401,t4
-qv,QPUTwin,6,0.039803,0.012151,t4
-qv,QPUTwin,8,0.074408,0.02918,t4
-qv,QPUTwin,10,0.169244,0.100394,t4
-qv,QPUTwin,11,0.410171,0.332765,t4
-qv,QPUTwin,12,1.631388,1.531977,t4
-qv,QPUTwin,13,6.824775,6.706404,t4
-qv,Qiskit Aer,4,0.002317,,t4
-qv,Qiskit Aer,6,0.013607,,t4
-qv,Qiskit Aer,8,0.020275,,t4
-qv,Qiskit Aer,10,0.200298,,t4
-qv,Qiskit Aer,11,0.835244,,t4
-qv,Qiskit Aer,12,4.269601,,t4
-qv,Qiskit Aer,13,18.811127,,t4
+ghz,QPUTwin (in-process),4,0.002514,0.001135,t1
+ghz,QPUTwin (in-process),6,0.00357,0.001655,t1
+ghz,QPUTwin (in-process),8,0.005405,0.003012,t1
+ghz,QPUTwin (in-process),10,0.017209,0.013636,t1
+ghz,QPUTwin (in-process),11,0.064437,0.060551,t1
+ghz,QPUTwin (in-process),12,0.236824,0.232516,t1
+ghz,QPUTwin (in-process),13,1.020501,1.015053,t1
+ghz,Qiskit Aer,4,0.001291,,t1
+ghz,Qiskit Aer,6,0.001895,,t1
+ghz,Qiskit Aer,8,0.009936,,t1
+ghz,Qiskit Aer,10,0.165543,,t1
+ghz,Qiskit Aer,11,0.76296,,t1
+ghz,Qiskit Aer,12,3.417832,,t1
+ghz,Qiskit Aer,13,15.011641,,t1
+ghz,Braket local,4,0.011724,,t1
+ghz,Braket local,6,0.018164,,t1
+ghz,Braket local,8,0.032534,,t1
+ghz,Braket local,10,0.240633,,t1
+ghz,Braket local,11,0.789819,,t1
+ghz,Braket local,12,2.68185,,t1
+ghz,Braket local,13,11.435174,,t1
+ghz,Cirq,4,0.005599,,t1
+ghz,Cirq,6,0.017447,,t1
+ghz,Cirq,8,0.177956,,t1
+ghz,Cirq,10,2.836025,,t1
+ghz,Cirq,11,11.116025,,t1
+ghz,Cirq,12,16.064407,,t1
+ghz,Cirq,13,35.595243,,t1
+qv,QPUTwin (in-process),4,0.012451,0.005124,t1
+qv,QPUTwin (in-process),6,0.026843,0.01134,t1
+qv,QPUTwin (in-process),8,0.056105,0.028067,t1
+qv,QPUTwin (in-process),10,0.303973,0.259636,t1
+qv,QPUTwin (in-process),11,1.235672,1.187001,t1
+qv,QPUTwin (in-process),12,5.764086,5.69839,t1
+qv,QPUTwin (in-process),13,25.084378,25.011697,t1
+qv,Qiskit Aer,4,0.002592,,t1
+qv,Qiskit Aer,6,0.014851,,t1
+qv,Qiskit Aer,8,0.043197,,t1
+qv,Qiskit Aer,10,0.823415,,t1
+qv,Qiskit Aer,11,3.836223,,t1
+qv,Qiskit Aer,12,19.197715,,t1
+qv,Qiskit Aer,13,84.733892,,t1
+qv,Braket local,4,0.103457,,t1
+qv,Braket local,6,0.294246,,t1
+qv,Braket local,8,0.622,,t1
+qv,Braket local,10,5.660224,,t1
+qv,Braket local,11,16.950036,,t1
+qv,Braket local,12,63.84321,,t1
+qv,Braket local,13,252.379863,,t1
+qv,Cirq,4,0.04771,,t1
+qv,Cirq,6,0.263828,,t1
+qv,Cirq,8,5.566094,,t1
+qv,Cirq,10,129.101719,,t1
+ghz,QPUTwin,4,0.006098,0.001324,t4
+ghz,QPUTwin,6,0.007373,0.001952,t4
+ghz,QPUTwin,8,0.010298,0.00394,t4
+ghz,QPUTwin,10,0.022149,0.013627,t4
+ghz,QPUTwin,11,0.045529,0.035992,t4
+ghz,QPUTwin,12,0.103201,0.092849,t4
+ghz,QPUTwin,13,0.324439,0.312397,t4
+ghz,Qiskit Aer,4,0.001011,,t4
+ghz,Qiskit Aer,6,0.001508,,t4
+ghz,Qiskit Aer,8,0.00342,,t4
+ghz,Qiskit Aer,10,0.043655,,t4
+ghz,Qiskit Aer,11,0.203071,,t4
+ghz,Qiskit Aer,12,1.033586,,t4
+ghz,Qiskit Aer,13,3.933199,,t4
+qv,QPUTwin,4,0.022335,0.006251,t4
+qv,QPUTwin,6,0.044876,0.01372,t4
+qv,QPUTwin,8,0.097296,0.037334,t4
+qv,QPUTwin,10,0.259215,0.17624,t4
+qv,QPUTwin,11,0.640481,0.548431,t4
+qv,QPUTwin,12,2.046654,1.915707,t4
+qv,QPUTwin,13,7.308123,7.176223,t4
+qv,Qiskit Aer,4,0.002505,,t4
+qv,Qiskit Aer,6,0.014669,,t4
+qv,Qiskit Aer,8,0.020105,,t4
+qv,Qiskit Aer,10,0.262037,,t4
+qv,Qiskit Aer,11,1.049475,,t4
+qv,Qiskit Aer,12,5.122096,,t4
+qv,Qiskit Aer,13,24.728388,,t4
+ghz,QPUTwin (in-process),4,0.002468,0.00109,t16
+ghz,QPUTwin (in-process),6,0.00355,0.001692,t16
+ghz,QPUTwin (in-process),8,0.008005,0.005573,t16
+ghz,QPUTwin (in-process),10,0.020564,0.0161,t16
+ghz,QPUTwin (in-process),11,0.044273,0.040269,t16
+ghz,QPUTwin (in-process),12,0.081225,0.076915,t16
+ghz,QPUTwin (in-process),13,0.233916,0.228289,t16
+ghz,QPUTwin (in-process),14,0.818315,0.808631,t16
+ghz,Qiskit Aer,4,0.001054,,t16
+ghz,Qiskit Aer,6,0.001538,,t16
+ghz,Qiskit Aer,8,0.001891,,t16
+ghz,Qiskit Aer,10,0.012741,,t16
+ghz,Qiskit Aer,11,0.066032,,t16
+ghz,Qiskit Aer,12,0.2737,,t16
+ghz,Qiskit Aer,13,1.243697,,t16
+ghz,Qiskit Aer,14,5.494947,,t16
+qv,QPUTwin (in-process),4,0.012231,0.005067,t16
+qv,QPUTwin (in-process),6,0.026763,0.011277,t16
+qv,QPUTwin (in-process),8,0.056813,0.029619,t16
+qv,QPUTwin (in-process),10,0.165907,0.122292,t16
+qv,QPUTwin (in-process),11,0.330785,0.271666,t16
+qv,QPUTwin (in-process),12,1.083785,1.021943,t16
+qv,QPUTwin (in-process),13,2.824001,2.752035,t16
+qv,QPUTwin (in-process),14,11.711385,11.618842,t16
+qv,Qiskit Aer,4,0.002466,,t16
+qv,Qiskit Aer,6,0.014791,,t16
+qv,Qiskit Aer,8,0.012395,,t16
+qv,Qiskit Aer,10,0.079815,,t16
+qv,Qiskit Aer,11,0.325376,,t16
+qv,Qiskit Aer,12,1.447511,,t16
+qv,Qiskit Aer,13,6.977308,,t16
+qv,Qiskit Aer,14,32.928701,,t16

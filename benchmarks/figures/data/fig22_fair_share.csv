@@ -1,4 +1,4 @@
 condition,light_p50_ms,light_max_ms,heavy_p50_ms
-same client (FIFO),875.042,1794.999,1355.224
-fair share (priority 5),5.137,9.507,1404.318
-priority 9,4.275,7.853,1294.35
+same client (FIFO),1519.207,2451.046,1604.771
+fair share (priority 5),3.572,204.134,1541.003
+priority 9,2.236,8.102,1347.576

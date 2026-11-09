@@ -1,0 +1,105 @@
+{
+ "experiment": "workflow_throughput",
+ "generated_utc": "2026-11-09T17:41:33+00:00",
+ "environment": {
+  "python": "3.13.18",
+  "platform": "Linux-5.15.0-202-generic-x86_64-with-glibc2.35",
+  "cpu": "AMD EPYC 9474F 48-Core Processor",
+  "logical_cpus": 16,
+  "load_average": [
+   9.87890625,
+   9.73388671875,
+   9.21484375
+  ],
+  "threads": 1,
+  "versions": {
+   "qiskit": "2.6.1",
+   "qiskit-aer": "0.18.2",
+   "amazon-braket-sdk": "1.127.6",
+   "amazon-braket-default-simulator": "1.42.0",
+   "cirq-core": "1.7.0",
+   "qsimcirq": "0.22.1",
+   "qulacs": "0.6.14",
+   "numpy": "2.5.4"
+  },
+  "qputwin": {
+   "base_url": "http://localhost:8000",
+   "status": "ok",
+   "service": "orchestrator",
+   "version": "0.1.0",
+   "worker_precision": "complex128",
+   "worker_engine_threads": "the worker's CPU quota (QPUTWIN_WORKER_CPUS, default 4)",
+   "worker_cpu_quota": "4 CPUs / 12 GiB unless overridden"
+  }
+ },
+ "stack_backend": null,
+ "workload": "96 device-emulation jobs (six families x widths 4, 6, 8, 10 x four seeds, 1024 shots); vendor workflows in a process pool (one thread per process, per-device objects built in each process before timing); QPUTwin via concurrent HTTP clients against the stack configured with one single-CPU worker replica per client for this device",
+ "data": [
+  {
+   "backend": "ibm_heron",
+   "pipeline": "qputwin",
+   "parallel": 16,
+   "jobs": 96,
+   "makespan_s": 9.793636044996674,
+   "jobs_per_s": 9.80228380541505,
+   "job_s_median": 0.14759494500322035,
+   "job_s_p95": 3.830383806001919,
+   "peak_rss_bytes_max_process": null
+  },
+  {
+   "backend": "ibm_heron",
+   "pipeline": "vendor",
+   "parallel": 16,
+   "jobs": 96,
+   "makespan_s": 58.990637640003115,
+   "jobs_per_s": 1.6273768828513198,
+   "job_s_median": 1.0740413690000423,
+   "job_s_p95": 17.790797521003697,
+   "peak_rss_bytes_max_process": 513691648
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "pipeline": "qputwin",
+   "parallel": 16,
+   "jobs": 96,
+   "makespan_s": 7.884701868002594,
+   "jobs_per_s": 12.17547620786826,
+   "job_s_median": 0.1508066870010225,
+   "job_s_p95": 3.5751496520024375,
+   "peak_rss_bytes_max_process": null
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "pipeline": "vendor",
+   "parallel": 16,
+   "jobs": 96,
+   "makespan_s": 37.513579024001956,
+   "jobs_per_s": 2.5590733408448507,
+   "job_s_median": 2.5347282710063155,
+   "job_s_p95": 22.945636158001435,
+   "peak_rss_bytes_max_process": 769826816
+  },
+  {
+   "backend": "google_willow",
+   "pipeline": "qputwin",
+   "parallel": 16,
+   "jobs": 96,
+   "makespan_s": 3.950502282998059,
+   "jobs_per_s": 24.300707384263312,
+   "job_s_median": 0.14746330399793806,
+   "job_s_p95": 1.7021319109990145,
+   "peak_rss_bytes_max_process": null
+  },
+  {
+   "backend": "google_willow",
+   "pipeline": "vendor",
+   "parallel": 16,
+   "jobs": 96,
+   "makespan_s": 14.875289681993308,
+   "jobs_per_s": 6.453655831402664,
+   "job_s_median": 0.8833999960043002,
+   "job_s_p95": 8.289719833002891,
+   "peak_rss_bytes_max_process": 332423168
+  }
+ ]
+}

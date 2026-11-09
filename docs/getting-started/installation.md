@@ -24,7 +24,7 @@ git clone <your-fork-url> qputwin && cd qputwin
 docker compose up -d --build --wait
 ```
 
-This builds two images (`qputwin/orchestrator`, which needs no numpy, and `qputwin/worker`) and starts five services:
+This builds two images (`qputwin/orchestrator`, which needs no numpy, and `qputwin/worker`) and starts eight services:
 
 | Service | Image | Port | Role |
 |---|---|---|---|
@@ -33,6 +33,9 @@ This builds two images (`qputwin/orchestrator`, which needs no numpy, and `qputw
 | `worker-ionq-forte` | `qputwin/worker:0.1.0` | internal | Forte digital twin (36 qubits, all-to-all) |
 | `worker-rigetti-ankaa3` | `qputwin/worker:0.1.0` | internal | Ankaa-3 digital twin (84 qubits, 7×12 lattice) |
 | `worker-iqm-emerald` | `qputwin/worker:0.1.0` | internal | Emerald digital twin (54 qubits, 6×9 lattice) |
+| `worker-ibm-heron` | `qputwin/worker:0.1.0` | internal | Heron r3 digital twin (156 qubits, heavy-hex, IBM's `ibm_boston` snapshot) |
+| `worker-ibm-nighthawk` | `qputwin/worker:0.1.0` | internal | Nighthawk digital twin (120 qubits, square lattice, IBM's `ibm_miami` snapshot) |
+| `worker-google-willow` | `qputwin/worker:0.1.0` | internal | Willow digital twin (105 qubits, square grid, Google's `willow_pink` snapshot) |
 
 ### Verify
 
@@ -67,7 +70,7 @@ docker compose down --rmi local  # also remove the images
 
 ```bash
 uv sync                                    # Python env with every extra + dev tools
-uv run pytest                              # 502 unit + in-process integration tests
+uv run pytest                              # 615 unit + in-process integration tests
 ```
 
 Run the services without Docker, one terminal each:

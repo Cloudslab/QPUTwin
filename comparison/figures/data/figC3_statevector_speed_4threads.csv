@@ -1,121 +1,121 @@
 family,simulator,qubits,run_s_best,engine_s_best
-ghz,QPUTwin,6,0.005494,0.000592
-ghz,QPUTwin,10,0.006535,0.000955
-ghz,QPUTwin,14,0.007863,0.001249
-ghz,QPUTwin,16,0.00864,0.001839
-ghz,QPUTwin,18,0.012739,0.004786
-ghz,QPUTwin,20,0.017304,0.0087
-ghz,QPUTwin,22,0.047496,0.037186
-ghz,QPUTwin,24,0.076493,0.066663
-ghz,QPUTwin (complex64),6,0.005332,0.000642
-ghz,QPUTwin (complex64),10,0.006587,0.000905
-ghz,QPUTwin (complex64),14,0.007991,0.001247
-ghz,QPUTwin (complex64),16,0.008723,0.001757
-ghz,QPUTwin (complex64),18,0.012023,0.004359
-ghz,QPUTwin (complex64),20,0.016205,0.007865
-ghz,QPUTwin (complex64),22,0.044772,0.035558
-ghz,QPUTwin (complex64),24,0.074399,0.064672
-ghz,Qiskit Aer,6,0.001016,
-ghz,Qiskit Aer,10,0.001614,
-ghz,Qiskit Aer,14,0.002519,
-ghz,Qiskit Aer,16,0.003438,
-ghz,Qiskit Aer,18,0.010583,
-ghz,Qiskit Aer,20,0.028163,
-ghz,Qiskit Aer,22,0.105419,
-ghz,Qiskit Aer,24,0.437017,
-ghz,qsim,6,0.000759,
-ghz,qsim,10,0.001078,
-ghz,qsim,14,0.001465,
-ghz,qsim,16,0.002044,
-ghz,qsim,18,0.002927,
-ghz,qsim,20,0.006701,
-ghz,qsim,22,0.041141,
-ghz,qsim,24,0.187893,
-ghz,Qulacs,6,2e-05,
-ghz,Qulacs,10,3.3e-05,
-ghz,Qulacs,14,9.9e-05,
-ghz,Qulacs,16,0.000236,
-ghz,Qulacs,18,0.000884,
-ghz,Qulacs,20,0.006966,
-ghz,Qulacs,22,0.059599,
-ghz,Qulacs,24,0.249684,
-qv,QPUTwin,6,0.026238,0.003614
-qv,QPUTwin,10,0.063713,0.009773
-qv,QPUTwin,14,0.124833,0.021041
-qv,QPUTwin,16,0.171212,0.036789
-qv,QPUTwin,18,0.226613,0.0594
-qv,QPUTwin,20,0.358698,0.155009
-qv,QPUTwin,22,0.814462,0.56401
-qv,QPUTwin,24,2.743111,2.435551
-qv,QPUTwin (complex64),6,0.026766,0.003529
-qv,QPUTwin (complex64),10,0.065462,0.010088
-qv,QPUTwin (complex64),14,0.126803,0.020884
-qv,QPUTwin (complex64),16,0.171031,0.034091
-qv,QPUTwin (complex64),18,0.217055,0.048422
-qv,QPUTwin (complex64),20,0.316395,0.107018
-qv,QPUTwin (complex64),22,0.638033,0.357308
-qv,QPUTwin (complex64),24,1.716321,1.418857
-qv,Qiskit Aer,6,0.002986,
-qv,Qiskit Aer,10,0.008643,
-qv,Qiskit Aer,14,0.050322,
-qv,Qiskit Aer,16,0.028595,
-qv,Qiskit Aer,18,0.070464,
-qv,Qiskit Aer,20,0.255215,
-qv,Qiskit Aer,22,1.095392,
-qv,Qiskit Aer,24,5.165458,
-qv,qsim,6,0.003345,
-qv,qsim,10,0.008085,
-qv,qsim,14,0.015916,
-qv,qsim,16,0.022479,
-qv,qsim,18,0.030939,
-qv,qsim,20,0.061227,
-qv,qsim,22,0.206488,
-qv,qsim,24,0.821607,
-qv,Qulacs,6,8.2e-05,
-qv,Qulacs,10,0.000842,
-qv,Qulacs,14,0.008598,
-qv,Qulacs,16,0.031755,
-qv,Qulacs,18,0.160499,
-qv,Qulacs,20,0.889938,
-qv,Qulacs,22,6.770208,
-qv,Qulacs,24,34.507498,
-qft,QPUTwin,6,0.018696,0.00381
-qft,QPUTwin,10,0.041768,0.010034
-qft,QPUTwin,14,0.078962,0.022267
-qft,QPUTwin,16,0.114381,0.042324
-qft,QPUTwin,18,0.157716,0.065079
-qft,QPUTwin,20,0.370713,0.240517
-qft,QPUTwin,22,1.00732,0.874589
-qft,QPUTwin,24,4.532932,4.374206
-qft,QPUTwin (complex64),6,0.018208,0.003752
-qft,QPUTwin (complex64),10,0.042008,0.010169
-qft,QPUTwin (complex64),14,0.080255,0.021357
-qft,QPUTwin (complex64),16,0.10882,0.036291
-qft,QPUTwin (complex64),18,0.144881,0.052922
-qft,QPUTwin (complex64),20,0.248198,0.135409
-qft,QPUTwin (complex64),22,0.643494,0.491036
-qft,QPUTwin (complex64),24,2.423079,2.260068
-qft,Qiskit Aer,6,0.002883,
-qft,Qiskit Aer,10,0.007307,
-qft,Qiskit Aer,14,0.034545,
-qft,Qiskit Aer,16,0.02786,
-qft,Qiskit Aer,18,0.071861,
-qft,Qiskit Aer,20,0.270467,
-qft,Qiskit Aer,22,1.195701,
-qft,Qiskit Aer,24,6.037483,
-qft,qsim,6,0.003521,
-qft,qsim,10,0.008466,
-qft,qsim,14,0.016864,
-qft,qsim,16,0.026232,
-qft,qsim,18,0.036438,
-qft,qsim,20,0.091009,
-qft,qsim,22,0.373869,
-qft,qsim,24,1.70067,
-qft,Qulacs,6,6.4e-05,
-qft,Qulacs,10,0.000652,
-qft,Qulacs,14,0.008513,
-qft,Qulacs,16,0.026848,
-qft,Qulacs,18,0.125306,
-qft,Qulacs,20,0.747708,
-qft,Qulacs,22,5.617745,
-qft,Qulacs,24,28.464878,
+ghz,QPUTwin,6,0.005713,0.000648
+ghz,QPUTwin,10,0.006391,0.000968
+ghz,QPUTwin,14,0.007755,0.001384
+ghz,QPUTwin,16,0.009061,0.002146
+ghz,QPUTwin,18,0.014125,0.006475
+ghz,QPUTwin,20,0.021243,0.012925
+ghz,QPUTwin,22,0.053095,0.042481
+ghz,QPUTwin,24,0.103764,0.092127
+ghz,QPUTwin (complex64),6,0.005121,0.000637
+ghz,QPUTwin (complex64),10,0.006423,0.000968
+ghz,QPUTwin (complex64),14,0.007818,0.001367
+ghz,QPUTwin (complex64),16,0.009049,0.00211
+ghz,QPUTwin (complex64),18,0.0133,0.005698
+ghz,QPUTwin (complex64),20,0.019219,0.010711
+ghz,QPUTwin (complex64),22,0.073753,0.064101
+ghz,QPUTwin (complex64),24,0.113349,0.101628
+ghz,Qiskit Aer,6,0.000893,
+ghz,Qiskit Aer,10,0.00135,
+ghz,Qiskit Aer,14,0.002108,
+ghz,Qiskit Aer,16,0.002577,
+ghz,Qiskit Aer,18,0.007423,
+ghz,Qiskit Aer,20,0.028564,
+ghz,Qiskit Aer,22,0.13792,
+ghz,Qiskit Aer,24,0.632777,
+ghz,qsim,6,0.000888,
+ghz,qsim,10,0.001235,
+ghz,qsim,14,0.001751,
+ghz,qsim,16,0.002206,
+ghz,qsim,18,0.003574,
+ghz,qsim,20,0.008603,
+ghz,qsim,22,0.031989,
+ghz,qsim,24,0.133473,
+ghz,Qulacs,6,2.7e-05,
+ghz,Qulacs,10,4.1e-05,
+ghz,Qulacs,14,0.000124,
+ghz,Qulacs,16,0.000305,
+ghz,Qulacs,18,0.001008,
+ghz,Qulacs,20,0.004365,
+ghz,Qulacs,22,0.041949,
+ghz,Qulacs,24,0.173728,
+qv,QPUTwin,6,0.029137,0.003961
+qv,QPUTwin,10,0.075127,0.010989
+qv,QPUTwin,14,0.144394,0.023477
+qv,QPUTwin,16,0.205012,0.050147
+qv,QPUTwin,18,0.289066,0.083849
+qv,QPUTwin,20,0.422544,0.166792
+qv,QPUTwin,22,1.12262,0.781321
+qv,QPUTwin,24,3.218564,2.836187
+qv,QPUTwin (complex64),6,0.02889,0.003949
+qv,QPUTwin (complex64),10,0.075015,0.011009
+qv,QPUTwin (complex64),14,0.144731,0.022914
+qv,QPUTwin (complex64),16,0.20345,0.045302
+qv,QPUTwin (complex64),18,0.272471,0.073475
+qv,QPUTwin (complex64),20,0.404117,0.161281
+qv,QPUTwin (complex64),22,0.808158,0.495485
+qv,QPUTwin (complex64),24,2.357771,2.006597
+qv,Qiskit Aer,6,0.003028,
+qv,Qiskit Aer,10,0.009056,
+qv,Qiskit Aer,14,0.057082,
+qv,Qiskit Aer,16,0.034389,
+qv,Qiskit Aer,18,0.082276,
+qv,Qiskit Aer,20,0.309067,
+qv,Qiskit Aer,22,1.456636,
+qv,Qiskit Aer,24,7.117155,
+qv,qsim,6,0.003427,
+qv,qsim,10,0.008375,
+qv,qsim,14,0.015793,
+qv,qsim,16,0.022899,
+qv,qsim,18,0.03449,
+qv,qsim,20,0.059883,
+qv,qsim,22,0.184055,
+qv,qsim,24,0.739474,
+qv,Qulacs,6,0.000171,
+qv,Qulacs,10,0.001203,
+qv,Qulacs,14,0.009825,
+qv,Qulacs,16,0.037884,
+qv,Qulacs,18,0.182082,
+qv,Qulacs,20,0.95644,
+qv,Qulacs,22,4.622206,
+qv,Qulacs,24,22.645594,
+qft,QPUTwin,6,0.019773,0.004219
+qft,QPUTwin,10,0.046521,0.011039
+qft,QPUTwin,14,0.090064,0.024881
+qft,QPUTwin,16,0.143618,0.059755
+qft,QPUTwin,18,0.212161,0.107265
+qft,QPUTwin,20,0.475154,0.344947
+qft,QPUTwin,22,1.595714,1.442178
+qft,QPUTwin,24,5.00586,4.824028
+qft,QPUTwin (complex64),6,0.020418,0.004289
+qft,QPUTwin (complex64),10,0.047115,0.011181
+qft,QPUTwin (complex64),14,0.08924,0.023468
+qft,QPUTwin (complex64),16,0.131817,0.047313
+qft,QPUTwin (complex64),18,0.185076,0.079123
+qft,QPUTwin (complex64),20,0.341555,0.214126
+qft,QPUTwin (complex64),22,0.963027,0.807281
+qft,QPUTwin (complex64),24,3.574939,3.388771
+qft,Qiskit Aer,6,0.002775,
+qft,Qiskit Aer,10,0.007429,
+qft,Qiskit Aer,14,0.040361,
+qft,Qiskit Aer,16,0.031407,
+qft,Qiskit Aer,18,0.079164,
+qft,Qiskit Aer,20,0.301063,
+qft,Qiskit Aer,22,1.329377,
+qft,Qiskit Aer,24,6.243579,
+qft,qsim,6,0.003482,
+qft,qsim,10,0.00799,
+qft,qsim,14,0.015865,
+qft,qsim,16,0.023946,
+qft,qsim,18,0.034948,
+qft,qsim,20,0.083271,
+qft,qsim,22,0.295854,
+qft,qsim,24,1.29886,
+qft,Qulacs,6,0.000156,
+qft,Qulacs,10,0.000975,
+qft,Qulacs,14,0.008157,
+qft,Qulacs,16,0.03351,
+qft,Qulacs,18,0.15709,
+qft,Qulacs,20,0.695048,
+qft,Qulacs,22,3.588959,
+qft,Qulacs,24,18.367024,

@@ -1,20 +1,20 @@
 {
  "experiment": "qv",
- "generated_utc": "2026-10-28T07:29:43+00:00",
+ "generated_utc": "2026-11-09T14:10:28+00:00",
  "environment": {
   "qputwin": "0.1.0",
-  "python": "3.13.17",
+  "python": "3.13.18",
   "numpy": "2.5.4",
-  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
-  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
-  "logical_cpus": 12,
+  "platform": "Linux-5.15.0-202-generic-x86_64-with-glibc2.35",
+  "cpu": "AMD EPYC 9474F 48-Core Processor",
+  "logical_cpus": 16,
   "load_average": [
-   1.35302734375,
-   1.529296875,
-   2.3046875
+   1.39990234375,
+   1.66259765625,
+   2.37255859375
   ],
   "omp_num_threads": "1",
-  "docker": "29.9.2"
+  "docker": "29.9.3"
  },
  "workload": "QV-style circuits (m layers of random 3-CX two-qubit blocks; generic, not Haar SU(4)), 12 circuits per width, 20 000 shots, exact calibrated noise; pass = mean HOP \u2212 2\u03c3_mean > 2/3",
  "data": [
@@ -23,7 +23,7 @@
    "width": 2,
    "circuit": 0,
    "hop": 0.6503,
-   "ideal_hop": 0.656225472944993,
+   "ideal_hop": 0.6562254729449927,
    "native_two_qubit": 6
   },
   {
@@ -31,7 +31,7 @@
    "width": 2,
    "circuit": 1,
    "hop": 0.73735,
-   "ideal_hop": 0.7363921012521535,
+   "ideal_hop": 0.7363921012521537,
    "native_two_qubit": 6
   },
   {
@@ -39,7 +39,7 @@
    "width": 2,
    "circuit": 2,
    "hop": 0.86935,
-   "ideal_hop": 0.8745596578463104,
+   "ideal_hop": 0.8745596578463102,
    "native_two_qubit": 6
   },
   {
@@ -47,7 +47,7 @@
    "width": 2,
    "circuit": 3,
    "hop": 0.71885,
-   "ideal_hop": 0.7246962044001692,
+   "ideal_hop": 0.7246962044001695,
    "native_two_qubit": 6
   },
   {
@@ -55,7 +55,7 @@
    "width": 2,
    "circuit": 4,
    "hop": 0.7881,
-   "ideal_hop": 0.7931297806612565,
+   "ideal_hop": 0.7931297806612561,
    "native_two_qubit": 6
   },
   {
@@ -63,7 +63,7 @@
    "width": 2,
    "circuit": 5,
    "hop": 0.70145,
-   "ideal_hop": 0.7002148052139372,
+   "ideal_hop": 0.7002148052139373,
    "native_two_qubit": 6
   },
   {
@@ -71,7 +71,7 @@
    "width": 2,
    "circuit": 6,
    "hop": 0.75955,
-   "ideal_hop": 0.7591518170625269,
+   "ideal_hop": 0.759151817062526,
    "native_two_qubit": 6
   },
   {
@@ -87,7 +87,7 @@
    "width": 2,
    "circuit": 8,
    "hop": 0.77655,
-   "ideal_hop": 0.7746562390318761,
+   "ideal_hop": 0.7746562390318765,
    "native_two_qubit": 6
   },
   {
@@ -95,7 +95,7 @@
    "width": 2,
    "circuit": 9,
    "hop": 0.75615,
-   "ideal_hop": 0.7566664475962638,
+   "ideal_hop": 0.7566664475962639,
    "native_two_qubit": 6
   },
   {
@@ -103,7 +103,7 @@
    "width": 2,
    "circuit": 10,
    "hop": 0.8499,
-   "ideal_hop": 0.8540456962642575,
+   "ideal_hop": 0.8540456962642577,
    "native_two_qubit": 6
   },
   {
@@ -111,7 +111,7 @@
    "width": 2,
    "circuit": 11,
    "hop": 0.78855,
-   "ideal_hop": 0.792184469270516,
+   "ideal_hop": 0.7921844692705159,
    "native_two_qubit": 6
   },
   {
@@ -119,7 +119,7 @@
    "width": 2,
    "circuit": 0,
    "hop": 0.64295,
-   "ideal_hop": 0.656225472944993,
+   "ideal_hop": 0.6562254729449927,
    "native_two_qubit": 6
   },
   {
@@ -127,7 +127,7 @@
    "width": 2,
    "circuit": 1,
    "hop": 0.7257,
-   "ideal_hop": 0.7363921012521535,
+   "ideal_hop": 0.7363921012521537,
    "native_two_qubit": 6
   },
   {
@@ -135,7 +135,7 @@
    "width": 2,
    "circuit": 2,
    "hop": 0.8508,
-   "ideal_hop": 0.8745596578463104,
+   "ideal_hop": 0.8745596578463102,
    "native_two_qubit": 6
   },
   {
@@ -143,7 +143,7 @@
    "width": 2,
    "circuit": 3,
    "hop": 0.708,
-   "ideal_hop": 0.7246962044001692,
+   "ideal_hop": 0.7246962044001695,
    "native_two_qubit": 6
   },
   {
@@ -151,7 +151,7 @@
    "width": 2,
    "circuit": 4,
    "hop": 0.776,
-   "ideal_hop": 0.7931297806612565,
+   "ideal_hop": 0.7931297806612561,
    "native_two_qubit": 6
   },
   {
@@ -159,7 +159,7 @@
    "width": 2,
    "circuit": 5,
    "hop": 0.69255,
-   "ideal_hop": 0.7002148052139372,
+   "ideal_hop": 0.7002148052139373,
    "native_two_qubit": 6
   },
   {
@@ -167,7 +167,7 @@
    "width": 2,
    "circuit": 6,
    "hop": 0.7487,
-   "ideal_hop": 0.7591518170625269,
+   "ideal_hop": 0.759151817062526,
    "native_two_qubit": 6
   },
   {
@@ -183,7 +183,7 @@
    "width": 2,
    "circuit": 8,
    "hop": 0.76435,
-   "ideal_hop": 0.7746562390318761,
+   "ideal_hop": 0.7746562390318765,
    "native_two_qubit": 6
   },
   {
@@ -191,7 +191,7 @@
    "width": 2,
    "circuit": 9,
    "hop": 0.7442,
-   "ideal_hop": 0.7566664475962638,
+   "ideal_hop": 0.7566664475962639,
    "native_two_qubit": 6
   },
   {
@@ -199,7 +199,7 @@
    "width": 2,
    "circuit": 10,
    "hop": 0.83375,
-   "ideal_hop": 0.8540456962642575,
+   "ideal_hop": 0.8540456962642577,
    "native_two_qubit": 6
   },
   {
@@ -207,7 +207,7 @@
    "width": 2,
    "circuit": 11,
    "hop": 0.7717,
-   "ideal_hop": 0.792184469270516,
+   "ideal_hop": 0.7921844692705159,
    "native_two_qubit": 6
   },
   {
@@ -215,7 +215,7 @@
    "width": 2,
    "circuit": 0,
    "hop": 0.6286,
-   "ideal_hop": 0.656225472944993,
+   "ideal_hop": 0.6562254729449927,
    "native_two_qubit": 6
   },
   {
@@ -223,7 +223,7 @@
    "width": 2,
    "circuit": 1,
    "hop": 0.6896,
-   "ideal_hop": 0.7363921012521535,
+   "ideal_hop": 0.7363921012521537,
    "native_two_qubit": 6
   },
   {
@@ -231,7 +231,7 @@
    "width": 2,
    "circuit": 2,
    "hop": 0.78885,
-   "ideal_hop": 0.8745596578463104,
+   "ideal_hop": 0.8745596578463102,
    "native_two_qubit": 6
   },
   {
@@ -239,7 +239,7 @@
    "width": 2,
    "circuit": 3,
    "hop": 0.6731,
-   "ideal_hop": 0.7246962044001692,
+   "ideal_hop": 0.7246962044001695,
    "native_two_qubit": 6
   },
   {
@@ -247,7 +247,7 @@
    "width": 2,
    "circuit": 4,
    "hop": 0.7446,
-   "ideal_hop": 0.7931297806612565,
+   "ideal_hop": 0.7931297806612561,
    "native_two_qubit": 6
   },
   {
@@ -255,7 +255,7 @@
    "width": 2,
    "circuit": 5,
    "hop": 0.6593,
-   "ideal_hop": 0.7002148052139372,
+   "ideal_hop": 0.7002148052139373,
    "native_two_qubit": 6
   },
   {
@@ -263,7 +263,7 @@
    "width": 2,
    "circuit": 6,
    "hop": 0.7212,
-   "ideal_hop": 0.7591518170625269,
+   "ideal_hop": 0.759151817062526,
    "native_two_qubit": 6
   },
   {
@@ -279,7 +279,7 @@
    "width": 2,
    "circuit": 8,
    "hop": 0.73555,
-   "ideal_hop": 0.7746562390318761,
+   "ideal_hop": 0.7746562390318765,
    "native_two_qubit": 6
   },
   {
@@ -287,7 +287,7 @@
    "width": 2,
    "circuit": 9,
    "hop": 0.70635,
-   "ideal_hop": 0.7566664475962638,
+   "ideal_hop": 0.7566664475962639,
    "native_two_qubit": 6
   },
   {
@@ -295,7 +295,7 @@
    "width": 2,
    "circuit": 10,
    "hop": 0.7942,
-   "ideal_hop": 0.8540456962642575,
+   "ideal_hop": 0.8540456962642577,
    "native_two_qubit": 6
   },
   {
@@ -303,7 +303,7 @@
    "width": 2,
    "circuit": 11,
    "hop": 0.72285,
-   "ideal_hop": 0.792184469270516,
+   "ideal_hop": 0.7921844692705159,
    "native_two_qubit": 6
   },
   {
@@ -311,7 +311,7 @@
    "width": 2,
    "circuit": 0,
    "hop": 0.6362,
-   "ideal_hop": 0.656225472944993,
+   "ideal_hop": 0.6562254729449927,
    "native_two_qubit": 6
   },
   {
@@ -319,7 +319,7 @@
    "width": 2,
    "circuit": 1,
    "hop": 0.7018,
-   "ideal_hop": 0.7363921012521535,
+   "ideal_hop": 0.7363921012521537,
    "native_two_qubit": 6
   },
   {
@@ -327,7 +327,7 @@
    "width": 2,
    "circuit": 2,
    "hop": 0.8095,
-   "ideal_hop": 0.8745596578463104,
+   "ideal_hop": 0.8745596578463102,
    "native_two_qubit": 6
   },
   {
@@ -335,7 +335,7 @@
    "width": 2,
    "circuit": 3,
    "hop": 0.68505,
-   "ideal_hop": 0.7246962044001692,
+   "ideal_hop": 0.7246962044001695,
    "native_two_qubit": 6
   },
   {
@@ -343,7 +343,7 @@
    "width": 2,
    "circuit": 4,
    "hop": 0.7607,
-   "ideal_hop": 0.7931297806612565,
+   "ideal_hop": 0.7931297806612561,
    "native_two_qubit": 6
   },
   {
@@ -351,7 +351,7 @@
    "width": 2,
    "circuit": 5,
    "hop": 0.6711,
-   "ideal_hop": 0.7002148052139372,
+   "ideal_hop": 0.7002148052139373,
    "native_two_qubit": 6
   },
   {
@@ -359,7 +359,7 @@
    "width": 2,
    "circuit": 6,
    "hop": 0.7368,
-   "ideal_hop": 0.7591518170625269,
+   "ideal_hop": 0.759151817062526,
    "native_two_qubit": 6
   },
   {
@@ -375,7 +375,7 @@
    "width": 2,
    "circuit": 8,
    "hop": 0.74875,
-   "ideal_hop": 0.7746562390318761,
+   "ideal_hop": 0.7746562390318765,
    "native_two_qubit": 6
   },
   {
@@ -383,7 +383,7 @@
    "width": 2,
    "circuit": 9,
    "hop": 0.72285,
-   "ideal_hop": 0.7566664475962638,
+   "ideal_hop": 0.7566664475962639,
    "native_two_qubit": 6
   },
   {
@@ -391,7 +391,7 @@
    "width": 2,
    "circuit": 10,
    "hop": 0.81475,
-   "ideal_hop": 0.8540456962642575,
+   "ideal_hop": 0.8540456962642577,
    "native_two_qubit": 6
   },
   {
@@ -399,7 +399,295 @@
    "width": 2,
    "circuit": 11,
    "hop": 0.74075,
-   "ideal_hop": 0.792184469270516,
+   "ideal_hop": 0.7921844692705159,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 0,
+   "hop": 0.6527,
+   "ideal_hop": 0.6562254729449927,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 1,
+   "hop": 0.7347,
+   "ideal_hop": 0.7363921012521537,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 2,
+   "hop": 0.8644,
+   "ideal_hop": 0.8745596578463102,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 3,
+   "hop": 0.71665,
+   "ideal_hop": 0.7246962044001695,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 4,
+   "hop": 0.7865,
+   "ideal_hop": 0.7931297806612561,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 5,
+   "hop": 0.69205,
+   "ideal_hop": 0.7002148052139373,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 6,
+   "hop": 0.7573,
+   "ideal_hop": 0.759151817062526,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 7,
+   "hop": 0.66505,
+   "ideal_hop": 0.6712287496255505,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 8,
+   "hop": 0.7719,
+   "ideal_hop": 0.7746562390318765,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 9,
+   "hop": 0.7466,
+   "ideal_hop": 0.7566664475962639,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 10,
+   "hop": 0.8483,
+   "ideal_hop": 0.8540456962642577,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 2,
+   "circuit": 11,
+   "hop": 0.7835,
+   "ideal_hop": 0.7921844692705159,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 0,
+   "hop": 0.64975,
+   "ideal_hop": 0.6562254729449927,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 1,
+   "hop": 0.7271,
+   "ideal_hop": 0.7363921012521537,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 2,
+   "hop": 0.8493,
+   "ideal_hop": 0.8745596578463102,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 3,
+   "hop": 0.71005,
+   "ideal_hop": 0.7246962044001695,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 4,
+   "hop": 0.78115,
+   "ideal_hop": 0.7931297806612561,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 5,
+   "hop": 0.6816,
+   "ideal_hop": 0.7002148052139373,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 6,
+   "hop": 0.7531,
+   "ideal_hop": 0.759151817062526,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 7,
+   "hop": 0.6613,
+   "ideal_hop": 0.6712287496255505,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 8,
+   "hop": 0.7704,
+   "ideal_hop": 0.7746562390318765,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 9,
+   "hop": 0.7353,
+   "ideal_hop": 0.7566664475962639,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 10,
+   "hop": 0.845,
+   "ideal_hop": 0.8540456962642577,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 2,
+   "circuit": 11,
+   "hop": 0.77175,
+   "ideal_hop": 0.7921844692705159,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 0,
+   "hop": 0.65965,
+   "ideal_hop": 0.6562254729449927,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 1,
+   "hop": 0.69935,
+   "ideal_hop": 0.7363921012521537,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 2,
+   "hop": 0.85935,
+   "ideal_hop": 0.8745596578463102,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 3,
+   "hop": 0.71245,
+   "ideal_hop": 0.7246962044001695,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 4,
+   "hop": 0.8059,
+   "ideal_hop": 0.7931297806612561,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 5,
+   "hop": 0.6591,
+   "ideal_hop": 0.7002148052139373,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 6,
+   "hop": 0.7175,
+   "ideal_hop": 0.759151817062526,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 7,
+   "hop": 0.66265,
+   "ideal_hop": 0.6712287496255505,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 8,
+   "hop": 0.76575,
+   "ideal_hop": 0.7746562390318765,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 9,
+   "hop": 0.7435,
+   "ideal_hop": 0.7566664475962639,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 10,
+   "hop": 0.83445,
+   "ideal_hop": 0.8540456962642577,
+   "native_two_qubit": 6
+  },
+  {
+   "backend": "google_willow",
+   "width": 2,
+   "circuit": 11,
+   "hop": 0.7811,
+   "ideal_hop": 0.7921844692705159,
    "native_two_qubit": 6
   },
   {
@@ -407,7 +695,7 @@
    "width": 3,
    "circuit": 0,
    "hop": 0.91025,
-   "ideal_hop": 0.9104443877722949,
+   "ideal_hop": 0.9104443877722954,
    "native_two_qubit": 9
   },
   {
@@ -415,7 +703,7 @@
    "width": 3,
    "circuit": 1,
    "hop": 0.82175,
-   "ideal_hop": 0.8248989797452899,
+   "ideal_hop": 0.8248989797452898,
    "native_two_qubit": 9
   },
   {
@@ -423,7 +711,7 @@
    "width": 3,
    "circuit": 2,
    "hop": 0.8428,
-   "ideal_hop": 0.8443640783046505,
+   "ideal_hop": 0.8443640783046502,
    "native_two_qubit": 9
   },
   {
@@ -431,7 +719,7 @@
    "width": 3,
    "circuit": 3,
    "hop": 0.72885,
-   "ideal_hop": 0.7269094058232777,
+   "ideal_hop": 0.7269094058232782,
    "native_two_qubit": 9
   },
   {
@@ -447,7 +735,7 @@
    "width": 3,
    "circuit": 5,
    "hop": 0.7844,
-   "ideal_hop": 0.7893665533778226,
+   "ideal_hop": 0.7893665533778234,
    "native_two_qubit": 9
   },
   {
@@ -463,7 +751,7 @@
    "width": 3,
    "circuit": 7,
    "hop": 0.84905,
-   "ideal_hop": 0.8527321400998326,
+   "ideal_hop": 0.8527321400998322,
    "native_two_qubit": 9
   },
   {
@@ -471,7 +759,7 @@
    "width": 3,
    "circuit": 8,
    "hop": 0.73165,
-   "ideal_hop": 0.7367911172262716,
+   "ideal_hop": 0.7367911172262718,
    "native_two_qubit": 9
   },
   {
@@ -479,7 +767,7 @@
    "width": 3,
    "circuit": 9,
    "hop": 0.75585,
-   "ideal_hop": 0.7487471558241634,
+   "ideal_hop": 0.7487471558241638,
    "native_two_qubit": 9
   },
   {
@@ -487,7 +775,7 @@
    "width": 3,
    "circuit": 10,
    "hop": 0.8647,
-   "ideal_hop": 0.8664139083548186,
+   "ideal_hop": 0.8664139083548182,
    "native_two_qubit": 9
   },
   {
@@ -495,7 +783,7 @@
    "width": 3,
    "circuit": 11,
    "hop": 0.92575,
-   "ideal_hop": 0.9275416380749504,
+   "ideal_hop": 0.9275416380749497,
    "native_two_qubit": 9
   },
   {
@@ -503,7 +791,7 @@
    "width": 3,
    "circuit": 0,
    "hop": 0.88665,
-   "ideal_hop": 0.9104443877722949,
+   "ideal_hop": 0.9104443877722954,
    "native_two_qubit": 9
   },
   {
@@ -511,7 +799,7 @@
    "width": 3,
    "circuit": 1,
    "hop": 0.80635,
-   "ideal_hop": 0.8248989797452899,
+   "ideal_hop": 0.8248989797452898,
    "native_two_qubit": 9
   },
   {
@@ -519,7 +807,7 @@
    "width": 3,
    "circuit": 2,
    "hop": 0.81865,
-   "ideal_hop": 0.8443640783046505,
+   "ideal_hop": 0.8443640783046502,
    "native_two_qubit": 9
   },
   {
@@ -527,7 +815,7 @@
    "width": 3,
    "circuit": 3,
    "hop": 0.7161,
-   "ideal_hop": 0.7269094058232777,
+   "ideal_hop": 0.7269094058232782,
    "native_two_qubit": 9
   },
   {
@@ -543,7 +831,7 @@
    "width": 3,
    "circuit": 5,
    "hop": 0.766,
-   "ideal_hop": 0.7893665533778226,
+   "ideal_hop": 0.7893665533778234,
    "native_two_qubit": 9
   },
   {
@@ -559,7 +847,7 @@
    "width": 3,
    "circuit": 7,
    "hop": 0.82735,
-   "ideal_hop": 0.8527321400998326,
+   "ideal_hop": 0.8527321400998322,
    "native_two_qubit": 9
   },
   {
@@ -567,7 +855,7 @@
    "width": 3,
    "circuit": 8,
    "hop": 0.71685,
-   "ideal_hop": 0.7367911172262716,
+   "ideal_hop": 0.7367911172262718,
    "native_two_qubit": 9
   },
   {
@@ -575,7 +863,7 @@
    "width": 3,
    "circuit": 9,
    "hop": 0.74465,
-   "ideal_hop": 0.7487471558241634,
+   "ideal_hop": 0.7487471558241638,
    "native_two_qubit": 9
   },
   {
@@ -583,7 +871,7 @@
    "width": 3,
    "circuit": 10,
    "hop": 0.84685,
-   "ideal_hop": 0.8664139083548186,
+   "ideal_hop": 0.8664139083548182,
    "native_two_qubit": 9
   },
   {
@@ -591,7 +879,7 @@
    "width": 3,
    "circuit": 11,
    "hop": 0.90725,
-   "ideal_hop": 0.9275416380749504,
+   "ideal_hop": 0.9275416380749497,
    "native_two_qubit": 9
   },
   {
@@ -599,7 +887,7 @@
    "width": 3,
    "circuit": 0,
    "hop": 0.8121,
-   "ideal_hop": 0.9104443877722949,
+   "ideal_hop": 0.9104443877722954,
    "native_two_qubit": 9
   },
   {
@@ -607,7 +895,7 @@
    "width": 3,
    "circuit": 1,
    "hop": 0.76005,
-   "ideal_hop": 0.8248989797452899,
+   "ideal_hop": 0.8248989797452898,
    "native_two_qubit": 9
   },
   {
@@ -615,7 +903,7 @@
    "width": 3,
    "circuit": 2,
    "hop": 0.73865,
-   "ideal_hop": 0.8443640783046505,
+   "ideal_hop": 0.8443640783046502,
    "native_two_qubit": 9
   },
   {
@@ -623,7 +911,7 @@
    "width": 3,
    "circuit": 3,
    "hop": 0.66755,
-   "ideal_hop": 0.7269094058232777,
+   "ideal_hop": 0.7269094058232782,
    "native_two_qubit": 12
   },
   {
@@ -639,7 +927,7 @@
    "width": 3,
    "circuit": 5,
    "hop": 0.70305,
-   "ideal_hop": 0.7893665533778226,
+   "ideal_hop": 0.7893665533778234,
    "native_two_qubit": 9
   },
   {
@@ -655,7 +943,7 @@
    "width": 3,
    "circuit": 7,
    "hop": 0.7657,
-   "ideal_hop": 0.8527321400998326,
+   "ideal_hop": 0.8527321400998322,
    "native_two_qubit": 9
   },
   {
@@ -663,7 +951,7 @@
    "width": 3,
    "circuit": 8,
    "hop": 0.6781,
-   "ideal_hop": 0.7367911172262716,
+   "ideal_hop": 0.7367911172262718,
    "native_two_qubit": 9
   },
   {
@@ -671,7 +959,7 @@
    "width": 3,
    "circuit": 9,
    "hop": 0.69875,
-   "ideal_hop": 0.7487471558241634,
+   "ideal_hop": 0.7487471558241638,
    "native_two_qubit": 9
   },
   {
@@ -679,7 +967,7 @@
    "width": 3,
    "circuit": 10,
    "hop": 0.80545,
-   "ideal_hop": 0.8664139083548186,
+   "ideal_hop": 0.8664139083548182,
    "native_two_qubit": 9
   },
   {
@@ -687,7 +975,7 @@
    "width": 3,
    "circuit": 11,
    "hop": 0.8429,
-   "ideal_hop": 0.9275416380749504,
+   "ideal_hop": 0.9275416380749497,
    "native_two_qubit": 9
   },
   {
@@ -695,7 +983,7 @@
    "width": 3,
    "circuit": 0,
    "hop": 0.8463,
-   "ideal_hop": 0.9104443877722949,
+   "ideal_hop": 0.9104443877722954,
    "native_two_qubit": 9
   },
   {
@@ -703,7 +991,7 @@
    "width": 3,
    "circuit": 1,
    "hop": 0.77615,
-   "ideal_hop": 0.8248989797452899,
+   "ideal_hop": 0.8248989797452898,
    "native_two_qubit": 9
   },
   {
@@ -711,7 +999,7 @@
    "width": 3,
    "circuit": 2,
    "hop": 0.7665,
-   "ideal_hop": 0.8443640783046505,
+   "ideal_hop": 0.8443640783046502,
    "native_two_qubit": 9
   },
   {
@@ -719,7 +1007,7 @@
    "width": 3,
    "circuit": 3,
    "hop": 0.68415,
-   "ideal_hop": 0.7269094058232777,
+   "ideal_hop": 0.7269094058232782,
    "native_two_qubit": 12
   },
   {
@@ -735,7 +1023,7 @@
    "width": 3,
    "circuit": 5,
    "hop": 0.7285,
-   "ideal_hop": 0.7893665533778226,
+   "ideal_hop": 0.7893665533778234,
    "native_two_qubit": 9
   },
   {
@@ -751,7 +1039,7 @@
    "width": 3,
    "circuit": 7,
    "hop": 0.7889,
-   "ideal_hop": 0.8527321400998326,
+   "ideal_hop": 0.8527321400998322,
    "native_two_qubit": 9
   },
   {
@@ -759,7 +1047,7 @@
    "width": 3,
    "circuit": 8,
    "hop": 0.69675,
-   "ideal_hop": 0.7367911172262716,
+   "ideal_hop": 0.7367911172262718,
    "native_two_qubit": 9
   },
   {
@@ -767,7 +1055,7 @@
    "width": 3,
    "circuit": 9,
    "hop": 0.7179,
-   "ideal_hop": 0.7487471558241634,
+   "ideal_hop": 0.7487471558241638,
    "native_two_qubit": 9
   },
   {
@@ -775,7 +1063,7 @@
    "width": 3,
    "circuit": 10,
    "hop": 0.82405,
-   "ideal_hop": 0.8664139083548186,
+   "ideal_hop": 0.8664139083548182,
    "native_two_qubit": 9
   },
   {
@@ -783,7 +1071,295 @@
    "width": 3,
    "circuit": 11,
    "hop": 0.87645,
-   "ideal_hop": 0.9275416380749504,
+   "ideal_hop": 0.9275416380749497,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 0,
+   "hop": 0.9049,
+   "ideal_hop": 0.9104443877722954,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 1,
+   "hop": 0.81855,
+   "ideal_hop": 0.8248989797452898,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 2,
+   "hop": 0.8335,
+   "ideal_hop": 0.8443640783046502,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 3,
+   "hop": 0.7219,
+   "ideal_hop": 0.7269094058232782,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 4,
+   "hop": 1.0,
+   "ideal_hop": 1.0000000000000004,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 5,
+   "hop": 0.77825,
+   "ideal_hop": 0.7893665533778234,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 6,
+   "hop": 0.781,
+   "ideal_hop": 0.7917928283663832,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 7,
+   "hop": 0.8487,
+   "ideal_hop": 0.8527321400998322,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 8,
+   "hop": 0.72365,
+   "ideal_hop": 0.7367911172262718,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 9,
+   "hop": 0.7449,
+   "ideal_hop": 0.7487471558241638,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 10,
+   "hop": 0.8628,
+   "ideal_hop": 0.8664139083548182,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 3,
+   "circuit": 11,
+   "hop": 0.9175,
+   "ideal_hop": 0.9275416380749497,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 0,
+   "hop": 0.87965,
+   "ideal_hop": 0.9104443877722954,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 1,
+   "hop": 0.8108,
+   "ideal_hop": 0.8248989797452898,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 2,
+   "hop": 0.81275,
+   "ideal_hop": 0.8443640783046502,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 3,
+   "hop": 0.7109,
+   "ideal_hop": 0.7269094058232782,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 4,
+   "hop": 0.994,
+   "ideal_hop": 1.0000000000000004,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 5,
+   "hop": 0.76635,
+   "ideal_hop": 0.7893665533778234,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 6,
+   "hop": 0.7796,
+   "ideal_hop": 0.7917928283663832,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 7,
+   "hop": 0.83245,
+   "ideal_hop": 0.8527321400998322,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 8,
+   "hop": 0.71825,
+   "ideal_hop": 0.7367911172262718,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 9,
+   "hop": 0.7458,
+   "ideal_hop": 0.7487471558241638,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 10,
+   "hop": 0.8577,
+   "ideal_hop": 0.8664139083548182,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 3,
+   "circuit": 11,
+   "hop": 0.90405,
+   "ideal_hop": 0.9275416380749497,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 0,
+   "hop": 0.8951,
+   "ideal_hop": 0.9104443877722954,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 1,
+   "hop": 0.83145,
+   "ideal_hop": 0.8248989797452898,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 2,
+   "hop": 0.8499,
+   "ideal_hop": 0.8443640783046502,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 3,
+   "hop": 0.70255,
+   "ideal_hop": 0.7269094058232782,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 4,
+   "hop": 0.99785,
+   "ideal_hop": 1.0000000000000004,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 5,
+   "hop": 0.80985,
+   "ideal_hop": 0.7893665533778234,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 6,
+   "hop": 0.78395,
+   "ideal_hop": 0.7917928283663832,
+   "native_two_qubit": 12
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 7,
+   "hop": 0.8244,
+   "ideal_hop": 0.8527321400998322,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 8,
+   "hop": 0.69385,
+   "ideal_hop": 0.7367911172262718,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 9,
+   "hop": 0.76215,
+   "ideal_hop": 0.7487471558241638,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 10,
+   "hop": 0.8602,
+   "ideal_hop": 0.8664139083548182,
+   "native_two_qubit": 9
+  },
+  {
+   "backend": "google_willow",
+   "width": 3,
+   "circuit": 11,
+   "hop": 0.91665,
+   "ideal_hop": 0.9275416380749497,
    "native_two_qubit": 9
   },
   {
@@ -791,7 +1367,7 @@
    "width": 4,
    "circuit": 0,
    "hop": 0.8112,
-   "ideal_hop": 0.8116924464536268,
+   "ideal_hop": 0.811692446453627,
    "native_two_qubit": 24
   },
   {
@@ -799,7 +1375,7 @@
    "width": 4,
    "circuit": 1,
    "hop": 0.86235,
-   "ideal_hop": 0.8748871866202503,
+   "ideal_hop": 0.87488718662025,
    "native_two_qubit": 24
   },
   {
@@ -815,7 +1391,7 @@
    "width": 4,
    "circuit": 3,
    "hop": 0.9569,
-   "ideal_hop": 0.9624186314278225,
+   "ideal_hop": 0.9624186314278228,
    "native_two_qubit": 24
   },
   {
@@ -823,7 +1399,7 @@
    "width": 4,
    "circuit": 4,
    "hop": 0.8205,
-   "ideal_hop": 0.8272328171400243,
+   "ideal_hop": 0.8272328171400237,
    "native_two_qubit": 24
   },
   {
@@ -831,7 +1407,7 @@
    "width": 4,
    "circuit": 5,
    "hop": 0.78675,
-   "ideal_hop": 0.799306495544178,
+   "ideal_hop": 0.7993064955441785,
    "native_two_qubit": 24
   },
   {
@@ -839,7 +1415,7 @@
    "width": 4,
    "circuit": 6,
    "hop": 0.81365,
-   "ideal_hop": 0.81666650824901,
+   "ideal_hop": 0.8166665082490112,
    "native_two_qubit": 24
   },
   {
@@ -847,7 +1423,7 @@
    "width": 4,
    "circuit": 7,
    "hop": 0.83445,
-   "ideal_hop": 0.8418854452990385,
+   "ideal_hop": 0.8418854452990382,
    "native_two_qubit": 24
   },
   {
@@ -855,7 +1431,7 @@
    "width": 4,
    "circuit": 8,
    "hop": 0.8707,
-   "ideal_hop": 0.8809179611409321,
+   "ideal_hop": 0.8809179611409328,
    "native_two_qubit": 24
   },
   {
@@ -863,7 +1439,7 @@
    "width": 4,
    "circuit": 9,
    "hop": 0.8271,
-   "ideal_hop": 0.8352989517469157,
+   "ideal_hop": 0.8352989517469159,
    "native_two_qubit": 24
   },
   {
@@ -871,7 +1447,7 @@
    "width": 4,
    "circuit": 10,
    "hop": 0.8789,
-   "ideal_hop": 0.8868103635391595,
+   "ideal_hop": 0.886810363539159,
    "native_two_qubit": 24
   },
   {
@@ -879,7 +1455,7 @@
    "width": 4,
    "circuit": 11,
    "hop": 0.7596,
-   "ideal_hop": 0.7659577605252004,
+   "ideal_hop": 0.7659577605252009,
    "native_two_qubit": 24
   },
   {
@@ -887,7 +1463,7 @@
    "width": 4,
    "circuit": 0,
    "hop": 0.7748,
-   "ideal_hop": 0.8116924464536268,
+   "ideal_hop": 0.811692446453627,
    "native_two_qubit": 24
   },
   {
@@ -895,7 +1471,7 @@
    "width": 4,
    "circuit": 1,
    "hop": 0.8058,
-   "ideal_hop": 0.8748871866202503,
+   "ideal_hop": 0.87488718662025,
    "native_two_qubit": 24
   },
   {
@@ -911,7 +1487,7 @@
    "width": 4,
    "circuit": 3,
    "hop": 0.9152,
-   "ideal_hop": 0.9624186314278225,
+   "ideal_hop": 0.9624186314278228,
    "native_two_qubit": 24
   },
   {
@@ -919,7 +1495,7 @@
    "width": 4,
    "circuit": 4,
    "hop": 0.7821,
-   "ideal_hop": 0.8272328171400243,
+   "ideal_hop": 0.8272328171400237,
    "native_two_qubit": 24
   },
   {
@@ -927,7 +1503,7 @@
    "width": 4,
    "circuit": 5,
    "hop": 0.749,
-   "ideal_hop": 0.799306495544178,
+   "ideal_hop": 0.7993064955441785,
    "native_two_qubit": 24
   },
   {
@@ -935,7 +1511,7 @@
    "width": 4,
    "circuit": 6,
    "hop": 0.7769,
-   "ideal_hop": 0.81666650824901,
+   "ideal_hop": 0.8166665082490112,
    "native_two_qubit": 24
   },
   {
@@ -943,7 +1519,7 @@
    "width": 4,
    "circuit": 7,
    "hop": 0.7907,
-   "ideal_hop": 0.8418854452990385,
+   "ideal_hop": 0.8418854452990382,
    "native_two_qubit": 24
   },
   {
@@ -951,7 +1527,7 @@
    "width": 4,
    "circuit": 8,
    "hop": 0.82,
-   "ideal_hop": 0.8809179611409321,
+   "ideal_hop": 0.8809179611409328,
    "native_two_qubit": 24
   },
   {
@@ -959,7 +1535,7 @@
    "width": 4,
    "circuit": 9,
    "hop": 0.78385,
-   "ideal_hop": 0.8352989517469157,
+   "ideal_hop": 0.8352989517469159,
    "native_two_qubit": 24
   },
   {
@@ -967,7 +1543,7 @@
    "width": 4,
    "circuit": 10,
    "hop": 0.82375,
-   "ideal_hop": 0.8868103635391595,
+   "ideal_hop": 0.886810363539159,
    "native_two_qubit": 24
   },
   {
@@ -975,7 +1551,7 @@
    "width": 4,
    "circuit": 11,
    "hop": 0.7298,
-   "ideal_hop": 0.7659577605252004,
+   "ideal_hop": 0.7659577605252009,
    "native_two_qubit": 24
   },
   {
@@ -983,7 +1559,7 @@
    "width": 4,
    "circuit": 0,
    "hop": 0.6912,
-   "ideal_hop": 0.8116924464536268,
+   "ideal_hop": 0.811692446453627,
    "native_two_qubit": 27
   },
   {
@@ -991,7 +1567,7 @@
    "width": 4,
    "circuit": 1,
    "hop": 0.68675,
-   "ideal_hop": 0.8748871866202503,
+   "ideal_hop": 0.87488718662025,
    "native_two_qubit": 27
   },
   {
@@ -1007,7 +1583,7 @@
    "width": 4,
    "circuit": 3,
    "hop": 0.82365,
-   "ideal_hop": 0.9624186314278225,
+   "ideal_hop": 0.9624186314278228,
    "native_two_qubit": 24
   },
   {
@@ -1015,7 +1591,7 @@
    "width": 4,
    "circuit": 4,
    "hop": 0.69295,
-   "ideal_hop": 0.8272328171400243,
+   "ideal_hop": 0.8272328171400237,
    "native_two_qubit": 27
   },
   {
@@ -1023,7 +1599,7 @@
    "width": 4,
    "circuit": 5,
    "hop": 0.66795,
-   "ideal_hop": 0.799306495544178,
+   "ideal_hop": 0.7993064955441785,
    "native_two_qubit": 27
   },
   {
@@ -1031,7 +1607,7 @@
    "width": 4,
    "circuit": 6,
    "hop": 0.6923,
-   "ideal_hop": 0.81666650824901,
+   "ideal_hop": 0.8166665082490112,
    "native_two_qubit": 27
   },
   {
@@ -1039,7 +1615,7 @@
    "width": 4,
    "circuit": 7,
    "hop": 0.68645,
-   "ideal_hop": 0.8418854452990385,
+   "ideal_hop": 0.8418854452990382,
    "native_two_qubit": 27
   },
   {
@@ -1047,7 +1623,7 @@
    "width": 4,
    "circuit": 8,
    "hop": 0.7177,
-   "ideal_hop": 0.8809179611409321,
+   "ideal_hop": 0.8809179611409328,
    "native_two_qubit": 27
   },
   {
@@ -1055,7 +1631,7 @@
    "width": 4,
    "circuit": 9,
    "hop": 0.6955,
-   "ideal_hop": 0.8352989517469157,
+   "ideal_hop": 0.8352989517469159,
    "native_two_qubit": 24
   },
   {
@@ -1063,7 +1639,7 @@
    "width": 4,
    "circuit": 10,
    "hop": 0.69325,
-   "ideal_hop": 0.8868103635391595,
+   "ideal_hop": 0.886810363539159,
    "native_two_qubit": 27
   },
   {
@@ -1071,7 +1647,7 @@
    "width": 4,
    "circuit": 11,
    "hop": 0.65955,
-   "ideal_hop": 0.7659577605252004,
+   "ideal_hop": 0.7659577605252009,
    "native_two_qubit": 27
   },
   {
@@ -1079,7 +1655,7 @@
    "width": 4,
    "circuit": 0,
    "hop": 0.7364,
-   "ideal_hop": 0.8116924464536268,
+   "ideal_hop": 0.811692446453627,
    "native_two_qubit": 27
   },
   {
@@ -1087,7 +1663,7 @@
    "width": 4,
    "circuit": 1,
    "hop": 0.7391,
-   "ideal_hop": 0.8748871866202503,
+   "ideal_hop": 0.87488718662025,
    "native_two_qubit": 27
   },
   {
@@ -1103,7 +1679,7 @@
    "width": 4,
    "circuit": 3,
    "hop": 0.87225,
-   "ideal_hop": 0.9624186314278225,
+   "ideal_hop": 0.9624186314278228,
    "native_two_qubit": 24
   },
   {
@@ -1111,7 +1687,7 @@
    "width": 4,
    "circuit": 4,
    "hop": 0.73995,
-   "ideal_hop": 0.8272328171400243,
+   "ideal_hop": 0.8272328171400237,
    "native_two_qubit": 27
   },
   {
@@ -1119,7 +1695,7 @@
    "width": 4,
    "circuit": 5,
    "hop": 0.7069,
-   "ideal_hop": 0.799306495544178,
+   "ideal_hop": 0.7993064955441785,
    "native_two_qubit": 27
   },
   {
@@ -1127,7 +1703,7 @@
    "width": 4,
    "circuit": 6,
    "hop": 0.7348,
-   "ideal_hop": 0.81666650824901,
+   "ideal_hop": 0.8166665082490112,
    "native_two_qubit": 27
   },
   {
@@ -1135,7 +1711,7 @@
    "width": 4,
    "circuit": 7,
    "hop": 0.73945,
-   "ideal_hop": 0.8418854452990385,
+   "ideal_hop": 0.8418854452990382,
    "native_two_qubit": 27
   },
   {
@@ -1143,7 +1719,7 @@
    "width": 4,
    "circuit": 8,
    "hop": 0.773,
-   "ideal_hop": 0.8809179611409321,
+   "ideal_hop": 0.8809179611409328,
    "native_two_qubit": 27
   },
   {
@@ -1151,7 +1727,7 @@
    "width": 4,
    "circuit": 9,
    "hop": 0.7423,
-   "ideal_hop": 0.8352989517469157,
+   "ideal_hop": 0.8352989517469159,
    "native_two_qubit": 24
   },
   {
@@ -1159,7 +1735,7 @@
    "width": 4,
    "circuit": 10,
    "hop": 0.7539,
-   "ideal_hop": 0.8868103635391595,
+   "ideal_hop": 0.886810363539159,
    "native_two_qubit": 27
   },
   {
@@ -1167,7 +1743,295 @@
    "width": 4,
    "circuit": 11,
    "hop": 0.69625,
-   "ideal_hop": 0.7659577605252004,
+   "ideal_hop": 0.7659577605252009,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 0,
+   "hop": 0.79535,
+   "ideal_hop": 0.811692446453627,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 1,
+   "hop": 0.83635,
+   "ideal_hop": 0.87488718662025,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 2,
+   "hop": 0.83205,
+   "ideal_hop": 0.8450350110884465,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 3,
+   "hop": 0.9465,
+   "ideal_hop": 0.9624186314278228,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 4,
+   "hop": 0.80545,
+   "ideal_hop": 0.8272328171400237,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 5,
+   "hop": 0.77535,
+   "ideal_hop": 0.7993064955441785,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 6,
+   "hop": 0.8004,
+   "ideal_hop": 0.8166665082490112,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 7,
+   "hop": 0.8108,
+   "ideal_hop": 0.8418854452990382,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 8,
+   "hop": 0.84915,
+   "ideal_hop": 0.8809179611409328,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 9,
+   "hop": 0.8138,
+   "ideal_hop": 0.8352989517469159,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 10,
+   "hop": 0.85435,
+   "ideal_hop": 0.886810363539159,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 4,
+   "circuit": 11,
+   "hop": 0.7494,
+   "ideal_hop": 0.7659577605252009,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 0,
+   "hop": 0.78225,
+   "ideal_hop": 0.811692446453627,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 1,
+   "hop": 0.816,
+   "ideal_hop": 0.87488718662025,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 2,
+   "hop": 0.8206,
+   "ideal_hop": 0.8450350110884465,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 3,
+   "hop": 0.9187,
+   "ideal_hop": 0.9624186314278228,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 4,
+   "hop": 0.79065,
+   "ideal_hop": 0.8272328171400237,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 5,
+   "hop": 0.7526,
+   "ideal_hop": 0.7993064955441785,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 6,
+   "hop": 0.7825,
+   "ideal_hop": 0.8166665082490112,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 7,
+   "hop": 0.7999,
+   "ideal_hop": 0.8418854452990382,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 8,
+   "hop": 0.83025,
+   "ideal_hop": 0.8809179611409328,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 9,
+   "hop": 0.791,
+   "ideal_hop": 0.8352989517469159,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 10,
+   "hop": 0.82505,
+   "ideal_hop": 0.886810363539159,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 4,
+   "circuit": 11,
+   "hop": 0.7323,
+   "ideal_hop": 0.7659577605252009,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 0,
+   "hop": 0.82485,
+   "ideal_hop": 0.811692446453627,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 1,
+   "hop": 0.8282,
+   "ideal_hop": 0.87488718662025,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 2,
+   "hop": 0.7666,
+   "ideal_hop": 0.8450350110884465,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 3,
+   "hop": 0.93685,
+   "ideal_hop": 0.9624186314278228,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 4,
+   "hop": 0.807,
+   "ideal_hop": 0.8272328171400237,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 5,
+   "hop": 0.7509,
+   "ideal_hop": 0.7993064955441785,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 6,
+   "hop": 0.79485,
+   "ideal_hop": 0.8166665082490112,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 7,
+   "hop": 0.80615,
+   "ideal_hop": 0.8418854452990382,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 8,
+   "hop": 0.8329,
+   "ideal_hop": 0.8809179611409328,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 9,
+   "hop": 0.8069,
+   "ideal_hop": 0.8352989517469159,
+   "native_two_qubit": 24
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 10,
+   "hop": 0.80785,
+   "ideal_hop": 0.886810363539159,
+   "native_two_qubit": 27
+  },
+  {
+   "backend": "google_willow",
+   "width": 4,
+   "circuit": 11,
+   "hop": 0.7407,
+   "ideal_hop": 0.7659577605252009,
    "native_two_qubit": 27
   },
   {
@@ -1175,7 +2039,7 @@
    "width": 5,
    "circuit": 0,
    "hop": 0.83675,
-   "ideal_hop": 0.8490596942464627,
+   "ideal_hop": 0.8490596942464621,
    "native_two_qubit": 30
   },
   {
@@ -1183,7 +2047,7 @@
    "width": 5,
    "circuit": 1,
    "hop": 0.91665,
-   "ideal_hop": 0.9238850192316801,
+   "ideal_hop": 0.9238850192316799,
    "native_two_qubit": 30
   },
   {
@@ -1191,7 +2055,7 @@
    "width": 5,
    "circuit": 2,
    "hop": 0.76515,
-   "ideal_hop": 0.772170289568567,
+   "ideal_hop": 0.7721702895685666,
    "native_two_qubit": 30
   },
   {
@@ -1199,7 +2063,7 @@
    "width": 5,
    "circuit": 3,
    "hop": 0.85185,
-   "ideal_hop": 0.8612453032815944,
+   "ideal_hop": 0.8612453032815945,
    "native_two_qubit": 30
   },
   {
@@ -1207,7 +2071,7 @@
    "width": 5,
    "circuit": 4,
    "hop": 0.7877,
-   "ideal_hop": 0.8022959070323118,
+   "ideal_hop": 0.8022959070323115,
    "native_two_qubit": 30
   },
   {
@@ -1215,7 +2079,7 @@
    "width": 5,
    "circuit": 5,
    "hop": 0.8711,
-   "ideal_hop": 0.8816774308883008,
+   "ideal_hop": 0.8816774308883009,
    "native_two_qubit": 30
   },
   {
@@ -1223,7 +2087,7 @@
    "width": 5,
    "circuit": 6,
    "hop": 0.81565,
-   "ideal_hop": 0.8220745145699682,
+   "ideal_hop": 0.8220745145699683,
    "native_two_qubit": 30
   },
   {
@@ -1231,7 +2095,7 @@
    "width": 5,
    "circuit": 7,
    "hop": 0.83425,
-   "ideal_hop": 0.838420047688277,
+   "ideal_hop": 0.8384200476882765,
    "native_two_qubit": 30
   },
   {
@@ -1239,7 +2103,7 @@
    "width": 5,
    "circuit": 8,
    "hop": 0.8828,
-   "ideal_hop": 0.8942187058875121,
+   "ideal_hop": 0.8942187058875112,
    "native_two_qubit": 30
   },
   {
@@ -1247,7 +2111,7 @@
    "width": 5,
    "circuit": 9,
    "hop": 0.8494,
-   "ideal_hop": 0.8565717730094121,
+   "ideal_hop": 0.8565717730094125,
    "native_two_qubit": 30
   },
   {
@@ -1255,7 +2119,7 @@
    "width": 5,
    "circuit": 10,
    "hop": 0.82535,
-   "ideal_hop": 0.8336876945518092,
+   "ideal_hop": 0.8336876945518101,
    "native_two_qubit": 30
   },
   {
@@ -1263,7 +2127,7 @@
    "width": 5,
    "circuit": 11,
    "hop": 0.9171,
-   "ideal_hop": 0.9285302311491097,
+   "ideal_hop": 0.92853023114911,
    "native_two_qubit": 30
   },
   {
@@ -1271,7 +2135,7 @@
    "width": 5,
    "circuit": 0,
    "hop": 0.78785,
-   "ideal_hop": 0.8490596942464627,
+   "ideal_hop": 0.8490596942464621,
    "native_two_qubit": 30
   },
   {
@@ -1279,7 +2143,7 @@
    "width": 5,
    "circuit": 1,
    "hop": 0.8598,
-   "ideal_hop": 0.9238850192316801,
+   "ideal_hop": 0.9238850192316799,
    "native_two_qubit": 30
   },
   {
@@ -1287,7 +2151,7 @@
    "width": 5,
    "circuit": 2,
    "hop": 0.71885,
-   "ideal_hop": 0.772170289568567,
+   "ideal_hop": 0.7721702895685666,
    "native_two_qubit": 30
   },
   {
@@ -1295,7 +2159,7 @@
    "width": 5,
    "circuit": 3,
    "hop": 0.8046,
-   "ideal_hop": 0.8612453032815944,
+   "ideal_hop": 0.8612453032815945,
    "native_two_qubit": 30
   },
   {
@@ -1303,7 +2167,7 @@
    "width": 5,
    "circuit": 4,
    "hop": 0.7358,
-   "ideal_hop": 0.8022959070323118,
+   "ideal_hop": 0.8022959070323115,
    "native_two_qubit": 30
   },
   {
@@ -1311,7 +2175,7 @@
    "width": 5,
    "circuit": 5,
    "hop": 0.81775,
-   "ideal_hop": 0.8816774308883008,
+   "ideal_hop": 0.8816774308883009,
    "native_two_qubit": 30
   },
   {
@@ -1319,7 +2183,7 @@
    "width": 5,
    "circuit": 6,
    "hop": 0.77105,
-   "ideal_hop": 0.8220745145699682,
+   "ideal_hop": 0.8220745145699683,
    "native_two_qubit": 30
   },
   {
@@ -1327,7 +2191,7 @@
    "width": 5,
    "circuit": 7,
    "hop": 0.78235,
-   "ideal_hop": 0.838420047688277,
+   "ideal_hop": 0.8384200476882765,
    "native_two_qubit": 30
   },
   {
@@ -1335,7 +2199,7 @@
    "width": 5,
    "circuit": 8,
    "hop": 0.8377,
-   "ideal_hop": 0.8942187058875121,
+   "ideal_hop": 0.8942187058875112,
    "native_two_qubit": 30
   },
   {
@@ -1343,7 +2207,7 @@
    "width": 5,
    "circuit": 9,
    "hop": 0.8014,
-   "ideal_hop": 0.8565717730094121,
+   "ideal_hop": 0.8565717730094125,
    "native_two_qubit": 30
   },
   {
@@ -1351,7 +2215,7 @@
    "width": 5,
    "circuit": 10,
    "hop": 0.775,
-   "ideal_hop": 0.8336876945518092,
+   "ideal_hop": 0.8336876945518101,
    "native_two_qubit": 30
   },
   {
@@ -1359,7 +2223,7 @@
    "width": 5,
    "circuit": 11,
    "hop": 0.8741,
-   "ideal_hop": 0.9285302311491097,
+   "ideal_hop": 0.92853023114911,
    "native_two_qubit": 30
   },
   {
@@ -1367,7 +2231,7 @@
    "width": 5,
    "circuit": 0,
    "hop": 0.66315,
-   "ideal_hop": 0.8490596942464627,
+   "ideal_hop": 0.8490596942464621,
    "native_two_qubit": 33
   },
   {
@@ -1375,7 +2239,7 @@
    "width": 5,
    "circuit": 1,
    "hop": 0.7277,
-   "ideal_hop": 0.9238850192316801,
+   "ideal_hop": 0.9238850192316799,
    "native_two_qubit": 33
   },
   {
@@ -1383,7 +2247,7 @@
    "width": 5,
    "circuit": 2,
    "hop": 0.63115,
-   "ideal_hop": 0.772170289568567,
+   "ideal_hop": 0.7721702895685666,
    "native_two_qubit": 33
   },
   {
@@ -1391,7 +2255,7 @@
    "width": 5,
    "circuit": 3,
    "hop": 0.64845,
-   "ideal_hop": 0.8612453032815944,
+   "ideal_hop": 0.8612453032815945,
    "native_two_qubit": 36
   },
   {
@@ -1399,7 +2263,7 @@
    "width": 5,
    "circuit": 4,
    "hop": 0.6177,
-   "ideal_hop": 0.8022959070323118,
+   "ideal_hop": 0.8022959070323115,
    "native_two_qubit": 33
   },
   {
@@ -1407,7 +2271,7 @@
    "width": 5,
    "circuit": 5,
    "hop": 0.72085,
-   "ideal_hop": 0.8816774308883008,
+   "ideal_hop": 0.8816774308883009,
    "native_two_qubit": 30
   },
   {
@@ -1415,7 +2279,7 @@
    "width": 5,
    "circuit": 6,
    "hop": 0.6649,
-   "ideal_hop": 0.8220745145699682,
+   "ideal_hop": 0.8220745145699683,
    "native_two_qubit": 36
   },
   {
@@ -1423,7 +2287,7 @@
    "width": 5,
    "circuit": 7,
    "hop": 0.66035,
-   "ideal_hop": 0.838420047688277,
+   "ideal_hop": 0.8384200476882765,
    "native_two_qubit": 36
   },
   {
@@ -1431,7 +2295,7 @@
    "width": 5,
    "circuit": 8,
    "hop": 0.73355,
-   "ideal_hop": 0.8942187058875121,
+   "ideal_hop": 0.8942187058875112,
    "native_two_qubit": 33
   },
   {
@@ -1439,7 +2303,7 @@
    "width": 5,
    "circuit": 9,
    "hop": 0.6775,
-   "ideal_hop": 0.8565717730094121,
+   "ideal_hop": 0.8565717730094125,
    "native_two_qubit": 36
   },
   {
@@ -1447,7 +2311,7 @@
    "width": 5,
    "circuit": 10,
    "hop": 0.6355,
-   "ideal_hop": 0.8336876945518092,
+   "ideal_hop": 0.8336876945518101,
    "native_two_qubit": 36
   },
   {
@@ -1455,7 +2319,7 @@
    "width": 5,
    "circuit": 11,
    "hop": 0.76525,
-   "ideal_hop": 0.9285302311491097,
+   "ideal_hop": 0.92853023114911,
    "native_two_qubit": 33
   },
   {
@@ -1463,7 +2327,7 @@
    "width": 5,
    "circuit": 0,
    "hop": 0.71955,
-   "ideal_hop": 0.8490596942464627,
+   "ideal_hop": 0.8490596942464621,
    "native_two_qubit": 33
   },
   {
@@ -1471,7 +2335,7 @@
    "width": 5,
    "circuit": 1,
    "hop": 0.7964,
-   "ideal_hop": 0.9238850192316801,
+   "ideal_hop": 0.9238850192316799,
    "native_two_qubit": 33
   },
   {
@@ -1479,7 +2343,7 @@
    "width": 5,
    "circuit": 2,
    "hop": 0.67275,
-   "ideal_hop": 0.772170289568567,
+   "ideal_hop": 0.7721702895685666,
    "native_two_qubit": 33
   },
   {
@@ -1487,7 +2351,7 @@
    "width": 5,
    "circuit": 3,
    "hop": 0.70345,
-   "ideal_hop": 0.8612453032815944,
+   "ideal_hop": 0.8612453032815945,
    "native_two_qubit": 36
   },
   {
@@ -1495,7 +2359,7 @@
    "width": 5,
    "circuit": 4,
    "hop": 0.6802,
-   "ideal_hop": 0.8022959070323118,
+   "ideal_hop": 0.8022959070323115,
    "native_two_qubit": 33
   },
   {
@@ -1503,7 +2367,7 @@
    "width": 5,
    "circuit": 5,
    "hop": 0.77325,
-   "ideal_hop": 0.8816774308883008,
+   "ideal_hop": 0.8816774308883009,
    "native_two_qubit": 30
   },
   {
@@ -1511,7 +2375,7 @@
    "width": 5,
    "circuit": 6,
    "hop": 0.7117,
-   "ideal_hop": 0.8220745145699682,
+   "ideal_hop": 0.8220745145699683,
    "native_two_qubit": 36
   },
   {
@@ -1519,7 +2383,7 @@
    "width": 5,
    "circuit": 7,
    "hop": 0.71815,
-   "ideal_hop": 0.838420047688277,
+   "ideal_hop": 0.8384200476882765,
    "native_two_qubit": 36
   },
   {
@@ -1527,7 +2391,7 @@
    "width": 5,
    "circuit": 8,
    "hop": 0.76465,
-   "ideal_hop": 0.8942187058875121,
+   "ideal_hop": 0.8942187058875112,
    "native_two_qubit": 33
   },
   {
@@ -1535,7 +2399,7 @@
    "width": 5,
    "circuit": 9,
    "hop": 0.7247,
-   "ideal_hop": 0.8565717730094121,
+   "ideal_hop": 0.8565717730094125,
    "native_two_qubit": 36
   },
   {
@@ -1543,7 +2407,7 @@
    "width": 5,
    "circuit": 10,
    "hop": 0.71745,
-   "ideal_hop": 0.8336876945518092,
+   "ideal_hop": 0.8336876945518101,
    "native_two_qubit": 33
   },
   {
@@ -1551,7 +2415,295 @@
    "width": 5,
    "circuit": 11,
    "hop": 0.8234,
-   "ideal_hop": 0.9285302311491097,
+   "ideal_hop": 0.92853023114911,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 0,
+   "hop": 0.8201,
+   "ideal_hop": 0.8490596942464621,
+   "native_two_qubit": 39
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 1,
+   "hop": 0.89465,
+   "ideal_hop": 0.9238850192316799,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 2,
+   "hop": 0.7462,
+   "ideal_hop": 0.7721702895685666,
+   "native_two_qubit": 42
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 3,
+   "hop": 0.8296,
+   "ideal_hop": 0.8612453032815945,
+   "native_two_qubit": 39
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 4,
+   "hop": 0.77785,
+   "ideal_hop": 0.8022959070323115,
+   "native_two_qubit": 39
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 5,
+   "hop": 0.8598,
+   "ideal_hop": 0.8816774308883009,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 6,
+   "hop": 0.79665,
+   "ideal_hop": 0.8220745145699683,
+   "native_two_qubit": 42
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 7,
+   "hop": 0.81695,
+   "ideal_hop": 0.8384200476882765,
+   "native_two_qubit": 39
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 8,
+   "hop": 0.87445,
+   "ideal_hop": 0.8942187058875112,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 9,
+   "hop": 0.83385,
+   "ideal_hop": 0.8565717730094125,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 10,
+   "hop": 0.8115,
+   "ideal_hop": 0.8336876945518101,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 5,
+   "circuit": 11,
+   "hop": 0.90765,
+   "ideal_hop": 0.92853023114911,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 0,
+   "hop": 0.7898,
+   "ideal_hop": 0.8490596942464621,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 1,
+   "hop": 0.87725,
+   "ideal_hop": 0.9238850192316799,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 2,
+   "hop": 0.7265,
+   "ideal_hop": 0.7721702895685666,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 3,
+   "hop": 0.80565,
+   "ideal_hop": 0.8612453032815945,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 4,
+   "hop": 0.73895,
+   "ideal_hop": 0.8022959070323115,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 5,
+   "hop": 0.8321,
+   "ideal_hop": 0.8816774308883009,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 6,
+   "hop": 0.7703,
+   "ideal_hop": 0.8220745145699683,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 7,
+   "hop": 0.78865,
+   "ideal_hop": 0.8384200476882765,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 8,
+   "hop": 0.8358,
+   "ideal_hop": 0.8942187058875112,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 9,
+   "hop": 0.80305,
+   "ideal_hop": 0.8565717730094125,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 10,
+   "hop": 0.77435,
+   "ideal_hop": 0.8336876945518101,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 5,
+   "circuit": 11,
+   "hop": 0.8825,
+   "ideal_hop": 0.92853023114911,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 0,
+   "hop": 0.7996,
+   "ideal_hop": 0.8490596942464621,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 1,
+   "hop": 0.88955,
+   "ideal_hop": 0.9238850192316799,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 2,
+   "hop": 0.72055,
+   "ideal_hop": 0.7721702895685666,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 3,
+   "hop": 0.814,
+   "ideal_hop": 0.8612453032815945,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 4,
+   "hop": 0.76705,
+   "ideal_hop": 0.8022959070323115,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 5,
+   "hop": 0.842,
+   "ideal_hop": 0.8816774308883009,
+   "native_two_qubit": 30
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 6,
+   "hop": 0.7906,
+   "ideal_hop": 0.8220745145699683,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 7,
+   "hop": 0.78675,
+   "ideal_hop": 0.8384200476882765,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 8,
+   "hop": 0.86675,
+   "ideal_hop": 0.8942187058875112,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 9,
+   "hop": 0.806,
+   "ideal_hop": 0.8565717730094125,
+   "native_two_qubit": 36
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 10,
+   "hop": 0.79235,
+   "ideal_hop": 0.8336876945518101,
+   "native_two_qubit": 33
+  },
+  {
+   "backend": "google_willow",
+   "width": 5,
+   "circuit": 11,
+   "hop": 0.8803,
+   "ideal_hop": 0.92853023114911,
    "native_two_qubit": 33
   },
   {
@@ -1559,7 +2711,7 @@
    "width": 6,
    "circuit": 0,
    "hop": 0.8694,
-   "ideal_hop": 0.8864947006310154,
+   "ideal_hop": 0.8864947006310148,
    "native_two_qubit": 54
   },
   {
@@ -1567,7 +2719,7 @@
    "width": 6,
    "circuit": 1,
    "hop": 0.84155,
-   "ideal_hop": 0.857458493046524,
+   "ideal_hop": 0.8574584930465243,
    "native_two_qubit": 54
   },
   {
@@ -1575,7 +2727,7 @@
    "width": 6,
    "circuit": 2,
    "hop": 0.835,
-   "ideal_hop": 0.8598801836486981,
+   "ideal_hop": 0.8598801836486969,
    "native_two_qubit": 54
   },
   {
@@ -1583,7 +2735,7 @@
    "width": 6,
    "circuit": 3,
    "hop": 0.8303,
-   "ideal_hop": 0.8488441742311273,
+   "ideal_hop": 0.8488441742311276,
    "native_two_qubit": 54
   },
   {
@@ -1591,7 +2743,7 @@
    "width": 6,
    "circuit": 4,
    "hop": 0.84615,
-   "ideal_hop": 0.8605929949891247,
+   "ideal_hop": 0.8605929949891243,
    "native_two_qubit": 54
   },
   {
@@ -1615,7 +2767,7 @@
    "width": 6,
    "circuit": 7,
    "hop": 0.8666,
-   "ideal_hop": 0.883932252094724,
+   "ideal_hop": 0.8839322520947255,
    "native_two_qubit": 54
   },
   {
@@ -1623,7 +2775,7 @@
    "width": 6,
    "circuit": 8,
    "hop": 0.8369,
-   "ideal_hop": 0.8536849369207598,
+   "ideal_hop": 0.8536849369207612,
    "native_two_qubit": 54
   },
   {
@@ -1631,7 +2783,7 @@
    "width": 6,
    "circuit": 9,
    "hop": 0.82215,
-   "ideal_hop": 0.8351265558342764,
+   "ideal_hop": 0.8351265558342776,
    "native_two_qubit": 54
   },
   {
@@ -1639,7 +2791,7 @@
    "width": 6,
    "circuit": 10,
    "hop": 0.8377,
-   "ideal_hop": 0.8514780414335608,
+   "ideal_hop": 0.8514780414335614,
    "native_two_qubit": 54
   },
   {
@@ -1647,7 +2799,7 @@
    "width": 6,
    "circuit": 11,
    "hop": 0.8277,
-   "ideal_hop": 0.8471127017640889,
+   "ideal_hop": 0.8471127017640886,
    "native_two_qubit": 54
   },
   {
@@ -1655,7 +2807,7 @@
    "width": 6,
    "circuit": 0,
    "hop": 0.7755,
-   "ideal_hop": 0.8864947006310154,
+   "ideal_hop": 0.8864947006310148,
    "native_two_qubit": 54
   },
   {
@@ -1663,7 +2815,7 @@
    "width": 6,
    "circuit": 1,
    "hop": 0.753,
-   "ideal_hop": 0.857458493046524,
+   "ideal_hop": 0.8574584930465243,
    "native_two_qubit": 54
   },
   {
@@ -1671,7 +2823,7 @@
    "width": 6,
    "circuit": 2,
    "hop": 0.74325,
-   "ideal_hop": 0.8598801836486981,
+   "ideal_hop": 0.8598801836486969,
    "native_two_qubit": 54
   },
   {
@@ -1679,7 +2831,7 @@
    "width": 6,
    "circuit": 3,
    "hop": 0.74005,
-   "ideal_hop": 0.8488441742311273,
+   "ideal_hop": 0.8488441742311276,
    "native_two_qubit": 54
   },
   {
@@ -1687,7 +2839,7 @@
    "width": 6,
    "circuit": 4,
    "hop": 0.76485,
-   "ideal_hop": 0.8605929949891247,
+   "ideal_hop": 0.8605929949891243,
    "native_two_qubit": 54
   },
   {
@@ -1711,7 +2863,7 @@
    "width": 6,
    "circuit": 7,
    "hop": 0.7767,
-   "ideal_hop": 0.883932252094724,
+   "ideal_hop": 0.8839322520947255,
    "native_two_qubit": 54
   },
   {
@@ -1719,7 +2871,7 @@
    "width": 6,
    "circuit": 8,
    "hop": 0.73775,
-   "ideal_hop": 0.8536849369207598,
+   "ideal_hop": 0.8536849369207612,
    "native_two_qubit": 54
   },
   {
@@ -1727,7 +2879,7 @@
    "width": 6,
    "circuit": 9,
    "hop": 0.74345,
-   "ideal_hop": 0.8351265558342764,
+   "ideal_hop": 0.8351265558342776,
    "native_two_qubit": 54
   },
   {
@@ -1735,7 +2887,7 @@
    "width": 6,
    "circuit": 10,
    "hop": 0.75395,
-   "ideal_hop": 0.8514780414335608,
+   "ideal_hop": 0.8514780414335614,
    "native_two_qubit": 54
   },
   {
@@ -1743,7 +2895,7 @@
    "width": 6,
    "circuit": 11,
    "hop": 0.73605,
-   "ideal_hop": 0.8471127017640889,
+   "ideal_hop": 0.8471127017640886,
    "native_two_qubit": 54
   },
   {
@@ -1751,7 +2903,7 @@
    "width": 6,
    "circuit": 0,
    "hop": 0.6235,
-   "ideal_hop": 0.8864947006310154,
+   "ideal_hop": 0.8864947006310148,
    "native_two_qubit": 69
   },
   {
@@ -1759,7 +2911,7 @@
    "width": 6,
    "circuit": 1,
    "hop": 0.59995,
-   "ideal_hop": 0.857458493046524,
+   "ideal_hop": 0.8574584930465243,
    "native_two_qubit": 66
   },
   {
@@ -1767,7 +2919,7 @@
    "width": 6,
    "circuit": 2,
    "hop": 0.61925,
-   "ideal_hop": 0.8598801836486981,
+   "ideal_hop": 0.8598801836486969,
    "native_two_qubit": 60
   },
   {
@@ -1775,7 +2927,7 @@
    "width": 6,
    "circuit": 3,
    "hop": 0.5983,
-   "ideal_hop": 0.8488441742311273,
+   "ideal_hop": 0.8488441742311276,
    "native_two_qubit": 63
   },
   {
@@ -1783,7 +2935,7 @@
    "width": 6,
    "circuit": 4,
    "hop": 0.6297,
-   "ideal_hop": 0.8605929949891247,
+   "ideal_hop": 0.8605929949891243,
    "native_two_qubit": 66
   },
   {
@@ -1807,7 +2959,7 @@
    "width": 6,
    "circuit": 7,
    "hop": 0.6497,
-   "ideal_hop": 0.883932252094724,
+   "ideal_hop": 0.8839322520947255,
    "native_two_qubit": 60
   },
   {
@@ -1815,7 +2967,7 @@
    "width": 6,
    "circuit": 8,
    "hop": 0.5912,
-   "ideal_hop": 0.8536849369207598,
+   "ideal_hop": 0.8536849369207612,
    "native_two_qubit": 66
   },
   {
@@ -1823,7 +2975,7 @@
    "width": 6,
    "circuit": 9,
    "hop": 0.6253,
-   "ideal_hop": 0.8351265558342764,
+   "ideal_hop": 0.8351265558342776,
    "native_two_qubit": 60
   },
   {
@@ -1831,7 +2983,7 @@
    "width": 6,
    "circuit": 10,
    "hop": 0.63345,
-   "ideal_hop": 0.8514780414335608,
+   "ideal_hop": 0.8514780414335614,
    "native_two_qubit": 54
   },
   {
@@ -1839,7 +2991,7 @@
    "width": 6,
    "circuit": 11,
    "hop": 0.58055,
-   "ideal_hop": 0.8471127017640889,
+   "ideal_hop": 0.8471127017640886,
    "native_two_qubit": 66
   },
   {
@@ -1847,7 +2999,7 @@
    "width": 6,
    "circuit": 0,
    "hop": 0.69085,
-   "ideal_hop": 0.8864947006310154,
+   "ideal_hop": 0.8864947006310148,
    "native_two_qubit": 72
   },
   {
@@ -1855,7 +3007,7 @@
    "width": 6,
    "circuit": 1,
    "hop": 0.7016,
-   "ideal_hop": 0.857458493046524,
+   "ideal_hop": 0.8574584930465243,
    "native_two_qubit": 60
   },
   {
@@ -1863,7 +3015,7 @@
    "width": 6,
    "circuit": 2,
    "hop": 0.68185,
-   "ideal_hop": 0.8598801836486981,
+   "ideal_hop": 0.8598801836486969,
    "native_two_qubit": 60
   },
   {
@@ -1871,7 +3023,7 @@
    "width": 6,
    "circuit": 3,
    "hop": 0.65885,
-   "ideal_hop": 0.8488441742311273,
+   "ideal_hop": 0.8488441742311276,
    "native_two_qubit": 63
   },
   {
@@ -1879,7 +3031,7 @@
    "width": 6,
    "circuit": 4,
    "hop": 0.6634,
-   "ideal_hop": 0.8605929949891247,
+   "ideal_hop": 0.8605929949891243,
    "native_two_qubit": 66
   },
   {
@@ -1903,7 +3055,7 @@
    "width": 6,
    "circuit": 7,
    "hop": 0.7161,
-   "ideal_hop": 0.883932252094724,
+   "ideal_hop": 0.8839322520947255,
    "native_two_qubit": 60
   },
   {
@@ -1911,7 +3063,7 @@
    "width": 6,
    "circuit": 8,
    "hop": 0.6586,
-   "ideal_hop": 0.8536849369207598,
+   "ideal_hop": 0.8536849369207612,
    "native_two_qubit": 66
   },
   {
@@ -1919,7 +3071,7 @@
    "width": 6,
    "circuit": 9,
    "hop": 0.67635,
-   "ideal_hop": 0.8351265558342764,
+   "ideal_hop": 0.8351265558342776,
    "native_two_qubit": 60
   },
   {
@@ -1927,7 +3079,7 @@
    "width": 6,
    "circuit": 10,
    "hop": 0.69715,
-   "ideal_hop": 0.8514780414335608,
+   "ideal_hop": 0.8514780414335614,
    "native_two_qubit": 54
   },
   {
@@ -1935,7 +3087,295 @@
    "width": 6,
    "circuit": 11,
    "hop": 0.6588,
-   "ideal_hop": 0.8471127017640889,
+   "ideal_hop": 0.8471127017640886,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 0,
+   "hop": 0.83005,
+   "ideal_hop": 0.8864947006310148,
+   "native_two_qubit": 84
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 1,
+   "hop": 0.8093,
+   "ideal_hop": 0.8574584930465243,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 2,
+   "hop": 0.80435,
+   "ideal_hop": 0.8598801836486969,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 3,
+   "hop": 0.7893,
+   "ideal_hop": 0.8488441742311276,
+   "native_two_qubit": 84
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 4,
+   "hop": 0.8166,
+   "ideal_hop": 0.8605929949891243,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 5,
+   "hop": 0.73415,
+   "ideal_hop": 0.773723845445099,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 6,
+   "hop": 0.78765,
+   "ideal_hop": 0.8581391186896545,
+   "native_two_qubit": 87
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 7,
+   "hop": 0.83545,
+   "ideal_hop": 0.8839322520947255,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 8,
+   "hop": 0.7978,
+   "ideal_hop": 0.8536849369207612,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 9,
+   "hop": 0.7881,
+   "ideal_hop": 0.8351265558342776,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 10,
+   "hop": 0.80535,
+   "ideal_hop": 0.8514780414335614,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 6,
+   "circuit": 11,
+   "hop": 0.78675,
+   "ideal_hop": 0.8471127017640886,
+   "native_two_qubit": 87
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 0,
+   "hop": 0.80305,
+   "ideal_hop": 0.8864947006310148,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 1,
+   "hop": 0.77585,
+   "ideal_hop": 0.8574584930465243,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 2,
+   "hop": 0.75525,
+   "ideal_hop": 0.8598801836486969,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 3,
+   "hop": 0.75135,
+   "ideal_hop": 0.8488441742311276,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 4,
+   "hop": 0.7817,
+   "ideal_hop": 0.8605929949891243,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 5,
+   "hop": 0.7077,
+   "ideal_hop": 0.773723845445099,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 6,
+   "hop": 0.7547,
+   "ideal_hop": 0.8581391186896545,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 7,
+   "hop": 0.8122,
+   "ideal_hop": 0.8839322520947255,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 8,
+   "hop": 0.74455,
+   "ideal_hop": 0.8536849369207612,
+   "native_two_qubit": 72
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 9,
+   "hop": 0.76225,
+   "ideal_hop": 0.8351265558342776,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 10,
+   "hop": 0.773,
+   "ideal_hop": 0.8514780414335614,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 6,
+   "circuit": 11,
+   "hop": 0.75165,
+   "ideal_hop": 0.8471127017640886,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 0,
+   "hop": 0.78765,
+   "ideal_hop": 0.8864947006310148,
+   "native_two_qubit": 72
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 1,
+   "hop": 0.78715,
+   "ideal_hop": 0.8574584930465243,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 2,
+   "hop": 0.78875,
+   "ideal_hop": 0.8598801836486969,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 3,
+   "hop": 0.748,
+   "ideal_hop": 0.8488441742311276,
+   "native_two_qubit": 72
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 4,
+   "hop": 0.7888,
+   "ideal_hop": 0.8605929949891243,
+   "native_two_qubit": 66
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 5,
+   "hop": 0.712,
+   "ideal_hop": 0.773723845445099,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 6,
+   "hop": 0.7629,
+   "ideal_hop": 0.8581391186896545,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 7,
+   "hop": 0.8049,
+   "ideal_hop": 0.8839322520947255,
+   "native_two_qubit": 60
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 8,
+   "hop": 0.7586,
+   "ideal_hop": 0.8536849369207612,
+   "native_two_qubit": 69
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 9,
+   "hop": 0.7514,
+   "ideal_hop": 0.8351265558342776,
+   "native_two_qubit": 63
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 10,
+   "hop": 0.78855,
+   "ideal_hop": 0.8514780414335614,
+   "native_two_qubit": 54
+  },
+  {
+   "backend": "google_willow",
+   "width": 6,
+   "circuit": 11,
+   "hop": 0.7519,
+   "ideal_hop": 0.8471127017640886,
    "native_two_qubit": 66
   },
   {
@@ -1943,7 +3383,7 @@
    "width": 7,
    "circuit": 0,
    "hop": 0.83435,
-   "ideal_hop": 0.861252005207888,
+   "ideal_hop": 0.8612520052078871,
    "native_two_qubit": 63
   },
   {
@@ -1951,7 +3391,7 @@
    "width": 7,
    "circuit": 1,
    "hop": 0.8234,
-   "ideal_hop": 0.844935997269856,
+   "ideal_hop": 0.8449359972698574,
    "native_two_qubit": 63
   },
   {
@@ -1959,7 +3399,7 @@
    "width": 7,
    "circuit": 2,
    "hop": 0.8285,
-   "ideal_hop": 0.8460059112251582,
+   "ideal_hop": 0.8460059112251592,
    "native_two_qubit": 63
   },
   {
@@ -1967,7 +3407,7 @@
    "width": 7,
    "circuit": 3,
    "hop": 0.85575,
-   "ideal_hop": 0.8772885024857077,
+   "ideal_hop": 0.8772885024857087,
    "native_two_qubit": 63
   },
   {
@@ -1975,7 +3415,7 @@
    "width": 7,
    "circuit": 4,
    "hop": 0.82525,
-   "ideal_hop": 0.8469200363368505,
+   "ideal_hop": 0.8469200363368493,
    "native_two_qubit": 63
   },
   {
@@ -1983,7 +3423,7 @@
    "width": 7,
    "circuit": 5,
    "hop": 0.859,
-   "ideal_hop": 0.8787615184602706,
+   "ideal_hop": 0.8787615184602703,
    "native_two_qubit": 63
   },
   {
@@ -1991,7 +3431,7 @@
    "width": 7,
    "circuit": 6,
    "hop": 0.84845,
-   "ideal_hop": 0.8699265278274785,
+   "ideal_hop": 0.8699265278274787,
    "native_two_qubit": 63
   },
   {
@@ -1999,7 +3439,7 @@
    "width": 7,
    "circuit": 7,
    "hop": 0.84775,
-   "ideal_hop": 0.8634767135569462,
+   "ideal_hop": 0.8634767135569466,
    "native_two_qubit": 63
   },
   {
@@ -2007,7 +3447,7 @@
    "width": 7,
    "circuit": 8,
    "hop": 0.84875,
-   "ideal_hop": 0.8620103879624889,
+   "ideal_hop": 0.8620103879624871,
    "native_two_qubit": 63
   },
   {
@@ -2015,7 +3455,7 @@
    "width": 7,
    "circuit": 9,
    "hop": 0.8313,
-   "ideal_hop": 0.8525857445496684,
+   "ideal_hop": 0.8525857445496693,
    "native_two_qubit": 63
   },
   {
@@ -2023,7 +3463,7 @@
    "width": 7,
    "circuit": 10,
    "hop": 0.82605,
-   "ideal_hop": 0.844385671565065,
+   "ideal_hop": 0.8443856715650644,
    "native_two_qubit": 63
   },
   {
@@ -2031,7 +3471,7 @@
    "width": 7,
    "circuit": 11,
    "hop": 0.83845,
-   "ideal_hop": 0.8613711045235418,
+   "ideal_hop": 0.861371104523543,
    "native_two_qubit": 63
   },
   {
@@ -2039,7 +3479,7 @@
    "width": 7,
    "circuit": 0,
    "hop": 0.7339,
-   "ideal_hop": 0.861252005207888,
+   "ideal_hop": 0.8612520052078871,
    "native_two_qubit": 63
   },
   {
@@ -2047,7 +3487,7 @@
    "width": 7,
    "circuit": 1,
    "hop": 0.71665,
-   "ideal_hop": 0.844935997269856,
+   "ideal_hop": 0.8449359972698574,
    "native_two_qubit": 63
   },
   {
@@ -2055,7 +3495,7 @@
    "width": 7,
    "circuit": 2,
    "hop": 0.7254,
-   "ideal_hop": 0.8460059112251582,
+   "ideal_hop": 0.8460059112251592,
    "native_two_qubit": 63
   },
   {
@@ -2063,7 +3503,7 @@
    "width": 7,
    "circuit": 3,
    "hop": 0.73545,
-   "ideal_hop": 0.8772885024857077,
+   "ideal_hop": 0.8772885024857087,
    "native_two_qubit": 63
   },
   {
@@ -2071,7 +3511,7 @@
    "width": 7,
    "circuit": 4,
    "hop": 0.71795,
-   "ideal_hop": 0.8469200363368505,
+   "ideal_hop": 0.8469200363368493,
    "native_two_qubit": 63
   },
   {
@@ -2079,7 +3519,7 @@
    "width": 7,
    "circuit": 5,
    "hop": 0.7442,
-   "ideal_hop": 0.8787615184602706,
+   "ideal_hop": 0.8787615184602703,
    "native_two_qubit": 63
   },
   {
@@ -2087,7 +3527,7 @@
    "width": 7,
    "circuit": 6,
    "hop": 0.74255,
-   "ideal_hop": 0.8699265278274785,
+   "ideal_hop": 0.8699265278274787,
    "native_two_qubit": 63
   },
   {
@@ -2095,7 +3535,7 @@
    "width": 7,
    "circuit": 7,
    "hop": 0.7519,
-   "ideal_hop": 0.8634767135569462,
+   "ideal_hop": 0.8634767135569466,
    "native_two_qubit": 63
   },
   {
@@ -2103,7 +3543,7 @@
    "width": 7,
    "circuit": 8,
    "hop": 0.7465,
-   "ideal_hop": 0.8620103879624889,
+   "ideal_hop": 0.8620103879624871,
    "native_two_qubit": 63
   },
   {
@@ -2111,7 +3551,7 @@
    "width": 7,
    "circuit": 9,
    "hop": 0.7277,
-   "ideal_hop": 0.8525857445496684,
+   "ideal_hop": 0.8525857445496693,
    "native_two_qubit": 63
   },
   {
@@ -2119,7 +3559,7 @@
    "width": 7,
    "circuit": 10,
    "hop": 0.72555,
-   "ideal_hop": 0.844385671565065,
+   "ideal_hop": 0.8443856715650644,
    "native_two_qubit": 63
   },
   {
@@ -2127,7 +3567,7 @@
    "width": 7,
    "circuit": 11,
    "hop": 0.739,
-   "ideal_hop": 0.8613711045235418,
+   "ideal_hop": 0.861371104523543,
    "native_two_qubit": 63
   },
   {
@@ -2135,7 +3575,7 @@
    "width": 7,
    "circuit": 0,
    "hop": 0.5674,
-   "ideal_hop": 0.861252005207888,
+   "ideal_hop": 0.8612520052078871,
    "native_two_qubit": 78
   },
   {
@@ -2143,7 +3583,7 @@
    "width": 7,
    "circuit": 1,
    "hop": 0.5464,
-   "ideal_hop": 0.844935997269856,
+   "ideal_hop": 0.8449359972698574,
    "native_two_qubit": 81
   },
   {
@@ -2151,7 +3591,7 @@
    "width": 7,
    "circuit": 2,
    "hop": 0.5728,
-   "ideal_hop": 0.8460059112251582,
+   "ideal_hop": 0.8460059112251592,
    "native_two_qubit": 78
   },
   {
@@ -2159,7 +3599,7 @@
    "width": 7,
    "circuit": 3,
    "hop": 0.5682,
-   "ideal_hop": 0.8772885024857077,
+   "ideal_hop": 0.8772885024857087,
    "native_two_qubit": 81
   },
   {
@@ -2167,7 +3607,7 @@
    "width": 7,
    "circuit": 4,
    "hop": 0.55315,
-   "ideal_hop": 0.8469200363368505,
+   "ideal_hop": 0.8469200363368493,
    "native_two_qubit": 81
   },
   {
@@ -2175,7 +3615,7 @@
    "width": 7,
    "circuit": 5,
    "hop": 0.5703,
-   "ideal_hop": 0.8787615184602706,
+   "ideal_hop": 0.8787615184602703,
    "native_two_qubit": 75
   },
   {
@@ -2183,7 +3623,7 @@
    "width": 7,
    "circuit": 6,
    "hop": 0.5734,
-   "ideal_hop": 0.8699265278274785,
+   "ideal_hop": 0.8699265278274787,
    "native_two_qubit": 81
   },
   {
@@ -2191,7 +3631,7 @@
    "width": 7,
    "circuit": 7,
    "hop": 0.6105,
-   "ideal_hop": 0.8634767135569462,
+   "ideal_hop": 0.8634767135569466,
    "native_two_qubit": 75
   },
   {
@@ -2199,7 +3639,7 @@
    "width": 7,
    "circuit": 8,
    "hop": 0.5782,
-   "ideal_hop": 0.8620103879624889,
+   "ideal_hop": 0.8620103879624871,
    "native_two_qubit": 75
   },
   {
@@ -2207,7 +3647,7 @@
    "width": 7,
    "circuit": 9,
    "hop": 0.55385,
-   "ideal_hop": 0.8525857445496684,
+   "ideal_hop": 0.8525857445496693,
    "native_two_qubit": 81
   },
   {
@@ -2215,7 +3655,7 @@
    "width": 7,
    "circuit": 10,
    "hop": 0.55255,
-   "ideal_hop": 0.844385671565065,
+   "ideal_hop": 0.8443856715650644,
    "native_two_qubit": 78
   },
   {
@@ -2223,7 +3663,7 @@
    "width": 7,
    "circuit": 11,
    "hop": 0.5806,
-   "ideal_hop": 0.8613711045235418,
+   "ideal_hop": 0.861371104523543,
    "native_two_qubit": 78
   },
   {
@@ -2231,7 +3671,7 @@
    "width": 7,
    "circuit": 0,
    "hop": 0.61245,
-   "ideal_hop": 0.861252005207888,
+   "ideal_hop": 0.8612520052078871,
    "native_two_qubit": 78
   },
   {
@@ -2239,7 +3679,7 @@
    "width": 7,
    "circuit": 1,
    "hop": 0.6229,
-   "ideal_hop": 0.844935997269856,
+   "ideal_hop": 0.8449359972698574,
    "native_two_qubit": 81
   },
   {
@@ -2247,7 +3687,7 @@
    "width": 7,
    "circuit": 2,
    "hop": 0.62715,
-   "ideal_hop": 0.8460059112251582,
+   "ideal_hop": 0.8460059112251592,
    "native_two_qubit": 78
   },
   {
@@ -2255,7 +3695,7 @@
    "width": 7,
    "circuit": 3,
    "hop": 0.626,
-   "ideal_hop": 0.8772885024857077,
+   "ideal_hop": 0.8772885024857087,
    "native_two_qubit": 81
   },
   {
@@ -2263,7 +3703,7 @@
    "width": 7,
    "circuit": 4,
    "hop": 0.63165,
-   "ideal_hop": 0.8469200363368505,
+   "ideal_hop": 0.8469200363368493,
    "native_two_qubit": 81
   },
   {
@@ -2271,7 +3711,7 @@
    "width": 7,
    "circuit": 5,
    "hop": 0.6049,
-   "ideal_hop": 0.8787615184602706,
+   "ideal_hop": 0.8787615184602703,
    "native_two_qubit": 78
   },
   {
@@ -2279,7 +3719,7 @@
    "width": 7,
    "circuit": 6,
    "hop": 0.62015,
-   "ideal_hop": 0.8699265278274785,
+   "ideal_hop": 0.8699265278274787,
    "native_two_qubit": 81
   },
   {
@@ -2287,7 +3727,7 @@
    "width": 7,
    "circuit": 7,
    "hop": 0.6609,
-   "ideal_hop": 0.8634767135569462,
+   "ideal_hop": 0.8634767135569466,
    "native_two_qubit": 75
   },
   {
@@ -2295,7 +3735,7 @@
    "width": 7,
    "circuit": 8,
    "hop": 0.64905,
-   "ideal_hop": 0.8620103879624889,
+   "ideal_hop": 0.8620103879624871,
    "native_two_qubit": 75
   },
   {
@@ -2303,7 +3743,7 @@
    "width": 7,
    "circuit": 9,
    "hop": 0.6142,
-   "ideal_hop": 0.8525857445496684,
+   "ideal_hop": 0.8525857445496693,
    "native_two_qubit": 84
   },
   {
@@ -2311,7 +3751,7 @@
    "width": 7,
    "circuit": 10,
    "hop": 0.6225,
-   "ideal_hop": 0.844385671565065,
+   "ideal_hop": 0.8443856715650644,
    "native_two_qubit": 78
   },
   {
@@ -2319,7 +3759,295 @@
    "width": 7,
    "circuit": 11,
    "hop": 0.6304,
-   "ideal_hop": 0.8613711045235418,
+   "ideal_hop": 0.861371104523543,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 0,
+   "hop": 0.7918,
+   "ideal_hop": 0.8612520052078871,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 1,
+   "hop": 0.78215,
+   "ideal_hop": 0.8449359972698574,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 2,
+   "hop": 0.778,
+   "ideal_hop": 0.8460059112251592,
+   "native_two_qubit": 105
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 3,
+   "hop": 0.7915,
+   "ideal_hop": 0.8772885024857087,
+   "native_two_qubit": 99
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 4,
+   "hop": 0.77915,
+   "ideal_hop": 0.8469200363368493,
+   "native_two_qubit": 99
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 5,
+   "hop": 0.81275,
+   "ideal_hop": 0.8787615184602703,
+   "native_two_qubit": 90
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 6,
+   "hop": 0.80085,
+   "ideal_hop": 0.8699265278274787,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 7,
+   "hop": 0.81575,
+   "ideal_hop": 0.8634767135569466,
+   "native_two_qubit": 87
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 8,
+   "hop": 0.80835,
+   "ideal_hop": 0.8620103879624871,
+   "native_two_qubit": 87
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 9,
+   "hop": 0.79215,
+   "ideal_hop": 0.8525857445496693,
+   "native_two_qubit": 102
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 10,
+   "hop": 0.77675,
+   "ideal_hop": 0.8443856715650644,
+   "native_two_qubit": 96
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 7,
+   "circuit": 11,
+   "hop": 0.8045,
+   "ideal_hop": 0.861371104523543,
+   "native_two_qubit": 87
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 0,
+   "hop": 0.7529,
+   "ideal_hop": 0.8612520052078871,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 1,
+   "hop": 0.72845,
+   "ideal_hop": 0.8449359972698574,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 2,
+   "hop": 0.7308,
+   "ideal_hop": 0.8460059112251592,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 3,
+   "hop": 0.7572,
+   "ideal_hop": 0.8772885024857087,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 4,
+   "hop": 0.723,
+   "ideal_hop": 0.8469200363368493,
+   "native_two_qubit": 87
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 5,
+   "hop": 0.7762,
+   "ideal_hop": 0.8787615184602703,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 6,
+   "hop": 0.75625,
+   "ideal_hop": 0.8699265278274787,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 7,
+   "hop": 0.78035,
+   "ideal_hop": 0.8634767135569466,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 8,
+   "hop": 0.76345,
+   "ideal_hop": 0.8620103879624871,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 9,
+   "hop": 0.73955,
+   "ideal_hop": 0.8525857445496693,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 10,
+   "hop": 0.74085,
+   "ideal_hop": 0.8443856715650644,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 7,
+   "circuit": 11,
+   "hop": 0.759,
+   "ideal_hop": 0.861371104523543,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 0,
+   "hop": 0.7387,
+   "ideal_hop": 0.8612520052078871,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 1,
+   "hop": 0.7185,
+   "ideal_hop": 0.8449359972698574,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 2,
+   "hop": 0.73645,
+   "ideal_hop": 0.8460059112251592,
+   "native_two_qubit": 84
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 3,
+   "hop": 0.7569,
+   "ideal_hop": 0.8772885024857087,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 4,
+   "hop": 0.7321,
+   "ideal_hop": 0.8469200363368493,
+   "native_two_qubit": 87
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 5,
+   "hop": 0.78795,
+   "ideal_hop": 0.8787615184602703,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 6,
+   "hop": 0.7457,
+   "ideal_hop": 0.8699265278274787,
+   "native_two_qubit": 78
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 7,
+   "hop": 0.78395,
+   "ideal_hop": 0.8634767135569466,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 8,
+   "hop": 0.76925,
+   "ideal_hop": 0.8620103879624871,
+   "native_two_qubit": 75
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 9,
+   "hop": 0.77365,
+   "ideal_hop": 0.8525857445496693,
+   "native_two_qubit": 84
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 10,
+   "hop": 0.7531,
+   "ideal_hop": 0.8443856715650644,
+   "native_two_qubit": 81
+  },
+  {
+   "backend": "google_willow",
+   "width": 7,
+   "circuit": 11,
+   "hop": 0.76085,
+   "ideal_hop": 0.861371104523543,
    "native_two_qubit": 78
   },
   {
@@ -2335,7 +4063,7 @@
    "width": 8,
    "circuit": 1,
    "hop": 0.825,
-   "ideal_hop": 0.8530212030047868,
+   "ideal_hop": 0.8530212030047889,
    "native_two_qubit": 96
   },
   {
@@ -2343,7 +4071,7 @@
    "width": 8,
    "circuit": 2,
    "hop": 0.8394,
-   "ideal_hop": 0.8660823128125782,
+   "ideal_hop": 0.8660823128125784,
    "native_two_qubit": 96
   },
   {
@@ -2351,7 +4079,7 @@
    "width": 8,
    "circuit": 3,
    "hop": 0.81865,
-   "ideal_hop": 0.8484186022966682,
+   "ideal_hop": 0.8484186022966688,
    "native_two_qubit": 96
   },
   {
@@ -2359,7 +4087,7 @@
    "width": 8,
    "circuit": 4,
    "hop": 0.83285,
-   "ideal_hop": 0.8623799731852878,
+   "ideal_hop": 0.8623799731852874,
    "native_two_qubit": 96
   },
   {
@@ -2367,7 +4095,7 @@
    "width": 8,
    "circuit": 5,
    "hop": 0.8134,
-   "ideal_hop": 0.8466538181871243,
+   "ideal_hop": 0.8466538181871242,
    "native_two_qubit": 96
   },
   {
@@ -2375,7 +4103,7 @@
    "width": 8,
    "circuit": 6,
    "hop": 0.819,
-   "ideal_hop": 0.8541896143447844,
+   "ideal_hop": 0.8541896143447847,
    "native_two_qubit": 96
   },
   {
@@ -2383,7 +4111,7 @@
    "width": 8,
    "circuit": 7,
    "hop": 0.83315,
-   "ideal_hop": 0.862745338518294,
+   "ideal_hop": 0.8627453385182944,
    "native_two_qubit": 96
   },
   {
@@ -2391,7 +4119,7 @@
    "width": 8,
    "circuit": 8,
    "hop": 0.82565,
-   "ideal_hop": 0.8535196545869658,
+   "ideal_hop": 0.8535196545869668,
    "native_two_qubit": 96
   },
   {
@@ -2399,7 +4127,7 @@
    "width": 8,
    "circuit": 9,
    "hop": 0.82305,
-   "ideal_hop": 0.8542637204745201,
+   "ideal_hop": 0.8542637204745209,
    "native_two_qubit": 96
   },
   {
@@ -2407,7 +4135,7 @@
    "width": 8,
    "circuit": 10,
    "hop": 0.80985,
-   "ideal_hop": 0.838340693795234,
+   "ideal_hop": 0.8383406937952356,
    "native_two_qubit": 96
   },
   {
@@ -2415,7 +4143,7 @@
    "width": 8,
    "circuit": 11,
    "hop": 0.8261,
-   "ideal_hop": 0.854852159872672,
+   "ideal_hop": 0.8548521598726744,
    "native_two_qubit": 96
   },
   {
@@ -2431,7 +4159,7 @@
    "width": 8,
    "circuit": 1,
    "hop": 0.67,
-   "ideal_hop": 0.8530212030047868,
+   "ideal_hop": 0.8530212030047889,
    "native_two_qubit": 96
   },
   {
@@ -2439,7 +4167,7 @@
    "width": 8,
    "circuit": 2,
    "hop": 0.7014,
-   "ideal_hop": 0.8660823128125782,
+   "ideal_hop": 0.8660823128125784,
    "native_two_qubit": 96
   },
   {
@@ -2447,7 +4175,7 @@
    "width": 8,
    "circuit": 3,
    "hop": 0.67015,
-   "ideal_hop": 0.8484186022966682,
+   "ideal_hop": 0.8484186022966688,
    "native_two_qubit": 96
   },
   {
@@ -2455,7 +4183,7 @@
    "width": 8,
    "circuit": 4,
    "hop": 0.6768,
-   "ideal_hop": 0.8623799731852878,
+   "ideal_hop": 0.8623799731852874,
    "native_two_qubit": 96
   },
   {
@@ -2463,7 +4191,7 @@
    "width": 8,
    "circuit": 5,
    "hop": 0.66855,
-   "ideal_hop": 0.8466538181871243,
+   "ideal_hop": 0.8466538181871242,
    "native_two_qubit": 96
   },
   {
@@ -2471,7 +4199,7 @@
    "width": 8,
    "circuit": 6,
    "hop": 0.66105,
-   "ideal_hop": 0.8541896143447844,
+   "ideal_hop": 0.8541896143447847,
    "native_two_qubit": 96
   },
   {
@@ -2479,7 +4207,7 @@
    "width": 8,
    "circuit": 7,
    "hop": 0.68725,
-   "ideal_hop": 0.862745338518294,
+   "ideal_hop": 0.8627453385182944,
    "native_two_qubit": 96
   },
   {
@@ -2487,7 +4215,7 @@
    "width": 8,
    "circuit": 8,
    "hop": 0.6811,
-   "ideal_hop": 0.8535196545869658,
+   "ideal_hop": 0.8535196545869668,
    "native_two_qubit": 96
   },
   {
@@ -2495,7 +4223,7 @@
    "width": 8,
    "circuit": 9,
    "hop": 0.67345,
-   "ideal_hop": 0.8542637204745201,
+   "ideal_hop": 0.8542637204745209,
    "native_two_qubit": 96
   },
   {
@@ -2503,7 +4231,7 @@
    "width": 8,
    "circuit": 10,
    "hop": 0.658,
-   "ideal_hop": 0.838340693795234,
+   "ideal_hop": 0.8383406937952356,
    "native_two_qubit": 96
   },
   {
@@ -2511,7 +4239,7 @@
    "width": 8,
    "circuit": 11,
    "hop": 0.67705,
-   "ideal_hop": 0.854852159872672,
+   "ideal_hop": 0.8548521598726744,
    "native_two_qubit": 96
   },
   {
@@ -2527,7 +4255,7 @@
    "width": 8,
    "circuit": 1,
    "hop": 0.541,
-   "ideal_hop": 0.8530212030047868,
+   "ideal_hop": 0.8530212030047889,
    "native_two_qubit": 126
   },
   {
@@ -2535,7 +4263,7 @@
    "width": 8,
    "circuit": 2,
    "hop": 0.5612,
-   "ideal_hop": 0.8660823128125782,
+   "ideal_hop": 0.8660823128125784,
    "native_two_qubit": 120
   },
   {
@@ -2543,7 +4271,7 @@
    "width": 8,
    "circuit": 3,
    "hop": 0.53245,
-   "ideal_hop": 0.8484186022966682,
+   "ideal_hop": 0.8484186022966688,
    "native_two_qubit": 123
   },
   {
@@ -2551,7 +4279,7 @@
    "width": 8,
    "circuit": 4,
    "hop": 0.51585,
-   "ideal_hop": 0.8623799731852878,
+   "ideal_hop": 0.8623799731852874,
    "native_two_qubit": 126
   },
   {
@@ -2559,7 +4287,7 @@
    "width": 8,
    "circuit": 5,
    "hop": 0.5333,
-   "ideal_hop": 0.8466538181871243,
+   "ideal_hop": 0.8466538181871242,
    "native_two_qubit": 126
   },
   {
@@ -2567,7 +4295,7 @@
    "width": 8,
    "circuit": 6,
    "hop": 0.51645,
-   "ideal_hop": 0.8541896143447844,
+   "ideal_hop": 0.8541896143447847,
    "native_two_qubit": 126
   },
   {
@@ -2575,7 +4303,7 @@
    "width": 8,
    "circuit": 7,
    "hop": 0.5221,
-   "ideal_hop": 0.862745338518294,
+   "ideal_hop": 0.8627453385182944,
    "native_two_qubit": 126
   },
   {
@@ -2583,7 +4311,7 @@
    "width": 8,
    "circuit": 8,
    "hop": 0.5322,
-   "ideal_hop": 0.8535196545869658,
+   "ideal_hop": 0.8535196545869668,
    "native_two_qubit": 126
   },
   {
@@ -2591,7 +4319,7 @@
    "width": 8,
    "circuit": 9,
    "hop": 0.53875,
-   "ideal_hop": 0.8542637204745201,
+   "ideal_hop": 0.8542637204745209,
    "native_two_qubit": 126
   },
   {
@@ -2599,7 +4327,7 @@
    "width": 8,
    "circuit": 10,
    "hop": 0.52285,
-   "ideal_hop": 0.838340693795234,
+   "ideal_hop": 0.8383406937952356,
    "native_two_qubit": 132
   },
   {
@@ -2607,7 +4335,7 @@
    "width": 8,
    "circuit": 11,
    "hop": 0.535,
-   "ideal_hop": 0.854852159872672,
+   "ideal_hop": 0.8548521598726744,
    "native_two_qubit": 117
   },
   {
@@ -2623,7 +4351,7 @@
    "width": 8,
    "circuit": 1,
    "hop": 0.57855,
-   "ideal_hop": 0.8530212030047868,
+   "ideal_hop": 0.8530212030047889,
    "native_two_qubit": 132
   },
   {
@@ -2631,7 +4359,7 @@
    "width": 8,
    "circuit": 2,
    "hop": 0.60805,
-   "ideal_hop": 0.8660823128125782,
+   "ideal_hop": 0.8660823128125784,
    "native_two_qubit": 114
   },
   {
@@ -2639,7 +4367,7 @@
    "width": 8,
    "circuit": 3,
    "hop": 0.57305,
-   "ideal_hop": 0.8484186022966682,
+   "ideal_hop": 0.8484186022966688,
    "native_two_qubit": 117
   },
   {
@@ -2647,7 +4375,7 @@
    "width": 8,
    "circuit": 4,
    "hop": 0.58685,
-   "ideal_hop": 0.8623799731852878,
+   "ideal_hop": 0.8623799731852874,
    "native_two_qubit": 120
   },
   {
@@ -2655,7 +4383,7 @@
    "width": 8,
    "circuit": 5,
    "hop": 0.55245,
-   "ideal_hop": 0.8466538181871243,
+   "ideal_hop": 0.8466538181871242,
    "native_two_qubit": 123
   },
   {
@@ -2663,7 +4391,7 @@
    "width": 8,
    "circuit": 6,
    "hop": 0.5741,
-   "ideal_hop": 0.8541896143447844,
+   "ideal_hop": 0.8541896143447847,
    "native_two_qubit": 126
   },
   {
@@ -2671,7 +4399,7 @@
    "width": 8,
    "circuit": 7,
    "hop": 0.5471,
-   "ideal_hop": 0.862745338518294,
+   "ideal_hop": 0.8627453385182944,
    "native_two_qubit": 129
   },
   {
@@ -2679,7 +4407,7 @@
    "width": 8,
    "circuit": 8,
    "hop": 0.60165,
-   "ideal_hop": 0.8535196545869658,
+   "ideal_hop": 0.8535196545869668,
    "native_two_qubit": 126
   },
   {
@@ -2687,7 +4415,7 @@
    "width": 8,
    "circuit": 9,
    "hop": 0.56395,
-   "ideal_hop": 0.8542637204745201,
+   "ideal_hop": 0.8542637204745209,
    "native_two_qubit": 129
   },
   {
@@ -2695,7 +4423,7 @@
    "width": 8,
    "circuit": 10,
    "hop": 0.558,
-   "ideal_hop": 0.838340693795234,
+   "ideal_hop": 0.8383406937952356,
    "native_two_qubit": 126
   },
   {
@@ -2703,8 +4431,296 @@
    "width": 8,
    "circuit": 11,
    "hop": 0.59025,
-   "ideal_hop": 0.854852159872672,
+   "ideal_hop": 0.8548521598726744,
    "native_two_qubit": 126
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 0,
+   "hop": 0.76695,
+   "ideal_hop": 0.8577662850507847,
+   "native_two_qubit": 147
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 1,
+   "hop": 0.74265,
+   "ideal_hop": 0.8530212030047889,
+   "native_two_qubit": 174
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 2,
+   "hop": 0.7798,
+   "ideal_hop": 0.8660823128125784,
+   "native_two_qubit": 153
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 3,
+   "hop": 0.7435,
+   "ideal_hop": 0.8484186022966688,
+   "native_two_qubit": 165
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 4,
+   "hop": 0.75975,
+   "ideal_hop": 0.8623799731852874,
+   "native_two_qubit": 162
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 5,
+   "hop": 0.7434,
+   "ideal_hop": 0.8466538181871242,
+   "native_two_qubit": 165
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 6,
+   "hop": 0.7447,
+   "ideal_hop": 0.8541896143447847,
+   "native_two_qubit": 162
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 7,
+   "hop": 0.75815,
+   "ideal_hop": 0.8627453385182944,
+   "native_two_qubit": 159
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 8,
+   "hop": 0.75885,
+   "ideal_hop": 0.8535196545869668,
+   "native_two_qubit": 162
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 9,
+   "hop": 0.74925,
+   "ideal_hop": 0.8542637204745209,
+   "native_two_qubit": 177
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 10,
+   "hop": 0.7347,
+   "ideal_hop": 0.8383406937952356,
+   "native_two_qubit": 171
+  },
+  {
+   "backend": "ibm_heron",
+   "width": 8,
+   "circuit": 11,
+   "hop": 0.75355,
+   "ideal_hop": 0.8548521598726744,
+   "native_two_qubit": 159
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 0,
+   "hop": 0.71035,
+   "ideal_hop": 0.8577662850507847,
+   "native_two_qubit": 123
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 1,
+   "hop": 0.6975,
+   "ideal_hop": 0.8530212030047889,
+   "native_two_qubit": 132
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 2,
+   "hop": 0.72265,
+   "ideal_hop": 0.8660823128125784,
+   "native_two_qubit": 123
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 3,
+   "hop": 0.7056,
+   "ideal_hop": 0.8484186022966688,
+   "native_two_qubit": 117
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 4,
+   "hop": 0.7033,
+   "ideal_hop": 0.8623799731852874,
+   "native_two_qubit": 132
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 5,
+   "hop": 0.69905,
+   "ideal_hop": 0.8466538181871242,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 6,
+   "hop": 0.69335,
+   "ideal_hop": 0.8541896143447847,
+   "native_two_qubit": 135
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 7,
+   "hop": 0.7084,
+   "ideal_hop": 0.8627453385182944,
+   "native_two_qubit": 132
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 8,
+   "hop": 0.70215,
+   "ideal_hop": 0.8535196545869668,
+   "native_two_qubit": 129
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 9,
+   "hop": 0.71785,
+   "ideal_hop": 0.8542637204745209,
+   "native_two_qubit": 123
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 10,
+   "hop": 0.6812,
+   "ideal_hop": 0.8383406937952356,
+   "native_two_qubit": 129
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "width": 8,
+   "circuit": 11,
+   "hop": 0.70735,
+   "ideal_hop": 0.8548521598726744,
+   "native_two_qubit": 129
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 0,
+   "hop": 0.7111,
+   "ideal_hop": 0.8577662850507847,
+   "native_two_qubit": 123
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 1,
+   "hop": 0.721,
+   "ideal_hop": 0.8530212030047889,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 2,
+   "hop": 0.7349,
+   "ideal_hop": 0.8660823128125784,
+   "native_two_qubit": 123
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 3,
+   "hop": 0.71815,
+   "ideal_hop": 0.8484186022966688,
+   "native_two_qubit": 117
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 4,
+   "hop": 0.7163,
+   "ideal_hop": 0.8623799731852874,
+   "native_two_qubit": 132
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 5,
+   "hop": 0.69895,
+   "ideal_hop": 0.8466538181871242,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 6,
+   "hop": 0.6874,
+   "ideal_hop": 0.8541896143447847,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 7,
+   "hop": 0.6937,
+   "ideal_hop": 0.8627453385182944,
+   "native_two_qubit": 126
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 8,
+   "hop": 0.68545,
+   "ideal_hop": 0.8535196545869668,
+   "native_two_qubit": 129
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 9,
+   "hop": 0.7313,
+   "ideal_hop": 0.8542637204745209,
+   "native_two_qubit": 120
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 10,
+   "hop": 0.70405,
+   "ideal_hop": 0.8383406937952356,
+   "native_two_qubit": 129
+  },
+  {
+   "backend": "google_willow",
+   "width": 8,
+   "circuit": 11,
+   "hop": 0.73045,
+   "ideal_hop": 0.8548521598726744,
+   "native_two_qubit": 117
   }
  ]
 }

@@ -26,7 +26,7 @@ The orchestrator **parses but does not check topology**. Topology and native-gat
 
 ### Workers (`qputwin_worker`)
 
-There is one image for all four services; `QPUTWIN_VENDOR` selects the device module. Each worker:
+There is one image for all seven worker services; `QPUTWIN_VENDOR` selects the device module. Each worker:
 
 * applies runtime overrides (`QPUTWIN_COUPLING_MAP`, `QPUTWIN_CALIBRATION`) to its `DeviceSpec`;
 * runs jobs one at a time by default (`QPUTWIN_WORKER_CONCURRENCY=1`), which models a QPU's serial queue;

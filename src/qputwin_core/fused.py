@@ -24,10 +24,17 @@ How
     uses only the matrix columns where those axes are 0, so the stored tensor
     grows as the circuit spreads (a GHZ chain never touches a full-size state
     until its last block), and diagonal blocks never activate anything.
-  - *Lazy permutation.* The stored tensor's axis order ``perm`` changes lazily. A
-    dense block whose axes are adjacent is one batched ``U @ X`` over the tensor
+  - *Two buffers or one.* By default each block reads the current state and
+    writes the next one into a second buffer, and the stored axis order (``perm``)
+    changes lazily: a dense block whose axes are adjacent is one batched ``U @ X``
     with no data movement; otherwise its axes are gathered next to the lowest
-    contiguous axes chunk by chunk (cache-resident) and multiplied in the same pass.
+    contiguous axes chunk by chunk (cache-resident) and multiplied in the same
+    pass. When two state-sized buffers do not fit the memory budget, the simulator
+    runs the executor **in place** (:func:`in_place_mode`): cache-sized chunks are
+    gathered, multiplied and written back to the same positions, so one ``2^N``
+    buffer suffices, and a block that activates new axes reads a copy of the (at
+    most half-size) current state. The peak then stays at 1.5× the state, which
+    buys one more qubit for the same memory at a cost of 5–20 % in speed.
   - *Diagonal blocks* are a multiply by a phase table, gathered per cache chunk.
   - *Read-out without reordering.* Measurement marginals are taken in the stored
     order; samples are relabelled afterwards, so no final transpose is needed.
@@ -46,23 +53,38 @@ from __future__ import annotations
 import itertools
 import math
 import os
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Iterator, Sequence
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
+from contextvars import ContextVar
 from dataclasses import dataclass
 
 import numpy as np
 
-__all__ = ["Block", "FusedState", "engine_threads", "plan_blocks", "set_engine_threads"]
+__all__ = ["Block", "FusedState", "engine_threads", "in_place_mode", "plan_blocks", "set_engine_threads",
+           "thread_limit"]
 
 # ------------------------------------------------------------------ threads
 _threads: int | None = None
 _pool: ThreadPoolExecutor | None = None
 _MIN_CHUNK = 1 << 15                         # elements per task below which threading does not pay
 _CHUNK_BITS = 15                             # gather / phase chunk: 2^15 amplitudes stay in cache
+_CHUNK_BITS_MANY = 17                        # with many threads, larger chunks amortise per-chunk overhead
+_MANY_THREADS = 8                            # (measured: +18–24 % on deep 24-qubit circuits at 16 threads)
+# A block that grows the state writes into memory touched for the first time; page faults from many
+# threads contend in the kernel, so growth uses at most this many threads (measured on 16 vCPUs: a
+# 24-qubit GHZ chain takes 0.131 s with 16 growth threads and 0.086 s with 4).
+_GROW_THREADS = int(os.environ.get("QPUTWIN_ENGINE_GROW_THREADS", "4")) or None
 _LOW_BITS = 10                               # contiguous low axes kept below a gathered block
 _MIN_RUN = 1 << 4                            # shortest contiguous run below a block worth a batched U @ X
 _TABLE_LIMIT = 1 << 20                       # precomputed phase rows of a diagonal block, in entries
 _CHOP = 1e-15                                # |entry| below this in a fused dense block is rounding noise
+# Default executor mode for states created outside a simulator run (which sets it per job from its
+# memory plan through :func:`in_place_mode`): two buffers unless QPUTWIN_ENGINE_IN_PLACE forces one.
+_IN_PLACE = os.environ.get("QPUTWIN_ENGINE_IN_PLACE", "auto").strip().lower() in ("1", "true", "yes", "always")
+_MODE: ContextVar[bool | None] = ContextVar("qputwin_engine_in_place", default=None)
+_LIMIT: ContextVar[int | None] = ContextVar("qputwin_engine_thread_limit", default=None)
+_MAX_DEFAULT_THREADS = 64                    # upper bound when the thread count comes from the CPU quota
 
 
 def _default_threads() -> int:
@@ -80,14 +102,25 @@ def _default_threads() -> int:
             n = min(n, max(1, math.floor(int(quota) / int(period))))
     except (OSError, ValueError):
         pass
-    return max(1, min(n, 8))
+    return max(1, min(n, _MAX_DEFAULT_THREADS))
 
 
 def engine_threads() -> int:
     global _threads
     if _threads is None:
         _threads = _default_threads()
-    return _threads
+    limit = _LIMIT.get()
+    return _threads if limit is None else max(1, min(_threads, limit))
+
+
+@contextmanager
+def thread_limit(n: int | None) -> Iterator[None]:
+    """Cap the engine's threads in this context (e.g. ``1`` inside a task that is itself one of many)."""
+    token = _LIMIT.set(n)
+    try:
+        yield
+    finally:
+        _LIMIT.reset(token)
 
 
 def set_engine_threads(n: int) -> None:
@@ -99,10 +132,25 @@ def set_engine_threads(n: int) -> None:
         _pool = None
 
 
+@contextmanager
+def in_place_mode(flag: bool | None) -> Iterator[None]:
+    """Run the fused executor in single-buffer mode (``True``), two-buffer mode (``False``) or the default."""
+    token = _MODE.set(flag)
+    try:
+        yield
+    finally:
+        _MODE.reset(token)
+
+
+def _chunk_bits() -> int:
+    return _CHUNK_BITS_MANY if engine_threads() >= _MANY_THREADS else _CHUNK_BITS
+
+
 def _executor() -> ThreadPoolExecutor:
     global _pool
     if _pool is None:
-        _pool = ThreadPoolExecutor(max_workers=engine_threads(), thread_name_prefix="qputwin-engine")
+        _pool = ThreadPoolExecutor(max_workers=max(engine_threads(), _threads or 1),   # never the limited count
+                                   thread_name_prefix="qputwin-engine")
     return _pool
 
 
@@ -115,16 +163,16 @@ def _parallel(tasks: list[Callable[[], None]]) -> None:
         f.result()
 
 
-def _ranges(n: int, work: int) -> list[tuple[int, int]]:
+def _ranges(n: int, work: int, max_parts: int | None = None) -> list[tuple[int, int]]:
     """Split ``range(n)`` into contiguous parts, one per thread when ``work`` elements justify it."""
-    t = engine_threads()
+    t = engine_threads() if max_parts is None else max(1, min(engine_threads(), max_parts))
     parts = 1 if t == 1 else max(1, min(t, n, work // _MIN_CHUNK))
     step = -(-n // parts)
     return [(s, min(n, s + step)) for s in range(0, n, step)]
 
 
-def _split(n: int, work: int, fn: Callable[[int, int], None]) -> None:
-    _parallel([lambda s=s, e=e: fn(s, e) for s, e in _ranges(n, work)])
+def _split(n: int, work: int, fn: Callable[[int, int], None], max_parts: int | None = None) -> None:
+    _parallel([lambda s=s, e=e: fn(s, e) for s, e in _ranges(n, work, max_parts)])
 
 
 # ------------------------------------------------------------------ planner
@@ -222,7 +270,10 @@ class _Open:
         if self.d is not None:
             return Block(self.axes, self.d, True)
         m = self.dense()
-        m[np.abs(m) < _CHOP] = 0            # rounding noise (cos π/2 ≈ 6e-17) would decay into denormals
+        small = np.abs(m) < _CHOP           # rounding noise (cos π/2 ≈ 6e-17) would decay into denormals
+        if small.any():
+            # a new array: a block of one gate is that gate's own (possibly shared, read-only) matrix
+            m = np.where(small, 0, m)
         return Block(self.axes, m, False)
 
 
@@ -298,6 +349,15 @@ def _reorder_cols(m: np.ndarray, axes: Sequence[int], order: Sequence[int]) -> n
     return t.transpose([0] + [1 + list(axes).index(a) for a in order]).reshape(m.shape[0], 1 << k)
 
 
+def _reorder_both(m: np.ndarray, axes: Sequence[int], order: Sequence[int]) -> np.ndarray:
+    """Square ``m`` with its row *and* column index bits relabelled to follow ``order``."""
+    if list(axes) == list(order):
+        return m
+    k = len(axes)
+    p = [list(axes).index(a) for a in order]
+    return m.reshape((2,) * (2 * k)).transpose(p + [k + i for i in p]).reshape(1 << k, 1 << k)
+
+
 class FusedState:
     """A ``2^N`` state stored as a tensor over its *active* axes, in a lazily permuted order.
 
@@ -306,10 +366,15 @@ class FusedState:
     index. Axes not in ``perm`` are exactly ``|0⟩``.
     """
 
-    def __init__(self, n_axes: int, dtype: np.dtype | type = np.complex128) -> None:
+    def __init__(self, n_axes: int, dtype: np.dtype | type = np.complex128, *, in_place: bool | None = None) -> None:
         self.n = n_axes
         self.dtype = np.dtype(dtype)
-        self._buf = [np.empty(1 << n_axes, dtype=self.dtype), np.empty(1 << n_axes, dtype=self.dtype)]
+        if in_place is None:
+            in_place = _MODE.get()
+        self.in_place = _IN_PLACE if in_place is None else bool(in_place)
+        self._buf = [np.empty(1 << n_axes, dtype=self.dtype)]
+        if not self.in_place:
+            self._buf.append(np.empty(1 << n_axes, dtype=self.dtype))
         self._buf[0][0] = 1.0                     # |0…0⟩ with no active axes: the scalar 1
         self.perm: list[int] = []
         self._i = 0
@@ -321,10 +386,11 @@ class FusedState:
         return self._buf[self._i][: 1 << len(self.perm)]
 
     def _dst(self, m: int) -> np.ndarray:
-        return self._buf[1 - self._i][: 1 << m]
+        return self._buf[0 if self.in_place else 1 - self._i][: 1 << m]
 
     def _swap(self, perm: list[int]) -> None:
-        self._i = 1 - self._i
+        if not self.in_place:
+            self._i = 1 - self._i
         self.perm = perm
 
     @staticmethod
@@ -338,13 +404,19 @@ class FusedState:
         m = len(self.perm)
         pos = {a: i for i, a in enumerate(self.perm)}
         src = self._tensor(self.cur, m).transpose([pos[a] for a in new])
-        dst = self._tensor(self._dst(m), m)
+        if self.in_place:                        # a full transpose cannot run in place: the result gets
+            out = np.empty(1 << self.n, dtype=self.dtype)     # a new buffer and the old one is freed
+            dst = self._tensor(out[: 1 << m], m)
+        else:
+            dst = self._tensor(self._dst(m), m)
         j = min(m, max(0, math.ceil(math.log2(engine_threads())) + 1)) if (1 << m) >= 2 * _MIN_CHUNK else 0
         if j == 0:
             np.copyto(dst, src)
         else:
             _parallel([lambda idx=idx: np.copyto(dst[idx], src[idx])
                        for idx in itertools.product((0, 1), repeat=j)])
+        if self.in_place:
+            self._buf[0] = out
         self._swap(new)
         self.transposes += 1
 
@@ -367,11 +439,17 @@ class FusedState:
         """``Y = M X`` with ``M`` of shape ``2^|out| × 2^|in|`` (``out_axes`` ⊇ ``in_axes``)."""
         p_all = len(self.perm)
         ki, ko = len(in_axes), len(out_axes)
+        if self.in_place and ki == ko:
+            self._apply_in_place(in_axes, m)
+            return
+        # the state grows (or the two-buffer executor is selected): read the current state, write a new one
+        cur = self.cur.copy() if self.in_place else self.cur     # in place: at most half the buffer
         dst = self._dst(p_all - ki + ko)
         if ki == 0:                               # product with fresh |0…0⟩ axes: an outer product
             col = np.ascontiguousarray(m[:, 0], dtype=self.dtype)
-            x, y = self.cur, dst.reshape(-1, 1 << ko)
-            _split(len(x), len(dst), lambda s, e: np.multiply(x[s:e, None], col[None, :], out=y[s:e]))
+            x, y = cur, dst.reshape(-1, 1 << ko)
+            _split(len(x), len(dst), lambda s, e: np.multiply(x[s:e, None], col[None, :], out=y[s:e]),
+                   _GROW_THREADS)
             self._swap(self.perm + out_axes)
             return
         pos = {a: i for i, a in enumerate(self.perm)}
@@ -381,8 +459,8 @@ class FusedState:
         if ps[-1] - p0 + 1 == ki and r >= _MIN_RUN and (b >= engine_threads() or len(dst) < 2 * _MIN_CHUNK):
             # adjacent, with a contiguous run below and rows to share: one batched U @ X, no data movement
             mm = np.ascontiguousarray(_reorder_cols(m, in_axes, self.perm[p0:p0 + ki]), dtype=self.dtype)
-            x, y = self.cur.reshape(b, 1 << ki, r), dst.reshape(b, 1 << ko, r)
-            _split(b, len(dst), lambda s, e: np.matmul(mm, x[s:e], out=y[s:e]))
+            x, y = cur.reshape(b, 1 << ki, r), dst.reshape(b, 1 << ko, r)
+            _split(b, len(dst), lambda s, e: np.matmul(mm, x[s:e], out=y[s:e]), _GROW_THREADS if ko > ki else None)
             self._swap(self.perm[:p0] + out_axes + self.perm[p0 + ki:])
             return
         # gather the block's axes next to the lowest contiguous axes, chunk by chunk, and multiply
@@ -391,8 +469,8 @@ class FusedState:
         others = [a for a in self.perm if a not in set(in_axes)]
         r = min(len(others), _LOW_BITS)
         hi, lo = others[:len(others) - r], others[len(others) - r:]
-        src = self._tensor(self.cur, p_all).transpose([pos[a] for a in hi + ins + lo])
-        j = min(len(hi), max(0, p_all - _CHUNK_BITS))
+        src = self._tensor(cur, p_all).transpose([pos[a] for a in hi + ins + lo])
+        j = min(len(hi), max(0, p_all - _chunk_bits()))
         y = dst.reshape(1 << j, -1)
         idxs = list(itertools.product((0, 1), repeat=j))
 
@@ -403,9 +481,62 @@ class FusedState:
                 np.copyto(tmp, src[idxs[c]])
                 np.matmul(mm, tv, out=y[c].reshape(-1, 1 << ko, 1 << r))
 
-        _split(len(idxs), len(dst), work)
+        _split(len(idxs), len(dst), work, _GROW_THREADS if ko > ki else None)
         self._swap(hi + out_axes + lo)
         self.transposes += 1
+
+    def _apply_in_place(self, axes: list[int], m: np.ndarray) -> None:
+        """``X ← M X`` for a square block on active ``axes``, chunk by chunk; ``perm`` is unchanged."""
+        p_all, k = len(self.perm), len(axes)
+        pos = {a: i for i, a in enumerate(self.perm)}
+        ins = sorted(axes, key=pos.__getitem__)  # the block's axes in stored order
+        mm = np.ascontiguousarray(_reorder_both(np.asarray(m), axes, ins), dtype=self.dtype)
+        kk = 1 << k
+        ps = [pos[a] for a in ins]
+        p0 = ps[0]
+        x = self.cur
+        if ps[-1] - p0 + 1 == k:
+            # adjacent axes: X viewed as (b, 2^k, r); each unit is a run of rows, or one row and a run of columns
+            b, r = 1 << p0, 1 << (p_all - p0 - k)
+            xv = x.reshape(b, kk, r)
+            chunk = 1 << _chunk_bits()
+            if kk * r <= chunk:
+                rows = max(1, chunk // (kk * r))
+                units = [(s, min(b, s + rows), 0, r) for s in range(0, b, rows)]
+            else:
+                w = max(1, chunk // kk)
+                units = [(i, i + 1, c, c + w) for i in range(b) for c in range(0, r, w)]
+
+            def work_adj(s: int, e: int) -> None:
+                tmp = None
+                for rs, re_, cs, ce in units[s:e]:
+                    view = xv[rs:re_, :, cs:ce]
+                    if tmp is None or tmp.shape != view.shape:
+                        tmp = np.empty(view.shape, dtype=self.dtype)
+                    np.matmul(mm, view, out=tmp)
+                    np.copyto(view, tmp)
+
+            _split(len(units), len(x), work_adj)
+            return
+        # scattered axes: gather each cache-sized chunk next to the lowest contiguous axes, multiply, scatter back
+        others = [a for a in self.perm if a not in set(axes)]
+        r = min(len(others), _LOW_BITS)
+        hi, lo = others[:len(others) - r], others[len(others) - r:]
+        src = self._tensor(x, p_all).transpose([pos[a] for a in hi + ins + lo])
+        j = min(len(hi), max(0, p_all - _chunk_bits()))
+        idxs = list(itertools.product((0, 1), repeat=j))
+
+        def work(s: int, e: int) -> None:
+            tmp = np.empty(src.shape[j:], dtype=self.dtype)
+            out = np.empty_like(tmp)
+            tv, ov = tmp.reshape(-1, kk, 1 << r), out.reshape(-1, kk, 1 << r)
+            for c in range(s, e):
+                view = src[idxs[c]]
+                np.copyto(tmp, view)
+                np.matmul(mm, tv, out=ov)
+                np.copyto(view, out)
+
+        _split(len(idxs), len(x), work)
 
     def apply_diagonal(self, axes: Sequence[int], d: np.ndarray) -> None:
         """Multiply by the diagonal operator ``diag(d)`` (index MSB = ``axes[0]``)."""
@@ -424,7 +555,7 @@ class FusedState:
         k, p_all = len(axes), len(self.perm)
         pos = {a: i for i, a in enumerate(self.perm)}
         weight = {a: k - 1 - i for i, a in enumerate(axes)}
-        cb = min(p_all, _CHUNK_BITS)
+        cb = min(p_all, _chunk_bits())
         nh = p_all - cb
         low = np.arange(1 << cb)
         lo_map = np.zeros(1 << cb, dtype=np.intp)
@@ -477,18 +608,34 @@ class FusedState:
         faulting in a new state-sized allocation.
         """
         x = self.cur
-        if consume and len(x) > 1 << _CHUNK_BITS:
-            # chunk c reads amplitudes [s, e) and writes floats [s, e): for complex128 those are
-            # the bytes of amplitudes [s/2, e/2), which earlier chunks have already read, and for
-            # complex64 they are the chunk's own amplitudes — so a forward pass is safe
+        bits = _chunk_bits()
+        if consume and len(x) > 1 << bits:
+            # chunk c reads amplitudes [s, e) and writes floats [s, e). For complex64 those are the
+            # chunk's own bytes, so all chunks run at once. For complex128 they are the bytes of
+            # amplitudes [s/2, e/2), i.e. half of chunk c // 2: chunks therefore run in waves
+            # {0}, {1}, {2, 3}, {4…7}, …, each after the wave holding the chunks it overwrites, and
+            # a chunk's own memory is only written by the next wave.
             p = x.view(np.float64)[: len(x)]
-            step = 1 << _CHUNK_BITS
-            pc, qc = np.empty(step, dtype=np.float64), np.empty(step, dtype=np.float64)
-            for s in range(0, len(x), step):
-                xc = x[s:s + step]
-                np.square(xc.real, out=pc, dtype=np.float64)
-                np.square(xc.imag, out=qc, dtype=np.float64)
-                np.add(pc, qc, out=p[s:s + step])
+            step = 1 << bits
+            nchunks = len(x) // step
+
+            def chunks(c0: int, c1: int) -> None:
+                pc, qc = np.empty(step, dtype=np.float64), np.empty(step, dtype=np.float64)
+                for c in range(c0, c1):
+                    xc = x[c * step:(c + 1) * step]
+                    np.square(xc.real, out=pc, dtype=np.float64)
+                    np.square(xc.imag, out=qc, dtype=np.float64)
+                    np.add(pc, qc, out=p[c * step:(c + 1) * step])
+
+            if x.dtype == np.complex64:
+                _split(nchunks, len(x), chunks)
+            else:
+                chunks(0, 1)
+                lo = 1
+                while lo < nchunks:
+                    hi_ = min(nchunks, 2 * lo)
+                    _split(hi_ - lo, (hi_ - lo) * step, lambda a, b, lo=lo: chunks(lo + a, lo + b))
+                    lo = hi_
         else:
             p = np.empty(len(x), dtype=np.float64)
 
@@ -504,5 +651,6 @@ class FusedState:
         return p, [a for a in self.perm if a in keep]
 
     def release(self) -> None:
-        """Drop the spare buffer once no more blocks will be applied."""
-        self._buf[1 - self._i] = np.empty(0, dtype=self.dtype)
+        """Drop the spare buffer once no more blocks will be applied (the in-place executor has none)."""
+        if not self.in_place:
+            self._buf[1 - self._i] = np.empty(0, dtype=self.dtype)

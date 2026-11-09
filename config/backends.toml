@@ -49,3 +49,15 @@ description = "Rigetti Ankaa-3 - superconducting, 84 qubits, square-lattice near
 [backends.iqm_emerald]
 url = "http://worker-iqm-emerald:8001"
 description = "IQM Emerald - superconducting, 54 qubits, square-lattice nearest-neighbour"
+
+[backends.ibm_heron]
+url = "http://worker-ibm-heron:8001"
+description = "IBM Heron r3 - superconducting, 156 qubits, heavy-hex nearest-neighbour (ibm_boston snapshot)"
+
+[backends.ibm_nighthawk]
+url = "http://worker-ibm-nighthawk:8001"
+description = "IBM Nighthawk r1 - superconducting, 120 qubits, square-lattice nearest-neighbour (ibm_miami snapshot)"
+
+[backends.google_willow]
+url = "http://worker-google-willow:8001"
+description = "Google Willow - superconducting, 105 qubits, square-grid nearest-neighbour (willow_pink snapshot)"

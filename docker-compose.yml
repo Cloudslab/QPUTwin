@@ -5,7 +5,7 @@
 #   docker compose up -d --build        # build with uv and start all services
 #   curl localhost:8000/v1/backends     # list emulated QPUs
 #
-# Only the orchestrator publishes a host port; the four vendor workers are
+# Only the orchestrator publishes a host port; the seven vendor workers are
 # reachable solely on the internal `qputwin-net` bridge network.
 #
 # Horizontal scaling: set QPUTWIN_<DEVICE>_REPLICAS in .env (or use
@@ -49,6 +49,8 @@ x-worker-env: &worker-env
   QPUTWIN_MEMORY_GUARD: "1"
   QPUTWIN_WORKER_CONCURRENCY: "1"
   QPUTWIN_ENGINE_THREADS: "${QPUTWIN_ENGINE_THREADS:-}"      # empty = the worker's CPU quota (QPUTWIN_WORKER_CPUS)
+  QPUTWIN_ENGINE_IN_PLACE: "${QPUTWIN_ENGINE_IN_PLACE:-auto}"   # auto: single-buffer executor only when 2 buffers won't fit
+  QPUTWIN_TRAJECTORY_WORKERS: "${QPUTWIN_TRAJECTORY_WORKERS:-4}"   # concurrent trajectory sub-batches (GIL-bound beyond 4)
   OMP_NUM_THREADS: "1"                                         # the engine threads itself; keep BLAS serial
 
 services:
@@ -112,6 +114,51 @@ services:
       QPUTWIN_CALIBRATION: "${QPUTWIN_EMERALD_CALIBRATION:-}"
       QPUTWIN_MAX_SIM_QUBITS: "${QPUTWIN_EMERALD_MAX_QUBITS:-54}"
 
+  worker-ibm-heron:
+    <<: *worker
+    deploy:
+      replicas: ${QPUTWIN_HERON_REPLICAS:-1}
+      resources:
+        limits:
+          cpus: "${QPUTWIN_WORKER_CPUS:-4}"
+          memory: "${QPUTWIN_WORKER_MEM:-12g}"
+    environment:
+      <<: *worker-env
+      QPUTWIN_VENDOR: ibm_heron
+      QPUTWIN_COUPLING_MAP: "${QPUTWIN_HERON_COUPLING_MAP:-}"
+      QPUTWIN_CALIBRATION: "${QPUTWIN_HERON_CALIBRATION:-}"
+      QPUTWIN_MAX_SIM_QUBITS: "${QPUTWIN_HERON_MAX_QUBITS:-156}"
+
+  worker-ibm-nighthawk:
+    <<: *worker
+    deploy:
+      replicas: ${QPUTWIN_NIGHTHAWK_REPLICAS:-1}
+      resources:
+        limits:
+          cpus: "${QPUTWIN_WORKER_CPUS:-4}"
+          memory: "${QPUTWIN_WORKER_MEM:-12g}"
+    environment:
+      <<: *worker-env
+      QPUTWIN_VENDOR: ibm_nighthawk
+      QPUTWIN_COUPLING_MAP: "${QPUTWIN_NIGHTHAWK_COUPLING_MAP:-}"
+      QPUTWIN_CALIBRATION: "${QPUTWIN_NIGHTHAWK_CALIBRATION:-}"
+      QPUTWIN_MAX_SIM_QUBITS: "${QPUTWIN_NIGHTHAWK_MAX_QUBITS:-120}"
+
+  worker-google-willow:
+    <<: *worker
+    deploy:
+      replicas: ${QPUTWIN_WILLOW_REPLICAS:-1}
+      resources:
+        limits:
+          cpus: "${QPUTWIN_WORKER_CPUS:-4}"
+          memory: "${QPUTWIN_WORKER_MEM:-12g}"
+    environment:
+      <<: *worker-env
+      QPUTWIN_VENDOR: google_willow
+      QPUTWIN_COUPLING_MAP: "${QPUTWIN_WILLOW_COUPLING_MAP:-}"
+      QPUTWIN_CALIBRATION: "${QPUTWIN_WILLOW_CALIBRATION:-}"
+      QPUTWIN_MAX_SIM_QUBITS: "${QPUTWIN_WILLOW_MAX_QUBITS:-105}"
+
   orchestrator:
     build:
       context: .
@@ -141,6 +188,9 @@ services:
       worker-ionq-forte: { condition: service_healthy }
       worker-rigetti-ankaa3: { condition: service_healthy }
       worker-iqm-emerald: { condition: service_healthy }
+      worker-ibm-heron: { condition: service_healthy }
+      worker-ibm-nighthawk: { condition: service_healthy }
+      worker-google-willow: { condition: service_healthy }
     labels:
       org.qputwin.contact: "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
       org.qputwin.role: "orchestrator"

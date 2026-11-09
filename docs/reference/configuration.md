@@ -22,14 +22,18 @@ Configuration comes from environment variables (Compose reads `.env`) and, for t
 | `QPUTWIN_MAX_MEMORY_SHOTS` | 100000 | shots when `options.memory` is on |
 | `QPUTWIN_MAX_STATEVECTOR_QUBITS` | 16 | `return_statevector` limit |
 | `QPUTWIN_MAX_DENSITY_MATRIX_QUBITS` | 8 | `return_density_matrix` limit |
-| `QPUTWIN_DENSITY_AUTO_MAX_QUBITS` | 10 | widest noisy circuit `engine=auto` sends to the density matrix |
+| `QPUTWIN_DENSITY_AUTO_MAX_QUBITS` | 12 | widest noisy circuit `engine=auto` may send to the density matrix (it also needs $2^n \le 4T$; see [engines](../guide/engines.md#automatic-selection-engine-auto)) |
 | `QPUTWIN_MAX_TRAJECTORIES` | 2000 | trajectory cap (default count = min(shots, cap)) |
 | `QPUTWIN_MAX_OPS` | 5000000 | flattened-operation limit (guards against include bombs) |
 | `QPUTWIN_REQUIRE_PUBLISHED_CALIBRATION` | `0` | strict provenance for noisy runs |
 | `QPUTWIN_COUPLING_MAP` | packaged | path to a coupling-map JSON (runtime override) |
 | `QPUTWIN_CALIBRATION` | packaged | path to a calibration JSON (runtime override) |
 | `QPUTWIN_WORKER_CONCURRENCY` | `1` | concurrent jobs per worker (1 models a QPU's serial queue) |
-| `QPUTWIN_ENGINE_THREADS` | worker CPU quota | threads the fused engine uses per job (`1` = single-threaded); BLAS stays at `OMP_NUM_THREADS=1` |
+| `QPUTWIN_ENGINE_THREADS` | worker CPU quota (at most 64) | threads the fused engine uses per job (`1` = single-threaded); BLAS stays at `OMP_NUM_THREADS=1` |
+| `QPUTWIN_ENGINE_IN_PLACE` | `auto` | fused executor buffers: `auto` = two buffers when they fit, else one (peak 1.5 × state); `always`; `never` |
+| `QPUTWIN_ENGINE_GROW_THREADS` | 4 | threads used while the stored state grows (lazy activation); more contend on page faults |
+| `QPUTWIN_TRAJECTORY_WORKERS` | 4 | trajectory sub-batches run concurrently (more was measured slower: interpreter lock) |
+| `QPUTWIN_TRAJECTORY_BATCHED` | `1` | `0` forces the sequential trajectory walk (for comparison) |
 | `QPUTWIN_WORKER_ID` | hostname | identifier reported in telemetry |
 | `QPUTWIN_LOG_LEVEL` / `QPUTWIN_ACCESS_LOG` | `info` / `0` | logging (access logs perturb latency) |
 | `OMP_NUM_THREADS` | `1` (image) | BLAS threads; pinned for reproducibility |

@@ -1,0 +1,172 @@
+# QPUTwin monitoring. Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+global:
+  scrape_interval: 5s
+  scrape_timeout: 4s
+  evaluation_interval: 5s
+  external_labels:
+    system: qputwin
+
+rule_files:
+  - /etc/prometheus/rules/*.yml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["alertmanager:9093"]
+
+scrape_configs:
+  # --- QPUTwin ---------------------------------------------------------------
+  # Compose DNS returns one address per replica, so each orchestrator is scraped.
+  - job_name: qputwin-orchestrator
+    metrics_path: /metrics
+    dns_sd_configs:
+      - names: ["orchestrator"]
+        type: A
+        port: 8000
+        refresh_interval: 15s
+
+  - job_name: qputwin-telemetry
+    static_configs:
+      - targets: ["qputwin-exporter:9108"]
+
+  # --- Availability probes, sent from inside the QPUTwin network --------------
+  - job_name: qputwin-ready
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    dns_sd_configs:
+      - names: ["orchestrator"]
+        type: A
+        port: 8000
+        refresh_interval: 15s
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: (.+)
+        target_label: __param_target
+        replacement: http://$1/ready
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: service
+        replacement: orchestrator
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: qputwin-workers
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    dns_sd_configs:
+      - names: ["worker-quantinuum-helios"]
+        type: A
+        port: 8001
+        refresh_interval: 15s
+    relabel_configs: &worker-relabel
+      - source_labels: [__meta_dns_name]
+        target_label: service
+      - source_labels: [__address__]
+        regex: (.+)
+        target_label: __param_target
+        replacement: http://$1/health
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: qputwin-workers-forte
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    dns_sd_configs:
+      - names: ["worker-ionq-forte"]
+        type: A
+        port: 8001
+        refresh_interval: 15s
+    relabel_configs: *worker-relabel
+
+  - job_name: qputwin-workers-ankaa3
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    dns_sd_configs:
+      - names: ["worker-rigetti-ankaa3"]
+        type: A
+        port: 8001
+        refresh_interval: 15s
+    relabel_configs: *worker-relabel
+
+  - job_name: qputwin-workers-emerald
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    dns_sd_configs:
+      - names: ["worker-iqm-emerald"]
+        type: A
+        port: 8001
+        refresh_interval: 15s
+    relabel_configs: *worker-relabel
+
+  - job_name: qputwin-workers-heron
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    dns_sd_configs:
+      - names: ["worker-ibm-heron"]
+        type: A
+        port: 8001
+        refresh_interval: 15s
+    relabel_configs: *worker-relabel
+
+  - job_name: qputwin-workers-nighthawk
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    dns_sd_configs:
+      - names: ["worker-ibm-nighthawk"]
+        type: A
+        port: 8001
+        refresh_interval: 15s
+    relabel_configs: *worker-relabel
+
+  - job_name: qputwin-workers-willow
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    dns_sd_configs:
+      - names: ["worker-google-willow"]
+        type: A
+        port: 8001
+        refresh_interval: 15s
+    relabel_configs: *worker-relabel
+
+  # --- Resources ---------------------------------------------------------------
+  - job_name: cadvisor
+    static_configs:
+      - targets: ["cadvisor:8080"]
+    metric_relabel_configs:
+      - source_labels: [container_label_com_docker_compose_service]
+        target_label: service
+      - source_labels: [container_label_com_docker_compose_project]
+        target_label: project
+      - regex: container_label_com_docker_compose_(service|project)
+        action: labeldrop
+
+  # Runs on the host: see node-exporter/install.sh.
+  - job_name: node
+    static_configs:
+      - targets: ["host.docker.internal:9100"]
+        labels:
+          instance: host
+
+  # --- The monitoring stack itself ----------------------------------------------
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+  - job_name: alertmanager
+    static_configs:
+      - targets: ["alertmanager:9093"]
+  - job_name: grafana
+    static_configs:
+      - targets: ["grafana:3000"]
+  - job_name: blackbox
+    static_configs:
+      - targets: ["blackbox:9115"]

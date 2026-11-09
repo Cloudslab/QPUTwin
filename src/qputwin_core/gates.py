@@ -25,7 +25,7 @@ import numpy as np
 from qputwin_core.errors import QASMSemanticError
 
 __all__ = [
-    "I2", "X", "Y", "Z", "H", "u_gate", "rx", "ry", "rz", "r_gate", "gpi", "gpi2", "ms", "rzz",
+    "I2", "X", "Y", "Z", "H", "u_gate", "rx", "ry", "rz", "r_gate", "phased_xz", "fsim", "gpi", "gpi2", "ms", "rzz",
     "rxx", "ryy", "cx", "cz", "iswap", "matrix", "num_qubits_of", "GATE_TABLE", "is_diagonal",
     "allclose_up_to_phase", "phase_difference",
 ]
@@ -75,6 +75,22 @@ def r_gate(theta: float, phi: float) -> np.ndarray:
     c, s = np.cos(theta / 2), np.sin(theta / 2)
     return np.array([[c, -1j * np.exp(-1j * phi) * s],
                      [-1j * np.exp(1j * phi) * s, c]], dtype=C)
+
+
+def phased_xz(theta: float, phi: float, zeta: float) -> np.ndarray:
+    """Google PhasedXZ in radians: ``Rz(ζ) · R(θ, φ)``.
+
+    Equals ``cirq.PhasedXZGate(x_exponent=θ/π, axis_phase_exponent=φ/π, z_exponent=ζ/π)``
+    up to global phase: one microwave pulse about the equatorial axis φ, followed by a
+    virtual Z.
+    """
+    return rz(zeta) @ r_gate(theta, phi)
+
+
+def fsim(theta: float, phi: float) -> np.ndarray:
+    """``cirq.FSimGate(θ, φ)`` = ``cirq.PhasedFSimGate(θ, 0, 0, 0, φ)``: partial swap θ, conditional phase φ."""
+    c, s = np.cos(theta), np.sin(theta)
+    return np.array([[1, 0, 0, 0], [0, c, -1j * s, 0], [0, -1j * s, c, 0], [0, 0, 0, np.exp(-1j * phi)]], dtype=C)
 
 
 def gpi(phi: float) -> np.ndarray:
@@ -171,6 +187,7 @@ GATE_TABLE: dict[str, tuple[int, int, Callable[..., np.ndarray]]] = {
     "u3": (1, 3, u_gate), "u": (1, 3, u_gate),
     # vendor-native one-qubit gates
     "u1q": (1, 2, r_gate), "prx": (1, 2, r_gate), "gpi": (1, 1, gpi), "gpi2": (1, 1, gpi2),
+    "phased_xz": (1, 3, phased_xz),
     # two-qubit
     "cx": (2, 0, cx), "cz": (2, 0, cz), "cy": (2, 0, lambda: controlled(Y)),
     "ch": (2, 0, lambda: controlled(H)), "swap": (2, 0, swap), "iswap": (2, 0, iswap),

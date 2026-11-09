@@ -150,6 +150,60 @@ def test_large_state_branches_match_reference(device: str, threads: int, tiny_ch
             assert np.max(np.abs(got - ref.psi)) < 1e-12
 
 
+@pytest.mark.parametrize("chunks", ["default", "tiny"])
+def test_in_place_executor_equals_two_buffer_executor(threads: int, chunks: str, request) -> None:
+    """The single-buffer executor reproduces the two-buffer one, for statevectors and density matrices."""
+    if chunks == "tiny":
+        request.getfixturevalue("tiny_chunks")
+    for device, n, seed in (("quantinuum_helios", 9, 21), ("iqm_emerald", 8, 22), ("ibm_heron", 7, 23)):
+        plan = _plan(device, _random_circuit(n, 150, seed))
+        gates = [(tuple(plan.program.qmap[q] for q in op.qubits), op) for op in plan.native.ops if op.is_gate]
+        for k in (2, 4, 5):
+            blocks = plan_blocks([(a, fused_state.__globals__["_gate_matrix"](op)) for a, op in gates], k, 12)
+            got = []
+            for in_place in (True, False):
+                st = FusedState(plan.program.n_sim, in_place=in_place)
+                for b in blocks:
+                    st.apply(b)
+                assert len(st._buf) == (1 if in_place else 2)
+                got.append(st.standard().copy())
+            assert np.max(np.abs(got[0] - got[1])) < 1e-12
+    noisy = _plan("iqm_emerald", _random_circuit(4, 40, 24), noise={"scale": 2.0}, engine="density_matrix")
+    rhos = []
+    for in_place in (True, False):
+        fused._IN_PLACE, before = in_place, fused._IN_PLACE
+        try:
+            rhos.append(fused_density(noisy.program.n_sim, noisy.instrs).vec.psi.copy())
+        finally:
+            fused._IN_PLACE = before
+    assert np.max(np.abs(rhos[0] - rhos[1])) < 1e-12
+
+
+def test_in_place_peak_memory_stays_below_one_and_a_half_states() -> None:
+    """Measured with tracemalloc (numpy reports its buffers): the peak is far below the two-buffer 2×."""
+    import tracemalloc
+
+    n = 20                                       # 16 MiB state; per-thread chunk temporaries are ~1 MiB
+    plan = _plan("quantinuum_helios", _random_circuit(n, 300, 25))
+    state = (1 << plan.program.n_sim) * 16
+    peaks = {}
+    before_threads = engine_threads()
+    set_engine_threads(1)
+    for in_place in (True, False):
+        fused._IN_PLACE, before = in_place, fused._IN_PLACE
+        try:
+            tracemalloc.start()
+            st = fused_state(plan.program)
+            st.marginal(list(range(plan.program.n_sim)), consume=True)
+            peaks[in_place] = tracemalloc.get_traced_memory()[1]
+            tracemalloc.stop()
+        finally:
+            fused._IN_PLACE = before
+    set_engine_threads(before_threads)
+    assert peaks[True] < 1.6 * state
+    assert peaks[False] > 1.9 * state
+
+
 def test_lazy_activation_keeps_untouched_axes_out_of_the_state() -> None:
     st = FusedState(6)
     h = np.array([[1, 1], [1, -1]], dtype=complex) / np.sqrt(2)
@@ -190,6 +244,15 @@ def test_marginal_from_the_permuted_state(measured: str, threads: int, tiny_chun
         j = sum(((i >> b) & 1) << mq.index(order[len(order) - 1 - b]) for b in range(len(order)))
         got[j] += v
     assert np.max(np.abs(got - want)) < 1e-12
+
+
+@pytest.mark.parametrize("dtype", [np.complex128, np.complex64])
+def test_consumed_marginal_equals_the_fresh_one(dtype, threads: int, tiny_chunks) -> None:
+    """Probabilities written into the state's own memory (parallel waves) equal a fresh computation."""
+    plan = _plan("quantinuum_helios", _random_circuit(10, 120, 31))
+    fresh, _ = fused_state(plan.program, dtype).marginal(list(range(10)))
+    consumed, _ = fused_state(plan.program, dtype).marginal(list(range(10)), consume=True)
+    assert np.max(np.abs(np.asarray(consumed) - fresh)) < (1e-6 if dtype == np.complex64 else 1e-14)
 
 
 def test_blocked_sampler_is_the_same_inverse_cdf() -> None:

@@ -5,6 +5,9 @@ description: Monitor QPUTwin with readiness probes and Prometheus metrics — jo
 
 # Monitoring
 
+!!! tip "Ready-made monitoring stack"
+    The `monitoring/` folder runs Prometheus, Grafana, cAdvisor, Blackbox Exporter, Alertmanager and Portainer CE in Docker, with Node Exporter on the host. It adds per-job metrics from the telemetry dataset and six dashboards. See `monitoring/README.md`.
+
 ## Probes
 
 | Endpoint | Use for | Healthy |

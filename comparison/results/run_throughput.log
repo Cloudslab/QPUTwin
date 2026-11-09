@@ -1,0 +1,89 @@
+[workflow_throughput] threads=1
+  ibm_heron qputwin  x16: 96 jobs in 334.08 s = 0.29 jobs/s (median job 0.180 s)
+  ibm_heron vendor   x16: 96 jobs in 60.00 s = 1.60 jobs/s (median job 1.134 s)
+  saved results/workflow_throughput.json
+  (399.6 s)
+[workflow_throughput] threads=1
+  ibm_nighthawk qputwin  x16: 96 jobs in 118.88 s = 0.81 jobs/s (median job 0.142 s)
+  ibm_nighthawk vendor   x16: 96 jobs in 39.93 s = 2.40 jobs/s (median job 2.725 s)
+  saved results/workflow_throughput.json
+  (167.4 s)
+[workflow_throughput] threads=1
+  google_willow qputwin  x16: 96 jobs in 32.69 s = 2.94 jobs/s (median job 0.141 s)
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/home/student.unimelb.edu.au/kmondal/.local/share/uv/python/cpython-3.13.18-linux-x86_64-gnu/lib/python3.13/concurrent/futures/process.py", line 255, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/home/student.unimelb.edu.au/kmondal/.local/share/uv/python/cpython-3.13.18-linux-x86_64-gnu/lib/python3.13/concurrent/futures/process.py", line 204, in _process_chunk
+    return [fn(*args) for args in chunk]
+            ~~^^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/run_comparison.py", line 524, in _pool_job
+    W.job(pipeline, backend, qasm, SHOTS, seed, threads=1)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/workflows.py", line 135, in job
+    return google_job(vendor, qasm, shots, seed, threads, exact=pipeline == "google_dm")
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/workflows.py", line 88, in google_job
+    c = cirq.optimize_for_target_gateset(circuit_from_qasm(qasm), gateset=cirq.CZTargetGateset())
+                                         ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/.venv/lib/python3.13/site-packages/cirq/contrib/qasm_import/qasm.py", line 35, in circuit_from_qasm
+    return QasmParser().parse(qasm).circuit
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/.venv/lib/python3.13/site-packages/cirq/contrib/qasm_import/_parser.py", line 1288, in parse
+    self.parsedQasm = self.parser.parse(lexer=self.lexer)
+                      ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/.venv/lib/python3.13/site-packages/ply/yacc.py", line 333, in parse
+    return self.parseopt_notrack(input, lexer, debug, tracking, tokenfunc)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/.venv/lib/python3.13/site-packages/ply/yacc.py", line 1120, in parseopt_notrack
+    p.callable(pslice)
+    ~~~~~~~~~~^^^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/.venv/lib/python3.13/site-packages/cirq/contrib/qasm_import/_parser.py", line 956, in p_gate_op_no_params
+    self._resolve_gate_operation(p[2], gate=p[1], p=p, params=[])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/.venv/lib/python3.13/site-packages/cirq/contrib/qasm_import/_parser.py", line 968, in _resolve_gate_operation
+    raise QasmException(msg)
+cirq.contrib.qasm_import.exception.QasmException: Unknown gate "barrier" at line 17
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/run_comparison.py", line 597, in <module>
+    main()
+    ~~~~^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/run_comparison.py", line 591, in main
+    EXPERIMENTS[name]()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/home/student.unimelb.edu.au/kmondal/Project/QPUTwin/comparison/run_comparison.py", line 559, in exp_workflow_throughput
+    lat = list(ex.map(_pool_job, [(pipeline, backend, j[1], j[2], j[3]) for j in jobs]))
+  File "/home/student.unimelb.edu.au/kmondal/.local/share/uv/python/cpython-3.13.18-linux-x86_64-gnu/lib/python3.13/concurrent/futures/process.py", line 621, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/.local/share/uv/python/cpython-3.13.18-linux-x86_64-gnu/lib/python3.13/concurrent/futures/_base.py", line 625, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/.local/share/uv/python/cpython-3.13.18-linux-x86_64-gnu/lib/python3.13/concurrent/futures/_base.py", line 318, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/home/student.unimelb.edu.au/kmondal/.local/share/uv/python/cpython-3.13.18-linux-x86_64-gnu/lib/python3.13/concurrent/futures/_base.py", line 453, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/home/student.unimelb.edu.au/kmondal/.local/share/uv/python/cpython-3.13.18-linux-x86_64-gnu/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+cirq.contrib.qasm_import.exception.QasmException: Unknown gate "barrier" at line 17
+[workflow_throughput] threads=1
+  ibm_heron qputwin  x16: 96 jobs in 9.79 s = 9.80 jobs/s (median job 0.148 s)
+  ibm_heron vendor   x16: 96 jobs in 58.99 s = 1.63 jobs/s (median job 1.074 s)
+  saved results/workflow_throughput.json
+  (74.0 s)
+[workflow_throughput] threads=1
+  ibm_nighthawk qputwin  x16: 96 jobs in 7.88 s = 12.18 jobs/s (median job 0.151 s)
+  ibm_nighthawk vendor   x16: 96 jobs in 37.51 s = 2.56 jobs/s (median job 2.535 s)
+  saved results/workflow_throughput.json
+  (54.0 s)
+[workflow_throughput] threads=1
+  google_willow qputwin  x16: 96 jobs in 3.95 s = 24.30 jobs/s (median job 0.147 s)
+  google_willow vendor   x16: 96 jobs in 14.88 s = 6.45 jobs/s (median job 0.883 s)
+  saved results/workflow_throughput.json
+  (21.1 s)

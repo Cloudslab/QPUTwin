@@ -1,20 +1,20 @@
 {
  "experiment": "hwtime",
- "generated_utc": "2026-10-28T07:24:47+00:00",
+ "generated_utc": "2026-11-09T14:00:58+00:00",
  "environment": {
   "qputwin": "0.1.0",
-  "python": "3.13.17",
+  "python": "3.13.18",
   "numpy": "2.5.4",
-  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
-  "cpu": "12th Gen Intel(R) Core(TM) i5-12450H",
-  "logical_cpus": 12,
+  "platform": "Linux-5.15.0-202-generic-x86_64-with-glibc2.35",
+  "cpu": "AMD EPYC 9474F 48-Core Processor",
+  "logical_cpus": 16,
   "load_average": [
-   0.70654296875,
-   2.119140625,
-   2.7421875
+   1.2265625,
+   2.69189453125,
+   3.06689453125
   ],
   "omp_num_threads": "1",
-  "docker": "29.9.2"
+  "docker": "29.9.3"
  },
  "workload": "GHZ along a native path; estimate excludes per-shot overhead (unpublished)",
  "data": [
@@ -827,6 +827,384 @@
     "gates.prx.duration_ns",
     "readout.duration_ns"
    ]
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 2,
+   "circuit_duration_us": 2.332,
+   "job_duration_s_1000_shots": 0.252332,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 4,
+   "circuit_duration_us": 2.552,
+   "job_duration_s_1000_shots": 0.252552,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 6,
+   "circuit_duration_us": 2.752,
+   "job_duration_s_1000_shots": 0.252752,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 8,
+   "circuit_duration_us": 2.952,
+   "job_duration_s_1000_shots": 0.252952,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 10,
+   "circuit_duration_us": 3.152,
+   "job_duration_s_1000_shots": 0.253152,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 12,
+   "circuit_duration_us": 3.352,
+   "job_duration_s_1000_shots": 0.253352,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 14,
+   "circuit_duration_us": 3.552,
+   "job_duration_s_1000_shots": 0.253552,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 16,
+   "circuit_duration_us": 3.752,
+   "job_duration_s_1000_shots": 0.253752,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 18,
+   "circuit_duration_us": 3.952,
+   "job_duration_s_1000_shots": 0.253952,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 20,
+   "circuit_duration_us": 4.152,
+   "job_duration_s_1000_shots": 0.254152,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 22,
+   "circuit_duration_us": 4.352,
+   "job_duration_s_1000_shots": 0.254352,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 24,
+   "circuit_duration_us": 4.552,
+   "job_duration_s_1000_shots": 0.254552,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 26,
+   "circuit_duration_us": 4.752,
+   "job_duration_s_1000_shots": 0.254752,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 28,
+   "circuit_duration_us": 4.952,
+   "job_duration_s_1000_shots": 0.254952,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 30,
+   "circuit_duration_us": 5.152,
+   "job_duration_s_1000_shots": 0.255152,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 32,
+   "circuit_duration_us": 5.352,
+   "job_duration_s_1000_shots": 0.255352,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 34,
+   "circuit_duration_us": 5.552,
+   "job_duration_s_1000_shots": 0.255552,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_heron",
+   "qubits": 36,
+   "circuit_duration_us": 5.752,
+   "job_duration_s_1000_shots": 0.255752,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 2,
+   "circuit_duration_us": 2.592,
+   "job_duration_s_1000_shots": 4.002592,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 4,
+   "circuit_duration_us": 2.912,
+   "job_duration_s_1000_shots": 4.002912,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 6,
+   "circuit_duration_us": 3.252,
+   "job_duration_s_1000_shots": 4.003252,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 8,
+   "circuit_duration_us": 3.572,
+   "job_duration_s_1000_shots": 4.003572,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 10,
+   "circuit_duration_us": 3.892,
+   "job_duration_s_1000_shots": 4.003892,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 12,
+   "circuit_duration_us": 4.212,
+   "job_duration_s_1000_shots": 4.004212,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 14,
+   "circuit_duration_us": 4.532,
+   "job_duration_s_1000_shots": 4.004532,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 16,
+   "circuit_duration_us": 4.872,
+   "job_duration_s_1000_shots": 4.004872,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 18,
+   "circuit_duration_us": 5.352,
+   "job_duration_s_1000_shots": 4.005352,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 20,
+   "circuit_duration_us": 5.672,
+   "job_duration_s_1000_shots": 4.005672,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 22,
+   "circuit_duration_us": 5.992,
+   "job_duration_s_1000_shots": 4.005992,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 24,
+   "circuit_duration_us": 6.332,
+   "job_duration_s_1000_shots": 4.006332,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 26,
+   "circuit_duration_us": 6.772,
+   "job_duration_s_1000_shots": 4.006772,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 28,
+   "circuit_duration_us": 7.052,
+   "job_duration_s_1000_shots": 4.007052,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 30,
+   "circuit_duration_us": 7.292,
+   "job_duration_s_1000_shots": 4.007292,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 32,
+   "circuit_duration_us": 7.652,
+   "job_duration_s_1000_shots": 4.007652,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 34,
+   "circuit_duration_us": 7.952,
+   "job_duration_s_1000_shots": 4.007952,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "ibm_nighthawk",
+   "qubits": 36,
+   "circuit_duration_us": 8.192,
+   "job_duration_s_1000_shots": 4.008192,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 2,
+   "circuit_duration_us": 0.692,
+   "job_duration_s_1000_shots": 0.000692,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 4,
+   "circuit_duration_us": 0.826,
+   "job_duration_s_1000_shots": 0.000826,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 6,
+   "circuit_duration_us": 0.96,
+   "job_duration_s_1000_shots": 0.00096,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 8,
+   "circuit_duration_us": 1.094,
+   "job_duration_s_1000_shots": 0.001094,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 10,
+   "circuit_duration_us": 1.228,
+   "job_duration_s_1000_shots": 0.001228,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 12,
+   "circuit_duration_us": 1.362,
+   "job_duration_s_1000_shots": 0.001362,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 14,
+   "circuit_duration_us": 1.496,
+   "job_duration_s_1000_shots": 0.001496,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 16,
+   "circuit_duration_us": 1.63,
+   "job_duration_s_1000_shots": 0.00163,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 18,
+   "circuit_duration_us": 1.764,
+   "job_duration_s_1000_shots": 0.001764,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 20,
+   "circuit_duration_us": 1.898,
+   "job_duration_s_1000_shots": 0.001898,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 22,
+   "circuit_duration_us": 2.032,
+   "job_duration_s_1000_shots": 0.002032,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 24,
+   "circuit_duration_us": 2.166,
+   "job_duration_s_1000_shots": 0.002166,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 26,
+   "circuit_duration_us": 2.3,
+   "job_duration_s_1000_shots": 0.0023,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 28,
+   "circuit_duration_us": 2.434,
+   "job_duration_s_1000_shots": 0.002434,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 30,
+   "circuit_duration_us": 2.568,
+   "job_duration_s_1000_shots": 0.002568,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 32,
+   "circuit_duration_us": 2.702,
+   "job_duration_s_1000_shots": 0.002702,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 34,
+   "circuit_duration_us": 2.836,
+   "job_duration_s_1000_shots": 0.002836,
+   "assumed_parameters": []
+  },
+  {
+   "backend": "google_willow",
+   "qubits": 36,
+   "circuit_duration_us": 2.97,
+   "job_duration_s_1000_shots": 0.00297,
+   "assumed_parameters": []
   }
  ]
 }

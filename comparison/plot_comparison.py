@@ -25,7 +25,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 from matplotlib.colors import LinearSegmentedColormap, LogNorm  # noqa: E402
-from matplotlib.ticker import FuncFormatter  # noqa: E402
+from matplotlib.ticker import FuncFormatter, LogLocator  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 RES, OUT = HERE / "results", HERE / "figures"
@@ -37,11 +37,13 @@ INK, INK2, MUTED, GRID = "#1f2328", "#52514e", "#8a8984", "#e3e2dd"
 SIMS = ["QPUTwin", "Qiskit Aer", "Braket local", "Cirq", "qsim", "Qulacs"]
 COLOR = {**dict(zip(SIMS, SLOTS, strict=False)), "QPUTwin (in-process)": SLOTS[0], "QPUTwin (complex64)": SLOTS[6]}
 MARK = {**dict(zip(SIMS, "osD^vP", strict=True)), "QPUTwin (in-process)": "o", "QPUTwin (complex64)": "h"}
-DEVICES = ["quantinuum_helios", "ionq_forte", "rigetti_ankaa_3", "iqm_emerald"]
+DEVICES = ["quantinuum_helios", "ionq_forte", "rigetti_ankaa_3", "iqm_emerald", "ibm_heron", "ibm_nighthawk",
+           "google_willow"]
 DEV_LABEL = {"quantinuum_helios": "Quantinuum Helios", "ionq_forte": "IonQ Forte",
-             "rigetti_ankaa_3": "Rigetti Ankaa-3", "iqm_emerald": "IQM Emerald"}
+             "rigetti_ankaa_3": "Rigetti Ankaa-3", "iqm_emerald": "IQM Emerald", "ibm_heron": "IBM Heron r3",
+             "ibm_nighthawk": "IBM Nighthawk", "google_willow": "Google Willow"}
 DEV_COLOR = dict(zip(DEVICES, SLOTS, strict=False))
-DEV_MARK = dict(zip(DEVICES, "os^D", strict=True))
+DEV_MARK = dict(zip(DEVICES, "os^DvPX", strict=True))
 FAM_LABEL = {"ghz": "GHZ", "qft": "QFT adder", "qv": "QV-style", "qaoa": "QAOA (p=2)", "hea": "HEA (VQE)",
              "ising": "Ising (Trotter)", "bv": "Bernstein–Vazirani", "adder": "Cuccaro adder", "mirror": "Mirror"}
 SINGLE, DOUBLE = 3.5, 7.2
@@ -71,7 +73,7 @@ def save(fig: plt.Figure, name: str, rows: list[dict[str, Any]]) -> None:
         shutil.copy(OUT / f"{name}.{ext}", DOCS / f"{name}.{ext}")
     if rows:
         with (DATA / f"{name}.csv").open("w", newline="") as fh:
-            w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+            w = csv.DictWriter(fh, fieldnames=list(dict.fromkeys(k for r in rows for k in r)))   # tables can mix row kinds
             w.writeheader()
             w.writerows(rows)
     plt.close(fig)
@@ -142,7 +144,8 @@ def _series(ax: plt.Axes, rows: list[dict[str, Any]], fam: str, table: list[dict
                   for r in rs]
 
 
-def _speed_panels(rows: list[dict[str, Any]], fams: list[str], name: str, title: str) -> None:
+def _speed_panels(rows: list[dict[str, Any]], fams: list[str], name: str, title: str,
+                  xticks: tuple[int, ...] = (6, 10, 14, 18, 22)) -> None:
     fig, axes = plt.subplots(1, len(fams), figsize=(DOUBLE, 2.6), sharey=True)
     table: list[dict[str, Any]] = []
     for ax, fam in zip(axes, fams, strict=True):
@@ -150,7 +153,7 @@ def _speed_panels(rows: list[dict[str, Any]], fams: list[str], name: str, title:
         ax.set_yscale("log")
         ax.yaxis.set_major_formatter(FuncFormatter(secs))
         ax.set_xlabel("Qubits n")
-        ax.set_xticks([6, 10, 14, 18, 22])
+        ax.set_xticks(list(xticks))
         ax.set_title(FAM_LABEL[fam], loc="left")
     axes[0].set_ylabel("Time per job (best of 3)")
     handles, labels = axes[0].get_legend_handles_labels()
@@ -170,10 +173,19 @@ def fig_threads() -> None:
                   "Ideal statevector simulation + 1024 shots, four threads each (QPUTwin: the running stack)")
 
 
+def fig_threads16() -> None:
+    _speed_panels(load("sv_speed_t16")["data"], ["ghz", "qv", "qft"], "figC10_statevector_speed_16threads",
+                  "Ideal statevector simulation + 1024 shots, 16 threads each (all in-process)",
+                  xticks=(6, 10, 14, 18, 22, 26))
+
+
 def fig_dm_speed() -> None:
-    fig, axes = plt.subplots(2, 2, figsize=(DOUBLE, 4.6), sharey=True)
+    budgets = [("t1", "one thread"), ("t4", "four threads")]
+    if (RES / "dm_speed_t16.json").exists():
+        budgets.append(("t16", "16 threads"))
+    fig, axes = plt.subplots(len(budgets), 2, figsize=(DOUBLE, 2.3 * len(budgets)), sharey=True)
     table: list[dict[str, Any]] = []
-    for row, (tag, title) in enumerate((("t1", "one thread"), ("t4", "four threads"))):
+    for row, (tag, title) in enumerate(budgets):
         rows = load(f"dm_speed_{tag}")["data"]
         for col, fam in enumerate(("ghz", "qv")):
             ax = axes[row, col]
@@ -182,8 +194,8 @@ def fig_dm_speed() -> None:
                 t.setdefault("threads", tag)
             ax.set_yscale("log")
             ax.yaxis.set_major_formatter(FuncFormatter(secs))
-            ax.set_title(f"({'abcd'[2 * row + col]}) {FAM_LABEL[fam]}, {title}", loc="left")
-            if row == 1:
+            ax.set_title(f"({'abcdef'[2 * row + col]}) {FAM_LABEL[fam]}, {title}", loc="left")
+            if row == len(budgets) - 1:
                 ax.set_xlabel("Qubits n")
         axes[row, 0].set_ylabel("Time per job (best of 3)")
     seen: dict[str, Any] = {}
@@ -193,18 +205,24 @@ def fig_dm_speed() -> None:
     fig.legend(list(seen.values()), list(seen), loc="lower center", ncol=3, bbox_to_anchor=(0.5, -0.01))
     fig.suptitle("Noisy density-matrix simulation + 1024 shots (QPUTwin: its full calibrated noise model)",
                  x=0.01, ha="left", fontsize=8.5)
-    fig.tight_layout(rect=(0, 0.08, 1, 0.97), h_pad=1.0)
+    fig.tight_layout(rect=(0, 0.08 if len(budgets) == 2 else 0.06, 1, 0.97), h_pad=1.0)
     save(fig, "figC4_density_matrix_speed", table)
 
 
 def fig_improvement() -> None:
-    """QPUTwin's engine before (v1, per-gate kernels, 1 thread) and after (fused; 1 and 4 threads)."""
+    """QPUTwin's engine before (v1, per-gate kernels, 1 thread) and after (fused; 1 and 4 threads), both on the laptop."""
     v1sv = json.loads((RES / "v1" / "sv_speed_t1.json").read_text())["data"]
     v1dm = json.loads((RES / "v1" / "dm_speed.json").read_text())["data"]
     cases = [("sv", "ghz", 24), ("sv", "qv", 20), ("sv", "qft", 20), ("sv", "qv", 22), ("sv", "qft", 22),
              ("dm", "ghz", 12), ("dm", "qv", 10), ("dm", "qv", 12)]
-    new = {"t1": {"sv": load("sv_speed_t1")["data"], "dm": load("dm_speed_t1")["data"]},
-           "t4": {"sv": load("sv_speed_t4")["data"], "dm": load("dm_speed_t4")["data"]}}
+    # same host as v1 (the laptop): a speed-up is only meaningful when both runs share the CPU
+    same = RES / "laptop_2026-10-28"
+
+    def lap(name: str) -> list[dict[str, Any]]:
+        return json.loads((same / f"{name}.json").read_text())["data"]
+
+    new = {"t1": {"sv": lap("sv_speed_t1"), "dm": lap("dm_speed_t1")},
+           "t4": {"sv": lap("sv_speed_t4"), "dm": lap("dm_speed_t4")}}
 
     def engine(rows, fam, n, sim):
         r = next((r for r in rows if r["family"] == fam and r["qubits"] == n and r["simulator"] == sim), None)
@@ -253,13 +271,17 @@ def fig_ranking() -> None:
             ("dm", "ghz", 12), ("dm", "qv", 12)]
     c64 = "QPUTwin (complex64)"                       # qsim runs in single precision only: also compare like for like
     sims_by = {"t1": ["Qiskit Aer", "qsim", ("qsim", c64), "Qulacs", "Braket local", "Cirq"],
-               "t4": ["Qiskit Aer", "qsim", ("qsim", c64), "Qulacs"]}
-    fig, axes = plt.subplots(1, 2, figsize=(DOUBLE, 3.1), gridspec_kw={"width_ratios": [6, 4]})
+               "t4": ["Qiskit Aer", "qsim", ("qsim", c64), "Qulacs"],
+               "t16": ["Qiskit Aer", "qsim", ("qsim", c64), "Qulacs"]}
+    tags = ["t1", "t4"] + (["t16"] if (RES / "sv_speed_t16.json").exists() else [])
+    fig, axes = plt.subplots(1, len(tags), figsize=(DOUBLE, 3.1),
+                             gridspec_kw={"width_ratios": [len(sims_by[t]) for t in tags]})
     table = []
     cmap = LinearSegmentedColormap.from_list("rk", ["#e34948", "#f6f6f4", "#2a78d6"])
-    for ax, tag in zip(axes, ("t1", "t4"), strict=True):
+    titles = {"t1": "one thread", "t4": "four threads", "t16": "16 threads"}
+    for k, (ax, tag) in enumerate(zip(axes, tags, strict=True)):
         data = {"sv": load(f"sv_speed_{tag}")["data"], "dm": load(f"dm_speed_{tag}")["data"]}
-        twin_name = "QPUTwin (in-process)" if tag == "t1" else "QPUTwin"
+        twin_name = "QPUTwin" if tag == "t4" else "QPUTwin (in-process)"
         sims = [(s, twin_name) if isinstance(s, str) else s for s in sims_by[tag]]
         mat = np.full((len(work), len(sims)), np.nan)
         for i, (kind, fam, n) in enumerate(work):
@@ -286,8 +308,9 @@ def fig_ranking() -> None:
         ax.grid(False)
         for sp in ax.spines.values():
             sp.set_visible(False)
-        ax.set_title(f"({'ab'[tag == 't4']}) {'one thread' if tag == 't1' else 'four threads'}", loc="left")
-    axes[1].set_yticklabels([])
+        ax.set_title(f"({'abc'[k]}) {titles[tag]}", loc="left")
+    for ax in axes[1:]:
+        ax.set_yticklabels([])
     cb = fig.colorbar(im, ax=list(axes), fraction=0.03, pad=0.02)
     cb.set_ticks([-1, 0, 1], labels=["QPUTwin 10× slower", "equal", "QPUTwin 10× faster"])
     cb.set_label("other simulator's time ÷ QPUTwin engine time", fontsize=7)
@@ -296,33 +319,28 @@ def fig_ranking() -> None:
 
 def fig_noise_xval() -> None:
     rows = load("noise_xval")["data"]
-    fig, axes = plt.subplots(1, 3, figsize=(DOUBLE, 2.7))
+    fig, axes = plt.subplots(1, 3, figsize=(DOUBLE, 2.9))
     table = []
     for dev in DEVICES:
         rs = [r for r in rows if r["backend"] == dev]
-        for same in (True, False):
-            sub = [r for r in rs if (r["qputwin_two_qubit"] == r["qiskit_two_qubit"]) == same]
-            kw = dict(s=15, marker=DEV_MARK[dev], linewidths=0.9,
-                      facecolors=DEV_COLOR[dev] if same else "none",
-                      edgecolors="white" if same else DEV_COLOR[dev],
-                      label=DEV_LABEL[dev] if same else None)
-            axes[0].scatter([r["aer_matched"] for r in sub], [r["qputwin_no_idle"] for r in sub], **kw)
-            axes[1].scatter([r["aer_matched"] for r in sub], [r["qputwin_full"] for r in sub], **kw)
-            axes[2].scatter([r["qiskit_two_qubit"] for r in sub], [r["qputwin_two_qubit"] for r in sub], **kw)
+        kw = dict(s=14, marker=DEV_MARK[dev], linewidths=0.6, facecolors=DEV_COLOR[dev], edgecolors="white",
+                  label=DEV_LABEL[dev])
+        axes[0].scatter([r["aer_matched"] for r in rs], [r["qputwin_no_idle"] for r in rs], **kw)
+        axes[1].scatter([r["aer_matched"] for r in rs], [r["qputwin_full"] for r in rs], **kw)
+        axes[2].scatter([r["qiskit_two_qubit"] for r in rs], [r["qputwin_two_qubit"] for r in rs], **kw)
         table += [{k: r[k] for k in ("backend", "family", "qubits", "aer_matched", "qputwin_no_idle", "qputwin_full",
-                                     "qiskit_two_qubit", "qputwin_two_qubit")} for r in rs]
-    same = [r for r in rows if r["qputwin_two_qubit"] == r["qiskit_two_qubit"]]
-    d0 = np.array([r["qputwin_no_idle"] - r["aer_matched"] for r in same])
-    d1 = np.array([r["qputwin_full"] - r["aer_matched"] for r in same])
+                                     "tvd_no_idle_vs_aer", "qiskit_two_qubit", "qputwin_two_qubit")} for r in rs]
+    d0 = np.array([r["qputwin_no_idle"] - r["aer_matched"] for r in rows])
+    d1 = np.array([r["qputwin_full"] - r["aer_matched"] for r in rows])
     for ax, d, title in ((axes[0], d0, "(a) QPUTwin without idle noise"),
                          (axes[1], d1, "(b) QPUTwin full model (+ idle)")):
         ax.plot([0, 1.02], [0, 1.02], color=MUTED, lw=0.8, ls=":")
         ax.set_xlim(0, 1.02)
         ax.set_ylim(0, 1.02)
         ax.set_aspect("equal")
-        ax.set_xlabel("Aer, calibration-matched model")
+        ax.set_xlabel("Aer, independent per-qubit model")
         ax.set_title(title, loc="left")
-        ax.annotate(f"same circuit (n = {len(d)}):\nmedian |Δ| = {np.median(np.abs(d)):.4f}\n"
+        ax.annotate(f"identical circuits (n = {len(d)}):\nmedian |Δ| = {np.median(np.abs(d)):.4f}\n"
                     f"mean Δ = {d.mean():+.4f}", (0.04, 0.96), xycoords="axes fraction", va="top",
                     fontsize=6.6, color=INK2)
     axes[0].set_ylabel("QPUTwin (Hellinger fidelity)")
@@ -335,23 +353,22 @@ def fig_noise_xval() -> None:
     axes[2].set_title("(c) Native 2Q gate count", loc="left")
     axes[2].set_aspect("equal")
     handles, labels = axes[0].get_legend_handles_labels()
-    handles.append(plt.Line2D([], [], marker="o", ls="none", mfc="none", mec=MUTED, ms=4.5))
-    labels.append("hollow: the compilers produced different circuits")
-    fig.legend(handles, labels, loc="lower center", ncol=5, bbox_to_anchor=(0.5, -0.03), columnspacing=1.0,
+    fig.legend(handles, labels, loc="lower center", ncol=4, bbox_to_anchor=(0.5, -0.05), columnspacing=1.0,
                handletextpad=0.3)
-    fig.tight_layout(rect=(0, 0.08, 1, 1), w_pad=1.2)
+    fig.tight_layout(rect=(0, 0.12, 1, 1), w_pad=1.2)
     save(fig, "figC5_noise_cross_validation", table)
 
 
 def fig_noise_by_family() -> None:
     rows = load("noise_xval")["data"]
     fams = list(dict.fromkeys(r["family"] for r in rows))
-    fig, axes = plt.subplots(1, len(DEVICES), figsize=(DOUBLE, 2.5), sharey=True)
+    fig, grid = plt.subplots(2, 4, figsize=(DOUBLE, 4.6), sharey=True)
+    axes = list(grid.flat)
     table = []
-    for ax, dev in zip(axes, DEVICES, strict=True):
+    for ax, dev in zip(axes, DEVICES, strict=False):
         x = np.arange(len(fams))
-        for k, (key, name) in enumerate((("aer_matched", "Aer matched"), ("qputwin_no_idle", "QPUTwin, no idle"),
-                                         ("qputwin_full", "QPUTwin, full"))):
+        for k, (key, name) in enumerate((("aer_matched", "Aer, independent model"),
+                                         ("qputwin_no_idle", "QPUTwin, no idle"), ("qputwin_full", "QPUTwin, full"))):
             vals = [statistics.fmean(r[key] for r in rows if r["backend"] == dev and r["family"] == f) for f in fams]
             ax.bar(x + (k - 1) * 0.27, vals, width=0.27, color=[SLOTS[1], SLOTS[6], SLOTS[0]][k],
                    edgecolor="white", linewidth=0.5, label=name)
@@ -362,15 +379,279 @@ def fig_noise_by_family() -> None:
         ax.set_ylim(0, 1.05)
         ax.grid(axis="x", visible=False)
         ax.set_title(DEV_LABEL[dev], loc="left")
-    axes[0].set_ylabel("Mean Hellinger fidelity\n(3–8 qubits)")
+    axes[-1].axis("off")
+    for ax in (axes[0], axes[4]):
+        ax.set_ylabel("Mean Hellinger fidelity\n(3–8 qubits)")
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=3, bbox_to_anchor=(0.5, -0.04))
-    fig.tight_layout(rect=(0, 0.1, 1, 1), w_pad=0.6)
+    axes[-1].legend(handles, labels, loc="center", frameon=False)
+    fig.tight_layout(w_pad=0.6, h_pad=1.2)
     save(fig, "figC6_noise_by_family", table)
 
 
-FIGURES = [fig_correctness, fig_sv_speed, fig_threads, fig_dm_speed, fig_noise_xval, fig_noise_by_family,
-           fig_improvement, fig_ranking]
+VENDOR_LABEL = {"ibm_heron": "IBM Heron r3 vs Qiskit Aer\nfrom_backend(ibm_boston)",
+                "ibm_nighthawk": "IBM Nighthawk vs Qiskit Aer\nfrom_backend(ibm_miami)",
+                "google_willow": "Google Willow vs Cirq\nwillow_pink noise model"}
+
+
+def fig_vendor_xval() -> None:
+    """The IBM and Google twins against the vendors' own noise models of the same snapshot."""
+    rows = load("vendor_xval")["data"]
+    devs = [d for d in VENDOR_LABEL if any(r["backend"] == d for r in rows)]
+    fig = plt.figure(figsize=(DOUBLE, 5.6))
+    gs = fig.add_gridspec(2, 3, height_ratios=[1.35, 1.0], hspace=0.62, wspace=0.32)
+    table = []
+    for k, dev in enumerate(devs):
+        ax = fig.add_subplot(gs[0, k])
+        rs = [r for r in rows if r["backend"] == dev]
+        if dev == "google_willow":
+            # like for like: both apply idle decoherence; Cirq's extra decay during the 600 ns read-out removed
+            x = [r["vendor_no_measurement_decay"] for r in rs]
+            ax.scatter(x, [r["qputwin_full"] for r in rs], s=16, marker=DEV_MARK[dev], color=DEV_COLOR[dev],
+                       edgecolors="white", linewidths=0.6, label="QPUTwin (full model)", zorder=3)
+            ax.scatter(x, [r["vendor"] for r in rs], s=12, marker="+", color=INK2, linewidths=0.8,
+                       label="Cirq as shipped", zorder=2)
+            xl = "Cirq, no decay during read-out"
+        else:
+            # like for like: neither model idles an unscheduled circuit
+            x = [r["vendor"] for r in rs]
+            ax.scatter(x, [r["qputwin_no_idle"] for r in rs], s=16, marker=DEV_MARK[dev], color=DEV_COLOR[dev],
+                       edgecolors="white", linewidths=0.6, label="QPUTwin (no idle)", zorder=3)
+            ax.scatter(x, [r["median_model"] for r in rs], s=13, marker="o", facecolors="none",
+                       edgecolors=INK2, linewidths=0.8, label="device medians only", zorder=2)
+            xl = "IBM's Aer noise model"
+        ax.plot([0, 1.02], [0, 1.02], color=MUTED, lw=0.8, ls=":")
+        ax.set_xlim(0, 1.02)
+        ax.set_ylim(0, 1.02)
+        ax.set_aspect("equal")
+        ax.set_xlabel(xl, fontsize=7)
+        ax.set_title(f"({'abc'[k]}) " + VENDOR_LABEL[dev].replace("\n", "\n     "), loc="left", fontsize=7.2)
+        ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.24), fontsize=6.2, handletextpad=0.2,
+                  borderaxespad=0.0, ncol=1)
+        if k == 0:
+            ax.set_ylabel("Hellinger fidelity to the ideal")
+        table += [{key: r.get(key) for key in ("backend", "family", "qubits", "vendor", "vendor_no_measurement_decay",
+                                               "qputwin_full", "qputwin_no_idle", "median_model",
+                                               "tvd_no_idle_vs_vendor", "tvd_full_vs_vendor_no_meas",
+                                               "tvd_median_vs_vendor", "tvd_sampling_floor")} for r in rs]
+    # distance to the vendor model, per device: QPUTwin, median-only, and the sampling floor
+    ax = fig.add_subplot(gs[1, :])
+    keys = [("QPUTwin (like-for-like variant)", SLOTS[0], "o"), ("device medians only", SLOTS[1], "s"),
+            ("sampling floor (vendor vs itself)", MUTED, "D")]
+    for k, (name, col, mk) in enumerate(keys):
+        for j, dev in enumerate(devs):
+            rs = [r for r in rows if r["backend"] == dev]
+            if k == 0:
+                v = [r["tvd_full_vs_vendor_no_meas"] if dev == "google_willow" else r["tvd_no_idle_vs_vendor"]
+                     for r in rs]
+            elif k == 1:
+                if dev == "google_willow":
+                    continue          # the median Aer model has no idle term, unlike Cirq: not comparable
+                v = [r["tvd_median_vs_vendor"] for r in rs]
+            else:
+                v = [r["tvd_sampling_floor"] for r in rs]
+            y = j + (k - 1) * 0.25
+            q1, med, q3 = np.percentile(v, [25, 50, 75])
+            ax.plot([q1, q3], [y, y], color=col, lw=2.4, solid_capstyle="butt")
+            ax.plot([med], [y], marker=mk, color=col, ms=5.5, mec="white", mew=0.7,
+                    label=name if j == 0 else None, ls="none")
+    ax.set_yticks(range(len(devs)), [DEV_LABEL[d] for d in devs], fontsize=7)
+    ax.invert_yaxis()
+    ax.set_xscale("log")
+    ax.xaxis.set_major_locator(LogLocator(base=10, subs=(1.0, 2.0, 5.0)))
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:g}"))
+    ax.xaxis.set_minor_formatter(FuncFormatter(lambda v, _: ""))
+    per_twin = sorted({sum(r["backend"] == d for r in rows) for d in devs})
+    count = f"{per_twin[0]}" if len(per_twin) == 1 else f"{per_twin[0]}-{per_twin[-1]}"
+    ax.set_xlabel("Total-variation distance to the vendor model's distribution (log; median and interquartile range "
+                  f"over {count} circuits per twin)", fontsize=7)
+    ax.set_title("(d) Distance to the vendor's model", loc="left", fontsize=7.4)
+    ax.grid(axis="y", visible=False)
+    ax.legend(loc="lower right", fontsize=6.4, handletextpad=0.3)
+    save(fig, "figC9_vendor_cross_validation", table)
+
+
+CAP_LABEL = {"qputwin_c128": "QPUTwin (complex128)", "qputwin_c64": "QPUTwin (complex64)",
+             "aer_c128": "Qiskit Aer (complex128)", "aer_c64": "Qiskit Aer (complex64)", "qsim": "qsim (complex64)",
+             "qulacs": "Qulacs (complex128)", "qputwin_dm": "QPUTwin", "aer_dm": "Qiskit Aer"}
+CAP_STYLE = {"qputwin_c128": (SLOTS[0], "o", "-"), "qputwin_c64": (SLOTS[6], "h", "-"),
+             "aer_c128": (SLOTS[1], "s", "-"), "aer_c64": (SLOTS[1], "D", "--"), "qsim": (SLOTS[4], "v", "-"),
+             "qulacs": (SLOTS[5], "P", "-"), "qputwin_dm": (SLOTS[0], "o", "-"), "aer_dm": (SLOTS[1], "s", "-")}
+
+
+def fig_capacity() -> None:
+    """Widest runs on the whole host: time and peak memory per width, with the first failure marked."""
+    d = load("capacity")
+    rows, threads = d["data"], d.get("threads")
+    gib = 2 ** 30
+    fig, axes = plt.subplots(1, 3, figsize=(DOUBLE, 3.0), gridspec_kw={"width_ratios": [1.15, 1.15, 0.9]})
+    table = []
+    panels = [(axes[0], "sv", "qv", "time", "(a) QV-style statevector: time"),
+              (axes[1], "sv", "ghz", "mem", "(b) GHZ statevector: peak memory"),
+              (axes[2], "dm", "qv", "time", "(c) Noisy density matrix (QV-style)")]
+    # how the first failing width ended: a clean refusal (the simulator's own memory check), killed by the
+    # kernel for memory, or over the time cap
+    fail_mk = {"refused": ("o", "none"), "failed": ("o", "none"), "killed": ("X", None),
+               "out_of_memory": ("X", None), "timeout": ("s", "none")}
+    for ax, kind, fam, what, title in panels:
+        sims = [s for s in CAP_LABEL if any(r["simulator"] == s and r["kind"] == kind for r in rows)]
+        for si, sim in enumerate(sims):
+            rs = sorted((r for r in rows if r["simulator"] == sim and r["kind"] == kind and r["family"] == fam),
+                        key=lambda r: r["qubits"])
+            ok = [r for r in rs if r["status"] == "ok"]
+            col, mk, ls = CAP_STYLE[sim]
+            y = [r["run_s"] if what == "time" else r["peak_rss_bytes"] / gib for r in ok]
+            if ok:
+                ring(ax, [r["qubits"] for r in ok], y, col, mk, ls=ls, label=CAP_LABEL[sim], markersize=4)
+            fail = next((r for r in rs if r["status"] != "ok"), None)
+            if fail is not None:                    # first width that failed, on the top edge, offset per simulator
+                fm, fc = fail_mk.get(fail["status"], ("X", None))
+                off = (si - (len(sims) - 1) / 2) * 0.13
+                ax.plot([fail["qubits"] + off], [0.96], marker=fm, color=col, mfc=col if fc is None else fc,
+                        mec=col, ms=5, mew=1.2, ls="none", transform=ax.get_xaxis_transform(), clip_on=False)
+            table += [{"kind": kind, "family": fam, "simulator": sim, "qubits": r["qubits"], "status": r["status"],
+                       "run_s": round(r.get("run_s", r.get("wall_s", 0.0)), 3),
+                       "peak_rss_gib": round(r["peak_rss_bytes"] / gib, 3) if r.get("peak_rss_bytes") else "",
+                       "in_place": r.get("in_place", "")} for r in rs]
+        ax.set_title(title, loc="left")
+        ax.set_xlabel("Qubits n")
+        if what == "time":
+            ax.set_yscale("log")
+            ax.yaxis.set_major_formatter(FuncFormatter(secs))
+        else:
+            host = 62.8
+            ax.axhline(host, color=MUTED, lw=0.8, ls=":")
+            ax.text(0.02, host / 70 + 0.01, "host RAM 62.8 GiB", fontsize=6.4, color=INK2, va="bottom",
+                    transform=ax.transAxes)
+            ax.set_ylabel("Peak resident memory (GiB)")
+            ax.set_ylim(0, 70)
+    axes[0].set_ylabel("Time per job")
+    seen: dict[str, Any] = {}
+    for ax in axes[:2]:
+        for h, lab in zip(*ax.get_legend_handles_labels(), strict=True):
+            seen.setdefault(lab, h)
+    from matplotlib.lines import Line2D
+    for lab, (fm, fc) in (("first failure: refused cleanly", ("o", "none")), ("killed for memory", ("X", None)),
+                          ("over the 20 min cap", ("s", "none"))):
+        seen[lab] = Line2D([], [], marker=fm, color=INK2, mfc=INK2 if fc is None else fc, mec=INK2, ls="none", ms=5)
+    fig.legend(list(seen.values()), list(seen), loc="lower center", ncol=3, bbox_to_anchor=(0.5, -0.06))
+    fig.suptitle(f"Widest runs on the whole host ({threads} threads, 62.8 GiB RAM; markers on the top edge: "
+                 "first width that failed)", x=0.01, ha="left", fontsize=8.5)
+    fig.tight_layout(rect=(0, 0.17, 1, 0.96), w_pad=1.0)
+    save(fig, "figC11_capacity", table)
+
+
+WF_LABEL = {"qputwin": "QPUTwin", "qputwin_plain": "QPUTwin, connectivity-only layout",
+            "vendor": "vendor workflow", "google_dm": "vendor workflow, Cirq density matrix"}
+WF_VENDOR = {"ibm_heron": "IBM Heron r3: Qiskit transpile\n+ Aer from_backend",
+             "ibm_nighthawk": "IBM Nighthawk: Qiskit transpile\n+ Aer from_backend",
+             "google_willow": "Google Willow: Cirq RouteCQC\n+ qsim, Google noise model"}
+WF_STYLE = {"qputwin": (SLOTS[0], "o"), "qputwin_plain": (SLOTS[6], "h"), "vendor": (SLOTS[1], "s"),
+            "google_dm": (SLOTS[3], "D")}
+
+
+def fig_vendor_workflow() -> None:
+    """Device emulation end to end: time per job, and the predicted fidelity against the vendor's workflow."""
+    d = load("vendor_workflow_t4")
+    rows = [r for r in d["data"] if r.get("status", "ok") == "ok"]
+    devs = [b for b in WF_VENDOR if any(r["backend"] == b for r in rows)]
+    fig, axes = plt.subplots(2, len(devs), figsize=(DOUBLE, 4.9), squeeze=False)
+    table = []
+    for j, b in enumerate(devs):
+        ax = axes[0, j]
+        for p in ("qputwin", "vendor", "google_dm"):
+            rs = [r for r in rows if r["backend"] == b and r["pipeline"] == p]
+            if not rs:
+                continue
+            widths = sorted({r["qubits"] for r in rs})
+            gm, lo, hi = [], [], []
+            for n in widths:
+                v = [r["run_s_best"] for r in rs if r["qubits"] == n]
+                gm.append(float(np.exp(np.mean(np.log(v)))))
+                lo.append(min(v))
+                hi.append(max(v))
+            col, mk = WF_STYLE[p]
+            ax.fill_between(widths, lo, hi, color=col, alpha=0.13, lw=0)
+            ring(ax, widths, gm, col, mk, label=WF_LABEL[p], markersize=4)
+            table += [{"backend": b, "pipeline": p, "qubits": n, "time_s_geomean": round(g, 4),
+                       "time_s_min": round(a, 4), "time_s_max": round(c, 4)}
+                      for n, g, a, c in zip(widths, gm, lo, hi, strict=True)]
+        ax.set_yscale("log")
+        ax.yaxis.set_major_formatter(FuncFormatter(secs))
+        ax.set_title(f"({'abcdef'[j]}) {WF_VENDOR[b]}", loc="left", fontsize=7.4)
+        ax.set_xlabel("Logical qubits n")
+        ax.set_xticks(sorted({r["qubits"] for r in rows}))
+        # predicted fidelity: QPUTwin (with and without calibration-aware layout) vs the vendor workflow
+        ax2 = axes[1, j]
+        ven = {(r["family"], r["qubits"]): r["hellinger"] for r in rows if r["backend"] == b and r["pipeline"] == "vendor"}
+        devs_med: dict[str, float] = {}
+        for p in ("qputwin_plain", "qputwin"):
+            pts = [(ven[(r["family"], r["qubits"])], r["hellinger"]) for r in rows
+                   if r["backend"] == b and r["pipeline"] == p and (r["family"], r["qubits"]) in ven]
+            if not pts:
+                continue
+            col, mk = WF_STYLE[p]
+            x, y = zip(*pts, strict=True)
+            dev = float(np.median(np.abs(np.subtract(y, x))))
+            devs_med[p] = dev
+            if p == "qputwin":
+                ax2.plot(x, y, marker=mk, ls="none", color=col, mec="white", mew=0.6, ms=4.5,
+                         label="QPUTwin, calibration-aware layout")
+            else:
+                ax2.plot(x, y, marker=mk, ls="none", mfc="none", mec=col, mew=0.9, ms=4.5,
+                         label="QPUTwin, connectivity-only layout")
+            table += [{"backend": b, "pipeline": p, "vendor_hellinger": round(a, 4), "qputwin_hellinger": round(c, 4)}
+                      for a, c in pts]
+        ax2.plot([0, 1], [0, 1], color=MUTED, lw=0.8, ls=":")
+        ax2.set_xlim(0, 1.02)
+        ax2.set_ylim(0, 1.02)
+        ax2.set_aspect("equal")
+        ax2.set_xlabel("Vendor workflow: predicted $F_H$")
+        ax2.set_title(f"({'abcdef'[len(devs) + j]}) median |Δ$F_H$| to the vendor:\n"
+                      f"{devs_med.get('qputwin', float('nan')):.3f} calibrated, "
+                      f"{devs_med.get('qputwin_plain', float('nan')):.3f} connectivity",
+                      loc="left", fontsize=7.0)
+    axes[0, 0].set_ylabel("Time per job (geometric mean,\nrange over six families)")
+    axes[1, 0].set_ylabel("QPUTwin: predicted $F_H$")
+    seen: dict[str, Any] = {}
+    for ax in axes.ravel():
+        for h, lab in zip(*ax.get_legend_handles_labels(), strict=True):
+            seen.setdefault(lab, h)
+    fig.legend(list(seen.values()), list(seen), loc="upper center", ncol=3, bbox_to_anchor=(0.5, 1.0))
+    fig.tight_layout(rect=(0, 0, 1, 0.92), h_pad=1.2, w_pad=0.8)
+    save(fig, "figC12_vendor_workflow", table)
+
+
+def fig_workflow_throughput() -> None:
+    """96 device-emulation jobs on the whole host: QPUTwin worker replicas vs the vendor workflow in a process pool."""
+    rows = load("workflow_throughput")["data"]
+    devs = [b for b in WF_VENDOR if any(r["backend"] == b for r in rows)]
+    fig, ax = plt.subplots(figsize=(SINGLE, 2.4))
+    x = np.arange(len(devs))
+    table = []
+    vals: dict[str, list[float]] = {}
+    for k, p in enumerate(("qputwin", "vendor")):
+        v = [next((r["jobs_per_s"] for r in rows if r["backend"] == b and r["pipeline"] == p), np.nan) for b in devs]
+        vals[p] = v
+        col, _ = WF_STYLE[p]
+        bars = ax.bar(x + (k - 0.5) * 0.36, v, width=0.34, color=col, label=WF_LABEL[p], edgecolor="white", lw=0.6)
+        for rect, val in zip(bars, v, strict=True):
+            ax.text(rect.get_x() + rect.get_width() / 2, val + 0.4, f"{val:.1f}", ha="center", va="bottom",
+                    fontsize=6.4, color=INK2)
+        table += [{"backend": b, "pipeline": p, "jobs_per_s": round(val, 4)} for b, val in zip(devs, v, strict=True)]
+    top = np.nanmax(vals["qputwin"])
+    for i, (q, ven) in enumerate(zip(vals["qputwin"], vals["vendor"], strict=True)):
+        ax.text(i, top * 1.18, f"{q / ven:.1f}×", ha="center", fontsize=7, color=INK, fontweight="bold")
+    ax.set_xticks(x, [DEV_LABEL[b] for b in devs])
+    ax.set_ylabel("Jobs per second (16 vCPUs)")
+    ax.set_ylim(0, top * 1.32)
+    ax.grid(axis="x", visible=False)
+    ax.legend(loc="upper left", fontsize=6.4, bbox_to_anchor=(0.0, 0.88))
+    save(fig, "figC13_workflow_throughput", table)
+
+
+FIGURES = [fig_correctness, fig_sv_speed, fig_threads, fig_threads16, fig_dm_speed, fig_noise_xval,
+           fig_noise_by_family, fig_vendor_xval, fig_improvement, fig_ranking, fig_capacity, fig_vendor_workflow,
+           fig_workflow_throughput]
 
 
 def main() -> None:

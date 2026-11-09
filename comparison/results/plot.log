@@ -1,0 +1,13 @@
+  figC1_correctness
+  figC2_statevector_speed_1thread
+  figC3_statevector_speed_4threads
+  figC10_statevector_speed_16threads
+  figC4_density_matrix_speed
+  figC5_noise_cross_validation
+  figC6_noise_by_family
+  figC9_vendor_cross_validation
+  skip fig_improvement: missing sv_speed_t1.json
+  figC8_relative_speed
+  figC11_capacity
+  figC12_vendor_workflow
+  figC13_workflow_throughput

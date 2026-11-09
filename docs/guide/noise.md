@@ -22,7 +22,7 @@ $$\mathcal{E} = \mathcal{D}_p \circ \mathcal{R} \circ \mathcal{V}$$
 
 | Term | Model | Parameters |
 |---|---|---|
-| $\mathcal{V}$, coherent error | over-rotation $U^{\varepsilon}$ (a rotation by θ becomes θ(1+ε), via the principal matrix logarithm), then a residual $R_Z(\phi)$ (1Q) or $R_{ZZ}(\phi)$ (2Q) | `overrotation`, `coherent_z_rad` |
+| $\mathcal{V}$, coherent error | over-rotation $U^{\varepsilon}$ (a rotation by θ becomes θ(1+ε), via the principal matrix logarithm), then a residual $R_Z(\phi)$ (1Q) or $R_{ZZ}(\phi)$ (2Q), then on two-qubit gates a residual $\mathrm{PhasedFSim}(\theta, \phi)$ | `overrotation`, `coherent_z_rad`, `fsim_theta_rad`, `fsim_phi_rad` |
 | $\mathcal{R}$, thermal relaxation | amplitude damping $\gamma = 1-e^{-t/T_1}$, then pure dephasing so that coherences decay exactly as $e^{-t/T_2}$ | T1, T2, gate duration $t$ |
 | $\mathcal{D}_p$, depolarising | $(1-p)\rho + p\,\mathrm{Tr}_Q(\rho)\otimes I/d$ | **solved** from the published fidelity |
 
@@ -44,7 +44,7 @@ The **whole** channel therefore reproduces the published average gate fidelity e
 | Relaxation (gates) | T1/T2 during each physical gate | both | `coherence`, `gates.<g>.duration_ns` |
 | Idle relaxation | T1/T2 during every idle window of the [ASAP schedule](timing.md), up to the aligned final read-out | both | as above |
 | Fixed-timeline slots | a conditional gate that does not fire still occupies its slot, so its qubits relax for that duration | both | durations |
-| Coherent error | systematic over-rotation, residual Z / ZZ phase | both | `gates.<g>.overrotation`, `coherent_z_rad` |
+| Coherent error | systematic over-rotation, residual Z / ZZ phase, residual swap angle and conditional phase (Willow publishes them per coupler) | both | `gates.<g>.overrotation`, `coherent_z_rad`, `fsim_theta_rad`, `fsim_phi_rad` |
 | Crosstalk | during a 2Q gate on (a, b), each coupled spectator n gets $e^{-i\theta/2\,Z_x Z_n}$; an unsimulated spectator in $\|0\rangle$ reduces this to $R_Z(\theta)$ on x | both | `crosstalk.zz_rad_per_two_qubit_gate`, `crosstalk.pairs` |
 | Reset error | after a reset, $\|1\rangle$ with probability $1-F_{\text{reset}}$ | both | `reset.fidelity` |
 | Readout | confusion matrix $\begin{pmatrix}1-p_{01} & p_{10}\\ p_{01} & 1-p_{10}\end{pmatrix}$ per qubit | both | `readout`, `qubits.<q>.readout_*` |

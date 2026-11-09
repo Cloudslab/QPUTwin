@@ -49,7 +49,7 @@ The output below is real: a 12-qubit GHZ chain on `iqm_emerald`, 1000 shots.
 * `circuit_duration_us` is the makespan of one shot.
 * `estimated_job_duration_s` is `shots × (makespan + shot_overhead)`.
 * `busy_time_us` sums operation durations, not wall time.
-* The flags state exactly what is excluded. Per-shot overhead (cooling, state preparation, repetition delay) and feed-forward latency are not published by any of the four vendors, so they are excluded unless a calibration supplies them.
+* The flags state exactly what is excluded. Feed-forward latency is published by no vendor. Per-shot overhead (cooling, state preparation, repetition delay) is published only as IBM's repetition delay, which the IBM twins include; elsewhere it is excluded unless a calibration supplies it.
 
 !!! warning "Most packaged durations are placeholders"
     `assumed_parameters` lists the durations that are not vendor-published. Load a dated snapshot ([Calibration data](calibration.md)) before quoting absolute times. The *relative* picture is robust: superconducting shots take microseconds, trapped-ion shots milliseconds (see the [benchmark](../research/benchmarks.md#hardware-time)).

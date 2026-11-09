@@ -1,0 +1,194 @@
+  sv ghz qputwin_c128  n=26 ok                 0.63 s  peak   1.68 GiB
+  saved results/capacity.json
+  sv ghz qputwin_c128  n=28 ok                 1.16 s  peak   4.68 GiB
+  saved results/capacity.json
+  sv ghz qputwin_c128  n=29 ok                 1.45 s  peak   8.68 GiB
+  saved results/capacity.json
+  sv ghz qputwin_c128  n=30 ok                12.90 s  peak  24.18 GiB
+  saved results/capacity.json
+  sv ghz qputwin_c128  n=31 ok                15.38 s  peak  40.18 GiB  in place
+  saved results/capacity.json
+  sv ghz qputwin_c128  n=32 refused            0.96 s  peak   0.00 GiB  qputwin_core.errors.ResourceLimitError: a dense 32-qubit complex128 statevector run needs ~96.0 GiB but only 59.7 GiB is available to this worker; at most 31 simulated qubits fit (use complex64 precision, raise the container memory limit, or touch fewer qubits)
+  saved results/capacity.json
+  sv ghz qputwin_c64   n=26 ok                 0.70 s  peak   0.93 GiB
+  saved results/capacity.json
+  sv ghz qputwin_c64   n=28 ok                 1.08 s  peak   2.43 GiB
+  saved results/capacity.json
+  sv ghz qputwin_c64   n=29 ok                 1.46 s  peak   4.43 GiB
+  saved results/capacity.json
+  sv ghz qputwin_c64   n=30 ok                10.51 s  peak  12.18 GiB
+  saved results/capacity.json
+  sv ghz qputwin_c64   n=31 ok                13.30 s  peak  20.18 GiB  in place
+  saved results/capacity.json
+  sv ghz qputwin_c64   n=32 ok                22.25 s  peak  36.18 GiB  in place
+  saved results/capacity.json
+  sv ghz qputwin_c64   n=33 refused            0.95 s  peak   0.00 GiB  qputwin_core.errors.ResourceLimitError: a dense 33-qubit complex64 statevector run needs ~96.0 GiB but only 59.7 GiB is available to this worker; at most 32 simulated qubits fit (use complex64 precision, raise the container memory limit, or touch fewer qubits)
+  saved results/capacity.json
+  sv ghz qsim          n=26 ok                 0.43 s  peak   0.79 GiB
+  saved results/capacity.json
+  sv ghz qsim          n=28 ok                 1.70 s  peak   2.29 GiB
+  saved results/capacity.json
+  sv ghz qsim          n=29 ok                 3.33 s  peak   4.28 GiB
+  saved results/capacity.json
+  sv ghz qsim          n=30 ok                 6.81 s  peak   8.28 GiB
+  saved results/capacity.json
+  sv ghz qsim          n=31 ok                13.96 s  peak  16.28 GiB
+  saved results/capacity.json
+  sv ghz qsim          n=32 ok                27.54 s  peak  32.28 GiB
+  saved results/capacity.json
+  sv ghz qsim          n=33 killed            21.60 s  peak   0.00 GiB  
+  saved results/capacity.json
+  sv ghz aer_c128      n=26 ok                 0.95 s  peak   1.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c128      n=28 ok                 3.92 s  peak   4.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c128      n=29 ok                 8.44 s  peak   8.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c128      n=30 ok                17.28 s  peak  16.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c128      n=31 ok                37.23 s  peak  32.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c128      n=32 failed             1.39 s  peak   0.00 GiB  qiskit.exceptions.QiskitError: 'ERROR:  [Experiment 0] Insufficient memory to run circuit circuit-48 using the statevector simulator. Required memory: 65536M, max memory: 64297M ,  ERROR: Insufficient memory to run circuit circuit-48 using the statevector simulator. Required memory: 65536M, max memo
+  saved results/capacity.json
+  sv ghz aer_c64       n=26 ok                 0.74 s  peak   0.67 GiB
+  saved results/capacity.json
+  sv ghz aer_c64       n=28 ok                 3.39 s  peak   2.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c64       n=29 ok                 7.14 s  peak   4.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c64       n=30 ok                16.17 s  peak   8.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c64       n=31 ok                32.88 s  peak  16.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c64       n=32 ok                72.23 s  peak  32.17 GiB
+  saved results/capacity.json
+  sv ghz aer_c64       n=33 failed             0.91 s  peak   0.00 GiB  qiskit.exceptions.QiskitError: 'ERROR:  [Experiment 0] Insufficient memory to run circuit circuit-48 using the statevector simulator. Required memory: 65536M, max memory: 64297M ,  ERROR: Insufficient memory to run circuit circuit-48 using the statevector simulator. Required memory: 65536M, max memo
+  saved results/capacity.json
+  sv ghz qulacs        n=26 ok                 0.52 s  peak   1.67 GiB
+  saved results/capacity.json
+  sv ghz qulacs        n=28 ok                 2.11 s  peak   6.17 GiB
+  saved results/capacity.json
+  sv ghz qulacs        n=29 ok                 4.38 s  peak  12.17 GiB
+  saved results/capacity.json
+  sv ghz qulacs        n=30 ok                 8.66 s  peak  24.17 GiB
+  saved results/capacity.json
+  sv ghz qulacs        n=31 ok                17.43 s  peak  48.17 GiB
+  saved results/capacity.json
+  sv ghz qulacs        n=32 killed            20.54 s  peak   0.00 GiB  
+  saved results/capacity.json
+  sv qv  qputwin_c128  n=26 ok                 6.99 s  peak   2.24 GiB
+  saved results/capacity.json
+  sv qv  qputwin_c128  n=28 ok                17.64 s  peak   8.25 GiB
+  saved results/capacity.json
+  sv qv  qputwin_c128  n=29 ok                32.46 s  peak  16.25 GiB
+  saved results/capacity.json
+  sv qv  qputwin_c128  n=30 ok                71.15 s  peak  32.25 GiB
+  saved results/capacity.json
+  sv qv  qputwin_c128  n=31 ok               451.85 s  peak  48.28 GiB  in place
+  saved results/capacity.json
+  sv qv  qputwin_c128  n=32 refused            1.39 s  peak   0.00 GiB  qputwin_core.errors.ResourceLimitError: a dense 32-qubit complex128 statevector run needs ~96.0 GiB but only 60.1 GiB is available to this worker; at most 31 simulated qubits fit (use complex64 precision, raise the container memory limit, or touch fewer qubits)
+  saved results/capacity.json
+  sv qv  qputwin_c64   n=26 ok                 5.38 s  peak   1.22 GiB
+  saved results/capacity.json
+  sv qv  qputwin_c64   n=28 ok                11.52 s  peak   4.23 GiB
+  saved results/capacity.json
+  sv qv  qputwin_c64   n=29 ok                19.41 s  peak   8.23 GiB
+  saved results/capacity.json
+  sv qv  qputwin_c64   n=30 ok                45.08 s  peak  16.24 GiB
+  saved results/capacity.json
+  sv qv  qputwin_c64   n=31 ok               391.90 s  peak  24.25 GiB  in place
+  saved results/capacity.json
+  sv qv  qputwin_c64   n=32 ok               775.25 s  peak  40.22 GiB  in place
+  saved results/capacity.json
+  sv qv  qputwin_c64   n=33 refused            1.36 s  peak   0.00 GiB  qputwin_core.errors.ResourceLimitError: a dense 33-qubit complex64 statevector run needs ~96.0 GiB but only 60.1 GiB is available to this worker; at most 32 simulated qubits fit (use complex64 precision, raise the container memory limit, or touch fewer qubits)
+  saved results/capacity.json
+  sv qv  qsim          n=26 ok                 1.42 s  peak   0.80 GiB
+  saved results/capacity.json
+  sv qv  qsim          n=28 ok                 6.01 s  peak   2.31 GiB
+  saved results/capacity.json
+  sv qv  qsim          n=29 ok                11.09 s  peak   4.31 GiB
+  saved results/capacity.json
+  sv qv  qsim          n=30 ok                24.77 s  peak   8.31 GiB
+  saved results/capacity.json
+  sv qv  qsim          n=31 ok                52.67 s  peak  16.31 GiB
+  saved results/capacity.json
+  sv qv  qsim          n=32 ok               112.36 s  peak  32.31 GiB
+  saved results/capacity.json
+  sv qv  qsim          n=33 killed            15.15 s  peak   0.00 GiB  
+  saved results/capacity.json
+  sv qv  aer_c128      n=26 ok                10.23 s  peak   1.19 GiB
+  saved results/capacity.json
+  sv qv  aer_c128      n=28 ok                44.95 s  peak   4.20 GiB
+  saved results/capacity.json
+  sv qv  aer_c128      n=29 ok                93.71 s  peak   8.20 GiB
+  saved results/capacity.json
+  sv qv  aer_c128      n=30 ok               208.30 s  peak  16.20 GiB
+  saved results/capacity.json
+  sv qv  aer_c128      n=31 ok               438.38 s  peak  32.20 GiB
+  saved results/capacity.json
+  sv qv  aer_c128      n=32 failed             1.21 s  peak   0.00 GiB  qiskit.exceptions.QiskitError: 'ERROR:  [Experiment 0] Insufficient memory to run circuit circuit-48 using the statevector simulator. Required memory: 65536M, max memory: 64297M ,  ERROR: Insufficient memory to run circuit circuit-48 using the statevector simulator. Required memory: 65536M, max memo
+  saved results/capacity.json
+  sv qv  aer_c64       n=26 ok                 8.82 s  peak   0.69 GiB
+  saved results/capacity.json
+  sv qv  aer_c64       n=28 ok                44.23 s  peak   2.20 GiB
+  saved results/capacity.json
+  sv qv  aer_c64       n=29 ok                90.84 s  peak   4.20 GiB
+  saved results/capacity.json
+  sv qv  aer_c64       n=30 ok               207.46 s  peak   8.20 GiB
+  saved results/capacity.json
+  sv qv  aer_c64       n=31 ok               437.24 s  peak  16.20 GiB
+  saved results/capacity.json
+  sv qv  aer_c64       n=32 ok               942.24 s  peak  32.20 GiB
+  saved results/capacity.json
+  sv qv  aer_c64       n=33 failed             1.10 s  peak   0.00 GiB  qiskit.exceptions.QiskitError: 'ERROR:  [Experiment 0] Insufficient memory to run circuit circuit-48 using the statevector simulator. Required memory: 65536M, max memory: 64297M ,  ERROR: Insufficient memory to run circuit circuit-48 using the statevector simulator. Required memory: 65536M, max memo
+  saved results/capacity.json
+  sv qv  qulacs        n=26 ok                41.41 s  peak   1.69 GiB
+  saved results/capacity.json
+  sv qv  qulacs        n=28 ok               210.75 s  peak   6.19 GiB
+  saved results/capacity.json
+  sv qv  qulacs        n=29 ok               462.47 s  peak  12.19 GiB
+  saved results/capacity.json
+  sv qv  qulacs        n=30 ok              1047.40 s  peak  24.20 GiB
+  saved results/capacity.json
+  sv qv  qulacs        n=31 timeout         1202.10 s  peak   0.00 GiB  
+  saved results/capacity.json
+  dm ghz qputwin_dm    n=12 ok                 0.46 s  peak   0.69 GiB
+  saved results/capacity.json
+  dm ghz qputwin_dm    n=13 ok                 0.25 s  peak   2.19 GiB
+  saved results/capacity.json
+  dm ghz qputwin_dm    n=14 ok                 0.92 s  peak   8.23 GiB
+  saved results/capacity.json
+  dm ghz qputwin_dm    n=15 ok                 3.94 s  peak  32.24 GiB
+  saved results/capacity.json
+  dm ghz qputwin_dm    n=16 refused            1.00 s  peak   0.00 GiB  qputwin_core.errors.ResourceLimitError: a dense 16-qubit complex128 density-matrix run needs ~96.0 GiB but only 60.3 GiB is available to this worker; at most 15 simulated qubits fit (use complex64 precision, raise the container memory limit, or touch fewer qubits)
+  saved results/capacity.json
+  dm ghz aer_dm        n=12 ok                 0.35 s  peak   0.42 GiB
+  saved results/capacity.json
+  dm ghz aer_dm        n=13 ok                 1.29 s  peak   1.17 GiB
+  saved results/capacity.json
+  dm ghz aer_dm        n=14 ok                 5.42 s  peak   4.17 GiB
+  saved results/capacity.json
+  dm ghz aer_dm        n=15 ok                22.16 s  peak  16.17 GiB
+  saved results/capacity.json
+  dm ghz aer_dm        n=16 failed             0.91 s  peak   0.00 GiB  qiskit.exceptions.QiskitError: 'ERROR:  [Experiment 0] Insufficient memory to run circuit circuit-70 using the density_matrix simulator. Required memory: 65536M, max memory: 64297M ,  ERROR: Insufficient memory to run circuit circuit-70 using the density_matrix simulator. Required memory: 65536M, ma
+  saved results/capacity.json
+  dm qv  qputwin_dm    n=12 ok                 1.02 s  peak   0.72 GiB
+  saved results/capacity.json
+  dm qv  qputwin_dm    n=13 ok                 2.52 s  peak   2.22 GiB
+  saved results/capacity.json
+  dm qv  qputwin_dm    n=14 ok                10.83 s  peak   8.22 GiB
+  saved results/capacity.json
+  dm qv  qputwin_dm    n=15 ok                40.48 s  peak  32.22 GiB
+  saved results/capacity.json
+  dm qv  qputwin_dm    n=16 refused            1.11 s  peak   0.00 GiB  qputwin_core.errors.ResourceLimitError: a dense 16-qubit complex128 density-matrix run needs ~96.0 GiB but only 60.3 GiB is available to this worker; at most 15 simulated qubits fit (use complex64 precision, raise the container memory limit, or touch fewer qubits)
+  saved results/capacity.json
+  dm qv  aer_dm        n=12 ok                 1.53 s  peak   0.43 GiB
+  saved results/capacity.json
+  dm qv  aer_dm        n=13 ok                 6.64 s  peak   1.18 GiB
+  saved results/capacity.json
+  dm qv  aer_dm        n=14 ok                32.45 s  peak   4.18 GiB
+  saved results/capacity.json
+  dm qv  aer_dm        n=15 ok               138.91 s  peak  16.18 GiB
+  saved results/capacity.json
+  dm qv  aer_dm        n=16 failed             0.98 s  peak   0.00 GiB  qiskit.exceptions.QiskitError: 'ERROR:  [Experiment 0] Insufficient memory to run circuit circuit-70 using the density_matrix simulator. Required memory: 65536M, max memory: 64297M ,  ERROR: Insufficient memory to run circuit circuit-70 using the density_matrix simulator. Required memory: 65536M, ma
+  saved results/capacity.json

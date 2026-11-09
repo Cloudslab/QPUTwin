@@ -1,28 +1,28 @@
 setup,concurrency,throughput_jobs_s,client_p50_ms,client_p99_ms,errors
-Direct · 1 orchestrator,1,134.467,7.168,9.712,0
-Direct · 1 orchestrator,2,228.8,8.354,12.612,0
-Direct · 1 orchestrator,4,319.467,12.256,18.218,0
-Direct · 1 orchestrator,8,365.667,21.593,32.138,0
-Direct · 1 orchestrator,16,357.467,43.914,60.302,0
-Direct · 1 orchestrator,32,327.133,90.529,204.605,0
-Direct · 1 orchestrator,64,275.6,204.673,595.068,0
-Direct · 1 orchestrator,128,246.467,421.755,1713.822,0
-Direct · 1 orchestrator,256,329.933,764.997,905.655,0
-nginx gateway · 1 orchestrator,1,122.4,7.783,10.662,0
-nginx gateway · 1 orchestrator,2,216.467,8.813,12.956,0
-nginx gateway · 1 orchestrator,4,316.133,12.343,17.868,0
-nginx gateway · 1 orchestrator,8,342.267,22.889,33.291,0
-nginx gateway · 1 orchestrator,16,324.933,48.388,64.419,0
-nginx gateway · 1 orchestrator,32,323.667,96.652,130.475,0
-nginx gateway · 1 orchestrator,64,328.933,191.073,244.854,0
-nginx gateway · 1 orchestrator,128,317.2,400.669,484.241,0
-nginx gateway · 1 orchestrator,256,326.267,779.079,856.511,0
-nginx gateway · 3 orchestrators,1,117.4,8.468,11.637,0
-nginx gateway · 3 orchestrators,2,218.533,8.909,12.818,0
-nginx gateway · 3 orchestrators,4,369.267,10.425,15.856,0
-nginx gateway · 3 orchestrators,8,507.333,15.211,26.461,0
-nginx gateway · 3 orchestrators,16,593.867,25.599,51.583,0
-nginx gateway · 3 orchestrators,32,621.8,48.354,104.337,0
-nginx gateway · 3 orchestrators,64,615.333,96.202,247.226,0
-nginx gateway · 3 orchestrators,128,441.8,168.114,1410.462,0
-nginx gateway · 3 orchestrators,256,418.467,398.248,3068.546,0
+Direct · 1 orchestrator,1,142.067,6.892,9.131,0
+Direct · 1 orchestrator,2,231.733,8.148,12.304,0
+Direct · 1 orchestrator,4,359.467,10.607,16.573,0
+Direct · 1 orchestrator,8,359.8,22.034,29.278,0
+Direct · 1 orchestrator,16,373.733,42.38,54.962,0
+Direct · 1 orchestrator,32,367.933,82.209,131.175,0
+Direct · 1 orchestrator,64,312.733,179.682,542.783,0
+Direct · 1 orchestrator,128,207.467,522.113,1723.887,0
+Direct · 1 orchestrator,256,352.867,689.416,2636.723,0
+nginx gateway · 1 orchestrator,1,136.533,7.199,9.083,0
+nginx gateway · 1 orchestrator,2,219.333,8.66,11.933,0
+nginx gateway · 1 orchestrator,4,340.667,11.28,16.671,0
+nginx gateway · 1 orchestrator,8,338.4,23.35,30.869,0
+nginx gateway · 1 orchestrator,16,341.133,46.614,51.945,0
+nginx gateway · 1 orchestrator,32,344.0,92.093,112.367,0
+nginx gateway · 1 orchestrator,64,353.067,181.454,228.161,0
+nginx gateway · 1 orchestrator,128,352.4,362.422,391.001,0
+nginx gateway · 1 orchestrator,256,346.933,735.491,784.506,0
+nginx gateway · 3 orchestrators,1,133.8,7.351,9.204,0
+nginx gateway · 3 orchestrators,2,220.333,9.109,11.899,0
+nginx gateway · 3 orchestrators,4,444.067,8.532,13.921,0
+nginx gateway · 3 orchestrators,8,692.267,10.902,20.786,0
+nginx gateway · 3 orchestrators,16,864.933,16.917,40.524,0
+nginx gateway · 3 orchestrators,32,905.533,32.576,81.356,0
+nginx gateway · 3 orchestrators,64,916.867,65.285,153.579,0
+nginx gateway · 3 orchestrators,128,898.133,143.088,342.25,0
+nginx gateway · 3 orchestrators,256,749.667,312.275,1790.692,0

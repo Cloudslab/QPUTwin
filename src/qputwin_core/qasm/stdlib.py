@@ -20,7 +20,7 @@ Libraries
     observable relative phase.
 
 Built-in library (always loaded, QPUTwin extension)
-    The native gates of all four emulated vendors plus a few common two-qubit
+    The native gates of all seven emulated devices plus a few common two-qubit
     interactions, defined exactly in terms of ``U``/``CX``/``gphase``. Because
     every native gate has a portable definition, a circuit written in one
     vendor's native gates can still be compiled for another vendor. Helper gates
@@ -177,7 +177,7 @@ gate _qputwin_rz(t) a { gphase(-t/2); U(0, 0, t) a; }
 gate _qputwin_rx(t) a { U(t, -pi/2, pi/2) a; }
 gate _qputwin_rzz(t) a, b { CX a, b; _qputwin_rz(t) b; CX a, b; }
 
-// --- universal virtual Z rotation (all four vendors)
+// --- universal virtual Z rotation (every device)
 gate rz(t) a { _qputwin_rz(t) a; }
 
 // --- Quantinuum (Helios / H-series)
@@ -211,6 +211,13 @@ gate iswap a, b
 
 // --- IQM (Emerald)
 gate prx(theta, phi) a { U(theta, phi - pi/2, pi/2 - phi) a; }
+
+// --- IBM (Heron, Nighthawk): sx = e^{i pi/4} rx(pi/2), x = e^{i pi/2} rx(pi); rz and cz above
+gate sx a { gphase(pi/4); _qputwin_rx(pi/2) a; }
+gate x a { gphase(pi/2); _qputwin_rx(pi) a; }
+
+// --- Google (Willow): PhasedXZ in radians = rz(zeta) . prx(theta, phi); cz above
+gate phased_xz(theta, phi, zeta) a { U(theta, phi - pi/2, pi/2 - phi) a; _qputwin_rz(zeta) a; }
 
 // --- common two-qubit interactions
 gate rxx(t) a, b { _qputwin_h a; _qputwin_h b; _qputwin_rzz(t) a, b; _qputwin_h a; _qputwin_h b; }

@@ -120,6 +120,23 @@ def test_memory_guard_rejects_infeasible_width() -> None:
     sim.execute(star_ghz(d["max_feasible_qubits"]))                      # the advertised width fits
 
 
+def test_tight_memory_budget_switches_the_executor_in_place() -> None:
+    """Between 1.5× and 2× the state the run still fits, in place, with the same counts as the default."""
+    n = 12
+    qasm = star_ghz(n)
+    state = (1 << n) * 16
+    roomy = simulator_for(DEVICES["ionq_forte"]).execute(qasm, ExecutionOptions(shots=2000, seed=9))
+    tight_sim = simulator_for(DEVICES["ionq_forte"], SimulatorConfig(memory_budget_bytes=int(1.75 * state),
+                                                                      memory_reserve_bytes=0))
+    tight = tight_sim.execute(qasm, ExecutionOptions(shots=2000, seed=9))
+    assert tight.workload["in_place"] is True
+    assert roomy.workload["in_place"] is False
+    assert tight.counts == roomy.counts
+    with pytest.raises(ResourceLimitError):                              # below 1.5× nothing fits
+        simulator_for(DEVICES["ionq_forte"], SimulatorConfig(memory_budget_bytes=int(1.4 * state),
+                                                             memory_reserve_bytes=0)).execute(qasm)
+
+
 def test_request_validation() -> None:
     sim = simulator_for(DEVICES["ionq_forte"])
     with pytest.raises(InvalidRequestError):

@@ -55,6 +55,7 @@ All keys except `device` are optional; anything absent is simply not modelled.
 | `gates.<g>.duration_ns` | float | ≥ 0 | schedule, relaxation |
 | `gates.<g>.overrotation` | float | −0.5 … 0.5 | coherent error $U^\varepsilon$ |
 | `gates.<g>.coherent_z_rad` | float | −π … π | residual Z / ZZ |
+| `gates.<g>.fsim_theta_rad`, `fsim_phi_rad` | float | −π … π | two-qubit gates: residual `PhasedFSim(θ, φ)` after the gate (swap angle, conditional phase), as Google publishes per coupler; a coherent part of the gate's total error |
 | `gates.<g>.leakage` | float | 0 … 0.5 | leak probability per gate and qubit |
 | `readout.fidelity` or `readout.p01`/`p10` | float | fidelity (0,1]; p ≤ 0.5 | readout confusion |
 | `readout.duration_ns`, `reset.duration_ns` | float | ≥ 0 | schedule |

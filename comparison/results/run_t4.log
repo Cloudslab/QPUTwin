@@ -1,0 +1,828 @@
+[sv_speed] threads=4
+  sv ghz  QPUTwin                n= 6     0.006 s (engine 0.001 s)
+  sv ghz  QPUTwin                n=10     0.006 s (engine 0.001 s)
+  sv ghz  QPUTwin                n=14     0.008 s (engine 0.001 s)
+  sv ghz  QPUTwin                n=16     0.009 s (engine 0.002 s)
+  sv ghz  QPUTwin                n=18     0.014 s (engine 0.006 s)
+  sv ghz  QPUTwin                n=20     0.021 s (engine 0.013 s)
+  sv ghz  QPUTwin                n=22     0.053 s (engine 0.042 s)
+  sv ghz  QPUTwin                n=24     0.104 s (engine 0.092 s)
+  sv ghz  QPUTwin (complex64)    n= 6     0.005 s (engine 0.001 s)
+  sv ghz  QPUTwin (complex64)    n=10     0.006 s (engine 0.001 s)
+  sv ghz  QPUTwin (complex64)    n=14     0.008 s (engine 0.001 s)
+  sv ghz  QPUTwin (complex64)    n=16     0.009 s (engine 0.002 s)
+  sv ghz  QPUTwin (complex64)    n=18     0.013 s (engine 0.006 s)
+  sv ghz  QPUTwin (complex64)    n=20     0.019 s (engine 0.011 s)
+  sv ghz  QPUTwin (complex64)    n=22     0.074 s (engine 0.064 s)
+  sv ghz  QPUTwin (complex64)    n=24     0.113 s (engine 0.102 s)
+  sv ghz  Qiskit Aer             n= 6     0.001 s
+  sv ghz  Qiskit Aer             n=10     0.001 s
+  sv ghz  Qiskit Aer             n=14     0.002 s
+  sv ghz  Qiskit Aer             n=16     0.003 s
+  sv ghz  Qiskit Aer             n=18     0.007 s
+  sv ghz  Qiskit Aer             n=20     0.029 s
+  sv ghz  Qiskit Aer             n=22     0.138 s
+  sv ghz  Qiskit Aer             n=24     0.633 s
+  sv ghz  qsim                   n= 6     0.001 s
+  sv ghz  qsim                   n=10     0.001 s
+  sv ghz  qsim                   n=14     0.002 s
+  sv ghz  qsim                   n=16     0.002 s
+  sv ghz  qsim                   n=18     0.004 s
+  sv ghz  qsim                   n=20     0.009 s
+  sv ghz  qsim                   n=22     0.032 s
+  sv ghz  qsim                   n=24     0.133 s
+  sv ghz  Qulacs                 n= 6     0.000 s
+  sv ghz  Qulacs                 n=10     0.000 s
+  sv ghz  Qulacs                 n=14     0.000 s
+  sv ghz  Qulacs                 n=16     0.000 s
+  sv ghz  Qulacs                 n=18     0.001 s
+  sv ghz  Qulacs                 n=20     0.004 s
+  sv ghz  Qulacs                 n=22     0.042 s
+  sv ghz  Qulacs                 n=24     0.174 s
+  sv qv   QPUTwin                n= 6     0.029 s (engine 0.004 s)
+  sv qv   QPUTwin                n=10     0.075 s (engine 0.011 s)
+  sv qv   QPUTwin                n=14     0.144 s (engine 0.023 s)
+  sv qv   QPUTwin                n=16     0.205 s (engine 0.050 s)
+  sv qv   QPUTwin                n=18     0.289 s (engine 0.084 s)
+  sv qv   QPUTwin                n=20     0.423 s (engine 0.167 s)
+  sv qv   QPUTwin                n=22     1.123 s (engine 0.781 s)
+  sv qv   QPUTwin                n=24     3.219 s (engine 2.836 s)
+  sv qv   QPUTwin (complex64)    n= 6     0.029 s (engine 0.004 s)
+  sv qv   QPUTwin (complex64)    n=10     0.075 s (engine 0.011 s)
+  sv qv   QPUTwin (complex64)    n=14     0.145 s (engine 0.023 s)
+  sv qv   QPUTwin (complex64)    n=16     0.203 s (engine 0.045 s)
+  sv qv   QPUTwin (complex64)    n=18     0.272 s (engine 0.073 s)
+  sv qv   QPUTwin (complex64)    n=20     0.404 s (engine 0.161 s)
+  sv qv   QPUTwin (complex64)    n=22     0.808 s (engine 0.495 s)
+  sv qv   QPUTwin (complex64)    n=24     2.358 s (engine 2.007 s)
+  sv qv   Qiskit Aer             n= 6     0.003 s
+  sv qv   Qiskit Aer             n=10     0.009 s
+  sv qv   Qiskit Aer             n=14     0.057 s
+  sv qv   Qiskit Aer             n=16     0.034 s
+  sv qv   Qiskit Aer             n=18     0.082 s
+  sv qv   Qiskit Aer             n=20     0.309 s
+  sv qv   Qiskit Aer             n=22     1.457 s
+  sv qv   Qiskit Aer             n=24     7.117 s
+  sv qv   qsim                   n= 6     0.003 s
+  sv qv   qsim                   n=10     0.008 s
+  sv qv   qsim                   n=14     0.016 s
+  sv qv   qsim                   n=16     0.023 s
+  sv qv   qsim                   n=18     0.034 s
+  sv qv   qsim                   n=20     0.060 s
+  sv qv   qsim                   n=22     0.184 s
+  sv qv   qsim                   n=24     0.739 s
+  sv qv   Qulacs                 n= 6     0.000 s
+  sv qv   Qulacs                 n=10     0.001 s
+  sv qv   Qulacs                 n=14     0.010 s
+  sv qv   Qulacs                 n=16     0.038 s
+  sv qv   Qulacs                 n=18     0.182 s
+  sv qv   Qulacs                 n=20     0.956 s
+  sv qv   Qulacs                 n=22     4.622 s
+  sv qv   Qulacs                 n=24    22.646 s
+  sv qft  QPUTwin                n= 6     0.020 s (engine 0.004 s)
+  sv qft  QPUTwin                n=10     0.047 s (engine 0.011 s)
+  sv qft  QPUTwin                n=14     0.090 s (engine 0.025 s)
+  sv qft  QPUTwin                n=16     0.144 s (engine 0.060 s)
+  sv qft  QPUTwin                n=18     0.212 s (engine 0.107 s)
+  sv qft  QPUTwin                n=20     0.475 s (engine 0.345 s)
+  sv qft  QPUTwin                n=22     1.596 s (engine 1.442 s)
+  sv qft  QPUTwin                n=24     5.006 s (engine 4.824 s)
+  sv qft  QPUTwin (complex64)    n= 6     0.020 s (engine 0.004 s)
+  sv qft  QPUTwin (complex64)    n=10     0.047 s (engine 0.011 s)
+  sv qft  QPUTwin (complex64)    n=14     0.089 s (engine 0.023 s)
+  sv qft  QPUTwin (complex64)    n=16     0.132 s (engine 0.047 s)
+  sv qft  QPUTwin (complex64)    n=18     0.185 s (engine 0.079 s)
+  sv qft  QPUTwin (complex64)    n=20     0.342 s (engine 0.214 s)
+  sv qft  QPUTwin (complex64)    n=22     0.963 s (engine 0.807 s)
+  sv qft  QPUTwin (complex64)    n=24     3.575 s (engine 3.389 s)
+  sv qft  Qiskit Aer             n= 6     0.003 s
+  sv qft  Qiskit Aer             n=10     0.007 s
+  sv qft  Qiskit Aer             n=14     0.040 s
+  sv qft  Qiskit Aer             n=16     0.031 s
+  sv qft  Qiskit Aer             n=18     0.079 s
+  sv qft  Qiskit Aer             n=20     0.301 s
+  sv qft  Qiskit Aer             n=22     1.329 s
+  sv qft  Qiskit Aer             n=24     6.244 s
+  sv qft  qsim                   n= 6     0.003 s
+  sv qft  qsim                   n=10     0.008 s
+  sv qft  qsim                   n=14     0.016 s
+  sv qft  qsim                   n=16     0.024 s
+  sv qft  qsim                   n=18     0.035 s
+  sv qft  qsim                   n=20     0.083 s
+  sv qft  qsim                   n=22     0.296 s
+  sv qft  qsim                   n=24     1.299 s
+  sv qft  Qulacs                 n= 6     0.000 s
+  sv qft  Qulacs                 n=10     0.001 s
+  sv qft  Qulacs                 n=14     0.008 s
+  sv qft  Qulacs                 n=16     0.034 s
+  sv qft  Qulacs                 n=18     0.157 s
+  sv qft  Qulacs                 n=20     0.695 s
+  sv qft  Qulacs                 n=22     3.589 s
+  sv qft  Qulacs                 n=24    18.367 s
+  saved results/sv_speed_t4.json
+  (140.3 s)
+[dm_speed] threads=4
+  dm ghz  QPUTwin                n= 4     0.006 s (engine 0.001 s)
+  dm ghz  QPUTwin                n= 6     0.007 s (engine 0.002 s)
+  dm ghz  QPUTwin                n= 8     0.010 s (engine 0.004 s)
+  dm ghz  QPUTwin                n=10     0.022 s (engine 0.014 s)
+  dm ghz  QPUTwin                n=11     0.046 s (engine 0.036 s)
+  dm ghz  QPUTwin                n=12     0.103 s (engine 0.093 s)
+  dm ghz  QPUTwin                n=13     0.324 s (engine 0.312 s)
+  dm ghz  Qiskit Aer             n= 4     0.001 s
+  dm ghz  Qiskit Aer             n= 6     0.002 s
+  dm ghz  Qiskit Aer             n= 8     0.003 s
+  dm ghz  Qiskit Aer             n=10     0.044 s
+  dm ghz  Qiskit Aer             n=11     0.203 s
+  dm ghz  Qiskit Aer             n=12     1.034 s
+  dm ghz  Qiskit Aer             n=13     3.933 s
+  dm qv   QPUTwin                n= 4     0.022 s (engine 0.006 s)
+  dm qv   QPUTwin                n= 6     0.045 s (engine 0.014 s)
+  dm qv   QPUTwin                n= 8     0.097 s (engine 0.037 s)
+  dm qv   QPUTwin                n=10     0.259 s (engine 0.176 s)
+  dm qv   QPUTwin                n=11     0.640 s (engine 0.548 s)
+  dm qv   QPUTwin                n=12     2.047 s (engine 1.916 s)
+  dm qv   QPUTwin                n=13     7.308 s (engine 7.176 s)
+  dm qv   Qiskit Aer             n= 4     0.003 s
+  dm qv   Qiskit Aer             n= 6     0.015 s
+  dm qv   Qiskit Aer             n= 8     0.020 s
+  dm qv   Qiskit Aer             n=10     0.262 s
+  dm qv   Qiskit Aer             n=11     1.049 s
+  dm qv   Qiskit Aer             n=12     5.122 s
+  dm qv   Qiskit Aer             n=13    24.728 s
+  saved results/dm_speed_t4.json
+  (56.3 s)
+[vendor_workflow] threads=4
+  ibm_heron      qputwin   ghz    n= 4    0.017 s  2q 3  F_H 0.989  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   ghz    n= 6    0.022 s  2q 5  F_H 0.977  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   ghz    n= 8    0.035 s  2q 7  F_H 0.965  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   ghz    n=10    0.070 s  2q 9  F_H 0.951  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   ghz    n=12    0.334 s  2q 11  F_H 0.936  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   ghz    n=14    0.931 s  2q 13  F_H 0.914  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain ghz    n= 4    0.011 s  2q 3  F_H 0.986  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain ghz    n= 6    0.014 s  2q 5  F_H 0.973  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain ghz    n= 8    0.021 s  2q 7  F_H 0.726  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain ghz    n=10    0.046 s  2q 9  F_H 0.696  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain ghz    n=12    0.288 s  2q 11  F_H 0.683  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain ghz    n=14    1.014 s  2q 13  F_H 0.660  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    ghz    n= 4    0.710 s  2q 3  F_H 0.951  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    ghz    n= 6    0.705 s  2q 5  F_H 0.930  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    ghz    n= 8    0.724 s  2q 7  F_H 0.918  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    ghz    n=10    0.887 s  2q 9  F_H 0.908  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    ghz    n=12    1.294 s  2q 11  F_H 0.864  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    ghz    n=14    3.246 s  2q 13  F_H 0.836  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   bv     n= 4    0.019 s  2q 1  F_H 0.999  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   bv     n= 6    0.024 s  2q 2  F_H 0.994  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   bv     n= 8    0.031 s  2q 7  F_H 0.977  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   bv     n=10    0.045 s  2q 9  F_H 0.961  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   bv     n=12    0.057 s  2q 13  F_H 0.939  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   bv     n=14    0.077 s  2q 19  F_H 0.924  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain bv     n= 4    0.009 s  2q 1  F_H 0.994  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain bv     n= 6    0.011 s  2q 2  F_H 0.981  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain bv     n= 8    0.026 s  2q 7  F_H 0.954  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain bv     n=10    0.033 s  2q 9  F_H 0.903  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain bv     n=12    0.043 s  2q 13  F_H 0.453  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain bv     n=14    0.058 s  2q 19  F_H 0.905  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    bv     n= 4    0.713 s  2q 1  F_H 0.964  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    bv     n= 6    0.718 s  2q 2  F_H 0.989  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    bv     n= 8    0.729 s  2q 7  F_H 0.977  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    bv     n=10    0.873 s  2q 11  F_H 0.959  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    bv     n=12    1.481 s  2q 18  F_H 0.946  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    bv     n=14    3.624 s  2q 19  F_H 0.920  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qaoa   n= 4    0.081 s  2q 33  F_H 0.996  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qaoa   n= 6    0.159 s  2q 75  F_H 0.977  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qaoa   n= 8    0.275 s  2q 96  F_H 0.899  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qaoa   n=10    0.564 s  2q 147  F_H 0.690  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qaoa   n=12    3.300 s  2q 162  F_H 0.460  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qaoa   n=14    3.946 s  2q 180  F_H 0.234  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qaoa   n= 4    0.076 s  2q 33  F_H 0.996  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qaoa   n= 6    0.151 s  2q 75  F_H 0.968  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qaoa   n= 8    0.268 s  2q 96  F_H 0.888  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qaoa   n=10    0.524 s  2q 147  F_H 0.673  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qaoa   n=12    4.538 s  2q 162  F_H 0.362  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qaoa   n=14    5.537 s  2q 180  F_H 0.117  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qaoa   n= 4    0.717 s  2q 36  F_H 0.996  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qaoa   n= 6    0.735 s  2q 75  F_H 0.981  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qaoa   n= 8    0.747 s  2q 108  F_H 0.918  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qaoa   n=10    2.159 s  2q 162  F_H 0.682  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qaoa   n=12   18.565 s  2q 186  F_H 0.448  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qaoa   n=14   42.002 s  2q 207  F_H 0.240  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qft    n= 4    0.098 s  2q 51  F_H 0.923  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qft    n= 6    0.265 s  2q 132  F_H 0.783  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qft    n= 8    0.597 s  2q 288  F_H 0.629  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qft    n=10    1.450 s  2q 465  F_H 0.405  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qft    n=12    9.499 s  2q 730  F_H 0.265  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qft    n=14   12.387 s  2q 1066  F_H 0.145  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qft    n= 4    0.092 s  2q 51  F_H 0.894  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qft    n= 6    0.257 s  2q 132  F_H 0.068  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qft    n= 8    0.595 s  2q 288  F_H 0.535  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qft    n=10    1.484 s  2q 465  F_H 0.358  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qft    n=12    9.884 s  2q 730  F_H 0.188  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qft    n=14   22.705 s  2q 1066  F_H 0.000  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qft    n= 4    0.719 s  2q 54  F_H 0.941  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qft    n= 6    0.749 s  2q 132  F_H 0.848  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qft    n= 8    0.780 s  2q 307  F_H 0.669  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qft    n=10    4.949 s  2q 489  F_H 0.516  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qft    n=12   49.465 s  2q 738  F_H 0.368  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qft    n=14  130.828 s  2q 997  F_H 0.270  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qv     n= 4    0.097 s  2q 33  F_H 0.997  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qv     n= 6    0.206 s  2q 78  F_H 0.977  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qv     n= 8    0.493 s  2q 180  F_H 0.894  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qv     n=10    3.138 s  2q 294  F_H 0.614  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qv     n=12    4.922 s  2q 420  F_H 0.235  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   qv     n=14   12.652 s  2q 699  F_H 0.057  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qv     n= 4    0.092 s  2q 33  F_H 0.995  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qv     n= 6    0.201 s  2q 78  F_H 0.960  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qv     n= 8    0.490 s  2q 180  F_H 0.895  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qv     n=10    3.294 s  2q 294  F_H 0.439  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qv     n=12    5.015 s  2q 420  F_H 0.155  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain qv     n=14   13.670 s  2q 699  F_H 0.053  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qv     n= 4    0.722 s  2q 33  F_H 0.996  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qv     n= 6    0.748 s  2q 81  F_H 0.972  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qv     n= 8    0.775 s  2q 174  F_H 0.912  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qv     n=10   13.777 s  2q 312  F_H 0.625  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qv     n=12   37.751 s  2q 447  F_H 0.226  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    qv     n=14   25.968 s  2q 672  F_H 0.061  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   mirror n= 4    0.040 s  2q 8  F_H 0.989  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   mirror n= 6    0.122 s  2q 36  F_H 0.936  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   mirror n= 8    0.274 s  2q 80  F_H 0.845  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   mirror n=10    2.815 s  2q 206  F_H 0.654  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   mirror n=12    5.104 s  2q 312  F_H 0.500  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin   mirror n=14    9.975 s  2q 419  F_H 0.339  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain mirror n= 4    0.020 s  2q 8  F_H 0.981  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain mirror n= 6    0.117 s  2q 36  F_H 0.932  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain mirror n= 8    0.274 s  2q 80  F_H 0.828  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain mirror n=10    6.054 s  2q 206  F_H 0.001  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain mirror n=12    5.122 s  2q 312  F_H 0.342  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      qputwin_plain mirror n=14   17.991 s  2q 419  F_H 0.001  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    mirror n= 4    0.728 s  2q 8  F_H 0.977  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    mirror n= 6    0.727 s  2q 36  F_H 0.933  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    mirror n= 8    0.742 s  2q 83  F_H 0.861  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    mirror n=10    2.522 s  2q 188  F_H 0.684  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    mirror n=12   10.990 s  2q 279  F_H 0.524  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_heron      vendor    mirror n=14   59.392 s  2q 410  F_H 0.451  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   ghz    n= 4    0.014 s  2q 3  F_H 0.960  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   ghz    n= 6    0.023 s  2q 5  F_H 0.924  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   ghz    n= 8    0.043 s  2q 7  F_H 0.889  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   ghz    n=10    0.107 s  2q 9  F_H 0.838  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   ghz    n=12    0.446 s  2q 11  F_H 0.806  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   ghz    n=14    1.283 s  2q 13  F_H 0.774  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain ghz    n= 4    0.011 s  2q 3  F_H 0.929  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain ghz    n= 6    0.014 s  2q 5  F_H 0.902  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain ghz    n= 8    0.019 s  2q 7  F_H 0.858  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain ghz    n=10    0.046 s  2q 9  F_H 0.814  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain ghz    n=12    0.291 s  2q 11  F_H 0.773  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain ghz    n=14    1.050 s  2q 13  F_H 0.760  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    ghz    n= 4    1.860 s  2q 3  F_H 0.934  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    ghz    n= 6    1.345 s  2q 5  F_H 0.905  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    ghz    n= 8    1.359 s  2q 7  F_H 0.837  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    ghz    n=10    1.544 s  2q 9  F_H 0.797  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    ghz    n=12    1.937 s  2q 11  F_H 0.804  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    ghz    n=14    3.891 s  2q 13  F_H 0.757  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   bv     n= 4    0.015 s  2q 1  F_H 0.987  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   bv     n= 6    0.024 s  2q 2  F_H 0.955  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   bv     n= 8    0.075 s  2q 4  F_H 0.919  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   bv     n=10    0.059 s  2q 11  F_H 0.888  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   bv     n=12    0.091 s  2q 10  F_H 0.854  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   bv     n=14    0.132 s  2q 13  F_H 0.810  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain bv     n= 4    0.008 s  2q 1  F_H 0.962  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain bv     n= 6    0.010 s  2q 2  F_H 0.878  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain bv     n= 8    0.013 s  2q 4  F_H 0.835  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain bv     n=10    0.031 s  2q 11  F_H 0.776  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain bv     n=12    0.039 s  2q 10  F_H 0.706  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain bv     n=14    0.072 s  2q 13  F_H 0.733  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    bv     n= 4    1.377 s  2q 1  F_H 0.945  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    bv     n= 6    1.383 s  2q 2  F_H 0.947  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    bv     n= 8    1.390 s  2q 4  F_H 0.924  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    bv     n=10    1.677 s  2q 11  F_H 0.874  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    bv     n=12    1.942 s  2q 12  F_H 0.879  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    bv     n=14    3.739 s  2q 13  F_H 0.831  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qaoa   n= 4    0.077 s  2q 33  F_H 0.995  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qaoa   n= 6    0.135 s  2q 49  F_H 0.968  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qaoa   n= 8    0.230 s  2q 69  F_H 0.899  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qaoa   n=10    0.558 s  2q 98  F_H 0.667  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qaoa   n=12    2.087 s  2q 121  F_H 0.415  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qaoa   n=14    3.857 s  2q 129  F_H 0.204  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qaoa   n= 4    0.070 s  2q 33  F_H 0.939  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qaoa   n= 6    0.128 s  2q 49  F_H 0.946  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qaoa   n= 8    0.215 s  2q 69  F_H 0.673  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qaoa   n=10    0.775 s  2q 98  F_H 0.554  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qaoa   n=12    2.409 s  2q 121  F_H 0.366  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qaoa   n=14    4.346 s  2q 129  F_H 0.168  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qaoa   n= 4    1.422 s  2q 33  F_H 0.995  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qaoa   n= 6    1.426 s  2q 54  F_H 0.965  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qaoa   n= 8    2.151 s  2q 81  F_H 0.890  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qaoa   n=10    3.220 s  2q 105  F_H 0.670  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qaoa   n=12    9.993 s  2q 129  F_H 0.436  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qaoa   n=14    9.433 s  2q 132  F_H 0.219  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qft    n= 4    0.092 s  2q 49  F_H 0.872  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qft    n= 6    0.225 s  2q 108  F_H 0.664  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qft    n= 8    0.488 s  2q 223  F_H 0.463  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qft    n=10    2.048 s  2q 378  F_H 0.203  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qft    n=12    6.200 s  2q 555  F_H 0.150  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qft    n=14   43.433 s  2q 816  F_H 0.025  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qft    n= 4    0.091 s  2q 49  F_H 0.729  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qft    n= 6    0.215 s  2q 108  F_H 0.363  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qft    n= 8    0.489 s  2q 223  F_H 0.104  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qft    n=10    2.041 s  2q 378  F_H 0.148  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qft    n=12    8.467 s  2q 555  F_H 0.005  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qft    n=14   55.141 s  2q 816  F_H 0.000  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qft    n= 4    1.396 s  2q 51  F_H 0.866  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qft    n= 6    1.510 s  2q 117  F_H 0.709  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qft    n= 8    1.448 s  2q 217  F_H 0.530  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qft    n=10    7.800 s  2q 366  F_H 0.336  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qft    n=12   38.595 s  2q 564  F_H 0.197  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qft    n=14  131.318 s  2q 790  F_H 0.098  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qv     n= 4    0.087 s  2q 27  F_H 0.985  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qv     n= 6    0.210 s  2q 72  F_H 0.954  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qv     n= 8    0.439 s  2q 132  F_H 0.873  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qv     n=10    2.559 s  2q 228  F_H 0.597  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qv     n=12    4.429 s  2q 345  F_H 0.195  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   qv     n=14   10.723 s  2q 486  F_H 0.051  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qv     n= 4    0.078 s  2q 27  F_H 0.944  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qv     n= 6    0.190 s  2q 72  F_H 0.861  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qv     n= 8    0.412 s  2q 132  F_H 0.758  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qv     n=10    2.565 s  2q 228  F_H 0.530  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qv     n=12    5.765 s  2q 345  F_H 0.194  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain qv     n=14   12.395 s  2q 486  F_H 0.049  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qv     n= 4    1.399 s  2q 27  F_H 0.992  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qv     n= 6    1.898 s  2q 69  F_H 0.955  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qv     n= 8    1.435 s  2q 129  F_H 0.896  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qv     n=10    6.621 s  2q 228  F_H 0.558  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qv     n=12   15.999 s  2q 315  F_H 0.208  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    qv     n=14   84.583 s  2q 480  F_H 0.052  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   mirror n= 4    0.042 s  2q 8  F_H 0.960  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   mirror n= 6    0.050 s  2q 18  F_H 0.884  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   mirror n= 8    0.247 s  2q 56  F_H 0.745  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   mirror n=10    1.128 s  2q 119  F_H 0.560  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   mirror n=12    3.586 s  2q 168  F_H 0.401  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin   mirror n=14    8.790 s  2q 269  F_H 0.199  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain mirror n= 4    0.019 s  2q 8  F_H 0.932  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain mirror n= 6    0.037 s  2q 18  F_H 0.849  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain mirror n= 8    0.235 s  2q 56  F_H 0.384  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain mirror n=10    1.111 s  2q 119  F_H 0.181  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain mirror n=12    3.957 s  2q 168  F_H 0.296  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  qputwin_plain mirror n=14   10.762 s  2q 269  F_H 0.082  [trajectory]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    mirror n= 4    1.907 s  2q 8  F_H 0.936  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    mirror n= 6    1.418 s  2q 18  F_H 0.883  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    mirror n= 8    1.459 s  2q 50  F_H 0.771  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    mirror n=10    3.267 s  2q 125  F_H 0.605  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    mirror n=12    8.916 s  2q 168  F_H 0.472  [statevector]
+  saved results/vendor_workflow_t4.json
+  ibm_nighthawk  vendor    mirror n=14   40.764 s  2q 302  F_H 0.261  [statevector]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   ghz    n= 4    0.017 s  2q 3  F_H 0.969  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   ghz    n= 6    0.032 s  2q 5  F_H 0.945  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   ghz    n= 8    0.081 s  2q 7  F_H 0.910  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   ghz    n=10    0.213 s  2q 9  F_H 0.874  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   ghz    n=12    0.562 s  2q 11  F_H 0.832  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   ghz    n=14    1.401 s  2q 13  F_H 0.810  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain ghz    n= 4    0.010 s  2q 3  F_H 0.964  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain ghz    n= 6    0.014 s  2q 5  F_H 0.924  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain ghz    n= 8    0.019 s  2q 7  F_H 0.897  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain ghz    n=10    0.049 s  2q 9  F_H 0.854  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain ghz    n=12    0.311 s  2q 11  F_H 0.810  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain ghz    n=14    1.162 s  2q 13  F_H 0.779  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    ghz    n= 4    0.119 s  2q 3  F_H 0.947  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    ghz    n= 6    0.219 s  2q 5  F_H 0.903  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    ghz    n= 8    0.346 s  2q 7  F_H 0.900  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    ghz    n=10    0.527 s  2q 9  F_H 0.862  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    ghz    n=12    0.853 s  2q 11  F_H 0.814  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    ghz    n=14    2.057 s  2q 13  F_H 0.787  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm ghz    n= 4    0.046 s  2q 3  F_H 0.926  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm ghz    n= 6    0.084 s  2q 5  F_H 0.871  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   bv     n= 4    0.013 s  2q 1  F_H 0.992  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   bv     n= 6    0.017 s  2q 2  F_H 0.965  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   bv     n= 8    0.054 s  2q 4  F_H 0.929  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   bv     n=10    0.043 s  2q 8  F_H 0.892  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   bv     n=12    0.084 s  2q 9  F_H 0.874  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   bv     n=14    0.109 s  2q 12  F_H 0.840  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain bv     n= 4    0.007 s  2q 1  F_H 0.984  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain bv     n= 6    0.009 s  2q 2  F_H 0.956  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain bv     n= 8    0.012 s  2q 4  F_H 0.915  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain bv     n=10    0.026 s  2q 8  F_H 0.877  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain bv     n=12    0.030 s  2q 9  F_H 0.812  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain bv     n=14    0.040 s  2q 12  F_H 0.796  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    bv     n= 4    0.056 s  2q 1  F_H 0.981  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    bv     n= 6    0.110 s  2q 2  F_H 0.949  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    bv     n= 8    0.235 s  2q 4  F_H 0.914  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    bv     n=10    0.407 s  2q 8  F_H 0.875  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    bv     n=12    0.619 s  2q 9  F_H 0.896  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    bv     n=14    1.364 s  2q 10  F_H 0.867  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm bv     n= 4    0.027 s  2q 1  F_H 0.979  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm bv     n= 6    0.040 s  2q 2  F_H 0.929  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qaoa   n= 4    0.068 s  2q 33  F_H 0.982  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qaoa   n= 6    0.136 s  2q 49  F_H 0.948  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qaoa   n= 8    0.207 s  2q 72  F_H 0.881  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qaoa   n=10    1.400 s  2q 97  F_H 0.650  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qaoa   n=12    2.763 s  2q 124  F_H 0.392  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qaoa   n=14    4.072 s  2q 129  F_H 0.199  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qaoa   n= 4    0.061 s  2q 33  F_H 0.992  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qaoa   n= 6    0.117 s  2q 49  F_H 0.933  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qaoa   n= 8    0.183 s  2q 72  F_H 0.848  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qaoa   n=10    1.344 s  2q 97  F_H 0.614  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qaoa   n=12    2.909 s  2q 124  F_H 0.370  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qaoa   n=14    4.210 s  2q 129  F_H 0.171  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qaoa   n= 4    0.718 s  2q 38  F_H 0.980  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qaoa   n= 6    1.801 s  2q 86  F_H 0.892  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qaoa   n= 8    2.446 s  2q 113  F_H 0.812  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qaoa   n=10    4.079 s  2q 160  F_H 0.545  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qaoa   n=12    6.823 s  2q 266  F_H 0.243  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qaoa   n=14    7.646 s  2q 251  F_H 0.102  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm qaoa   n= 4   52.979 s  2q 38  F_H 0.963  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm qaoa   n= 6  314.318 s  2q 86  F_H 0.901  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qft    n= 4    0.084 s  2q 46  F_H 0.858  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qft    n= 6    0.197 s  2q 111  F_H 0.646  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qft    n= 8    0.447 s  2q 210  F_H 0.450  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qft    n=10    1.060 s  2q 367  F_H 0.160  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qft    n=12    6.752 s  2q 550  F_H 0.045  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qft    n=14   17.029 s  2q 772  F_H 0.021  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qft    n= 4    0.077 s  2q 46  F_H 0.735  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qft    n= 6    0.189 s  2q 111  F_H 0.519  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qft    n= 8    0.466 s  2q 210  F_H 0.262  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qft    n=10    1.124 s  2q 367  F_H 0.081  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qft    n=12    7.366 s  2q 550  F_H 0.018  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qft    n=14   18.509 s  2q 772  F_H 0.002  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qft    n= 4    0.642 s  2q 32  F_H 0.785  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qft    n= 6    2.061 s  2q 105  F_H 0.573  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qft    n= 8    4.685 s  2q 215  F_H 0.303  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qft    n=10    9.624 s  2q 403  F_H 0.101  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qft    n=12   16.646 s  2q 631  F_H 0.017  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qft    n=14   27.078 s  2q 786  F_H 0.006  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm qft    n= 4   49.895 s  2q 32  F_H 0.825  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm qft    n= 6  215.853 s  2q 105  F_H 0.513  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qv     n= 4    0.072 s  2q 27  F_H 0.981  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qv     n= 6    0.157 s  2q 63  F_H 0.962  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qv     n= 8    0.364 s  2q 129  F_H 0.848  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qv     n=10    0.801 s  2q 222  F_H 0.543  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qv     n=12    4.828 s  2q 321  F_H 0.200  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   qv     n=14   18.073 s  2q 483  F_H 0.048  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qv     n= 4    0.063 s  2q 27  F_H 0.970  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qv     n= 6    0.144 s  2q 63  F_H 0.907  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qv     n= 8    0.337 s  2q 129  F_H 0.825  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qv     n=10    0.783 s  2q 222  F_H 0.533  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qv     n=12    5.558 s  2q 321  F_H 0.183  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain qv     n=14   19.814 s  2q 483  F_H 0.049  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qv     n= 4    0.733 s  2q 45  F_H 0.958  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qv     n= 6    1.340 s  2q 72  F_H 0.912  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qv     n= 8    3.523 s  2q 183  F_H 0.807  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qv     n=10    7.406 s  2q 342  F_H 0.503  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qv     n=12   11.763 s  2q 489  F_H 0.174  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    qv     n=14   24.330 s  2q 843  F_H 0.049  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm qv     n= 4    0.288 s  2q 45  F_H 0.951  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm qv     n= 6    0.704 s  2q 72  F_H 0.935  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   mirror n= 4    0.074 s  2q 8  F_H 0.979  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   mirror n= 6    0.050 s  2q 18  F_H 0.917  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   mirror n= 8    0.219 s  2q 44  F_H 0.845  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   mirror n=10    0.660 s  2q 116  F_H 0.509  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   mirror n=12    5.384 s  2q 198  F_H 0.254  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin   mirror n=14   11.504 s  2q 287  F_H 0.127  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain mirror n= 4    0.015 s  2q 8  F_H 0.947  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain mirror n= 6    0.027 s  2q 18  F_H 0.886  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain mirror n= 8    0.183 s  2q 44  F_H 0.669  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain mirror n=10    0.575 s  2q 116  F_H 0.344  [density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain mirror n=12    5.930 s  2q 198  F_H 0.190  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  qputwin_plain mirror n=14   11.791 s  2q 287  F_H 0.067  [trajectory]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    mirror n= 4    0.178 s  2q 8  F_H 0.953  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    mirror n= 6    0.908 s  2q 45  F_H 0.775  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    mirror n= 8    1.594 s  2q 77  F_H 0.498  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    mirror n=10    3.296 s  2q 182  F_H 0.279  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    mirror n=12    6.428 s  2q 327  F_H 0.092  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  vendor    mirror n=14   12.837 s  2q 557  F_H 0.011  [qsim_noisy_trajectories]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm mirror n= 4    0.072 s  2q 8  F_H 0.954  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  google_willow  google_dm mirror n= 6    0.498 s  2q 45  F_H 0.772  [cirq_density_matrix]
+  saved results/vendor_workflow_t4.json
+  (5029.6 s)

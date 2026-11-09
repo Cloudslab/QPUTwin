@@ -58,7 +58,7 @@ import pytest
 BASE_URL = os.environ.get("QPUTWIN_BASE_URL", "http://localhost:8000")
 N_BENCH = int(os.environ.get("QPUTWIN_BENCH_REPS", "20"))
 TRAPPED_ION = ("quantinuum_helios", "ionq_forte")
-SUPERCONDUCTING = ("rigetti_ankaa_3", "iqm_emerald")
+SUPERCONDUCTING = ("rigetti_ankaa_3", "iqm_emerald", "ibm_heron", "ibm_nighthawk", "google_willow")
 GHZ_N = 12
 
 pytestmark = pytest.mark.integration
@@ -77,6 +77,31 @@ def chain_ghz(n: int) -> str:
     body = "".join(f"cx q[{k}],q[{k + 1}];\n" for k in range(n - 1))
     return (f'OPENQASM 2.0;\ninclude "qelib1.inc";\nqreg q[{n}];\ncreg c[{n}];\n'
             f"h q[0];\n{body}measure q -> c;\n")
+
+
+def path_ghz(path: list[int]) -> str:
+    """|GHZ> along a coupled path of physical qubits, measured in path order."""
+    body = "".join(f"cx q[{a}],q[{b}];\n" for a, b in zip(path, path[1:], strict=False))
+    meas = "".join(f"measure q[{p}] -> c[{i}];\n" for i, p in enumerate(path))
+    return (f'OPENQASM 2.0;\ninclude "qelib1.inc";\nqreg q[{max(path) + 1}];\ncreg c[{len(path)}];\n'
+            f"h q[{path[0]}];\n{body}{meas}")
+
+
+def coupled_path(a: list[list[int]], n: int) -> list[int]:
+    """A simple path of ``n`` coupled qubits starting at qubit 0 (depth-first search)."""
+    def extend(path: list[int]) -> list[int] | None:
+        if len(path) == n:
+            return path
+        for q in range(len(a)):
+            if a[path[-1]][q] and q not in path:
+                found = extend([*path, q])
+                if found:
+                    return found
+        return None
+
+    found = extend([0])
+    assert found, f"no {n}-qubit coupled path from qubit 0"
+    return found
 
 
 def complete_graph_state(n: int) -> str:
@@ -115,6 +140,12 @@ def adjacency(api: httpx.Client) -> dict[str, list[list[int]]]:
             a[p][q] = a[q][p] = 1
         out[b] = a
     return out
+
+
+@pytest.fixture(scope="session")
+def paths(adjacency: dict[str, list[list[int]]]) -> dict[str, list[int]]:
+    """A 9-qubit nearest-neighbour path on each superconducting twin (Willow's grid is not row-major)."""
+    return {b: coupled_path(a, 9) for b, a in adjacency.items()}
 
 
 def submit(api: httpx.Client, backend: str, qasm: str, **kw) -> httpx.Response:
@@ -247,9 +278,9 @@ def test_same_circuit_rejected_by_superconducting_adjacency(api: httpx.Client, b
 
 # ============================================================ 3. control experiment
 @pytest.mark.parametrize("backend", SUPERCONDUCTING)
-def test_nearest_neighbour_chain_is_accepted(api: httpx.Client, backend: str) -> None:
-    n = 9                                                 # fits in one row of both lattices
-    r = submit(api, backend, chain_ghz(n), shots=4096, seed=7)
+def test_nearest_neighbour_chain_is_accepted(api: httpx.Client, backend: str, paths: dict[str, list[int]]) -> None:
+    n = 9
+    r = submit(api, backend, path_ghz(paths[backend]), shots=4096, seed=7)
     assert r.status_code == 200, r.text
     body = r.json()
     assert set(body["result"]["counts"]) == {"0" * n, "1" * n}
@@ -260,7 +291,8 @@ def test_nearest_neighbour_chain_is_accepted(api: httpx.Client, backend: str) ->
 # ============================================================ 4. resource model (D6)
 def test_per_container_caps_and_memory_guard(api: httpx.Client) -> None:
     caps = {b["id"]: b["max_sim_qubits"] for b in api.get("/v1/backends").json()["backends"]}
-    assert caps == {"quantinuum_helios": 98, "ionq_forte": 36, "rigetti_ankaa_3": 84, "iqm_emerald": 54}
+    assert caps == {"quantinuum_helios": 98, "ionq_forte": 36, "rigetti_ankaa_3": 84, "iqm_emerald": 54,
+                    "ibm_heron": 156, "ibm_nighthawk": 120, "google_willow": 105}
     r = submit(api, "ionq_forte", star_ghz(36), shots=10)   # 36 qubits: ~3 TiB working set
     assert r.status_code == 422, r.text
     err = r.json()["error"]
@@ -288,8 +320,8 @@ def _pct(xs: list[float], p: float) -> float:
     return xs[min(len(xs) - 1, max(0, math.ceil(p * len(xs)) - 1))]
 
 
-def test_benchmark_latency_decomposition(api: httpx.Client) -> None:
-    workloads = {b: star_ghz(GHZ_N) for b in TRAPPED_ION} | {b: chain_ghz(9) for b in SUPERCONDUCTING}
+def test_benchmark_latency_decomposition(api: httpx.Client, paths: dict[str, list[int]]) -> None:
+    workloads = {b: star_ghz(GHZ_N) for b in TRAPPED_ION} | {b: path_ghz(paths[b]) for b in SUPERCONDUCTING}
     rows = []
     for backend, qasm in workloads.items():
         submit(api, backend, qasm, shots=1024, seed=0)       # warm-up (connection pool, caches)
@@ -341,7 +373,7 @@ def test_seed_reproducibility_over_http(api: httpx.Client) -> None:
 
 
 def test_phase_is_reported_consistently_across_vendors(api: httpx.Client) -> None:
-    """All four emulators reproduce the same exact statevector for a NN-compatible circuit."""
+    """Every emulator reproduces the same exact statevector for a NN-compatible circuit."""
     qasm = ('OPENQASM 3.0;\ninclude "stdgates.inc";\nqubit[2] q;\n'
             "rx(0.3) q[0];\nry(1.1) q[1];\ncx q[0], q[1];\nrz(0.7) q[1];\nh q[0];\n")
     vecs = {}
@@ -367,8 +399,9 @@ def poll(api: httpx.Client, job_id: str, timeout_s: float = 120.0) -> dict:
 
 
 @pytest.mark.parametrize("backend", (*TRAPPED_ION, *SUPERCONDUCTING))
-def test_async_job_matches_sync_physics_and_telemetry(api: httpx.Client, backend: str) -> None:
-    qasm = star_ghz(8) if backend in TRAPPED_ION else chain_ghz(8)
+def test_async_job_matches_sync_physics_and_telemetry(api: httpx.Client, backend: str,
+                                                      paths: dict[str, list[int]]) -> None:
+    qasm = star_ghz(8) if backend in TRAPPED_ION else path_ghz(paths[backend][:8])
     r = api.post("/v1/jobs", params={"mode": "async"},
                  json={"backend": backend, "qasm": qasm, "shots": 2048, "seed": 5})
     assert r.status_code == 202, r.text
@@ -441,26 +474,29 @@ def test_calibrated_noise_degrades_a_bell_pair(api: httpx.Client, backend: str) 
 
 
 # ====================================================== 10. gate-duration model
-def test_hardware_time_estimates(api: httpx.Client) -> None:
+def test_hardware_time_estimates(api: httpx.Client, paths: dict[str, list[int]]) -> None:
     est = {}
     for b in (*TRAPPED_ION, *SUPERCONDUCTING):
-        r = submit(api, b, chain_ghz(5), shots=1000, seed=1).json()
+        qasm = chain_ghz(5) if b in TRAPPED_ION else path_ghz(paths[b][:5])
+        r = submit(api, b, qasm, shots=1000, seed=1).json()
         e = r["compilation"]["hardware_time_estimate"]
         assert e["complete"] and e["circuit_duration_us"] > 0
-        assert math.isclose(e["estimated_job_duration_s"], 1000 * e["circuit_duration_us"] * 1e-6, rel_tol=1e-9)
+        overhead = e["shot_overhead_us"] if e["includes_shot_overhead"] else 0.0   # IBM publishes its rep delay
+        assert math.isclose(e["estimated_job_duration_s"], 1000 * (e["circuit_duration_us"] + overhead) * 1e-6,
+                            rel_tol=1e-9)
         est[b] = e["circuit_duration_us"]
     print(f"\nestimated circuit duration per shot (us): {est}")
     assert min(est[b] for b in TRAPPED_ION) > 100 * max(est[b] for b in SUPERCONDUCTING)
 
 
 # ================================================== 11. horizontal scaling
-def test_replicas_share_the_async_load(api: httpx.Client) -> None:
+def test_replicas_share_the_async_load(api: httpx.Client, paths: dict[str, list[int]]) -> None:
     backends = {b["id"]: b for b in api.get("/v1/backends").json()["backends"]}
     scaled = [b for b, v in backends.items() if len(v.get("replicas") or []) >= 2]
     if not scaled:
         pytest.skip("no backend runs >= 2 replicas; set QPUTWIN_<DEVICE>_REPLICAS=2 in .env to exercise scaling")
     backend = scaled[0]
-    qasm = star_ghz(20) if backend in TRAPPED_ION else chain_ghz(12)
+    qasm = star_ghz(20) if backend in TRAPPED_ION else path_ghz(paths[backend])
     ids = [api.post("/v1/jobs", params={"mode": "async"},
                     json={"backend": backend, "qasm": qasm, "shots": 64, "seed": k}).json()["job_id"]
            for k in range(8)]
@@ -501,7 +537,7 @@ def test_extended_noise_terms_and_provenance(api: httpx.Client) -> None:
 def test_ready_and_metrics(api: httpx.Client) -> None:
     ready = api.get("/ready")
     assert ready.status_code == 200 and ready.json()["job_store"] == "ok"
-    assert len(ready.json()["backends_reachable"]) == 4
+    assert len(ready.json()["backends_reachable"]) == len(TRAPPED_ION) + len(SUPERCONDUCTING)
     text = api.get("/metrics").text
     assert "# TYPE qputwin_jobs_total counter" in text and "qputwin_job_roundtrip_ms_bucket" in text
     assert 'qputwin_async_capacity{backend="ionq_forte"}' in text

@@ -1,0 +1,647 @@
+ Image qputwin/worker:0.1.0 Building 
+ Image qputwin/worker:0.1.0 Building 
+ Image qputwin/worker:0.1.0 Building 
+ Image qputwin/worker:0.1.0 Building 
+ Image qputwin/worker:0.1.0 Building 
+ Image qputwin/worker:0.1.0 Building 
+ Image qputwin/worker:0.1.0 Building 
+ Image qputwin/orchestrator:0.1.0 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 4.31kB done
+#1 DONE 0.0s
+
+#2 [orchestrator internal] load build definition from orchestrator.Dockerfile
+#2 DONE 0.2s
+
+#3 [worker-ibm-heron internal] load build definition from worker.Dockerfile
+#3 DONE 0.2s
+
+#3 [worker-ionq-forte internal] load build definition from worker.Dockerfile
+#3 transferring dockerfile: 37B 0.1s
+#3 transferring dockerfile: 2.52kB 0.4s done
+#3 ...
+
+#2 [orchestrator internal] load build definition from orchestrator.Dockerfile
+#2 transferring dockerfile: 2.70kB 0.3s done
+#2 DONE 2.4s
+
+#3 [worker-ibm-heron internal] load build definition from worker.Dockerfile
+#3 DONE 2.7s
+
+#4 [orchestrator] resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#4 DONE 6.4s
+
+#5 [worker-ionq-forte] docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#5 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#5 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e 0.3s done
+#5 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e 0.3s done
+#5 DONE 0.7s
+
+#5 [worker-google-willow] docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#5 CACHED
+
+#5 [worker-quantinuum-helios] docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#5 CACHED
+
+#6 [worker-google-willow internal] load build definition from worker.Dockerfile
+#6 DONE 0.0s
+
+#7 [worker-quantinuum-helios internal] load build definition from worker.Dockerfile
+#7 DONE 0.0s
+
+#8 [worker-rigetti-ankaa3 internal] load build definition from worker.Dockerfile
+#8 DONE 0.0s
+
+#9 [worker-ibm-heron internal] load build definition from worker.Dockerfile
+#9 transferring dockerfile:
+#9 transferring dockerfile: 2.52kB 0.1s done
+#9 DONE 1.3s
+
+#10 [orchestrator internal] load build definition from orchestrator.Dockerfile
+#10 transferring dockerfile: 2.70kB 0.0s done
+#10 ...
+
+#7 [worker-quantinuum-helios internal] load build definition from worker.Dockerfile
+#7 transferring dockerfile: 2.52kB 0.2s done
+#7 DONE 1.5s
+
+#8 [worker-rigetti-ankaa3 internal] load build definition from worker.Dockerfile
+#8 transferring dockerfile: 2.52kB 0.0s done
+#8 ...
+
+#10 [orchestrator internal] load build definition from orchestrator.Dockerfile
+#10 DONE 2.3s
+
+#11 [worker-ibm-heron internal] load metadata for docker.io/library/python:3.13.16-slim-trixie
+#11 ...
+
+#8 [worker-rigetti-ankaa3 internal] load build definition from worker.Dockerfile
+#8 DONE 3.8s
+
+#11 [orchestrator internal] load metadata for docker.io/library/python:3.13.16-slim-trixie
+#11 ...
+
+#12 [worker-rigetti-ankaa3 internal] load metadata for ghcr.io/astral-sh/uv:0.12.23
+#12 DONE 3.7s
+
+#13 [worker-ionq-forte internal] load build definition from worker.Dockerfile
+#13 transferring dockerfile: 2.52kB 0.2s done
+#13 ...
+
+#6 [worker-google-willow internal] load build definition from worker.Dockerfile
+#6 transferring dockerfile: 2.52kB 0.3s done
+#6 DONE 6.6s
+
+#14 [worker-iqm-emerald internal] load build definition from worker.Dockerfile
+#14 transferring dockerfile: 2.52kB 0.4s done
+#14 ...
+
+#12 [worker-google-willow internal] load metadata for ghcr.io/astral-sh/uv:0.12.23
+#12 ...
+
+#11 [orchestrator internal] load metadata for docker.io/library/python:3.13.16-slim-trixie
+#11 DONE 4.6s
+
+#13 [worker-ionq-forte internal] load build definition from worker.Dockerfile
+#13 DONE 6.9s
+
+#15 [worker-quantinuum-helios internal] load .dockerignore
+#15 DONE 0.0s
+
+#15 [worker-quantinuum-helios internal] load .dockerignore
+#15 ...
+
+#14 [worker-iqm-emerald internal] load build definition from worker.Dockerfile
+#14 DONE 7.4s
+
+#11 [worker-ionq-forte internal] load metadata for docker.io/library/python:3.13.16-slim-trixie
+#11 ...
+
+#16 [worker-ibm-nighthawk internal] load build definition from worker.Dockerfile
+#16 transferring dockerfile: 2.52kB 0.0s done
+#16 DONE 8.0s
+
+#12 [worker-iqm-emerald internal] load metadata for ghcr.io/astral-sh/uv:0.12.23
+#12 DONE 6.6s
+
+#17 [worker-google-willow internal] load .dockerignore
+#17 ...
+
+#18 [worker-rigetti-ankaa3 internal] load .dockerignore
+#18 transferring context: 402B 0.0s done
+#18 DONE 3.0s
+
+#11 [worker-ibm-nighthawk internal] load metadata for docker.io/library/python:3.13.16-slim-trixie
+#11 DONE 7.3s
+
+#19 [worker-iqm-emerald internal] load .dockerignore
+#19 DONE 0.0s
+
+#20 [orchestrator internal] load .dockerignore
+#20 transferring context: 402B 0.3s done
+#20 DONE 3.1s
+
+#21 [worker-ionq-forte internal] load .dockerignore
+#21 ...
+
+#15 [worker-quantinuum-helios internal] load .dockerignore
+#15 transferring context: 402B 0.1s done
+#15 DONE 3.6s
+
+#22 [worker-ibm-nighthawk internal] load .dockerignore
+#22 ...
+
+#23 [worker-ibm-heron internal] load .dockerignore
+#23 transferring context: 402B 0.2s done
+#23 DONE 4.1s
+
+#19 [worker-iqm-emerald internal] load .dockerignore
+#19 ...
+
+#24 [worker-rigetti-ankaa3 internal] load build context
+#24 DONE 0.0s
+
+#25 [worker-rigetti-ankaa3 builder 1/8] FROM docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f
+#25 resolve docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f
+#25 ...
+
+#26 [orchestrator internal] load build context
+#26 DONE 0.0s
+
+#27 [worker-quantinuum-helios internal] load build context
+#27 DONE 0.0s
+
+#25 [worker-ibm-heron builder 1/8] FROM docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f
+#25 ...
+
+#28 [worker-ibm-heron internal] load build context
+#28 DONE 0.0s
+
+#22 [worker-ibm-nighthawk internal] load .dockerignore
+#22 ...
+
+#25 [worker-rigetti-ankaa3 builder 1/8] FROM docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f
+#25 resolve docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f 1.6s done
+#25 DONE 2.7s
+
+#29 [worker-quantinuum-helios uv 1/1] FROM ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21
+#29 resolve ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21 1.3s done
+#29 DONE 2.8s
+
+#22 [worker-ibm-nighthawk internal] load .dockerignore
+#22 transferring context: 402B 0.1s done
+#22 DONE 6.4s
+
+#19 [worker-iqm-emerald internal] load .dockerignore
+#19 transferring context: 402B 0.1s done
+#19 ...
+
+#17 [worker-google-willow internal] load .dockerignore
+#17 transferring context: 402B 0.1s done
+#17 DONE 7.1s
+
+#21 [worker-ionq-forte internal] load .dockerignore
+#21 transferring context: 402B 0.1s done
+#21 DONE 6.7s
+
+#19 [worker-iqm-emerald internal] load .dockerignore
+#19 DONE 7.3s
+
+#24 [worker-rigetti-ankaa3 internal] load build context
+#24 ...
+
+#25 [worker-ionq-forte builder 1/8] FROM docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f
+#25 resolve docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f 1.6s done
+#25 DONE 2.7s
+
+#29 [worker-ionq-forte uv 1/1] FROM ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21
+#29 resolve ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21 1.3s done
+#29 DONE 2.8s
+
+#30 [worker-ionq-forte internal] load build context
+#30 ...
+
+#25 [worker-ibm-nighthawk builder 1/8] FROM docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f
+#25 resolve docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f 1.6s done
+#25 DONE 2.7s
+
+#29 [worker-ibm-nighthawk uv 1/1] FROM ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21
+#29 resolve ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21 1.3s done
+#29 DONE 2.8s
+
+#31 [worker-ibm-nighthawk internal] load build context
+#31 ...
+
+#25 [worker-iqm-emerald builder 1/8] FROM docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f
+#25 resolve docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f 1.6s done
+#25 DONE 2.7s
+
+#29 [worker-iqm-emerald uv 1/1] FROM ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21
+#29 resolve ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21 1.3s done
+#29 DONE 2.8s
+
+#32 [worker-iqm-emerald internal] load build context
+#32 ...
+
+#25 [worker-google-willow builder 1/8] FROM docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f
+#25 resolve docker.io/library/python:3.13.16-slim-trixie@sha256:cf50a4f6ac4f026458b08d5222023d700ac806410dff5e9ca8728fa44f2b850f 1.6s done
+#25 DONE 2.7s
+
+#29 [worker-google-willow uv 1/1] FROM ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21
+#29 resolve ghcr.io/astral-sh/uv:0.12.23@sha256:61d393e44e249f2e4b526b6c7ddcecce245946826e608e11c93ad4f5bba55b21 1.3s done
+#29 DONE 2.8s
+
+#28 [worker-ibm-heron internal] load build context
+#28 transferring context: 41.34kB 1.4s done
+#28 DONE 3.3s
+
+#33 [worker-google-willow internal] load build context
+#33 ...
+
+#27 [worker-quantinuum-helios internal] load build context
+#27 transferring context: 41.34kB 0.7s done
+#27 DONE 3.4s
+
+#26 [orchestrator internal] load build context
+#26 transferring context: 51.05kB 0.7s done
+#26 DONE 3.6s
+
+#31 [worker-ibm-nighthawk internal] load build context
+#31 transferring context: 41.34kB 0.2s done
+#31 ...
+
+#33 [worker-google-willow internal] load build context
+#33 transferring context: 41.34kB 0.4s done
+#33 DONE 4.1s
+
+#32 [worker-iqm-emerald internal] load build context
+#32 transferring context: 41.34kB 0.5s done
+#32 DONE 4.6s
+
+#30 [worker-ionq-forte internal] load build context
+#30 transferring context: 41.34kB 0.4s done
+#30 DONE 5.3s
+
+#24 [worker-rigetti-ankaa3 internal] load build context
+#24 transferring context: 41.34kB 0.4s done
+#24 ...
+
+#31 [worker-ibm-nighthawk internal] load build context
+#31 DONE 5.2s
+
+#24 [worker-rigetti-ankaa3 internal] load build context
+#24 DONE 7.4s
+
+#34 [worker-ibm-heron builder 4/8] COPY pyproject.toml uv.lock ./
+#34 CACHED
+
+#35 [worker-ibm-heron builder 5/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-install-project --no-dev --extra worker
+#35 CACHED
+
+#36 [worker-rigetti-ankaa3 builder 6/8] COPY README.md LICENSE NOTICE ./
+#36 CACHED
+
+#37 [orchestrator builder 3/8] WORKDIR /app
+#37 CACHED
+
+#38 [orchestrator builder 4/8] COPY pyproject.toml uv.lock ./
+#38 CACHED
+
+#39 [orchestrator builder 5/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-install-project --no-dev --extra orchestrator
+#39 CACHED
+
+#40 [orchestrator builder 2/8] COPY --from=uv /uv /uvx /bin/
+#40 CACHED
+
+#41 [orchestrator builder 6/8] COPY README.md LICENSE NOTICE ./
+#41 CACHED
+
+#42 [worker-rigetti-ankaa3 builder 7/8] COPY src ./src
+#42 ...
+
+#36 [worker-google-willow builder 6/8] COPY README.md LICENSE NOTICE ./
+#36 CACHED
+
+#42 [worker-google-willow builder 7/8] COPY src ./src
+#42 ...
+
+#36 [worker-ibm-nighthawk builder 6/8] COPY README.md LICENSE NOTICE ./
+#36 CACHED
+
+#42 [worker-ibm-nighthawk builder 7/8] COPY src ./src
+#42 ...
+
+#43 [orchestrator builder 7/8] COPY src ./src
+#43 DONE 3.7s
+
+#42 [worker-ibm-nighthawk builder 7/8] COPY src ./src
+#42 DONE 5.0s
+
+#44 [orchestrator builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra orchestrator --no-editable
+#44 ...
+
+#45 [worker-google-willow builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra worker --no-editable
+#45 22.30 Resolved 66 packages in 9ms
+#45 ...
+
+#44 [orchestrator builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra orchestrator --no-editable
+#44 22.38 Resolved 66 packages in 9ms
+#44 23.72    Building qputwin @ file:///app
+#44 29.51       Built qputwin @ file:///app
+#44 29.55 Prepared 1 package in 5.82s
+#44 29.56 Installed 1 package in 14ms
+#44 ...
+
+#45 [worker-google-willow builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra worker --no-editable
+#45 29.43    Building qputwin @ file:///app
+#45 30.83       Built qputwin @ file:///app
+#45 30.83 Prepared 1 package in 6.47s
+#45 30.85 Installed 1 package in 11ms
+#45 ...
+
+#44 [orchestrator builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra orchestrator --no-editable
+#44 31.23 Bytecode compiled 563 files in 1.66s
+#44 31.23  + qputwin==0.1.0 (from file:///app)
+#44 DONE 33.4s
+
+#45 [worker-google-willow builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra worker --no-editable
+#45 40.59 Bytecode compiled 1899 files in 9.74s
+#45 40.59  + qputwin==0.1.0 (from file:///app)
+#45 DONE 44.0s
+
+#46 [worker-google-willow builder 7/8] COPY src ./src
+#46 CACHED
+
+#47 [worker-google-willow builder 5/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-install-project --no-dev --extra worker
+#47 CACHED
+
+#48 [worker-google-willow builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra worker --no-editable
+#48 CACHED
+
+#49 [worker-google-willow builder 4/8] COPY pyproject.toml uv.lock ./
+#49 CACHED
+
+#50 [worker-google-willow builder 6/8] COPY README.md LICENSE NOTICE ./
+#50 CACHED
+
+#51 [worker-google-willow runtime 3/4] COPY --from=builder --chown=qputwin:qputwin /app/.venv /app/.venv
+#51 CANCELED
+
+#52 [worker-quantinuum-helios builder 4/8] COPY pyproject.toml uv.lock ./
+#52 CACHED
+
+#53 [worker-quantinuum-helios builder 6/8] COPY README.md LICENSE NOTICE ./
+#53 CACHED
+
+#54 [worker-quantinuum-helios builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra worker --no-editable
+#54 CACHED
+
+#55 [worker-quantinuum-helios builder 5/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-install-project --no-dev --extra worker
+#55 CACHED
+
+#56 [worker-quantinuum-helios builder 7/8] COPY src ./src
+#56 CACHED
+
+#57 [worker-quantinuum-helios runtime 3/4] COPY --from=builder --chown=qputwin:qputwin /app/.venv /app/.venv
+#57 CANCELED
+
+#58 [worker-ionq-forte builder 5/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-install-project --no-dev --extra worker
+#58 CACHED
+
+#59 [worker-ionq-forte builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra worker --no-editable
+#59 CACHED
+
+#60 [worker-ionq-forte builder 4/8] COPY pyproject.toml uv.lock ./
+#60 CACHED
+
+#61 [worker-ionq-forte builder 7/8] COPY src ./src
+#61 CACHED
+
+#62 [worker-ionq-forte builder 6/8] COPY README.md LICENSE NOTICE ./
+#62 CACHED
+
+#63 [worker-ionq-forte runtime 3/4] COPY --from=builder --chown=qputwin:qputwin /app/.venv /app/.venv
+#63 CANCELED
+
+#64 [worker-iqm-emerald builder 7/8] COPY src ./src
+#64 CACHED
+
+#65 [worker-iqm-emerald builder 4/8] COPY pyproject.toml uv.lock ./
+#65 CACHED
+
+#66 [worker-iqm-emerald builder 6/8] COPY README.md LICENSE NOTICE ./
+#66 CACHED
+
+#67 [worker-iqm-emerald builder 5/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-install-project --no-dev --extra worker
+#67 CACHED
+
+#68 [worker-iqm-emerald builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra worker --no-editable
+#68 CACHED
+
+#69 [worker-iqm-emerald runtime 3/4] COPY --from=builder --chown=qputwin:qputwin /app/.venv /app/.venv
+#69 CANCELED
+
+#70 [worker-google-willow runtime 2/4] RUN useradd --system --uid 10001 --no-create-home qputwin
+#70 CACHED
+
+#37 [worker-google-willow builder 3/8] WORKDIR /app
+#37 CACHED
+
+#40 [worker-google-willow builder 2/8] COPY --from=uv /uv /uvx /bin/
+#40 CACHED
+
+#71 [worker-ibm-nighthawk builder 5/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-install-project --no-dev --extra worker
+#71 CACHED
+
+#72 [worker-ibm-nighthawk builder 8/8] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --locked --no-dev --extra worker --no-editable
+#72 CACHED
+
+#73 [worker-ibm-nighthawk builder 6/8] COPY README.md LICENSE NOTICE ./
+#73 CACHED
+
+#74 [worker-ibm-nighthawk builder 7/8] COPY src ./src
+#74 CACHED
+
+#75 [worker-ibm-nighthawk builder 4/8] COPY pyproject.toml uv.lock ./
+#75 CACHED
+
+#76 [worker-ibm-nighthawk runtime 3/4] COPY --from=builder --chown=qputwin:qputwin /app/.venv /app/.venv
+#76 CANCELED
+
+#77 [orchestrator runtime 2/5] RUN useradd --system --uid 10001 --no-create-home qputwin  && mkdir -p /app/data && chown qputwin:qputwin /app/data
+#77 CACHED
+
+#78 [orchestrator runtime 3/5] COPY --from=builder --chown=qputwin:qputwin /app/.venv /app/.venv
+#78 DONE 2.3s
+
+#79 [orchestrator runtime 4/5] COPY --chown=qputwin:qputwin config /app/config
+#79 DONE 2.7s
+
+#80 [orchestrator runtime 5/5] WORKDIR /app
+#80 DONE 1.7s
+
+#81 [orchestrator] exporting to image
+#81 exporting layers
+#81 exporting layers 4.5s done
+#81 exporting manifest sha256:300fd1e65b721e224f34319a84de18203370974a827d143ccc85d439c63b7ff4
+#81 exporting manifest sha256:300fd1e65b721e224f34319a84de18203370974a827d143ccc85d439c63b7ff4 0.8s done
+#81 exporting config sha256:a23855daa12a33ca9f50df1b96ac6042ae6cf5c1af16b008e2047a14891e0ac6
+#81 exporting config sha256:a23855daa12a33ca9f50df1b96ac6042ae6cf5c1af16b008e2047a14891e0ac6 0.2s done
+#81 exporting attestation manifest sha256:08ef0598f24db517a7f3d7f9b8c4d0ed68cd3d7a504d4f5097843594133a6f32
+#81 exporting attestation manifest sha256:08ef0598f24db517a7f3d7f9b8c4d0ed68cd3d7a504d4f5097843594133a6f32 0.7s done
+#81 exporting manifest list sha256:5a465fab8e0ff61d1a8969ecb9b99bb28ad927a06960a3dea6aeaebbde5ebb35
+#81 exporting manifest list sha256:5a465fab8e0ff61d1a8969ecb9b99bb28ad927a06960a3dea6aeaebbde5ebb35 0.1s done
+#81 naming to docker.io/qputwin/orchestrator:0.1.0
+#81 naming to docker.io/qputwin/orchestrator:0.1.0 0.1s done
+#81 unpacking to docker.io/qputwin/orchestrator:0.1.0
+#81 unpacking to docker.io/qputwin/orchestrator:0.1.0 1.2s done
+#81 DONE 8.1s
+
+#82 [orchestrator] resolving provenance for metadata file
+#82 DONE 0.0s
+
+#70 [worker-google-willow runtime 2/4] RUN useradd --system --uid 10001 --no-create-home qputwin
+#70 CACHED
+
+#83 [worker-rigetti-ankaa3 runtime 3/4] COPY --from=builder --chown=qputwin:qputwin /app/.venv /app/.venv
+#83 DONE 7.9s
+
+#84 [worker-ionq-forte runtime 4/4] WORKDIR /app
+#84 DONE 0.9s
+
+#85 [worker-ibm-heron] exporting to image
+#85 exporting layers
+#85 ...
+
+#86 [worker-google-willow] exporting to image
+#86 exporting layers 7.7s done
+#86 exporting manifest sha256:5ab8775dc8642fe436c2910a1e0fdfce74c567c83bef9e9dadf9d63d67fe39e7
+#86 ...
+
+#85 [worker-ibm-heron] exporting to image
+#85 exporting layers 7.8s done
+#85 exporting manifest sha256:0051f997843f3a36a966af99a7481b481dd3b8e4a44dd4be7924d0d60ff0a6d1
+#85 exporting manifest sha256:0051f997843f3a36a966af99a7481b481dd3b8e4a44dd4be7924d0d60ff0a6d1 0.4s done
+#85 exporting config sha256:54fe0369ea0f1360b4f060fe40ddde7d3cda24da9440d72d449402295f53b8d7
+#85 exporting config sha256:54fe0369ea0f1360b4f060fe40ddde7d3cda24da9440d72d449402295f53b8d7 0.2s done
+#85 exporting attestation manifest sha256:26f2c150d57b88ca4624f100c5b1005579a569c088631487e78c3432a5c0e909
+#85 exporting attestation manifest sha256:26f2c150d57b88ca4624f100c5b1005579a569c088631487e78c3432a5c0e909 0.3s done
+#85 exporting manifest list sha256:91b3b80ecdab686436012bc6ec9fa1e89dfd977c9d3dd26e6feef4320914d1ba
+#85 exporting manifest list sha256:91b3b80ecdab686436012bc6ec9fa1e89dfd977c9d3dd26e6feef4320914d1ba 0.2s done
+#85 naming to docker.io/qputwin/worker:0.1.0
+#85 naming to docker.io/qputwin/worker:0.1.0 0.1s done
+#85 unpacking to docker.io/qputwin/worker:0.1.0
+#85 ...
+
+#87 [worker-ionq-forte] exporting to image
+#87 exporting layers 7.7s done
+#87 exporting manifest sha256:1cd2c2edc7a1a23d9bff0e8c86dc3f44cb757319ae3629f5a9206db253205861 0.5s done
+#87 exporting config sha256:f390c1e024450377746871333163f24fcc9c71371b34df5ab208eca0e23c4b67 0.3s done
+#87 exporting attestation manifest sha256:f5b5d70daa9404ad9dfcad958e48e7048ae278e8f6647a263f17aae4bb3eef5f 0.3s done
+#87 exporting manifest list sha256:6f5e060bf4d5a21951f7d2a935a961e0bb2a58340ff93abdfc25761a7eee851f 0.3s done
+#87 naming to docker.io/qputwin/worker:0.1.0 0.0s done
+#87 ...
+
+#88 [worker-quantinuum-helios] exporting to image
+#88 exporting layers 7.7s done
+#88 exporting manifest sha256:7c4201e757bc0547fab4888f9d6b5c500ca3dd9e706646a6d65e74561fb2817f 0.5s done
+#88 exporting config sha256:4346ac088041077a691705ab4ccbeefa2c67e9b71e63ae0737419b0c68440137 0.3s done
+#88 exporting attestation manifest sha256:7bb7d4451de1efab85f85d08336d3d56564fd0944cf606243fd5a577ccd6f702 0.3s done
+#88 exporting manifest list sha256:399b9c6c51a9bb0c1ed5fc486462affed5e3f80f8ff5731f19f90cc08799ecdf 0.2s done
+#88 naming to docker.io/qputwin/worker:0.1.0 0.1s done
+#88 ...
+
+#89 [worker-iqm-emerald] exporting to image
+#89 exporting layers 7.7s done
+#89 exporting manifest sha256:6232a42ecd6193bd366ffdb0e70d2f82175977d075f65bec685d7cab94b75331 0.5s done
+#89 exporting config sha256:44b85385907d09562d24d2c74f4a2d2bfa44b82f1a4b41ea267630c1c9a68c0e 0.3s done
+#89 exporting attestation manifest sha256:679311d62fff0f2a2b4e9ae77fc59d3eed2c0f3d7c419356ee1e5a1ecb249b78 0.3s done
+#89 exporting manifest list sha256:8e514e1c838d820c94bc9e3eb8fb44225092ebe1a8d196e865b57a8203935c58 0.2s done
+#89 naming to docker.io/qputwin/worker:0.1.0 0.1s done
+#89 ...
+
+#90 [worker-rigetti-ankaa3] exporting to image
+#90 exporting layers 7.8s done
+#90 exporting manifest sha256:e61c1cd484e46e3179c0e9eb1355e41a8356cc46192ef41794b9f092b5f9761c 0.6s done
+#90 exporting config sha256:9ab182bb6d3997f3034bf63ddefbe0064d449a7a67101a98fa130c057610670d 0.4s done
+#90 exporting attestation manifest sha256:791320fdc65e29f16e0c50fc743fb1805ee1721e9f3ba69aec9f665f13505130 0.3s done
+#90 exporting manifest list sha256:3acfb2b7c9571038d3ebfc2c6a7719e8ad185ddb8b34e3a8fe9dce1540ad3e8b 0.2s done
+#90 naming to docker.io/qputwin/worker:0.1.0 0.0s done
+#90 ...
+
+#91 [worker-ibm-nighthawk] exporting to image
+#91 exporting layers 7.7s done
+#91 exporting manifest sha256:de5d172f7fc97f413feccf6dbd52c920d22f2c088db8a3bd69b426edd90f4a08 0.5s done
+#91 exporting config sha256:148fcdeb8fa9524ee41d4239ddf9020ab9fe1692e012fb8e26a2c13171c6e69d 0.3s done
+#91 exporting attestation manifest sha256:361ab6f8dac2aaf71d27770eb3f664cdcd24ad622ae080740eda98c7f6e039b4 0.3s done
+#91 exporting manifest list sha256:e278aed16caf7fc015ea5fa274502639dfbe1bcd76bcf278397db4576c02d5b0 0.2s done
+#91 naming to docker.io/qputwin/worker:0.1.0 0.1s done
+#91 ...
+
+#86 [worker-google-willow] exporting to image
+#86 exporting manifest sha256:5ab8775dc8642fe436c2910a1e0fdfce74c567c83bef9e9dadf9d63d67fe39e7 0.5s done
+#86 exporting config sha256:f683b6ce24d95d712d59754a70dff62432a4228ed2fefdca1c90c1afaa7c5c83 0.3s done
+#86 exporting attestation manifest sha256:1b89d99d27c63bba2a117de0807172c649b5aa27ccef709f63f1840dadc7ba0b 0.3s done
+#86 exporting manifest list sha256:58765d4e91efb7878bd04443f2e116155b144c916d9e1cb275b6a685d0a68265 0.2s done
+#86 naming to docker.io/qputwin/worker:0.1.0 0.1s done
+#86 ...
+
+#87 [worker-ionq-forte] exporting to image
+#87 unpacking to docker.io/qputwin/worker:0.1.0 4.5s done
+#87 DONE 14.0s
+
+#91 [worker-ibm-nighthawk] exporting to image
+#91 unpacking to docker.io/qputwin/worker:0.1.0 4.5s done
+#91 DONE 14.0s
+
+#86 [worker-google-willow] exporting to image
+#86 unpacking to docker.io/qputwin/worker:0.1.0 4.5s done
+#86 DONE 14.0s
+
+#90 [worker-rigetti-ankaa3] exporting to image
+#90 unpacking to docker.io/qputwin/worker:0.1.0 4.5s done
+#90 ...
+
+#85 [worker-ibm-heron] exporting to image
+#85 unpacking to docker.io/qputwin/worker:0.1.0 4.6s done
+#85 DONE 14.0s
+
+#89 [worker-iqm-emerald] exporting to image
+#89 unpacking to docker.io/qputwin/worker:0.1.0 4.6s done
+#89 DONE 14.0s
+
+#88 [worker-quantinuum-helios] exporting to image
+#88 unpacking to docker.io/qputwin/worker:0.1.0 4.6s done
+#88 DONE 14.0s
+
+#90 [worker-rigetti-ankaa3] exporting to image
+#90 DONE 14.3s
+
+#92 [worker-ionq-forte] resolving provenance for metadata file
+#92 DONE 3.0s
+
+#93 [worker-rigetti-ankaa3] resolving provenance for metadata file
+#93 DONE 1.5s
+
+#94 [worker-ibm-heron] resolving provenance for metadata file
+#94 DONE 0.5s
+
+#95 [worker-iqm-emerald] resolving provenance for metadata file
+#95 DONE 2.4s
+
+#96 [worker-google-willow] resolving provenance for metadata file
+#96 DONE 1.9s
+
+#97 [worker-ibm-nighthawk] resolving provenance for metadata file
+#97 DONE 4.0s
+
+#98 [worker-quantinuum-helios] resolving provenance for metadata file
+#98 DONE 1.0s
+ Image qputwin/worker:0.1.0 Built 
+ Image qputwin/worker:0.1.0 Built 
+ Image qputwin/worker:0.1.0 Built 
+ Image qputwin/worker:0.1.0 Built 
+ Image qputwin/worker:0.1.0 Built 
+ Image qputwin/worker:0.1.0 Built 
+ Image qputwin/orchestrator:0.1.0 Built 
+ Image qputwin/worker:0.1.0 Built 

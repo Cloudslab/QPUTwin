@@ -1,0 +1,11 @@
+
+backend                   total med/p95 (ms)     orchestration med/p95           qpu med/p95
+quantinuum_helios           5.867 /    6.136          2.136 /    2.302      1.170 /    1.288
+ionq_forte                  5.559 /    5.767          2.201 /    2.267      1.133 /    1.186
+rigetti_ankaa_3             6.806 /    7.416          3.199 /    3.418      1.107 /    1.164
+iqm_emerald                 6.358 /    7.316          3.136 /    3.294      0.887 /    1.007
+ibm_heron                   5.983 /    6.226          2.259 /    2.314      1.124 /    1.263
+ibm_nighthawk               5.874 /    6.171          2.268 /    2.533      1.108 /    1.187
+google_willow               5.392 /    5.717          2.310 /    2.531      0.837 /    0.860
+.
+1 passed, 46 deselected in 1.11s

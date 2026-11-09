@@ -48,6 +48,8 @@ Unknown fields are rejected everywhere (`400 InvalidRequestError`).
 | `decay_reset` | int | 5 | 1 … 1000 |
 | `bridge` | bool | false | |
 | `optimize` | bool | true | |
+| `noise_aware` | bool | true | |
+| `noise_aware_budget` | int | 50000 | 0 … 10000000 |
 
 ## `options.noise`
 

@@ -1,6 +1,6 @@
 ---
 title: QPUTwin — Calibration-Faithful Digital Twins of Quantum Processors
-description: QPUTwin is an open-source quantum digital twin and QPU emulator for trapped-ion (Quantinuum Helios, IonQ Forte) and superconducting (Rigetti Ankaa-3, IQM Emerald) quantum processors, with calibrated noise models, OpenQASM 2/3, native-gate compilation, SABRE routing and latency telemetry.
+description: QPUTwin is an open-source quantum digital twin and QPU emulator for trapped-ion (Quantinuum Helios, IonQ Forte) and superconducting (Rigetti Ankaa-3, IQM Emerald, IBM Heron r3, IBM Nighthawk, Google Willow) quantum processors, with calibrated noise models, OpenQASM 2/3, native-gate compilation, SABRE routing and latency telemetry.
 hide:
   - navigation
 ---
@@ -9,7 +9,7 @@ hide:
 
 # QPUTwin: Calibration-Faithful Digital Twins of Trapped-Ion and Superconducting Quantum Processors
 
-<p class="lead">QPUTwin is an open-source quantum digital twin and QPU emulator. It reproduces four real quantum processors (Quantinuum Helios, IonQ Forte, Rigetti Ankaa-3 and IQM Emerald), with their native gates, qubit connectivity, calibrated noise and gate timing, behind one OpenQASM API.</p>
+<p class="lead">QPUTwin is an open-source quantum digital twin and QPU emulator. It reproduces seven real quantum processors (Quantinuum Helios, IonQ Forte, Rigetti Ankaa-3, IQM Emerald, IBM Heron r3, IBM Nighthawk and Google Willow), with their native gates, qubit connectivity, calibrated noise and gate timing, behind one OpenQASM API.</p>
 
 [Get started](getting-started/index.md){ .md-button .md-button--primary }
 [Quick start](getting-started/quickstart.md){ .md-button }
@@ -20,9 +20,9 @@ hide:
 </div>
 
 <div class="qt-kpi" markdown>
-<div><b>4</b><span>quantum processors twinned: 2 trapped-ion, 2 superconducting</span></div>
+<div><b>7</b><span>quantum processors twinned: 2 trapped-ion, 5 superconducting</span></div>
 <div><b>3</b><span>simulation engines: statevector, density matrix, quantum trajectories</span></div>
-<div><b>502 + 32</b><span>unit and live-stack tests, all passing</span></div>
+<div><b>615 + 47</b><span>unit and live-stack tests, all passing</span></div>
 <div><b>0</b><span>vendor SDKs: everything below HTTP is written from scratch in numpy / scipy</span></div>
 </div>
 
@@ -30,7 +30,7 @@ hide:
 
 <div class="qt-grid" markdown>
 <div class="qt-card" markdown>
-### :material-chip: Run on four QPUs side by side
+### :material-chip: Run on seven QPUs side by side
 Submit one OpenQASM circuit and run it on all-to-all trapped-ion and square-lattice superconducting twins, with identical semantics. [Devices →](concepts/devices.md)
 </div>
 <div class="qt-card" markdown>
@@ -62,7 +62,7 @@ Asynchronous jobs on a durable shared queue, worker replicas, API keys, Promethe
 ## Results at a glance
 
 <figure markdown>
-![GHZ success probability versus width on the four digital twins](assets/figures/fig04_ghz_fidelity.svg)
+![GHZ success probability versus width on the seven digital twins](assets/figures/fig04_ghz_fidelity.svg)
 <figcaption>GHZ-state success probability under each device's calibrated noise model, simulated exactly with the density-matrix engine. The trapped-ion twins keep high fidelity as width grows; the superconducting twins are dominated by readout error. More in <a href="research/benchmarks/">Benchmark results</a>.</figcaption>
 </figure>
 

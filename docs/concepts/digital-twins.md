@@ -5,7 +5,7 @@ description: What a calibration-faithful quantum digital twin is, which hardware
 
 # Quantum digital twins
 
-A **digital twin** of a quantum processing unit (QPU) is a classical model faithful enough to stand in for the hardware in a given study. QPUTwin builds one for each of four commercial QPUs and reproduces them on five layers:
+A **digital twin** of a quantum processing unit (QPU) is a classical model faithful enough to stand in for the hardware in a given study. QPUTwin builds one for each of seven commercial QPUs and reproduces them on five layers:
 
 | Layer | What is reproduced | Where |
 |---|---|---|

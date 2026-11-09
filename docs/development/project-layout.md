@@ -19,7 +19,7 @@ src/qputwin_core/               shared physics + language core
   gates.py                      closed-form unitaries
   synthesis.py                  phase-exact native compiler
   topology.py                   CouplingMap (adjacency, distances, components, disabled qubits)
-  devices.py                    DeviceSpec + the four vendor specs, runtime overrides
+  devices.py                    DeviceSpec + the seven device specs, runtime overrides
   calibration.py                calibration model + provenance (pure Python)
   routing.py                    SABRE router, bridges, commutation-aware cancellation
   scheduling.py                 ASAP gate-duration model
@@ -28,10 +28,10 @@ src/qputwin_core/               shared physics + language core
   simulators.py                 QPUSimulator, TrappedIonSimulator, SuperconductingSimulator
   devices_data/                 coupling maps + calibration/<device>.json
 src/qputwin_orchestrator/       app, middleware, registry, jobs (durable queue), telemetry, metrics, schemas
-src/qputwin_worker/             worker app factory + vendors/{quantinuum_helios, ionq_forte, rigetti_ankaa_3, iqm_emerald}.py
+src/qputwin_worker/             worker app factory + vendors/{quantinuum_helios, ionq_forte, rigetti_ankaa_3, iqm_emerald, ibm_heron, ibm_nighthawk, google_willow}.py
 scripts/                        generate_coupling_maps.py, import_coupling_map.py, import_braket_device.py
-tests/                          502 unit + in-process integration tests
-test_benchmark.py               32 live-stack integration + benchmark tests
+tests/                          615 unit + in-process integration tests
+test_benchmark.py               47 live-stack integration + benchmark tests
 benchmarks/                     run_benchmarks.py (21 experiments), circuits.py, plot_figures.py, results/ (JSON + JUnit), figures/ (PDF/SVG/PNG + CSV)
 docs/                           documentation sources, assets/ (rendered diagrams, figures)
 ```

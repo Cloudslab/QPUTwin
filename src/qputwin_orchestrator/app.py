@@ -72,7 +72,7 @@ def create_app(registry: BackendRegistry | None = None,
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         client = httpx.AsyncClient(
             timeout=httpx.Timeout(settings.request_timeout_s, connect=settings.connect_timeout_s),
-            limits=httpx.Limits(max_connections=256, max_keepalive_connections=64, keepalive_expiry=60),
+            limits=httpx.Limits(max_connections=256, max_keepalive_connections=64, keepalive_expiry=30),   # below the workers' 75 s keep-alive
             transport=transport,
         )
         app.state.client = client

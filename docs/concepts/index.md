@@ -1,6 +1,6 @@
 ---
 title: Concepts
-description: Core concepts of QPUTwin — quantum digital twins, system architecture, the execution pipeline and the four emulated quantum processors.
+description: Core concepts of QPUTwin — quantum digital twins, system architecture, the execution pipeline and the seven emulated quantum processors.
 ---
 
 # Concepts

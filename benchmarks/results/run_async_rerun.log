@@ -1,0 +1,9 @@
+[async_scaling] E8 — async throughput vs worker replicas (IonQ Forte): cache-resident vs DRAM-bound statevectors.
+  replicas=1 n=14: median 85.90 jobs/s (runs 59.3, 95.1, 85.9, 84.9, 97.3), median worker 4 ms, 1 workers
+  replicas=1 n=20: median 15.68 jobs/s (runs 14.8, 15.9, 15.3, 16.0, 15.7), median worker 55 ms, 1 workers
+  replicas=2 n=14: median 85.32 jobs/s (runs 90.2, 45.6, 102.7, 77.8, 85.3), median worker 4 ms, 2 workers
+  replicas=2 n=20: median 32.57 jobs/s (runs 32.8, 35.7, 20.5, 23.8, 32.6), median worker 51 ms, 2 workers
+  replicas=3 n=14: median 121.37 jobs/s (runs 121.4, 181.4, 184.3, 86.0, 109.1), median worker 4 ms, 3 workers
+  replicas=3 n=20: median 48.54 jobs/s (runs 48.5, 48.6, 49.6, 34.6, 42.3), median worker 52 ms, 3 workers
+  saved results/async_scaling.json
+  (232.5 s)

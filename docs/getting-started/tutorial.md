@@ -5,7 +5,7 @@ description: Step-by-step tutorial comparing a GHZ circuit on trapped-ion and su
 
 # Tutorial: four QPUs, one circuit
 
-This tutorial runs a 6-qubit GHZ state on all four digital twins and reads the four reports QPUTwin returns: compilation, noise, timing and telemetry. It takes about 20 minutes.
+This tutorial runs a 6-qubit GHZ state on four of the seven digital twins (Helios, Forte, Ankaa-3 and Emerald) and reads the four reports QPUTwin returns: compilation, noise, timing and telemetry. It takes about 20 minutes.
 
 ## The circuit
 

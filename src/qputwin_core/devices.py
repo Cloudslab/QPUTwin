@@ -1,4 +1,4 @@
-"""Vendor device specifications for the four emulated QPUs.
+"""Vendor device specifications for the seven emulated QPUs.
 
 Each :class:`DeviceSpec` fixes a device's physical size, its native gate set, the
 native entangler used to realise ``CX``, the one-qubit synthesis basis, and its
@@ -6,9 +6,13 @@ coupling graph. Gate sets follow the vendors' public documentation. ``rz`` is
 modelled as a *virtual* (frame-change, zero-duration) native on every platform,
 mirroring how each vendor's compiler realises Z rotations.
 
-Topology fidelity note: the superconducting coupling maps are synthetic square
+Topology fidelity note: the Rigetti and IQM coupling maps are synthetic square
 lattices matching published qubit counts and connectivity class — see
-``scripts/generate_coupling_maps.py`` and the README's methods section.
+``scripts/generate_coupling_maps.py`` and the README's methods section. The IBM
+Heron, IBM Nighthawk and Google Willow maps and calibrations are the vendors' own
+published snapshots, imported from their SDKs by ``scripts/import_vendor_snapshots.py``
+(IBM ``ibm_boston`` and ``ibm_miami``, Google ``willow_pink``), with per-qubit and
+per-coupler values.
 
 Each spec also carries a :class:`~qputwin_core.calibration.Calibration`
 (fidelities, durations, coherence, readout) loaded from
@@ -32,7 +36,7 @@ from qputwin_core.calibration import Calibration, load_calibration, load_calibra
 from qputwin_core.topology import CouplingMap, load_coupling_map, load_coupling_map_file
 
 __all__ = ["DeviceSpec", "DEVICES", "get_device", "apply_overrides", "QUANTINUUM_HELIOS", "IONQ_FORTE",
-           "RIGETTI_ANKAA_3", "IQM_EMERALD"]
+           "RIGETTI_ANKAA_3", "IQM_EMERALD", "IBM_HERON", "IBM_NIGHTHAWK", "GOOGLE_WILLOW"]
 
 
 @dataclass(frozen=True, slots=True)
@@ -47,7 +51,7 @@ class DeviceSpec:
     native_2q: tuple[str, ...]
     virtual_gates: tuple[str, ...]
     entangler: str                       # native 2Q gate used to realise CX
-    basis: Literal["quantinuum", "ionq", "rigetti", "iqm"]
+    basis: Literal["quantinuum", "ionq", "rigetti", "iqm", "ibm", "google"]
     coupling: CouplingMap
     description: str
     notes: tuple[str, ...] = ()
@@ -152,7 +156,57 @@ IQM_EMERALD = DeviceSpec(
     calibration=load_calibration("iqm_emerald"),
 )
 
-DEVICES: dict[str, DeviceSpec] = {d.id: d for d in (QUANTINUUM_HELIOS, IONQ_FORTE, RIGETTI_ANKAA_3, IQM_EMERALD)}
+IBM_HERON = DeviceSpec(
+    id="ibm_heron", vendor="IBM", name="Heron r3",
+    technology="superconducting", qubit_modality="fixed-frequency transmons with tunable couplers (heavy-hex lattice)",
+    n_physical=156,
+    native_1q=("sx", "x", "rz"), native_2q=("cz",), virtual_gates=("rz",),
+    entangler="cz", basis="ibm",
+    coupling=load_coupling_map("ibm_heron.json"),
+    description="IBM Heron r3 superconducting QPU: sx / x pulses with virtual rz and CZ two-qubit gates "
+                "restricted to nearest neighbours of a 156-qubit heavy-hex lattice.",
+    notes=("Coupling map and calibration: IBM's published ibm_boston snapshot (2026-04-17), per qubit and per coupler.",
+           "Coupler 84-85 is reported not working (cz error = 1) in the snapshot and is removed: 175 of 176 couplers.",
+           "Fractional gates (rx(θ), rzz(θ)) are opt-in on IBM hardware and are not modelled.",
+           "Two-qubit gates are legal only between physically coupled qubits."),
+    calibration=load_calibration("ibm_heron"),
+)
+
+IBM_NIGHTHAWK = DeviceSpec(
+    id="ibm_nighthawk", vendor="IBM", name="Nighthawk r1",
+    technology="superconducting", qubit_modality="fixed-frequency transmons with tunable couplers (square lattice)",
+    n_physical=120,
+    native_1q=("sx", "x", "rz"), native_2q=("cz",), virtual_gates=("rz",),
+    entangler="cz", basis="ibm",
+    coupling=load_coupling_map("ibm_nighthawk.json"),
+    description="IBM Nighthawk superconducting QPU: sx / x pulses with virtual rz and CZ two-qubit gates "
+                "restricted to nearest neighbours of a 12x10 square lattice with 218 tunable couplers.",
+    notes=("Coupling map and calibration: IBM's published ibm_miami snapshot (2026-04-17), per qubit and per coupler.",
+           "Seven couplers are reported not working (cz error = 1) in the snapshot and are removed: 211 of 218.",
+           "The snapshot lists no reset instruction; the twin still accepts reset, timed as a readout (assumed).",
+           "Two-qubit gates are legal only between physically coupled qubits."),
+    calibration=load_calibration("ibm_nighthawk"),
+)
+
+GOOGLE_WILLOW = DeviceSpec(
+    id="google_willow", vendor="Google", name="Willow",
+    technology="superconducting", qubit_modality="frequency-tunable transmons with tunable couplers (square grid)",
+    n_physical=105,
+    native_1q=("phased_xz", "rz"), native_2q=("cz",), virtual_gates=("rz",),
+    entangler="cz", basis="google",
+    coupling=load_coupling_map("google_willow.json"),
+    description="Google Willow superconducting QPU: PhasedXZ microwave pulses with virtual Z and CZ "
+                "two-qubit gates restricted to nearest neighbours of a 105-qubit square grid.",
+    notes=("Coupling map, gate durations and calibration: Google's published Willow (willow_pink) device "
+           "specification and calibration snapshot (2024-08-16), shipped in cirq-google.",
+           "phased_xz(θ, φ, ζ) is cirq.PhasedXZGate(x_exponent=θ/π, axis_phase_exponent=φ/π, z_exponent=ζ/π), in radians.",
+           "Qubit i is the i-th GridQubit in (row, column) order; coupling_map.layout.coordinates lists them.",
+           "Two-qubit gates are legal only between physically coupled qubits."),
+    calibration=load_calibration("google_willow"),
+)
+
+DEVICES: dict[str, DeviceSpec] = {d.id: d for d in (QUANTINUUM_HELIOS, IONQ_FORTE, RIGETTI_ANKAA_3, IQM_EMERALD,
+                                                     IBM_HERON, IBM_NIGHTHAWK, GOOGLE_WILLOW)}
 
 
 def apply_overrides(spec: DeviceSpec, environ: dict[str, str] | None = None) -> DeviceSpec:

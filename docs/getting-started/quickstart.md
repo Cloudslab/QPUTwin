@@ -88,7 +88,7 @@ The first call returns **422 `TopologicalCompilationError`**, quoting the offend
   "options": { "return_statevector": true } }
 ```
 
-`result.statevector` is a list of `[re, im]` pairs over `result.statevector_qubits`. The compiler is phase-exact, so all four twins return the *same* statevector, global phase included, for a circuit they can all run.
+`result.statevector` is a list of `[re, im]` pairs over `result.statevector_qubits`. The compiler is phase-exact, so all twins return the *same* statevector, global phase included, for a circuit they can all run.
 
 ## 5. Submit asynchronously and poll
 
@@ -108,4 +108,4 @@ curl -s localhost:8000/v1/backends | python3 -m json.tool              # status,
 curl -s localhost:8000/v1/backends/iqm_emerald | python3 -m json.tool  # full spec + calibration
 ```
 
-Next: the [tutorial](tutorial.md) runs one circuit on all four twins and interprets the differences.
+Next: the [tutorial](tutorial.md) runs one circuit on four of the twins and interprets the differences.

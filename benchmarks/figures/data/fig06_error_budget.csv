@@ -3,15 +3,27 @@ quantinuum_helios,gate depolarising,0.00408
 ionq_forte,gate depolarising,0.02063
 rigetti_ankaa_3,gate depolarising,0.05531
 iqm_emerald,gate depolarising,0.03047
+ibm_heron,gate depolarising,0.02833
+ibm_nighthawk,gate depolarising,0.00873
+google_willow,gate depolarising,0.03331
 quantinuum_helios,T1/T2 relaxation,0.0
 ionq_forte,T1/T2 relaxation,0.00381
 rigetti_ankaa_3,T1/T2 relaxation,0.07025
 iqm_emerald,T1/T2 relaxation,0.05866
+ibm_heron,T1/T2 relaxation,0.01829
+ibm_nighthawk,T1/T2 relaxation,0.00611
+google_willow,T1/T2 relaxation,0.04317
 quantinuum_helios,readout,0.00203
 ionq_forte,readout,0.0302
 rigetti_ankaa_3,readout,0.16765
 iqm_emerald,readout,0.16765
+ibm_heron,readout,0.03228
+ibm_nighthawk,readout,0.09835
+google_willow,readout,0.04295
 quantinuum_helios,all channels,0.00601
 ionq_forte,all channels,0.05049
 rigetti_ankaa_3,all channels,0.2466
 iqm_emerald,all channels,0.22123
+ibm_heron,all channels,0.06942
+ibm_nighthawk,all channels,0.10918
+google_willow,all channels,0.08806

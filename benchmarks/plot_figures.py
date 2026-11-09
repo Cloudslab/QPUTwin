@@ -5,8 +5,8 @@ together with a CSV of exactly the values plotted (``benchmarks/figures/data/``)
 chart has a table view. Figures are sized for a two-column paper (3.5 in single, 7.2 in
 double column) and copied into the documentation site.
 
-Colour: the four devices take the first four slots of the validated categorical palette
-in fixed order (adjacent-pair CVD ΔE ≥ 9.1, normal-vision ΔE ≥ 22.9 on white); every series
+Colour: the seven devices take the first seven slots of the validated categorical palette
+in fixed order (adjacent-pair CVD ΔE ≥ 9.1, normal-vision ΔE ≥ 19.6 on white); every series
 also has its own marker and line style, so identity never relies on colour alone.
 
     uv run --group bench python benchmarks/plot_figures.py
@@ -39,12 +39,19 @@ DOCS = ROOT / "docs" / "assets" / "figures"
 
 SLOTS = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
 INK, INK2, MUTED, GRID = "#1f2328", "#52514e", "#8a8984", "#e3e2dd"
-DEVICES = ["quantinuum_helios", "ionq_forte", "rigetti_ankaa_3", "iqm_emerald"]
+DEVICES = ["quantinuum_helios", "ionq_forte", "rigetti_ankaa_3", "iqm_emerald", "ibm_heron", "ibm_nighthawk",
+           "google_willow"]
 LABEL = {"quantinuum_helios": "Quantinuum Helios", "ionq_forte": "IonQ Forte",
-         "rigetti_ankaa_3": "Rigetti Ankaa-3", "iqm_emerald": "IQM Emerald"}
+         "rigetti_ankaa_3": "Rigetti Ankaa-3", "iqm_emerald": "IQM Emerald", "ibm_heron": "IBM Heron r3",
+         "ibm_nighthawk": "IBM Nighthawk", "google_willow": "Google Willow"}
+SHORT = {"quantinuum_helios": "Helios", "ionq_forte": "Forte", "rigetti_ankaa_3": "Ankaa-3", "iqm_emerald": "Emerald",
+         "ibm_heron": "Heron r3", "ibm_nighthawk": "Nighthawk", "google_willow": "Willow"}
 COLOR = dict(zip(DEVICES, SLOTS, strict=False))
-MARK = {"quantinuum_helios": "o", "ionq_forte": "s", "rigetti_ankaa_3": "^", "iqm_emerald": "D"}
-STYLE = {"quantinuum_helios": "-", "ionq_forte": "--", "rigetti_ankaa_3": "-", "iqm_emerald": "--"}
+MARK = {"quantinuum_helios": "o", "ionq_forte": "s", "rigetti_ankaa_3": "^", "iqm_emerald": "D", "ibm_heron": "v",
+        "ibm_nighthawk": "P", "google_willow": "X"}
+STYLE = {"quantinuum_helios": "-", "ionq_forte": "--", "rigetti_ankaa_3": "-", "iqm_emerald": "--", "ibm_heron": "-.",
+         "ibm_nighthawk": ":", "google_willow": "-."}
+LATTICES = [d for d in DEVICES if d not in ("quantinuum_helios", "ionq_forte")]
 SINGLE, DOUBLE = 3.5, 7.2
 
 plt.rcParams.update({
@@ -74,7 +81,7 @@ def save(fig: plt.Figure, name: str, rows: list[dict[str, Any]]) -> None:
     shutil.copy(OUT / f"{name}.png", DOCS / f"{name}.png")
     if rows:
         with (DATA / f"{name}.csv").open("w", newline="") as fh:
-            w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+            w = csv.DictWriter(fh, fieldnames=list(dict.fromkeys(k for r in rows for k in r)))   # tables can mix row kinds
             w.writeheader()
             w.writerows(rows)
     plt.close(fig)
@@ -104,7 +111,7 @@ def fig_latency() -> None:
         ("Engine: simulation", lambda r: r["simulation_ms"]),
         ("Engine: sampling", lambda r: r["sampling_ms"]),
     ]
-    fig, ax = plt.subplots(figsize=(DOUBLE, 2.3))
+    fig, ax = plt.subplots(figsize=(DOUBLE, 0.42 * len(DEVICES) + 1.0))
     table = []
     ys = np.arange(len(DEVICES))[::-1]
     for y, dev in zip(ys, DEVICES, strict=True):
@@ -182,13 +189,13 @@ def fig_routing() -> None:
     axes[0].set_xlabel("Star-GHZ width k (hub = qubit 0)")
     axes[0].set_ylabel("Native two-qubit gates")
     axes[0].set_title("(a) Entangler count: all-to-all vs SABRE-routed lattice", loc="left")
-    axes[0].legend(loc="upper left")
     axes[1].set_xlabel("Star-GHZ width k")
     axes[1].set_ylabel("Estimated success probability")
     axes[1].set_ylim(0, 1.02)
     axes[1].set_title("(b) Predicted success under calibrated noise", loc="left")
-    axes[1].legend(loc="lower left")
-    fig.tight_layout(w_pad=2.5)
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=4, bbox_to_anchor=(0.5, -0.02), columnspacing=1.2)
+    fig.tight_layout(rect=(0, 0.13, 1, 1), w_pad=2.5)
     save(fig, "fig03_routing_cost", table)
 
 
@@ -253,14 +260,14 @@ def fig_hwtime() -> None:
     ax.set_xlabel("GHZ width n")
     ax.set_ylabel("Estimated hardware time per shot")
     ax.set_title("Gate-duration model (ASAP schedule)", loc="left")
-    ax.legend(loc="center right", bbox_to_anchor=(1.0, 0.45))
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2, columnspacing=1.0)
     save(fig, "fig05_hardware_time", table)
 
 
 def fig_budget() -> None:
     rows = load("budget")["data"]
     conds = ["gate depolarising", "T1/T2 relaxation", "readout", "all channels"]
-    fig, ax = plt.subplots(figsize=(DOUBLE * 0.62, 2.6))
+    fig, ax = plt.subplots(figsize=(DOUBLE, 2.7))
     width = 0.19
     xs = np.arange(len(DEVICES))
     table = []
@@ -273,7 +280,7 @@ def fig_budget() -> None:
             for x, v in zip(xs, vals, strict=True):
                 ax.annotate(f"{v:.3f}", (x + (k - 1.5) * width, v), xytext=(0, 2), textcoords="offset points",
                             ha="center", fontsize=6.5, color=INK2)
-    ax.set_xticks(xs, [LABEL[d] for d in DEVICES])
+    ax.set_xticks(xs, [SHORT[d] for d in DEVICES])
     ax.set_ylabel("GHZ₆ infidelity  1 − P(success)")
     ax.grid(axis="x", visible=False)
     ax.set_title("Error budget: one noise channel at a time (GHZ₆, exact)", loc="left")
@@ -320,16 +327,22 @@ def fig_async() -> None:
         w0 = statistics.median(rs[0]["worker_service_ms"])
         name = f"{n} qubits ({'256 KiB' if n == 14 else '16 MiB'} state)"
         ring(axes[0], x, [r["throughput_jobs_s"] / base for r in rs], SLOTS[k], "os"[k], label=name)
+        if all("throughput_runs" in r for r in rs):                # range over the repetitions
+            lo = [r["throughput_jobs_s"] / base - min(r["throughput_runs"]) / base for r in rs]
+            hi = [max(r["throughput_runs"]) / base - r["throughput_jobs_s"] / base for r in rs]
+            axes[0].errorbar(x, [r["throughput_jobs_s"] / base for r in rs], yerr=[lo, hi], fmt="none",
+                             ecolor=SLOTS[k], elinewidth=1.0, capsize=2.5, zorder=2)
         ring(axes[1], x, [statistics.median(r["worker_service_ms"]) / w0 for r in rs], SLOTS[k], "os"[k], label=name)
         for r in rs:
             table.append({"qubits": n, "replicas": r["replicas"], "throughput_jobs_s": round(r["throughput_jobs_s"], 4),
                           "speedup": round(r["throughput_jobs_s"] / base, 4),
+                          "throughput_runs": ";".join(f"{v:.3f}" for v in r.get("throughput_runs", [])),
                           "worker_service_ms_median": round(statistics.median(r["worker_service_ms"]), 3),
                           "workers_used": r["workers_used"]})
         end_label(axes[0], x[-1], rs[-1]["throughput_jobs_s"] / base, f"{rs[-1]['throughput_jobs_s']:.1f} jobs/s")
     xs = [1, 2, 3]
     axes[0].plot(xs, xs, color=MUTED, lw=0.8, ls=":")
-    end_label(axes[0], 3.0, 3.0, "ideal (linear)")
+    axes[0].text(2.25, 2.05, "ideal (linear)", fontsize=6.4, color=INK2, rotation=0, ha="left", va="top")
     axes[0].set_xticks(xs)
     axes[0].set_xlabel("Worker replicas (one host)")
     axes[0].set_ylabel("Throughput speed-up")
@@ -339,8 +352,11 @@ def fig_async() -> None:
     axes[1].set_xticks(xs)
     axes[1].set_xlabel("Worker replicas (one host)")
     axes[1].set_ylabel("Per-job worker time (× 1 replica)")
-    axes[1].set_title("(b) Per-job service time inflation", loc="left")
-    axes[1].legend(loc="lower right")
+    axes[1].set_title("(b) Per-job worker time", loc="left")
+    axes[1].axhline(1.0, color=MUTED, lw=0.8, ls=":")
+    lo1, hi1 = axes[1].get_ylim()
+    axes[1].set_ylim(min(lo1, 0.9), max(hi1, 1.1))
+    axes[1].legend(loc="upper center")
     fig.tight_layout(w_pad=2.5)
     save(fig, "fig08_async_scaling", table)
 
@@ -412,7 +428,7 @@ FAMILIES = ["ghz", "bv", "hea", "ising", "qaoa", "adder", "mirror", "qft", "qv"]
 FAM_LABEL = {"ghz": "GHZ", "qft": "QFT adder", "qv": "QV-style", "qaoa": "QAOA (p=2)", "hea": "HEA (VQE)",
              "ising": "Ising (Trotter)", "bv": "Bernstein–Vazirani", "adder": "Cuccaro adder", "mirror": "Mirror"}
 SEQ = LinearSegmentedColormap.from_list("qputwin_blue", ["#f3f8fe", "#a9c9f0", "#2a78d6", "#0b3a73"])
-OTHER = [SLOTS[6], SLOTS[4], SLOTS[5], SLOTS[7]]          # non-device categories: never reuse device hues
+OTHER = [SLOTS[7], INK, MUTED, "#b9b8b3"]                   # non-device categories: never reuse device hues
 
 
 def heatmap(ax: plt.Axes, mat: np.ndarray, rows: list[str], cols: list[str], fmt: str, norm=None) -> None:
@@ -441,13 +457,15 @@ def fig_circuit_heatmap() -> None:
     pick = {(r["family"], r["backend"]): r for r in rows if r["qubits"] == n}
     fid = np.array([[pick[(f, d)]["hellinger"] for d in DEVICES] for f in FAMILIES])
     twoq = np.array([[pick[(f, d)]["native_two_qubit"] for d in DEVICES] for f in FAMILIES], dtype=float)
-    fig, axes = plt.subplots(1, 2, figsize=(DOUBLE, 3.1))
-    short = ["Helios", "Forte", "Ankaa-3", "Emerald"]
+    fig, axes = plt.subplots(1, 2, figsize=(DOUBLE, 3.3))
+    short = [SHORT[d] for d in DEVICES]
     im0 = heatmap(axes[0], fid, [FAM_LABEL[f] for f in FAMILIES], short, ".2f",
                   norm=matplotlib.colors.Normalize(0, 1))
     im1 = heatmap(axes[1], twoq, [FAM_LABEL[f] for f in FAMILIES], short, ".0f",
                   norm=matplotlib.colors.LogNorm(max(1, twoq.min()), twoq.max()))
     axes[1].set_yticklabels([])
+    for ax in axes:
+        plt.setp(ax.get_xticklabels(), rotation=35, ha="right", rotation_mode="anchor")
     fig.colorbar(im0, ax=axes[0], fraction=0.05, pad=0.03).set_label("Hellinger fidelity", fontsize=7)
     cb1 = fig.colorbar(im1, ax=axes[1], fraction=0.05, pad=0.03)
     cb1.set_label("native 2Q gates (log)", fontsize=7)
@@ -468,7 +486,8 @@ def fig_circuit_width() -> None:
     table = []
     for ax, fam in zip(axes.flat, FAMILIES, strict=True):
         for dev in DEVICES:
-            rs = sorted((r for r in rows if r["family"] == fam and r["backend"] == dev), key=lambda r: r["qubits"])
+            rs = sorted((r for r in rows if r["family"] == fam and r["backend"] == dev
+                         and r["hellinger"] is not None), key=lambda r: r["qubits"])   # None: beyond exact DM
             x = [r["qubits"] for r in rs]
             ring(ax, x, [r["hellinger"] for r in rs], COLOR[dev], MARK[dev], linestyle=STYLE[dev],
                  label=LABEL[dev], markersize=3.8, linewidth=1.2)
@@ -483,8 +502,8 @@ def fig_circuit_width() -> None:
     for ax in axes[:, 0]:
         ax.set_ylabel("Hellinger fidelity")
     handles, labels = axes[0, 0].get_legend_handles_labels()
-    fig.legend(handles, labels, ncol=4, loc="upper center", bbox_to_anchor=(0.5, 1.02))
-    fig.tight_layout(rect=(0, 0, 1, 0.965), h_pad=0.9, w_pad=0.8)
+    fig.legend(handles, labels, ncol=4, loc="upper center", bbox_to_anchor=(0.5, 1.03))
+    fig.tight_layout(rect=(0, 0, 1, 0.945), h_pad=0.9, w_pad=0.8)
     save(fig, "fig13_circuit_fidelity_vs_width", table)
 
 
@@ -492,10 +511,12 @@ def fig_routing_overhead() -> None:
     cost = load("circuits")["cost"]
     widths = sorted({r["qubits"] for r in cost})
     base = {(r["family"], r["qubits"]): r["native_two_qubit"] for r in cost if r["backend"] == "quantinuum_helios"}
-    fig, axes = plt.subplots(1, 2, figsize=(DOUBLE, 3.0))
+    fig, grid = plt.subplots(2, 3, figsize=(DOUBLE, 5.4))
+    axes = list(grid.flat[:len(LATTICES)])
+    grid.flat[-1].axis("off")
     table = []
     mats = {}
-    for dev in ("rigetti_ankaa_3", "iqm_emerald"):
+    for dev in LATTICES:
         pick = {(r["family"], r["qubits"]): r for r in cost if r["backend"] == dev}
         mats[dev] = np.array([[pick[(f, n)]["native_two_qubit"] / max(1, base[(f, n)])
                                if (f, n) in pick else np.nan for n in widths] for f in FAMILIES])
@@ -505,12 +526,14 @@ def fig_routing_overhead() -> None:
                   for f in FAMILIES for n in widths if (f, n) in pick]
     vmax = np.nanmax([m for m in mats.values()])
     norm = matplotlib.colors.LogNorm(1, vmax)
-    for ax, (dev, mat) in zip(axes, mats.items(), strict=True):
+    for k, (ax, (dev, mat)) in enumerate(zip(axes, mats.items(), strict=True)):
         im = heatmap(ax, mat, [FAM_LABEL[f] for f in FAMILIES], [str(n) for n in widths], ".1f", norm=norm)
-        ax.set_xlabel("Qubits n")
-        ax.set_title(f"({'ab'[list(mats).index(dev)]}) {LABEL[dev]} (routed)", loc="left")
-    axes[1].set_yticklabels([])
-    cb = fig.colorbar(im, ax=list(axes), fraction=0.03, pad=0.02)
+        if k >= 2:                                   # bottom panel of its column
+            ax.set_xlabel("Qubits n")
+        ax.set_title(f"({'abcde'[k]}) {SHORT[dev]} (routed)", loc="left")
+        if k % 3:
+            ax.set_yticklabels([])
+    cb = fig.colorbar(im, ax=list(grid.flat), fraction=0.025, pad=0.02)
     cb.set_label("native 2Q gates ÷ all-to-all (Helios)", fontsize=7)
     ticks = [t for t in (1, 1.5, 2, 3, 4) if t <= vmax]
     cb.set_ticks(ticks, labels=[f"{t:g}×" for t in ticks])
@@ -552,9 +575,11 @@ def fig_pipeline_by_family() -> None:
 
 def fig_qv() -> None:
     rows = load("qv")["data"]
-    fig, axes = plt.subplots(1, 4, figsize=(DOUBLE, 2.4), sharey=True)
+    fig, grid = plt.subplots(2, 4, figsize=(DOUBLE, 4.6), sharey=True)
+    axes = list(grid.flat)
+    axes[-1].axis("off")
     table = []
-    for ax, dev in zip(axes, DEVICES, strict=True):
+    for ax, dev in zip(axes, DEVICES, strict=False):
         widths = sorted({r["width"] for r in rows})
         best = None
         means, lows, ideals = [], [], []
@@ -579,17 +604,20 @@ def fig_qv() -> None:
         ax.axhline(2 / 3, color=INK2, lw=0.7, ls=":")
         sup = str(best).translate(str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")) if best else ""
         geq = "≥ " if best == widths[-1] else ""             # every tested width passes
-        ax.set_title(f"{LABEL[dev]}\nQV-style {geq}2{sup} = {2 ** best}" if best
-                     else f"{LABEL[dev]}\nno width passes", loc="left")
+        ax.set_title(f"{SHORT[dev]}\nQV-style {geq}2{sup} = {2 ** best}" if best
+                     else f"{SHORT[dev]}\nno width passes", loc="left")
         ax.set_xticks(widths)
         ax.set_xlabel("Width = depth m")
         ax.set_ylim(0.45, 0.92)
-    axes[0].set_ylabel("Heavy-output probability")
+    for ax in (axes[0], axes[4]):
+        ax.set_ylabel("Heavy-output probability")
+    for ax in axes[:3]:
+        ax.set_xlabel("")
     axes[2].annotate("ideal (dashed)", (8, table[-1]["ideal_hop_mean"]), xytext=(0, 4), textcoords="offset points",
                      fontsize=6.6, color=INK2, ha="right")
     axes[0].annotate("2/3 threshold", (8, 2 / 3), xytext=(0, -9), textcoords="offset points", fontsize=6.6,
                      color=INK2, ha="right")
-    fig.tight_layout(w_pad=0.6)
+    fig.tight_layout(w_pad=0.6, h_pad=1.0)
     save(fig, "fig16_quantum_volume", table)
 
 
@@ -703,7 +731,7 @@ def fig_queue_location() -> None:
         ax.set_xlabel("Concurrent clients N  /  mean latency (ms)")
         ax.grid(axis="x", visible=False)
         ax.set_title("(a) Worker-bound: light jobs on one QPU" if cond == "light_emerald"
-                     else "(b) Orchestrator-bound: light jobs over four QPUs", loc="left")
+                     else "(b) Orchestrator-bound: light jobs over seven QPUs", loc="left")
     axes[0].set_ylabel("Share of mean client latency")
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=2, handlelength=1.2, bbox_to_anchor=(0.5, 0.0))
@@ -714,7 +742,7 @@ def fig_queue_location() -> None:
 def fig_orchestrator_scaling() -> None:
     ha = load("load_ha")["data"]
     series = [(name, [r for r in ha if r["condition"] == key], col, mk)
-              for (key, name), col, mk in zip(HA_SETUP.items(), (SLOTS[6], SLOTS[4], SLOTS[5]), "os^", strict=True)]
+              for (key, name), col, mk in zip(HA_SETUP.items(), (OTHER[0], OTHER[1], OTHER[2]), "os^", strict=True)]
     fig, axes = plt.subplots(1, 2, figsize=(DOUBLE, 2.6))
     table = []
     for name, rows, col, mk in series:
@@ -731,11 +759,11 @@ def fig_orchestrator_scaling() -> None:
     for ax in axes:
         ax.set_xscale("log", base=2)
         ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:g}"))
-        ax.set_xlabel("Concurrent clients N (light jobs over four QPUs)")
-    axes[0].set_ylim(0, 700)
+        ax.set_xlabel("Concurrent clients N (light jobs over seven QPUs)")
+    axes[0].set_ylim(0, max(r["throughput_jobs_s"] for r in rows) * 1.15)
     axes[0].set_ylabel("Throughput (jobs/s)")
     axes[0].set_title("(a) Orchestrator replicas lift the ceiling", loc="left")
-    axes[0].legend(loc="lower right", fontsize=6.4)
+    axes[0].legend(loc="upper left")
     axes[1].set_yscale("log")
     axes[1].set_ylabel("p99 client latency (ms)")
     axes[1].set_title("(b) Tail latency", loc="left")
@@ -813,9 +841,10 @@ def fig_soak() -> None:
         xs = [smp["t"] for smp in doc["stats"] for c in smp["containers"] if c["name"] == nm]
         ys = [c["mem_mib"] for smp in doc["stats"] for c in smp["containers"] if c["name"] == nm]
         short = nm.replace("qputwin-", "").replace("worker-", "").rsplit("-", 1)[0]
-        col = {"orchestrator": SLOTS[6], "quantinuum-helios": COLOR["quantinuum_helios"],
+        col = {"orchestrator": INK, "quantinuum-helios": COLOR["quantinuum_helios"],
                "ionq-forte": COLOR["ionq_forte"], "rigetti-ankaa3": COLOR["rigetti_ankaa_3"],
-               "iqm-emerald": COLOR["iqm_emerald"]}.get(short, MUTED)
+               "iqm-emerald": COLOR["iqm_emerald"], "ibm-heron": COLOR["ibm_heron"],
+               "ibm-nighthawk": COLOR["ibm_nighthawk"], "google-willow": COLOR["google_willow"]}.get(short, MUTED)
         ax2.plot(xs, ys, color=col, lw=1.3, label=short)
         table += [{"container": short, "t_s": round(x, 2), "mem_mib": y} for x, y in zip(xs, ys, strict=True)]
     ax2.set_ylabel("Container memory (MiB)")
@@ -950,14 +979,15 @@ def fig_gate_scaling() -> None:
         fe = [med(dev, "worker_parse_ms", g) + med(dev, "worker_route_ms", g) + med(dev, "worker_compile_ms", g)
               for g in gates]
         ring(axes[1], gates, fe, COLOR[dev], MARK[dev], linestyle=STYLE[dev], label=LABEL[dev])
-        ends.setdefault("lattices" if dev in ("rigetti_ankaa_3", "iqm_emerald") else "ions", []).append((dev, fe[-1]))
+        ends.setdefault("lattices" if dev in LATTICES else "ions", []).append((dev, fe[-1]))
         table += [{"backend": dev, "gates": g, **{k2: round(med(dev, k2, g), 4) for k2, _, _ in stages},
                    "front_end_ms": round(f, 4)} for g, f in zip(gates, fe, strict=True)]
     for group, devs in ends.items():                       # one label per connectivity class
         rates = sorted(gates[-1] / v for _, v in devs)
         fmt = (lambda r: f"{r:.0f}") if rates[0] >= 10 else (lambda r: f"{r:.1f}")
         rate = fmt(rates[0]) if fmt(rates[0]) == fmt(rates[-1]) else f"{fmt(rates[0])}–{fmt(rates[-1])}"
-        end_label(axes[1], gates[-1], max(v for _, v in devs), f"{rate} gates/ms (both {group})")
+        end_label(axes[1], gates[-1], max(v for _, v in devs) if group == "lattices" else min(v for _, v in devs),
+                  f"{rate} gates/ms ({'five lattices' if group == 'lattices' else 'both ions'})")
     for ax in axes:
         ax.set_xscale("log")
         ax.set_yscale("log")
@@ -968,15 +998,67 @@ def fig_gate_scaling() -> None:
     axes[1].set_ylabel("Parse + route + compile (ms)")
     axes[1].set_xlim(right=gates[-1] * 9)
     axes[1].set_title("(b) Front-end time per QPU", loc="left")
-    axes[1].legend(loc="upper left")
+    axes[1].legend(loc="lower right", fontsize=6.2)
     fig.tight_layout(w_pad=2.0)
     save(fig, "fig24_gate_scaling", table)
+
+
+def fig_saturation() -> None:
+    """E22 — the whole host under mixed load: CPU and memory over time, and latency per job class."""
+    doc = load("saturation")
+    d = doc["data"]
+    host = d["host"]
+    fig, axes = plt.subplots(1, 3, figsize=(DOUBLE, 3.0), gridspec_kw={"width_ratios": [1.1, 1.1, 1.0]})
+    t = [h["t"] for h in host]
+    ax = axes[0]
+    ax.plot(t, [h["cpu_pct"] for h in host], color=SLOTS[0], lw=1.2)
+    ax.set_ylim(0, 105)
+    ax.set_ylabel("Host CPU busy (%)")
+    ax.set_xlabel("Time (s)")
+    ax.set_title(f"(a) CPU, {doc['worker_cpus']} vCPUs (median {doc['summary']['host_cpu_pct_median']:.0f} %)",
+                 loc="left")
+    ax = axes[1]
+    total = host[0]["mem_total_gib"]
+    ax.plot(t, [h["mem_used_gib"] for h in host], color=SLOTS[1], lw=1.2)
+    ax.axhline(total, color=MUTED, lw=0.8, ls=":")
+    ax.text(0.02, total / (total * 1.12) + 0.01, f"host RAM {total:.1f} GiB", transform=ax.transAxes, fontsize=6.4,
+            color=INK2, va="bottom")
+    ax.set_ylim(0, total * 1.12)
+    ax.set_ylabel("Host memory in use (GiB)")
+    ax.set_xlabel("Time (s)")
+    ax.set_title(f"(b) Memory (max {doc['summary']['host_mem_gib_max']:.1f} GiB)", loc="left")
+    ax = axes[2]
+    classes = [("light sync, GHZ$_8$", [p[1] / 1e3 for p in d["light"] if p[2] == 200 and p[1] is not None],
+                SLOTS[0], "-"),
+               ("heavy: dense state", [h["latency_s"] for h in d["heavy"] if h["stream"] == "memory"
+                                       and h["status"] == "COMPLETED"], SLOTS[1], "-"),
+               ("heavy: DM / QV", [h["latency_s"] for h in d["heavy"] if h["stream"] == "compute"
+                                    and h["status"] == "COMPLETED"], SLOTS[2], "--"),
+               ("oversized: refused", [r["latency_s"] for r in d["oversized"]], SLOTS[3], ":")]
+    table = []
+    for name, v, col, ls in classes:
+        if not v:
+            continue
+        v = np.sort(np.asarray(v))
+        ax.plot(v, np.arange(1, len(v) + 1) / len(v), color=col, ls=ls, lw=1.3, label=f"{name} (n={len(v):,})")
+        table += [{"class": name, "n": len(v), "p50_s": round(float(np.median(v)), 4),
+                   "p95_s": round(float(np.percentile(v, 95)), 4), "max_s": round(float(v.max()), 4)}]
+    ax.set_xscale("log")
+    ax.set_xlabel("Response time (s)")
+    ax.set_ylabel("Cumulative fraction")
+    sm = doc["summary"]
+    ax.set_title(f"(c) {sm['oom_kills']} OOM kills, {sm['restarts']} restarts", loc="left")
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=4, fontsize=6.2, bbox_to_anchor=(0.5, 0.0))
+    fig.tight_layout(w_pad=1.0, rect=(0, 0.09, 1, 1))
+    save(fig, "fig27_saturation", table)
 
 
 FIGURES = [fig_latency, fig_scaling, fig_routing, fig_routing_latency, fig_fidelity, fig_hwtime, fig_budget,
            fig_convergence, fig_async, fig_noise_sweep, fig_ramsey, fig_latency_ecdf, fig_circuit_heatmap,
            fig_circuit_width, fig_routing_overhead, fig_pipeline_by_family, fig_qv, fig_load_closed,
-           fig_littles_law, fig_queue_location, fig_orchestrator_scaling, fig_open_loop, fig_soak, fig_async_burst, fig_fairshare, fig_shots, fig_gate_scaling]
+           fig_littles_law, fig_queue_location, fig_orchestrator_scaling, fig_open_loop, fig_soak, fig_async_burst,
+           fig_fairshare, fig_shots, fig_gate_scaling, fig_saturation]
 
 
 def main(argv: list[str] | None = None) -> None:

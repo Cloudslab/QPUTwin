@@ -28,6 +28,9 @@ def main() -> None:
         port=int(os.environ.get("QPUTWIN_PORT", "8001")),
         log_level=os.environ.get("QPUTWIN_LOG_LEVEL", "info"),
         access_log=os.environ.get("QPUTWIN_ACCESS_LOG", "0") == "1",
+        # keep idle connections open longer than any client reuses them (orchestrator: 30 s, nginx: 60 s);
+        # uvicorn's 5 s default let a client reuse a connection the server was closing (rare HTTP 503s)
+        timeout_keep_alive=int(os.environ.get("QPUTWIN_KEEPALIVE_S", "75")),
     )
 
 

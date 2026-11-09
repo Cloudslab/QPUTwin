@@ -7,7 +7,7 @@ description: QPUTwin's architecture diagrams, rebuilding the publication-ready b
 
 ## Architecture diagrams
 
-The seventeen architecture, process and data diagrams used by this site and the README are pre-rendered SVGs in `docs/assets/diagrams/`. Each embeds the subset of fonts it uses, so it renders identically as an `<img>` on this site and on GitHub.
+The eighteen architecture, process and data diagrams used by this site and the README are pre-rendered SVGs in `docs/assets/diagrams/`. Each embeds the subset of fonts it uses, so it renders identically as an `<img>` on this site and on GitHub.
 
 ## Benchmark figures
 
@@ -20,7 +20,7 @@ Figure conventions:
 
 * **Formats:** vector PDF (TrueType-embedded) and SVG, plus a 300-dpi PNG; a CSV of exactly the plotted values in `benchmarks/figures/data/`.
 * **Sizes:** 3.5 in (single column) or 7.2 in (double column); DejaVu Sans at 7–8.5 pt.
-* **Colour:** the four devices take the first four slots of a categorical palette validated for colour-vision deficiency (adjacent-pair CVD ΔE ≥ 9.1, normal-vision ΔE ≥ 22.9 on white). Every series also has its own marker and line style, so the figures survive grayscale printing.
+* **Colour:** the seven devices take the first seven slots of a categorical palette validated for colour-vision deficiency, in fixed order (adjacent-pair CVD ΔE ≥ 9.1, normal-vision ΔE ≥ 19.6 on white). Every series also has its own marker and line style, so the figures survive grayscale printing.
 * **Layout:** a single y-axis per panel, thin solid gridlines, sparse direct labels.
 
 ## This website

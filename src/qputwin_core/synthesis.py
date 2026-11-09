@@ -28,6 +28,10 @@ ionq        ``gpi2(φ)`` (θ=π/2) · ``gpi(φ)`` (θ=π) · otherwise
             ``gpi2(φ−π/2) rz(θ) gpi2(φ+π/2)``; then ``rz(ζ)``
 rigetti     ``rz(−φ) rx(π/2|π) rz(φ)`` or the two-pulse form
             ``rz(π/2−φ) rx(π/2) rz(θ−π) rx(π/2) rz(φ+π/2)``; then ``rz(ζ)``
+ibm         as rigetti with ``sx`` for ``rx(π/2)`` and ``x`` for ``rx(π)``
+            (IBM's ``rz · sx · rz · sx · rz`` form)
+google      ``phased_xz(θ, φ, ζ)`` (one PhasedXZ pulse, Z folded in), or
+            ``rz(ζ)`` alone when θ = 0
 ==========  ===============================================================
 
 (``rz`` runs are merged and angles wrapped to (−π, π] with exact phase correction.)
@@ -139,7 +143,7 @@ class NativeCompiler:
         H, I2 = G.H, G.I2
         rzz_local = G.rz(_PI / 2) @ G.Z           # CZ ≅ (Rz(π/2)Z ⊗ Rz(π/2)Z) · RZZ(π/2)
         basis = self.spec.basis
-        if basis in ("rigetti", "iqm"):
+        if basis in ("rigetti", "iqm", "ibm", "google"):
             r1, r2, e_name, e_params, l1, l2 = I2, H, "cz", (), I2, H
         elif basis == "quantinuum":
             r1, r2, e_name, e_params, l1, l2 = I2, H, "zzmax", (), rzz_local, H @ rzz_local
@@ -198,6 +202,18 @@ class NativeCompiler:
                 else:
                     seq += [("rz", (_PI / 2 - phi,)), ("rx", (_PI / 2,)), ("rz", (theta - _PI,)),
                             ("rx", (_PI / 2,)), ("rz", (phi + _PI / 2,))]
+            elif basis == "ibm":
+                # sx ≅ rx(π/2) and x ≅ rx(π) up to global phase; the phase is re-derived below
+                if abs(theta - _PI / 2) < 1e-12:
+                    seq += [("rz", (-phi,)), ("sx", ()), ("rz", (phi,))]
+                elif abs(theta - _PI) < 1e-12:
+                    seq += [("rz", (-phi,)), ("x", ()), ("rz", (phi,))]
+                else:
+                    seq += [("rz", (_PI / 2 - phi,)), ("sx", ()), ("rz", (theta - _PI,)),
+                            ("sx", ()), ("rz", (phi + _PI / 2,))]
+            elif basis == "google":
+                seq.append(("phased_xz", (theta, _wrap(phi), _wrap(zeta))))
+                zeta = 0.0
         seq.append(("rz", (zeta,)))
         seq = self._normalise_rz(seq)
         prod = np.eye(2, dtype=np.complex128)

@@ -1,5 +1,8 @@
 backend,jobs,queue_p50_s,queue_p99_s,queue_max_s
-quantinuum_helios,500,5.355,6.6482,8.2257
-ionq_forte,500,5.8512,6.59,8.5974
-rigetti_ankaa_3,500,5.3215,6.7191,7.1774
-iqm_emerald,500,5.2249,6.8868,7.5939
+quantinuum_helios,500,6.5076,7.718,8.1538
+ionq_forte,500,6.6923,8.2342,10.6638
+rigetti_ankaa_3,500,4.9656,6.1615,7.4392
+iqm_emerald,500,6.0007,7.4488,7.7792
+ibm_heron,500,6.7528,7.8817,8.9337
+ibm_nighthawk,500,7.0116,9.2509,9.9184
+google_willow,500,6.641,8.3182,10.4063

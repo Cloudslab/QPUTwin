@@ -1,91 +1,91 @@
 condition,concurrency,component,mean_ms,share
-light_emerald,1,"Before the orchestrator's clock (client stack, socket backlog)",2.4055,0.345
-light_emerald,2,"Before the orchestrator's clock (client stack, socket backlog)",2.9159,0.2786
-light_emerald,4,"Before the orchestrator's clock (client stack, socket backlog)",3.21,0.2145
-light_emerald,8,"Before the orchestrator's clock (client stack, socket backlog)",3.3318,0.1121
-light_emerald,16,"Before the orchestrator's clock (client stack, socket backlog)",3.5203,0.0594
-light_emerald,32,"Before the orchestrator's clock (client stack, socket backlog)",26.2885,0.2085
-light_emerald,64,"Before the orchestrator's clock (client stack, socket backlog)",6.217,0.0249
-light_emerald,128,"Before the orchestrator's clock (client stack, socket backlog)",12.3131,0.0226
-light_emerald,256,"Before the orchestrator's clock (client stack, socket backlog)",628.0411,0.3527
-light_emerald,1,"Orchestrator (ingress, validation, routing, assembly)",1.2818,0.1838
-light_emerald,2,"Orchestrator (ingress, validation, routing, assembly)",1.9705,0.1883
-light_emerald,4,"Orchestrator (ingress, validation, routing, assembly)",2.0932,0.1399
-light_emerald,8,"Orchestrator (ingress, validation, routing, assembly)",2.0777,0.0699
-light_emerald,16,"Orchestrator (ingress, validation, routing, assembly)",2.2441,0.0379
-light_emerald,32,"Orchestrator (ingress, validation, routing, assembly)",4.2132,0.0334
-light_emerald,64,"Orchestrator (ingress, validation, routing, assembly)",8.1107,0.0325
-light_emerald,128,"Orchestrator (ingress, validation, routing, assembly)",22.4244,0.0412
-light_emerald,256,"Orchestrator (ingress, validation, routing, assembly)",49.4031,0.0277
-light_emerald,1,Dispatch transit (network + socket / event-loop queueing),1.1598,0.1663
-light_emerald,2,Dispatch transit (network + socket / event-loop queueing),2.5277,0.2415
-light_emerald,4,Dispatch transit (network + socket / event-loop queueing),4.7797,0.3194
-light_emerald,8,Dispatch transit (network + socket / event-loop queueing),5.3903,0.1814
-light_emerald,16,Dispatch transit (network + socket / event-loop queueing),5.9556,0.1005
-light_emerald,32,Dispatch transit (network + socket / event-loop queueing),18.5558,0.1472
-light_emerald,64,Dispatch transit (network + socket / event-loop queueing),96.2095,0.3854
-light_emerald,128,Dispatch transit (network + socket / event-loop queueing),493.4334,0.9072
-light_emerald,256,Dispatch transit (network + socket / event-loop queueing),1077.2089,0.605
-light_emerald,1,Worker admission queue,0.0025,0.0004
-light_emerald,2,Worker admission queue,0.4168,0.0398
-light_emerald,4,Worker admission queue,1.9489,0.1302
-light_emerald,8,Worker admission queue,15.7445,0.5298
-light_emerald,16,Worker admission queue,44.3321,0.7484
-light_emerald,32,Worker admission queue,73.4181,0.5823
-light_emerald,64,Worker admission queue,88.1241,0.353
-light_emerald,128,Worker admission queue,7.3831,0.0136
-light_emerald,256,Worker admission queue,12.5088,0.007
-light_emerald,1,"Worker service (parse, route, compile, engine)",2.1226,0.3044
-light_emerald,2,"Worker service (parse, route, compile, engine)",2.634,0.2517
-light_emerald,4,"Worker service (parse, route, compile, engine)",2.9322,0.196
-light_emerald,8,"Worker service (parse, route, compile, engine)",3.1711,0.1067
-light_emerald,16,"Worker service (parse, route, compile, engine)",3.1855,0.0538
-light_emerald,32,"Worker service (parse, route, compile, engine)",3.5975,0.0285
-light_emerald,64,"Worker service (parse, route, compile, engine)",50.9795,0.2042
-light_emerald,128,"Worker service (parse, route, compile, engine)",8.3738,0.0154
-light_emerald,256,"Worker service (parse, route, compile, engine)",13.254,0.0074
-direct_1_orch,1,"Before the orchestrator's clock (client stack, socket backlog)",2.5153,0.3409
-direct_1_orch,2,"Before the orchestrator's clock (client stack, socket backlog)",3.0657,0.3534
-direct_1_orch,4,"Before the orchestrator's clock (client stack, socket backlog)",3.75,0.3011
-direct_1_orch,8,"Before the orchestrator's clock (client stack, socket backlog)",5.2342,0.2401
-direct_1_orch,16,"Before the orchestrator's clock (client stack, socket backlog)",8.302,0.1858
-direct_1_orch,32,"Before the orchestrator's clock (client stack, socket backlog)",12.9736,0.1327
-direct_1_orch,64,"Before the orchestrator's clock (client stack, socket backlog)",18.5266,0.0797
-direct_1_orch,128,"Before the orchestrator's clock (client stack, socket backlog)",26.3609,0.0505
-direct_1_orch,256,"Before the orchestrator's clock (client stack, socket backlog)",59.1762,0.0763
-direct_1_orch,1,"Orchestrator (ingress, validation, routing, assembly)",1.2925,0.1752
-direct_1_orch,2,"Orchestrator (ingress, validation, routing, assembly)",1.5187,0.1751
-direct_1_orch,4,"Orchestrator (ingress, validation, routing, assembly)",2.4466,0.1964
-direct_1_orch,8,"Orchestrator (ingress, validation, routing, assembly)",4.9087,0.2252
-direct_1_orch,16,"Orchestrator (ingress, validation, routing, assembly)",11.7326,0.2626
-direct_1_orch,32,"Orchestrator (ingress, validation, routing, assembly)",21.7645,0.2227
-direct_1_orch,64,"Orchestrator (ingress, validation, routing, assembly)",37.6271,0.1618
-direct_1_orch,128,"Orchestrator (ingress, validation, routing, assembly)",58.5604,0.1122
-direct_1_orch,256,"Orchestrator (ingress, validation, routing, assembly)",211.7739,0.2732
-direct_1_orch,1,Dispatch transit (network + socket / event-loop queueing),1.2886,0.1747
-direct_1_orch,2,Dispatch transit (network + socket / event-loop queueing),1.6466,0.1898
-direct_1_orch,4,Dispatch transit (network + socket / event-loop queueing),3.3082,0.2656
-direct_1_orch,8,Dispatch transit (network + socket / event-loop queueing),7.5695,0.3472
-direct_1_orch,16,Dispatch transit (network + socket / event-loop queueing),18.7158,0.4188
-direct_1_orch,32,Dispatch transit (network + socket / event-loop queueing),54.2726,0.5552
-direct_1_orch,64,Dispatch transit (network + socket / event-loop queueing),163.2299,0.702
-direct_1_orch,128,Dispatch transit (network + socket / event-loop queueing),417.9894,0.8009
-direct_1_orch,256,Dispatch transit (network + socket / event-loop queueing),461.3727,0.5951
-direct_1_orch,1,Worker admission queue,0.0028,0.0004
-direct_1_orch,2,Worker admission queue,0.0029,0.0003
-direct_1_orch,4,Worker admission queue,0.003,0.0002
-direct_1_orch,8,Worker admission queue,0.2124,0.0097
-direct_1_orch,16,Worker admission queue,0.079,0.0018
-direct_1_orch,32,Worker admission queue,0.0447,0.0005
-direct_1_orch,64,Worker admission queue,0.1873,0.0008
-direct_1_orch,128,Worker admission queue,0.4266,0.0008
-direct_1_orch,256,Worker admission queue,6.0068,0.0077
-direct_1_orch,1,"Worker service (parse, route, compile, engine)",2.2783,0.3088
-direct_1_orch,2,"Worker service (parse, route, compile, engine)",2.4404,0.2813
-direct_1_orch,4,"Worker service (parse, route, compile, engine)",2.9466,0.2366
-direct_1_orch,8,"Worker service (parse, route, compile, engine)",3.8749,0.1777
-direct_1_orch,16,"Worker service (parse, route, compile, engine)",5.8567,0.1311
-direct_1_orch,32,"Worker service (parse, route, compile, engine)",8.6918,0.0889
-direct_1_orch,64,"Worker service (parse, route, compile, engine)",12.9522,0.0557
-direct_1_orch,128,"Worker service (parse, route, compile, engine)",18.5647,0.0356
-direct_1_orch,256,"Worker service (parse, route, compile, engine)",36.9133,0.0476
+light_emerald,1,"Before the orchestrator's clock (client stack, socket backlog)",1.7943,0.2926
+light_emerald,2,"Before the orchestrator's clock (client stack, socket backlog)",1.9231,0.2679
+light_emerald,4,"Before the orchestrator's clock (client stack, socket backlog)",1.9717,0.1426
+light_emerald,8,"Before the orchestrator's clock (client stack, socket backlog)",1.9987,0.0715
+light_emerald,16,"Before the orchestrator's clock (client stack, socket backlog)",2.0861,0.0376
+light_emerald,32,"Before the orchestrator's clock (client stack, socket backlog)",5.0105,0.0438
+light_emerald,64,"Before the orchestrator's clock (client stack, socket backlog)",9.7274,0.0347
+light_emerald,128,"Before the orchestrator's clock (client stack, socket backlog)",11.8057,0.021
+light_emerald,256,"Before the orchestrator's clock (client stack, socket backlog)",114.5959,0.0858
+light_emerald,1,"Orchestrator (ingress, validation, routing, assembly)",1.1796,0.1924
+light_emerald,2,"Orchestrator (ingress, validation, routing, assembly)",1.2062,0.168
+light_emerald,4,"Orchestrator (ingress, validation, routing, assembly)",1.3215,0.0956
+light_emerald,8,"Orchestrator (ingress, validation, routing, assembly)",1.307,0.0467
+light_emerald,16,"Orchestrator (ingress, validation, routing, assembly)",1.3579,0.0245
+light_emerald,32,"Orchestrator (ingress, validation, routing, assembly)",7.8897,0.069
+light_emerald,64,"Orchestrator (ingress, validation, routing, assembly)",19.6297,0.07
+light_emerald,128,"Orchestrator (ingress, validation, routing, assembly)",24.719,0.044
+light_emerald,256,"Orchestrator (ingress, validation, routing, assembly)",39.9711,0.0299
+light_emerald,1,Dispatch transit (network + socket / event-loop queueing),1.0063,0.1641
+light_emerald,2,Dispatch transit (network + socket / event-loop queueing),1.5937,0.222
+light_emerald,4,Dispatch transit (network + socket / event-loop queueing),3.2932,0.2382
+light_emerald,8,Dispatch transit (network + socket / event-loop queueing),3.4598,0.1237
+light_emerald,16,Dispatch transit (network + socket / event-loop queueing),3.6816,0.0664
+light_emerald,32,Dispatch transit (network + socket / event-loop queueing),66.1307,0.5787
+light_emerald,64,Dispatch transit (network + socket / event-loop queueing),241.871,0.8628
+light_emerald,128,Dispatch transit (network + socket / event-loop queueing),514.04,0.915
+light_emerald,256,Dispatch transit (network + socket / event-loop queueing),1167.1198,0.8742
+light_emerald,1,Worker admission queue,0.0022,0.0004
+light_emerald,2,Worker admission queue,0.18,0.0251
+light_emerald,4,Worker admission queue,4.3379,0.3138
+light_emerald,8,Worker admission queue,18.3055,0.6547
+light_emerald,16,Worker admission queue,45.4952,0.8201
+light_emerald,32,Worker admission queue,30.4423,0.2664
+light_emerald,64,Worker admission queue,1.4169,0.0051
+light_emerald,128,Worker admission queue,2.305,0.0041
+light_emerald,256,Worker admission queue,2.9784,0.0022
+light_emerald,1,"Worker service (parse, route, compile, engine)",2.15,0.3506
+light_emerald,2,"Worker service (parse, route, compile, engine)",2.2765,0.3171
+light_emerald,4,"Worker service (parse, route, compile, engine)",2.8981,0.2097
+light_emerald,8,"Worker service (parse, route, compile, engine)",2.8876,0.1033
+light_emerald,16,"Worker service (parse, route, compile, engine)",2.8547,0.0515
+light_emerald,32,"Worker service (parse, route, compile, engine)",4.7989,0.042
+light_emerald,64,"Worker service (parse, route, compile, engine)",7.6751,0.0274
+light_emerald,128,"Worker service (parse, route, compile, engine)",8.95,0.0159
+light_emerald,256,"Worker service (parse, route, compile, engine)",10.4073,0.0078
+direct_1_orch,1,"Before the orchestrator's clock (client stack, socket backlog)",1.9568,0.2798
+direct_1_orch,2,"Before the orchestrator's clock (client stack, socket backlog)",2.1922,0.2554
+direct_1_orch,4,"Before the orchestrator's clock (client stack, socket backlog)",2.8108,0.2538
+direct_1_orch,8,"Before the orchestrator's clock (client stack, socket backlog)",3.9529,0.1783
+direct_1_orch,16,"Before the orchestrator's clock (client stack, socket backlog)",5.957,0.1392
+direct_1_orch,32,"Before the orchestrator's clock (client stack, socket backlog)",10.7807,0.124
+direct_1_orch,64,"Before the orchestrator's clock (client stack, socket backlog)",17.1227,0.0834
+direct_1_orch,128,"Before the orchestrator's clock (client stack, socket backlog)",35.6425,0.0579
+direct_1_orch,256,"Before the orchestrator's clock (client stack, socket backlog)",59.414,0.0788
+direct_1_orch,1,"Orchestrator (ingress, validation, routing, assembly)",1.2271,0.1755
+direct_1_orch,2,"Orchestrator (ingress, validation, routing, assembly)",1.2763,0.1487
+direct_1_orch,4,"Orchestrator (ingress, validation, routing, assembly)",2.1024,0.1898
+direct_1_orch,8,"Orchestrator (ingress, validation, routing, assembly)",5.3074,0.2393
+direct_1_orch,16,"Orchestrator (ingress, validation, routing, assembly)",10.2987,0.2407
+direct_1_orch,32,"Orchestrator (ingress, validation, routing, assembly)",25.0546,0.2882
+direct_1_orch,64,"Orchestrator (ingress, validation, routing, assembly)",44.585,0.2173
+direct_1_orch,128,"Orchestrator (ingress, validation, routing, assembly)",91.6893,0.149
+direct_1_orch,256,"Orchestrator (ingress, validation, routing, assembly)",183.8749,0.2438
+direct_1_orch,1,Dispatch transit (network + socket / event-loop queueing),1.2327,0.1763
+direct_1_orch,2,Dispatch transit (network + socket / event-loop queueing),2.1259,0.2477
+direct_1_orch,4,Dispatch transit (network + socket / event-loop queueing),3.441,0.3107
+direct_1_orch,8,Dispatch transit (network + socket / event-loop queueing),9.1832,0.4141
+direct_1_orch,16,Dispatch transit (network + socket / event-loop queueing),21.7349,0.508
+direct_1_orch,32,Dispatch transit (network + socket / event-loop queueing),41.8024,0.4808
+direct_1_orch,64,Dispatch transit (network + socket / event-loop queueing),128.8404,0.6279
+direct_1_orch,128,Dispatch transit (network + socket / event-loop queueing),460.6517,0.7485
+direct_1_orch,256,Dispatch transit (network + socket / event-loop queueing),462.9604,0.6138
+direct_1_orch,1,Worker admission queue,0.0032,0.0005
+direct_1_orch,2,Worker admission queue,0.3202,0.0373
+direct_1_orch,4,Worker admission queue,0.1206,0.0109
+direct_1_orch,8,Worker admission queue,0.1448,0.0065
+direct_1_orch,16,Worker admission queue,0.1057,0.0025
+direct_1_orch,32,Worker admission queue,0.003,0.0
+direct_1_orch,64,Worker admission queue,0.0261,0.0001
+direct_1_orch,128,Worker admission queue,0.1609,0.0003
+direct_1_orch,256,Worker admission queue,3.9355,0.0052
+direct_1_orch,1,"Worker service (parse, route, compile, engine)",2.5737,0.368
+direct_1_orch,2,"Worker service (parse, route, compile, engine)",2.6677,0.3108
+direct_1_orch,4,"Worker service (parse, route, compile, engine)",2.6008,0.2348
+direct_1_orch,8,"Worker service (parse, route, compile, engine)",3.586,0.1617
+direct_1_orch,16,"Worker service (parse, route, compile, engine)",4.6869,0.1095
+direct_1_orch,32,"Worker service (parse, route, compile, engine)",9.299,0.107
+direct_1_orch,64,"Worker service (parse, route, compile, engine)",14.6127,0.0712
+direct_1_orch,128,"Worker service (parse, route, compile, engine)",27.3089,0.0444
+direct_1_orch,256,"Worker service (parse, route, compile, engine)",44.0978,0.0585

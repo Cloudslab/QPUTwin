@@ -27,6 +27,11 @@ class RoutingSpec(BaseModel):
     exact_layout: bool = Field(True, description="Search for a SWAP-free embedding of the interaction graph first.")
     exact_layout_budget: int = Field(200_000, ge=0, le=10_000_000,
                                      description="Exact-layout search steps before falling back to SABRE.")
+    noise_aware: bool = Field(True, description="After routing, move the circuit to the physical qubits whose "
+                                                "calibrated gates and read-out cost the least (twins with "
+                                                "per-qubit calibration; ignored with a pinned layout).")
+    noise_aware_budget: int = Field(50_000, ge=0, le=10_000_000,
+                                    description="Search steps of the calibration-aware re-layout.")
     trials: int = Field(0, ge=0, le=64, description="SABRE layout trials; 0 = automatic (16 / 8 / 4 / 2 by size). "
                                                     "Each trial is fully routed and the fewest 2Q gates wins.")
     layout_iterations: int = Field(2, ge=0, le=16, description="Forward+backward refinement rounds per trial.")
@@ -103,7 +108,8 @@ class JobRequest(BaseModel):
     }]})
 
     backend: str = Field(..., description="Backend ID, e.g. 'quantinuum_helios', 'ionq_forte', "
-                                          "'rigetti_ankaa_3', 'iqm_emerald'.")
+                                          "'rigetti_ankaa_3', 'iqm_emerald', 'ibm_heron', 'ibm_nighthawk', "
+                                          "'google_willow'.")
     qasm: str = Field(..., min_length=1, description="OpenQASM 2.0 or 3.x source.")
     shots: int = Field(1024, ge=1, le=1_000_000)
     seed: int | None = Field(None, ge=0, le=2 ** 63 - 1,

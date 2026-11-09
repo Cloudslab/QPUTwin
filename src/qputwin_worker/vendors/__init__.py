@@ -3,4 +3,5 @@
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """
 
-VENDORS = ("quantinuum_helios", "ionq_forte", "rigetti_ankaa_3", "iqm_emerald")
+VENDORS = ("quantinuum_helios", "ionq_forte", "rigetti_ankaa_3", "iqm_emerald", "ibm_heron", "ibm_nighthawk",
+           "google_willow")

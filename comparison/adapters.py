@@ -140,10 +140,13 @@ class QPUTwin:
         tel = body["telemetry"]
         return Run(counts=body["result"]["counts"], run_s=dt, engine_s=tel["qpu_compute_time_ms"] / 1e3,
                    extra={"total_roundtrip_ms": tel["total_roundtrip_ms"],
+                          "engine": ((body["result"].get("noise") or {}).get("engine")
+                                     or (body.get("compilation", {}).get("workload") or {}).get("engine")
+                                     or "statevector"),
                           "worker_service_ms": tel["breakdown"]["worker_service_ms"],
                           "compilation": {k: body["compilation"].get(k) for k in
                                           ("native_two_qubit_count", "native_one_qubit_count", "native_depth",
-                                           "simulated_qubits")}})
+                                           "simulated_qubits", "native_gate_histogram", "physical_qubits_used")}})
 
     def exact(self, qasm: str, flat: Flat) -> Run:
         body, dt = self._post(qasm, 1, 1, {"return_statevector": True})
@@ -162,14 +165,17 @@ class QPUTwinLocal:
 
     name = "QPUTwin (in-process)"
 
-    def __init__(self, threads: int = 1, backend: str = "quantinuum_helios") -> None:
+    def __init__(self, threads: int = 1, backend: str = "quantinuum_helios", memory_guard: bool = False) -> None:
         sys.path.insert(0, str(ROOT / "src"))
         from qputwin_core.devices import DEVICES
         from qputwin_core.fused import set_engine_threads
         from qputwin_core.simulators import ExecutionOptions, SimulatorConfig, simulator_for
         set_engine_threads(threads)
         self._opts = ExecutionOptions
-        self.sim = simulator_for(DEVICES[backend], SimulatorConfig(memory_guard=False))
+        # memory_guard=True: the worker's own policy (reject runs that cannot fit; run the fused executor
+        # in place when two state buffers would not fit the available memory)
+        self.sim = simulator_for(DEVICES[backend], SimulatorConfig(memory_guard=memory_guard,
+                                                                   max_statevector_qubits=40))
 
     def sample(self, qasm: str, shots: int, seed: int = 1, options: dict[str, Any] | None = None) -> Run:
         from qputwin_core.timing import SpanTimer
@@ -184,10 +190,10 @@ class QPUTwinLocal:
 class Aer:
     name = "Qiskit Aer"
 
-    def __init__(self, threads: int = 1, method: str = "statevector") -> None:
+    def __init__(self, threads: int = 1, method: str = "statevector", precision: str = "double") -> None:
         from qiskit_aer import AerSimulator
         self.sim = AerSimulator(method=method, max_parallel_threads=threads, max_parallel_experiments=1,
-                                max_parallel_shots=1)
+                                max_parallel_shots=1, precision=precision)
         self.method = method
 
     def _circuit(self, flat: Flat, noise: tuple[float, float] | None = None, measure: bool = True) -> QuantumCircuit:

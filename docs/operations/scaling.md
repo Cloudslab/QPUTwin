@@ -58,17 +58,17 @@ From the [scaling benchmark](../research/benchmarks.md#horizontal-scaling), on o
 | 14 qubits (256 KiB state) | 114 jobs/s | 145 jobs/s | 164 jobs/s |
 | 20 qubits (16 MiB state) | 15.5 jobs/s | 26.2 jobs/s | 35.2 jobs/s |
 
-* **Small jobs** (≈ 4 ms of worker time) are limited by the orchestrator's asynchronous dispatch to one backend, at roughly 160 jobs/s, so extra workers help little (1.43× with three). Add orchestrator replicas instead.
-* **Large statevectors** scale well on one host: 2.27× with three replicas, with per-job time growing 29%. The fused engine reads and writes the state once per gate block rather than several times per gate, so replicas share memory bandwidth far better than before fusion (1.44×). Beyond the host's cores, scale across **hosts**.
+* **Small jobs** (≈ 4 ms of worker time) are limited by the orchestrator's asynchronous dispatch to one backend, at roughly 85–120 jobs/s (median of five runs; single runs range 46–184), so extra workers help little (1.41× with three). Add orchestrator replicas instead.
+* **Large statevectors** scale linearly on one host: 3.10× with three replicas (20 qubits), with no growth in per-job time. The fused engine reads and writes the state once per gate block rather than several times per gate, so replicas share memory bandwidth well. Beyond the host's cores, scale across **hosts**.
 
 From the [load tests](../research/load-testing.md), synchronous light jobs (GHZ₈, 256 shots):
 
 | Setup | Peak throughput |
 |---|---|
-| one worker | 270 jobs/s |
-| four QPUs, one orchestrator | 366 jobs/s |
-| four QPUs, three orchestrators behind the gateway | 622 jobs/s |
-| heavy QV-style 12-qubit jobs, 1 → 4 Forte replicas | 11.6 → 25.2 jobs/s |
+| one worker | 289 jobs/s |
+| seven QPUs, one orchestrator | 374 jobs/s |
+| seven QPUs, three orchestrators behind the gateway | 917 jobs/s |
+| heavy QV-style 12-qubit jobs, 1 → 4 Forte replicas | 10.2 → 25.2 jobs/s |
 
 * Add **orchestrator replicas** (`QPUTWIN_ORCHESTRATOR_REPLICAS`, profile `ha`) once fast jobs exceed about 300 jobs/s; the gateway also keeps an overloaded orchestrator stable.
 * Keep the concurrency per worker near the knee of its throughput curve (8–16 clients for millisecond jobs), or use the asynchronous queue, which never sends a worker more than its capacity.

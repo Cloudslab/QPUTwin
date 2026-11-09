@@ -11,7 +11,7 @@ QPUTwin runs as a small Docker Compose stack: one **orchestrator** that accepts 
 |---|---|---|
 | 1. Install with Docker or `uv` | [Installation](installation.md) | 5 min |
 | 2. Submit ideal, noisy, routed and asynchronous jobs | [Quick start](quickstart.md) | 10 min |
-| 3. Run one circuit on four QPUs and interpret the results | [Tutorial](tutorial.md) | 20 min |
+| 3. Run one circuit on four of the QPUs and interpret the results | [Tutorial](tutorial.md) | 20 min |
 
 !!! tip "Which interface should I use?"
     * **HTTP API (Docker stack):** use this for benchmarking, multi-user access, asynchronous jobs and anything that measures latency. It is the interface the research telemetry describes.

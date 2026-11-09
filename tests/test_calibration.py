@@ -151,7 +151,9 @@ def test_estimate_reported_for_every_job() -> None:
             H2 + "qreg q[2]; creg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q -> c;\n", ExecutionOptions(shots=100))
         est = r.compilation["hardware_time_estimate"]
         assert est["complete"] and est["circuit_duration_us"] > 0
-        assert est["estimated_job_duration_s"] == pytest.approx(100 * est["circuit_duration_us"] * 1e-6)
+        overhead = est["shot_overhead_us"] if est["includes_shot_overhead"] else 0.0
+        assert est["estimated_job_duration_s"] == pytest.approx(100 * (est["circuit_duration_us"] + overhead) * 1e-6)
+        assert est["includes_shot_overhead"] == (DEVICES[vendor].calibration.shot_overhead_us is not None)
     ion = simulator_for(DEVICES["ionq_forte"]).execute(H2 + "qreg q[1];\nh q[0];\n", ExecutionOptions(shots=1))
     sc = simulator_for(DEVICES["iqm_emerald"]).execute(H2 + "qreg q[1];\nh q[0];\n", ExecutionOptions(shots=1))
     assert ion.compilation["hardware_time_estimate"]["circuit_duration_us"] > \

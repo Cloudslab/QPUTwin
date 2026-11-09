@@ -24,7 +24,7 @@ Adjacent `rz` gates merge, angles wrap to (−π, π], and identities are droppe
 
 ### Phase exactness and the synthesis certificate
 
-Every rewrite tracks its global phase, so $U_{\text{source}} = e^{i\cdot\text{global\_phase}}\,U_{\text{native}}$ exactly. The synthesis error of each one-qubit block is measured during compilation, and the maximum is reported as `compilation.max_synthesis_error` (typically ~1e-16). That makes it a per-job numerical certificate of exactness. All four twins therefore return identical statevectors for any circuit they can all run.
+Every rewrite tracks its global phase, so $U_{\text{source}} = e^{i\cdot\text{global\_phase}}\,U_{\text{native}}$ exactly. The synthesis error of each one-qubit block is measured during compilation, and the maximum is reported as `compilation.max_synthesis_error` (typically ~1e-16). That makes it a per-job numerical certificate of exactness. All twins therefore return identical statevectors for any circuit they can all run.
 
 ## `strict` mode
 

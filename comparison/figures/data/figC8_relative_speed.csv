@@ -1,57 +1,80 @@
 threads,workload,simulator,qputwin_precision,time_relative_to_qputwin
-t1,sv ghz 24,Qiskit Aer,complex128,18.563
-t1,sv ghz 24,qsim,complex128,3.018
-t1,sv ghz 24,qsim,complex64,3.771
-t1,sv ghz 24,Qulacs,complex128,4.416
-t1,sv ghz 24,Braket local,complex128,8.458
-t1,sv ghz 24,Cirq,complex128,6.167
-t1,sv qv 20,Qiskit Aer,complex128,2.202
-t1,sv qv 20,qsim,complex128,0.359
-t1,sv qv 20,qsim,complex64,0.597
-t1,sv qv 20,Qulacs,complex128,8.415
-t1,sv qv 20,Braket local,complex128,6.311
-t1,sv qv 20,Cirq,complex128,28.063
-t1,sv qv 24,Qiskit Aer,complex128,2.541
-t1,sv qv 24,qsim,complex128,0.345
-t1,sv qv 24,qsim,complex64,0.607
-t1,sv qv 24,Qulacs,complex128,9.996
-t1,sv qv 24,Braket local,complex128,5.934
-t1,sv qft 20,Qiskit Aer,complex128,1.513
-t1,sv qft 20,qsim,complex128,0.423
-t1,sv qft 20,qsim,complex64,0.779
-t1,sv qft 20,Qulacs,complex128,4.36
-t1,sv qft 20,Braket local,complex128,3.854
-t1,sv qft 20,Cirq,complex128,12.485
-t1,sv qft 24,Qiskit Aer,complex128,1.428
-t1,sv qft 24,qsim,complex128,0.397
-t1,sv qft 24,qsim,complex64,0.767
-t1,sv qft 24,Qulacs,complex128,4.407
-t1,sv qft 24,Braket local,complex128,2.791
-t1,sv qft 24,Cirq,complex128,13.698
-t1,dm ghz 12,Qiskit Aer,complex128,10.641
-t1,dm ghz 12,Braket local,complex128,12.351
-t1,dm ghz 12,Cirq,complex128,61.678
-t1,dm qv 12,Qiskit Aer,complex128,3.049
-t1,dm qv 12,Braket local,complex128,16.033
-t4,sv ghz 24,Qiskit Aer,complex128,6.556
-t4,sv ghz 24,qsim,complex128,2.819
-t4,sv ghz 24,qsim,complex64,2.905
-t4,sv ghz 24,Qulacs,complex128,3.745
-t4,sv qv 20,Qiskit Aer,complex128,1.646
-t4,sv qv 20,qsim,complex128,0.395
-t4,sv qv 20,qsim,complex64,0.572
-t4,sv qv 20,Qulacs,complex128,5.741
-t4,sv qv 24,Qiskit Aer,complex128,2.121
-t4,sv qv 24,qsim,complex128,0.337
-t4,sv qv 24,qsim,complex64,0.579
-t4,sv qv 24,Qulacs,complex128,14.168
-t4,sv qft 20,Qiskit Aer,complex128,1.125
-t4,sv qft 20,qsim,complex128,0.378
-t4,sv qft 20,qsim,complex64,0.672
-t4,sv qft 20,Qulacs,complex128,3.109
-t4,sv qft 24,Qiskit Aer,complex128,1.38
-t4,sv qft 24,qsim,complex128,0.389
-t4,sv qft 24,qsim,complex64,0.752
-t4,sv qft 24,Qulacs,complex128,6.507
-t4,dm ghz 12,Qiskit Aer,complex128,6.195
-t4,dm qv 12,Qiskit Aer,complex128,2.787
+t1,sv ghz 24,Qiskit Aer,complex128,29.682
+t1,sv ghz 24,qsim,complex128,3.871
+t1,sv ghz 24,qsim,complex64,4.697
+t1,sv ghz 24,Qulacs,complex128,5.597
+t1,sv ghz 24,Braket local,complex128,5.614
+t1,sv ghz 24,Cirq,complex128,6.915
+t1,sv qv 20,Qiskit Aer,complex128,2.507
+t1,sv qv 20,qsim,complex128,0.299
+t1,sv qv 20,qsim,complex64,0.481
+t1,sv qv 20,Qulacs,complex128,8.205
+t1,sv qv 20,Braket local,complex128,5.792
+t1,sv qv 20,Cirq,complex128,20.262
+t1,sv qv 24,Qiskit Aer,complex128,2.841
+t1,sv qv 24,qsim,complex128,0.285
+t1,sv qv 24,qsim,complex64,0.472
+t1,sv qv 24,Qulacs,complex128,9.93
+t1,sv qv 24,Braket local,complex128,2.65
+t1,sv qv 24,Cirq,complex128,28.623
+t1,sv qft 20,Qiskit Aer,complex128,1.532
+t1,sv qft 20,qsim,complex128,0.312
+t1,sv qft 20,qsim,complex64,0.54
+t1,sv qft 20,Qulacs,complex128,3.857
+t1,sv qft 20,Braket local,complex128,2.933
+t1,sv qft 20,Cirq,complex128,8.924
+t1,sv qft 24,Qiskit Aer,complex128,1.435
+t1,sv qft 24,qsim,complex128,0.296
+t1,sv qft 24,qsim,complex64,0.513
+t1,sv qft 24,Qulacs,complex128,4.262
+t1,sv qft 24,Braket local,complex128,1.164
+t1,sv qft 24,Cirq,complex128,9.929
+t1,dm ghz 12,Qiskit Aer,complex128,14.699
+t1,dm ghz 12,Braket local,complex128,11.534
+t1,dm ghz 12,Cirq,complex128,69.09
+t1,dm qv 12,Qiskit Aer,complex128,3.369
+t1,dm qv 12,Braket local,complex128,11.204
+t4,sv ghz 24,Qiskit Aer,complex128,6.869
+t4,sv ghz 24,qsim,complex128,1.449
+t4,sv ghz 24,qsim,complex64,1.313
+t4,sv ghz 24,Qulacs,complex128,1.886
+t4,sv qv 20,Qiskit Aer,complex128,1.853
+t4,sv qv 20,qsim,complex128,0.359
+t4,sv qv 20,qsim,complex64,0.371
+t4,sv qv 20,Qulacs,complex128,5.734
+t4,sv qv 24,Qiskit Aer,complex128,2.509
+t4,sv qv 24,qsim,complex128,0.261
+t4,sv qv 24,qsim,complex64,0.369
+t4,sv qv 24,Qulacs,complex128,7.985
+t4,sv qft 20,Qiskit Aer,complex128,0.873
+t4,sv qft 20,qsim,complex128,0.241
+t4,sv qft 20,qsim,complex64,0.389
+t4,sv qft 20,Qulacs,complex128,2.015
+t4,sv qft 24,Qiskit Aer,complex128,1.294
+t4,sv qft 24,qsim,complex128,0.269
+t4,sv qft 24,qsim,complex64,0.383
+t4,sv qft 24,Qulacs,complex128,3.807
+t4,dm ghz 12,Qiskit Aer,complex128,11.132
+t4,dm qv 12,Qiskit Aer,complex128,2.674
+t16,sv ghz 24,Qiskit Aer,complex128,3.487
+t16,sv ghz 24,qsim,complex128,1.662
+t16,sv ghz 24,qsim,complex64,1.407
+t16,sv ghz 24,Qulacs,complex128,2.102
+t16,sv qv 20,Qiskit Aer,complex128,0.687
+t16,sv qv 20,qsim,complex128,0.312
+t16,sv qv 20,qsim,complex64,0.373
+t16,sv qv 20,Qulacs,complex128,1.644
+t16,sv qv 24,Qiskit Aer,complex128,1.833
+t16,sv qv 24,qsim,complex128,0.26
+t16,sv qv 24,qsim,complex64,0.351
+t16,sv qv 24,Qulacs,complex128,6.688
+t16,sv qft 20,Qiskit Aer,complex128,0.446
+t16,sv qft 20,qsim,complex128,0.215
+t16,sv qft 20,qsim,complex64,0.342
+t16,sv qft 20,Qulacs,complex128,0.966
+t16,sv qft 24,Qiskit Aer,complex128,1.132
+t16,sv qft 24,qsim,complex128,0.236
+t16,sv qft 24,qsim,complex64,0.357
+t16,sv qft 24,Qulacs,complex128,3.231
+t16,dm ghz 12,Qiskit Aer,complex128,3.558
+t16,dm qv 12,Qiskit Aer,complex128,1.416

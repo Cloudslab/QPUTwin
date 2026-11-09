@@ -66,7 +66,7 @@ from __future__ import annotations
 
 import heapq
 import random
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -100,6 +100,8 @@ class RoutingOptions:
     optimize: bool = True
     exact_layout: bool = True                           # place SWAP-free when the interaction graph embeds
     exact_layout_budget: int = 200_000                  # search steps before falling back to SABRE
+    noise_aware: bool = True                            # move the routed circuit to the best-calibrated qubits
+    noise_aware_budget: int = 50_000                    # search steps of that calibrated re-layout
 
     @classmethod
     def from_dict(cls, d: dict[str, Any] | None) -> RoutingOptions | None:
@@ -136,12 +138,13 @@ class RoutingOptions:
                 if not isinstance(v, int | float) or isinstance(v, bool) or not lo <= float(v) <= hi:
                     raise InvalidRequestError(f"options.routing.{k} must be a number in [{lo}, {hi}]")
                 kw[k] = float(v)
-        if "exact_layout_budget" in d:
-            v = d.pop("exact_layout_budget")
-            if not isinstance(v, int) or isinstance(v, bool) or not 0 <= v <= 10_000_000:
-                raise InvalidRequestError("options.routing.exact_layout_budget must be an integer in [0, 10000000]")
-            kw["exact_layout_budget"] = v
-        for k in ("bridge", "optimize", "exact_layout"):
+        for k in ("exact_layout_budget", "noise_aware_budget"):
+            if k in d:
+                v = d.pop(k)
+                if not isinstance(v, int) or isinstance(v, bool) or not 0 <= v <= 10_000_000:
+                    raise InvalidRequestError(f"options.routing.{k} must be an integer in [0, 10000000]")
+                kw[k] = v
+        for k in ("bridge", "optimize", "exact_layout", "noise_aware"):
             if k in d:
                 v = d.pop(k)
                 if not isinstance(v, bool):
@@ -706,3 +709,152 @@ class SabreRouter:
 
 def route_circuit(circuit: Circuit, coupling: CouplingMap, options: RoutingOptions | None = None) -> RoutingResult:
     return SabreRouter(coupling, options).run(circuit)
+
+
+# ============================================================ calibrated re-layout
+def calibrated_relayout(result: RoutingResult, coupling: CouplingMap, *,
+                        edge_cost: Callable[[int, int], float], qubit_cost: Callable[[int], float],
+                        readout_cost: Callable[[int], float], budget: int = 50_000) -> RoutingResult:
+    """Move a routed circuit onto the physical qubits with the lowest calibrated error.
+
+    The routed circuit's interaction graph (the couplers it uses) is re-embedded in the
+    coupling graph by a branch-and-bound subgraph-monomorphism search: every candidate keeps
+    each used coupler on a coupler, so the circuit stays executable with no new SWAPs. A
+    placement costs ``Σ n_e·edge_cost(e) + Σ n_q·qubit_cost(q) + Σ_measured readout_cost(q)``
+    (the negative log-fidelities of the gates and read-outs it lands on, as Qiskit's
+    VF2PostLayout scores a layout). The search starts from the cheapest candidates, prunes any
+    partial placement already as expensive as the best complete one, and stops after ``budget``
+    steps. The circuit moves only if the best placement is strictly cheaper than the current one,
+    so a calibration without per-qubit data (all qubits equal) never changes the layout.
+    """
+    ops = result.circuit.ops
+    e_count: dict[tuple[int, int], int] = {}
+    q_count: dict[int, int] = {}
+    measured: set[int] = set()
+    nodes: set[int] = set(result.initial_layout.values()) | set(result.final_layout.values())
+    for op in ops:
+        if op.name == "barrier":
+            continue
+        nodes.update(op.qubits)
+        if op.name == "measure":
+            measured.add(op.qubits[0])
+        elif len(op.qubits) == 2 and op.qubits[0] != op.qubits[1]:
+            e = (min(op.qubits), max(op.qubits))
+            e_count[e] = e_count.get(e, 0) + (3 if op.name == "swap" else 1)
+        elif len(op.qubits) == 1:
+            q_count[op.qubits[0]] = q_count.get(op.qubits[0], 0) + 1
+    adj: dict[int, dict[int, int]] = {u: {} for u in nodes}
+    for (a, b), k in e_count.items():
+        adj[a][b] = adj[b][a] = k
+    usable = list(coupling.usable_qubits)
+    usable_set = set(usable)
+    nbrs = {p: set(coupling.neighbors(p)) & usable_set for p in usable}
+
+    def node_cost(u: int, p: int) -> float:
+        return q_count.get(u, 0) * qubit_cost(p) + (readout_cost(p) if u in measured else 0.0)
+
+    ecache: dict[tuple[int, int], float] = {}
+
+    def ecost(p: int, q: int) -> float:
+        key = (p, q) if p < q else (q, p)
+        if key not in ecache:
+            ecache[key] = edge_cost(*key)
+        return ecache[key]
+
+    current = sum(node_cost(u, u) for u in nodes) + sum(k * ecost(a, b) for (a, b), k in e_count.items())
+    # placement order: connected nodes in BFS order from the busiest, isolated nodes last
+    order: list[int] = []
+    seen: set[int] = set()
+    for root in sorted((u for u in nodes if adj[u]), key=lambda u: (-sum(adj[u].values()), u)):
+        if root in seen:
+            continue
+        seen.add(root)
+        frontier = [root]
+        while frontier:
+            u = frontier.pop(0)
+            order.append(u)
+            for v in sorted(set(adj[u]) - seen, key=lambda w: (-sum(adj[w].values()), w)):
+                seen.add(v)
+                frontier.append(v)
+    isolated = sorted((u for u in nodes if not adj[u]), key=lambda u: -node_cost(u, u) if q_count.get(u) else 0)
+    # admissible bound on what the unplaced nodes must still cost: each node's cheapest qubit and
+    # read-out, plus its edges to earlier nodes at the cheapest coupler
+    q_min = min(qubit_cost(p) for p in usable)
+    r_min = min(readout_cost(p) for p in usable)
+    e_min = min((ecost(p, q) for p in usable for q in nbrs[p] if p < q), default=0.0)
+    pos = {u: i for i, u in enumerate(order)}
+    lb_node = [q_count.get(u, 0) * q_min + (r_min if u in measured else 0.0)
+               + sum(k for v, k in adj[u].items() if pos[v] < pos[u]) * e_min for u in order]
+    lb_iso = sum(q_count.get(u, 0) * q_min + (r_min if u in measured else 0.0) for u in isolated)
+    suffix = [0.0] * (len(order) + 1)
+    suffix[len(order)] = lb_iso
+    for i in range(len(order) - 1, -1, -1):
+        suffix[i] = suffix[i + 1] + lb_node[i]
+    best_cost = current
+    best: dict[int, int] | None = None
+    phi: dict[int, int] = {}
+    used: set[int] = set()
+    steps = 0
+    exhausted = False
+
+    def place(i: int, partial: float) -> None:
+        nonlocal steps, best_cost, best, exhausted
+        if partial + suffix[i] >= best_cost - 1e-12 or exhausted:
+            return
+        if i == len(order):
+            # isolated nodes: cheapest free qubits, most expensive node first
+            free = sorted((p for p in usable if p not in used), key=lambda p: qubit_cost(p) + readout_cost(p))
+            extra, assign = 0.0, {}
+            for u, p in zip(isolated, free, strict=False):
+                assign[u] = p
+                extra += node_cost(u, p)
+            if len(assign) == len(isolated) and partial + extra < best_cost - 1e-12:
+                best_cost, best = partial + extra, {**phi, **assign}
+            return
+        u = order[i]
+        placed = [(phi[v], k) for v, k in adj[u].items() if v in phi]
+        if placed:
+            cands = set(nbrs[placed[0][0]]).intersection(*(nbrs[p] for p, _ in placed[1:])) - used
+        else:
+            cands = set(usable) - used
+        need = len(adj[u])
+        scored = []
+        for p in cands:
+            if len(nbrs[p]) < need:
+                continue
+            scored.append((node_cost(u, p) + sum(k * ecost(p, q) for q, k in placed), p))
+        scored.sort()
+        for c, p in scored:
+            steps += 1
+            if steps > budget:
+                exhausted = True
+                return
+            if partial + c + suffix[i + 1] >= best_cost - 1e-12:
+                break                                    # sorted: every later candidate costs more
+            phi[u] = p
+            used.add(p)
+            place(i + 1, partial + c)
+            del phi[u]
+            used.discard(p)
+
+    place(0, 0.0)
+    stats = {"applied": best is not None, "cost_before": current, "cost_after": best_cost if best else current,
+             "search_steps": steps, "search_complete": not exhausted}
+    if best is None:
+        result.stats["calibrated_relayout"] = stats
+        return result
+
+    def mp(q: int) -> int:
+        return best.get(q, q)
+
+    new_ops = [Operation(op.name, tuple(mp(q) for q in op.qubits), op.params, op.clbits, op.condition, op.origin)
+               for op in ops]
+    c = result.circuit
+    routed = Circuit(version=c.version, num_qubits=c.num_qubits, num_clbits=c.num_clbits, qregs=dict(c.qregs),
+                     cregs=dict(c.cregs), ops=new_ops, hardware_qubits=True)
+    init = {lq: mp(p) for lq, p in result.initial_layout.items()}
+    final = {lq: mp(p) for lq, p in result.final_layout.items()}
+    new_stats = dict(result.stats) | {"calibrated_relayout": stats,
+                                      "initial_layout": sorted([lq, p] for lq, p in init.items()),
+                                      "final_layout": sorted([lq, p] for lq, p in final.items())}
+    return RoutingResult(routed, init, final, result.swaps, new_stats)
