@@ -125,13 +125,13 @@ A "heavy" client floods IonQ Forte with 300 jobs (star GHZ₁₄, 64 shots) as o
 | Own name, priority 5 (**fair share**) | **3.6 ms** | 204 ms |
 | Own name, priority 9 | 2.2 ms | 8.1 ms |
 
-Fair share alternates the single dispatch slot between active clients (least-recently-served first), so the light client waits for at most the job in progress, not for the whole backlog. Under FIFO it waits behind everything the flood queued first. The fair-share maximum (204 ms) comes from a short pause in which no job of either client completed; an earlier run showed the same effect (336 ms). The order stayed fair; we did not isolate the cause of the pause.
+Fair share alternates the single dispatch slot between active clients (least-recently-served first), so the light client waits for at most the job in progress, not for the whole backlog. Under FIFO it waits behind everything the flood queued first. The fair-share maximum (204 ms) comes from a short pause in which no job of either client completed. The order stayed fair; we did not isolate the cause of the pause.
 
-!!! success "Found and fixed by this benchmark"
-    The first run of this experiment showed **no isolation**: fair share ranked clients only by their *running* jobs. With one slot per QPU that count is zero for everyone whenever the slot frees, so the order fell back to FIFO. The scheduler now breaks the tie by *least recently served*. That gives round-robin between clients, verified by `test_fair_share_round_robin_with_one_slot` for both job stores. The "last served" order is kept in a small `client_usage` table updated once per claim, so the ordering is a primary-key lookup. An intermediate version derived it from the job history with an extra index, which turned a cheap running-jobs count into a scan of each client's history and slowed the 2 000-job burst of the time from 13 s to 208 s (laptop host); that version never shipped.
+!!! note "How fair share orders clients"
+    With one dispatch slot per QPU, every client's running-job count is zero whenever the slot frees, so the scheduler breaks the tie by *least recently served*. That gives round-robin between clients, verified by `test_fair_share_round_robin_with_one_slot` for both job stores. The "last served" order is kept in a small `client_usage` table updated once per claim, so the ordering is a primary-key lookup.
 
-!!! success "Found and fixed by this benchmark: retention scanned the whole job table"
-    Every async submission ran the retention pass, whose two `DELETE`s scanned every stored job. Accept latency therefore grew with history: on the earlier laptop host, 16.7 ms per submission with ~6 000 stored jobs. Retention now uses partial indexes over finished jobs, trims only when over the limit, and runs at most every 2 s on the submission path. A single submission now takes 3.4 ms, independent of history (`test_submissions_do_not_prune_every_time`, `test_retention_keeps_the_newest_finished_jobs`).
+!!! note "Retention does not slow submissions"
+    Retention uses partial indexes over finished jobs, trims only when over the limit, and runs at most every 2 s on the submission path, so accepting a job does not depend on how many jobs are stored (`test_submissions_do_not_prune_every_time`, `test_retention_keeps_the_newest_finished_jobs`). In the async burst above, admission ran at a median 7.8 ms per `202` with 16 concurrent submitters.
 
 ## Shots and circuit size
 
@@ -146,8 +146,8 @@ Fair share alternates the single dispatch slot between active clients (least-rec
 * **SABRE routing** dominates on the lattices: 10.6–11.4 s for 30 000 gates on the square lattices (Emerald, Willow, Ankaa-3, Nighthawk) and 15.9 s on Heron's sparser heavy-hex lattice, 1.9–2.8 gates/ms for the router alone. The automatic trial count steps down with size (16 / 8 / 4 / 2), so routing time grows sub-linearly between 3 000 and 10 000 gates (2.1 → 3.5 s on Emerald) and linearly beyond.
 * **Native compilation** runs at 38–42 gates/ms on the ions, 12–18 gates/ms on the square lattices and 6.3 gates/ms on Heron, whose routed circuits are the longest.
 
-!!! success "Found and fixed by this benchmark"
-    IonQ Forte's compile time first grew *quadratically*: 4.1 s at 30 000 gates against 0.66 s on Helios. The ASAP gate-duration scheduler rescanned every booked interval for each gate on devices with a parallelism limit. It now prunes intervals that end before the earliest qubit clock, and the schedule is bit-for-bit identical (`test_interval_pruning_keeps_the_schedule_identical`). Forte's compile time at 30 000 gates fell to **0.67 s** (6×, laptop host); on the server it is 0.75–0.78 s.
+!!! note "Linear scheduling on devices with a parallelism limit"
+    The ASAP gate-duration scheduler prunes booked intervals that end before the earliest qubit clock, so its cost stays linear on IonQ Forte, which limits parallel gates: Forte compiles 30 000 gates in 0.76–0.79 s on the server, with a schedule bit-for-bit identical to the unpruned one (`test_interval_pruning_keeps_the_schedule_identical`).
 
 ## The whole host saturated
 

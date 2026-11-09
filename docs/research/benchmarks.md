@@ -54,14 +54,14 @@ All figures are produced by `benchmarks/run_benchmarks.py` (data) and `benchmark
 <figcaption>Engine time per job versus simulated width (GHZ chain, 1024 shots, median of 3 runs, in-process, one engine thread). Dotted guides: 2ⁿ and 4ⁿ.</figcaption>
 </figure>
 
-| Engine | Largest width tested | Time (1 thread) | Before fusion |
-|---|---|---|---|
-| Statevector, complex128 | 24 qubits | 73 ms | 11.0 s (laptop) |
-| Statevector, complex64 | 24 qubits | 61 ms | 5.9 s (laptop) |
-| Density matrix (exact noise) | 12 qubits | 0.23 s | 10.7 s (laptop) |
-| Trajectories (T = 32, noisy) | 18 qubits | 0.28 s | 2.8 s (laptop) |
+| Engine | Largest width tested | Time (1 thread) |
+|---|---|---|
+| Statevector, complex128 | 24 qubits | 73 ms |
+| Statevector, complex64 | 24 qubits | 61 ms |
+| Density matrix (exact noise) | 12 qubits | 0.23 s |
+| Trajectories (T = 32, noisy) | 18 qubits | 0.28 s |
 
-**Finding.** The statevector grows roughly as $2^n$ above ~18 qubits (below that, fixed per-job overhead dominates). The density matrix grows as $4^n$. [Fused execution](../guide/engines.md#fused-execution) made both exact engines far faster: measured on one laptop CPU before and after, 126× (statevector) and 43× (density matrix) on this GHZ chain; the "before" column comes from that laptop, so do not divide it by the EPYC times. The GHZ chain is the best case, because lazy activation keeps the state small until the last block. A deep random circuit is still dense work: a 24-qubit QV-style circuit takes 8.7 s on one thread (2.8× faster than Qiskit Aer, 3.5× slower than qsim; see the [simulator comparison](simulator-comparison.md)). The trajectory engine now runs [batched and fused](../guide/engines.md#batched-fused-trajectories): the 18-qubit point fell from 1.7 s to 0.28 s on one thread. `engine: auto` uses the density matrix while $2^n \le 4T$ (up to 12 qubits for 1024 shots) and trajectories above. See the [simulator comparison](simulator-comparison.md) for how these speeds rank against Qiskit Aer, qsim, Qulacs, Braket and Cirq.
+**Finding.** The statevector grows roughly as $2^n$ above ~18 qubits (below that, fixed per-job overhead dominates). The density matrix grows as $4^n$. Both exact engines use [fused execution](../guide/engines.md#fused-execution). The GHZ chain is the best case, because lazy activation keeps the state small until the last block. A deep random circuit is still dense work: a 24-qubit QV-style circuit takes 8.7 s on one thread (2.8× faster than Qiskit Aer, 3.5× slower than qsim; see the [simulator comparison](simulator-comparison.md)). The trajectory engine runs [batched and fused](../guide/engines.md#batched-fused-trajectories). `engine: auto` uses the density matrix while $2^n \le 4T$ (up to 12 qubits for 1024 shots) and trajectories above. See the [simulator comparison](simulator-comparison.md) for how these speeds rank against Qiskit Aer, qsim, Qulacs, Braket and Cirq.
 
 ## Cost of routing
 
@@ -169,8 +169,8 @@ Native entanglers (SWAPs) and estimated success probability (ESP):
 * **20-qubit jobs** are worker-bound and scale linearly: 2.08× with two replicas and 3.10× with three. Per-job worker time does not grow (55 → 51 → 52 ms); the single-replica runs were the slowest per job, which is why the speed-up slightly exceeds the replica count. The fused engine reads and writes the state once per block, so three replicas do not saturate the host's memory bandwidth.
 * **14-qubit jobs** finish in about 4 ms of worker time, so the single orchestrator's asynchronous dispatch path (accepting, claiming and recording every job) carries most of each job. They do not scale with two replicas (0.99×) and reach 1.41× with three, and their throughput varies by 2–4× between runs (59–97 jobs/s with one replica, 46–103 with two, 86–184 with three). More orchestrators lift that ceiling (see [load testing](load-testing.md#orchestrator-scale-out)).
 
-!!! note "Why five runs and concurrent submission"
-    An earlier single run of 24 or 96 jobs per point finished in 0.5–1.5 s and was too noisy to compare replica counts: it even showed a super-linear 2.5× with two replicas (kept in `benchmarks/results/async_scaling.single_run.json`). A later version submitted the jobs from one serial client, so for 4 ms jobs it measured the client's submission rate rather than the workers (one campaign even showed two replicas slower than one). Each point is now the median of five runs of 120 (20 qubits) or 480 (14 qubits) jobs submitted by 16 concurrent clients, and the figure shows the range.
+!!! note "Method"
+    Each point is the median of five runs of 120 (20 qubits) or 480 (14 qubits) jobs submitted by 16 concurrent clients, so the measurement reflects the workers rather than the client's submission rate; the figure shows the range.
 
 ## Non-Markovian dephasing
 

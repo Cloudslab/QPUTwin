@@ -14,30 +14,23 @@ A comparative benchmark of **QPUTwin** against **Qiskit Aer**, the **Amazon Brak
 
 QPUTwin is measured on the **running Docker stack** (`http://localhost:8000`). The scripts only send HTTP requests to it; they never start, stop or reconfigure it. Single-thread timings of QPUTwin's engine use the identical code in-process.
 
-## What changed after the first run
-
-The first run (kept in `comparison/results/v1/`) showed QPUTwin's engine 5–78× slower than Aer and qsim, and a router that missed SWAP-free placements. Both were fixed in QPUTwin itself:
+## What makes QPUTwin fast
 
 * **Fused, multithreaded execution.**
   * Native gates are fused into dense blocks of up to 5 qubits and applied with one matrix product per block, on a lazily permuted tensor.
-  * A block that needs its qubits moved is applied *while* gathering cache-sized chunks, so the state is still read and written only once.
+  * A block that needs its qubits moved is applied *while* gathering cache-sized chunks, so the state is read and written only once.
   * Noise channels, depolarisation and resets become superoperators and fuse with the gates around them in the density-matrix engine.
   * Trailing diagonal gates that cannot affect the measurement are skipped.
   * Work is split across the worker's CPU quota (`QPUTWIN_ENGINE_THREADS`).
-* **A second round, after the first fused run (kept in `comparison/results/v2/`) still lost on shallow circuits:**
-  * *Lazy activation.* Untouched qubits are exactly `|0⟩` and are not stored; a block reaching new qubits uses only the matrix columns where they are 0. A 24-qubit GHZ chain now reaches full size only in its last block.
-  * *Wide diagonal blocks.* Phase-only gates fuse into blocks of up to 12 qubits, stored as their diagonal and applied as a phase table per cache chunk; consecutive diagonal blocks merge.
-  * *No denormals.* Fused matrix entries below 10⁻¹⁵ (rounding noise such as cos π/2) are set to zero. Before, they decayed block after block into denormal numbers, which the CPU processes about 100× more slowly, and filled a GHZ state with 16 million near-zero amplitudes.
-  * *Sampling without reordering.* Probabilities are taken in the stored axis order and written into the state's own memory; only the drawn outcomes are relabelled. A two-level inverse CDF avoids a full cumulative sum.
-  * *Faster planning.* Gates are contracted directly into a block's rows instead of being embedded into a full matrix, which made small circuits about 35 % faster.
+* **Lazy activation.** Untouched qubits are exactly `|0⟩` and are not stored; a block reaching new qubits uses only the matrix columns where they are 0. A 24-qubit GHZ chain reaches full size only in its last block.
+* **Wide diagonal blocks.** Phase-only gates fuse into blocks of up to 12 qubits, stored as their diagonal and applied as a phase table per cache chunk; consecutive diagonal blocks merge.
+* **No denormals.** Fused matrix entries below 10⁻¹⁵ (rounding noise such as cos π/2) are set to zero, so they never decay into denormal numbers, which the CPU processes about 100× more slowly.
+* **Sampling without reordering.** Probabilities are taken in the stored axis order and written into the state's own memory; only the drawn outcomes are relabelled. A two-level inverse CDF avoids a full cumulative sum.
+* **Direct planning.** Gates are contracted directly into a block's rows instead of being embedded into a full matrix.
+* **Batched, fused trajectories** for wide noisy circuits (see [engines](../docs/guide/engines.md#batched-fused-trajectories)).
 * The results match the per-gate reference kernels to < 1e-12 (30 regression tests, including every large-state branch on small states).
 * **Exact layout before SABRE.** A VF2-style search places the circuit with zero SWAPs whenever its interaction graph embeds in the coupling graph.
-* **SABRE trials scored by their real output.** Each trial routes the whole circuit, and the one with the fewest two-qubit gates is kept. Trial counts are now automatic (16 / 8 / 4 / 2 by circuit size).
-* **API fix found on the way.** The orchestrator's request schema had silently pinned `trials` to 4 and rejected `bridge`, `optimize` and the new layout options. It now mirrors the worker's options.
-
-![Engine speed-up](figures/figC7_engine_speedup.svg)
-
-This speed-up was measured before and after on one laptop host (Intel Core i5-12450H), because a speed-up is only meaningful on one CPU. Everything below was measured on the server.
+* **SABRE trials scored by their real output.** Each trial routes the whole circuit, and the one with the fewest two-qubit gates is kept. Trial counts are automatic (16 / 8 / 4 / 2 by circuit size).
 
 ## Setup
 
@@ -142,8 +135,8 @@ With every simulator given all 16 threads of the host (QPUTwin in-process, up to
 * **How a run ends differs.** QPUTwin and Aer check memory first and return an error. qsim and Qulacs allocate and are killed by the kernel, which in a shared service takes the worker, and every job queued on it, down.
 * **Speed at the edge:** on the shallow GHZ circuit QPUTwin is fastest at 28–29 qubits and at the 32-qubit limit (22.3 s against 27.5 s for qsim), while qsim is ahead at 30 qubits (6.8 s against 10.5–12.9 s) and level at 31; on deep QV-style circuits qsim leads (31 qubits, complex64: 53 s, QPUTwin 94 s, Aer 437 s). The single-buffer mode costs time on deep circuits (31-qubit QV-style in complex128: 452 s, against 71 s at 30 qubits with two buffers).
 
-!!! success "Found and fixed by this benchmark"
-    The first sweep ran a 31-qubit complex64 QV-style circuit in the single-buffer mode (392 s) although two buffers fit. The memory estimate counted 16 B per basis state for the probabilities, which the fused statevector writes into the state's own memory. The estimate is now 2.25 × state + 128 MiB for that path (measured peak 2.07 × at 25 qubits, 32.2 GiB of an estimated 36.1 GiB at 31); the same run takes 94 s.
+!!! note "Memory estimate"
+    The fused statevector writes its probabilities into the state's own memory, so its memory estimate is 2.25 × state + 128 MiB (measured peak 2.07 × at 25 qubits, 32.2 GiB of an estimated 36.1 GiB at 31 qubits). A 31-qubit complex64 QV-style circuit therefore runs with two buffers, in 94 s.
 
 ### 4. The physics cross-validates
 
@@ -225,8 +218,7 @@ A batch of 96 jobs (six families × 4, 6, 8, 10 qubits × four seeds) runs 16 at
 | IBM Nighthawk | **12.2 jobs/s** | 2.6 jobs/s | **4.8×** | 0.15 s / 2.53 s |
 | Google Willow | **24.3 jobs/s** | 6.5 jobs/s | **3.8×** | 0.15 s / 0.88 s |
 
-!!! success "Found and fixed by this benchmark"
-    In the first run of this experiment QPUTwin *lost*: 0.29 jobs/s on Heron against 1.6, with a p95 job time of 133 s. Noisy jobs above ten simulated qubits ran on trajectories one at a time, which took 200 s for a 12-qubit QAOA job. The [batched, fused trajectory executor](../docs/guide/engines.md#batched-fused-trajectories) and the cost-model engine choice made the same batch 34× faster.
+Noisy jobs above the density-matrix limit run on the [batched, fused trajectory executor](../docs/guide/engines.md#batched-fused-trajectories), and the cost model picks the cheaper engine per job.
 
 ### 8. Compilation: QPUTwin's router against the Qiskit transpiler (O1)
 
@@ -237,7 +229,7 @@ A batch of 96 jobs (six families × 4, 6, 8, 10 qubits × four seeds) runs 16 at
 | higher | 11 (Helios Cuccaro adder: 2–6 more ZZ gates; on Heron, Nighthawk, Emerald and Willow a few QFT, QV-style, adder and mirror cases, up to 12 more) |
 | **total over all cases** | **8 433 against 8 652 (−2.5 %)** |
 
-The first run had 23 cases where QPUTwin needed more two-qubit gates. Those came from missed SWAP-free placements (e.g. GHZ₇ on Ankaa-3: 12 against 6) and from SABRE trials that were scored by an estimate. Both are fixed. The Helios gap comes from Qiskit re-synthesising two-qubit blocks (KAK) around decomposed Toffolis, which QPUTwin's peephole pass does not do; the lattice cases are SABRE trials that Qiskit's own SABRE happens to beat.
+The Helios gap comes from Qiskit re-synthesising two-qubit blocks (KAK) around decomposed Toffolis, which QPUTwin's peephole pass does not do; the lattice cases are SABRE trials that Qiskit's own SABRE happens to beat.
 
 ## Where QPUTwin stands
 
@@ -246,7 +238,7 @@ The first run had 23 cases where QPUTwin needed more two-qubit gates. Those came
 | Correctness | identical to all five simulators (≤ 1.2 × 10⁻¹⁴) |
 | Device emulation end to end (IBM, Google twins) | **faster than the vendors' own workflows in 107 of 108 jobs** (geometric mean 4.8–10.2×, up to 134×); **3.8–6.0× their throughput** on the whole host |
 | Noisy density-matrix speed | **fastest of the four** from 10–12 qubits with a richer noise model (3.2–15× faster than Aer on one thread, 1.4–6.8× on 16); Aer is level or ahead below that |
-| Wide noisy circuits (trajectories) | batched, fused trajectories: a 12-qubit noisy QAOA job on Heron in ~3 s (212 s before), exact against the density matrix |
+| Wide noisy circuits (trajectories) | batched, fused trajectories: a 12-qubit noisy QAOA job on Heron in ~3 s, exact against the density matrix |
 | Ideal statevector, shallow circuits | **fastest** at 24 qubits on 1, 4 and 16 threads, at 28–29 and at the 32-qubit limit on 16 (3.9× faster than qsim at 24 on one thread); qsim is level or ahead at 26 and 30–31 qubits |
 | Ideal statevector, deep circuits | **2nd**, behind qsim only (1.9–2.2× at matched precision on one thread, 1.7–2.0× at 28 qubits on 16); faster than Aer from 22–24 qubits, and than Qulacs, Braket and Cirq |
 | Largest job on the host | the same widths as Aer, qsim and Qulacs (31 qubits complex128, 32 complex64, 15-qubit density matrix), **refused cleanly** beyond, where qsim and Qulacs are killed for memory |
@@ -291,9 +283,6 @@ The QPUTwin stack must already be running (`docker compose up -d --wait` in the 
 | `workflows.py` | IBM's (Qiskit transpile + Aer `from_backend`) and Google's (Cirq RouteCQC + qsim or Cirq density matrix) device-emulation workflows, and the QPUTwin job |
 | `run_comparison.py` | `correctness`, `sv_speed`, `dm_speed`, `noise_xval`, `vendor_xval`, `vendor_workflow`, `workflow_throughput` |
 | `run_capacity.py` | widest statevector and density-matrix run per simulator on the whole host |
-| `plot_comparison.py` | thirteen figures: PDF, SVG, 300-dpi PNG, plus CSV of plotted values |
-| `results/*.json`, `results/run*.log` | this run's raw measurements with environment metadata |
-| `results/v1/` | the first run, before the engine and router improvements |
-| `results/v2/` | the first fused-engine run, before lazy activation, wide diagonals and denormal-free blocks |
-| `results/laptop_2026-10-28/` | the laptop run behind the engine speed-up figure (figC7) |
-| `figures/` | `figC1`–`figC13` and `figures/data/*.csv` |
+| `plot_comparison.py` | twelve figures: PDF, SVG, 300-dpi PNG, plus CSV of plotted values |
+| `results/*.json`, `results/run*.log` | raw measurements with environment metadata, and the run logs |
+| `figures/` | `figC1`–`figC6`, `figC8`–`figC13` and `figures/data/*.csv` |

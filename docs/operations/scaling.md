@@ -51,12 +51,12 @@ Both drills were run against the live stack with two orchestrators behind the ga
 
 ## Throughput expectations
 
-From the [scaling benchmark](../research/benchmarks.md#horizontal-scaling), on one 12-thread laptop CPU:
+From the [scaling benchmark](../research/benchmarks.md#horizontal-scaling) on the 16-vCPU server (median of five runs):
 
 | Workload | 1 replica | 2 replicas | 3 replicas |
 |---|---|---|---|
-| 14 qubits (256 KiB state) | 114 jobs/s | 145 jobs/s | 164 jobs/s |
-| 20 qubits (16 MiB state) | 15.5 jobs/s | 26.2 jobs/s | 35.2 jobs/s |
+| 14 qubits (256 KiB state) | 85.9 jobs/s | 85.3 jobs/s | 121.4 jobs/s |
+| 20 qubits (16 MiB state) | 15.7 jobs/s | 32.6 jobs/s | 48.5 jobs/s |
 
 * **Small jobs** (≈ 4 ms of worker time) are limited by the orchestrator's asynchronous dispatch to one backend, at roughly 85–120 jobs/s (median of five runs; single runs range 46–184), so extra workers help little (1.41× with three). Add orchestrator replicas instead.
 * **Large statevectors** scale linearly on one host: 3.10× with three replicas (20 qubits), with no growth in per-job time. The fused engine reads and writes the state once per gate block rather than several times per gate, so replicas share memory bandwidth well. Beyond the host's cores, scale across **hosts**.

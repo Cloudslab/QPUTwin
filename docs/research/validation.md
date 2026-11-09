@@ -5,10 +5,10 @@ description: How QPUTwin's physics and system behaviour are validated — 615 un
 
 # Validation
 
-| Suite | Command | Tests | Result (2026-10-28) |
+| Suite | Command | Tests | Result (2026-11-10) |
 |---|---|---|---|
-| Unit + in-process integration | `uv run pytest` | 502 | all pass |
-| Live stack | `uv run pytest test_benchmark.py -v -s` | 32 | all pass (with 2 Forte replicas) |
+| Unit + in-process integration | `uv run pytest` | 615 | all pass |
+| Live stack | `uv run pytest test_benchmark.py -v -s` | 47 | all pass (with 2 Forte replicas) |
 
 JUnit reports are saved in `benchmarks/results/*.junit.xml`.
 

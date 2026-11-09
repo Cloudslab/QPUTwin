@@ -8,7 +8,7 @@ Koustav Kumar Mondal · erkoustavkumar@gmail.com
 | `circuits.py` | the nine benchmark circuit families (OpenQASM 2.0) and fidelity / heavy-output helpers |
 | `plot_figures.py` | renders the publication figures from `results/` |
 | `results/*.json` | raw measurements with environment metadata |
-| `results/*.junit.xml`, `*.log` | unit (502) and live-stack (32) test reports, run logs |
+| `results/*.junit.xml`, `*.log` | unit (615) and live-stack (47) test reports, run logs |
 | `figures/*.pdf`, `*.svg`, `*.png` | 27 figures: vector PDF/SVG and 300-dpi PNG |
 | `figures/data/*.csv` | exactly the values plotted in each figure |
 

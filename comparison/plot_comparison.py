@@ -209,62 +209,6 @@ def fig_dm_speed() -> None:
     save(fig, "figC4_density_matrix_speed", table)
 
 
-def fig_improvement() -> None:
-    """QPUTwin's engine before (v1, per-gate kernels, 1 thread) and after (fused; 1 and 4 threads), both on the laptop."""
-    v1sv = json.loads((RES / "v1" / "sv_speed_t1.json").read_text())["data"]
-    v1dm = json.loads((RES / "v1" / "dm_speed.json").read_text())["data"]
-    cases = [("sv", "ghz", 24), ("sv", "qv", 20), ("sv", "qft", 20), ("sv", "qv", 22), ("sv", "qft", 22),
-             ("dm", "ghz", 12), ("dm", "qv", 10), ("dm", "qv", 12)]
-    # same host as v1 (the laptop): a speed-up is only meaningful when both runs share the CPU
-    same = RES / "laptop_2026-10-28"
-
-    def lap(name: str) -> list[dict[str, Any]]:
-        return json.loads((same / f"{name}.json").read_text())["data"]
-
-    new = {"t1": {"sv": lap("sv_speed_t1"), "dm": lap("dm_speed_t1")},
-           "t4": {"sv": lap("sv_speed_t4"), "dm": lap("dm_speed_t4")}}
-
-    def engine(rows, fam, n, sim):
-        r = next((r for r in rows if r["family"] == fam and r["qubits"] == n and r["simulator"] == sim), None)
-        if r is None:
-            return None
-        return r.get("engine_s_best") or (min(r["engine_s"]) if isinstance(r["engine_s"], list) else r["engine_s"])
-
-    table = []
-    labels, before, after1, after4 = [], [], [], []
-    for kind, fam, n in cases:
-        b = engine(v1sv if kind == "sv" else v1dm, fam, n, "QPUTwin")
-        a1 = engine(new["t1"][kind], fam, n, "QPUTwin (in-process)")
-        a4 = engine(new["t4"][kind], fam, n, "QPUTwin")
-        if None in (b, a1, a4):
-            continue
-        labels.append(f"{'SV' if kind == 'sv' else 'DM'} {FAM_LABEL[fam]} {n}q")
-        before.append(b)
-        after1.append(a1)
-        after4.append(a4)
-        table.append({"case": labels[-1], "before_s": round(b, 4), "after_1thread_s": round(a1, 4),
-                      "after_4threads_s": round(a4, 4), "speedup_1thread": round(b / a1, 2),
-                      "speedup_4threads": round(b / a4, 2)})
-    fig, ax = plt.subplots(figsize=(DOUBLE, 2.7))
-    x = np.arange(len(labels))
-    for k, (vals, name, col) in enumerate(((before, "before (per-gate kernels, 1 thread)", MUTED),
-                                           (after1, "now, 1 thread", SLOTS[0]),
-                                           (after4, "now, 4 threads", SLOTS[6]))):
-        ax.bar(x + (k - 1) * 0.27, vals, width=0.27, color=col, edgecolor="white", linewidth=0.5, label=name)
-    for xi, b, a4 in zip(x, before, after4, strict=True):
-        ax.annotate(f"{b / a4:.0f}×", (xi + 0.27, a4), xytext=(0, 2), textcoords="offset points", ha="center",
-                    fontsize=6.6, color=INK2)
-    ax.set_yscale("log")
-    ax.yaxis.set_major_formatter(FuncFormatter(secs))
-    ax.set_xticks(x, labels, rotation=20, ha="right")
-    ax.grid(axis="x", visible=False)
-    ax.set_ylabel("QPUTwin engine time")
-    ax.set_title("Engine speed-up from fusion, lazy activation and threading (label: before ÷ now, 4 threads)",
-                 loc="left")
-    ax.legend(loc="upper left", ncol=3)
-    save(fig, "figC7_engine_speedup", table)
-
-
 def fig_ranking() -> None:
     """Every simulator's time relative to QPUTwin, per workload and thread budget (>1 = slower than QPUTwin)."""
     work = [("sv", "ghz", 24), ("sv", "qv", 20), ("sv", "qv", 24), ("sv", "qft", 20), ("sv", "qft", 24),
@@ -650,7 +594,7 @@ def fig_workflow_throughput() -> None:
 
 
 FIGURES = [fig_correctness, fig_sv_speed, fig_threads, fig_threads16, fig_dm_speed, fig_noise_xval,
-           fig_noise_by_family, fig_vendor_xval, fig_improvement, fig_ranking, fig_capacity, fig_vendor_workflow,
+           fig_noise_by_family, fig_vendor_xval, fig_ranking, fig_capacity, fig_vendor_workflow,
            fig_workflow_throughput]
 
 
