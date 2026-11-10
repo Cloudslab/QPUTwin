@@ -21,7 +21,7 @@ By default QPUTwin **rejects** circuits that violate a device's connectivity, as
 | `initial_layout` | string \| list | `sabre` | `sabre`, `trivial`, or `[p₀, p₁, …]` | `sabre`: exact layout if one exists, else bidirectional layout search; `trivial`: logical i → physical i; a list maps logical i → `layout[i]` |
 | `exact_layout` | bool | true | | first search for a SWAP-free embedding of the interaction graph (see below) |
 | `exact_layout_budget` | int | 200 000 | 0 … 10⁷ | search steps before falling back to SABRE |
-| `trials` | int | 0 (automatic) | 0 … 64 | SABRE layout trials; 0 = 16 up to 250 two-qubit gates, 8 up to 1 000, 4 up to 10 000, else 2 (each doubling removes about 3 % of the two-qubit gates and doubles the routing time). Each trial routes the whole circuit and the one with the fewest two-qubit gates is kept |
+| `trials` | int | 0 (automatic) | 0 … 64 | SABRE layout trials; 0 = 16 up to 250 two-qubit gates, 8 up to 1 000, 4 up to 10 000, else 2. Each trial routes the whole circuit and the one with the fewest two-qubit gates is kept |
 | `layout_iterations` | int | 2 | 0 … 16 | forward+backward refinement rounds per trial |
 | `seed` | int | 0 | 0 … 2⁶³−1 | router RNG (independent of the shot seed) |
 | `lookahead` | int | 20 | 0 … 1000 | size of the extended set E |
@@ -103,4 +103,4 @@ for k in range(4, 15, 2):
     routed = run("iqm_emerald", star, options={"routing": {"method": "sabre"}})
 ```
 
-The [routing benchmark](../research/benchmarks.md#cost-of-routing) shows the trade-off. At k = 16 the routed lattices need 26–29 entanglers against 15 on the all-to-all twins, and the predicted success drops to 0.44–0.52. With the default 16 trials, routing also costs 0.5–32 ms of router time per job; `trials: 1` cuts that to about a quarter at the price of a few extra SWAPs.
+The [routing benchmark](../research/benchmarks.md#cost-of-routing) shows the trade-off. At k = 16 the routed square lattices need 26–32 entanglers and Heron's heavy-hex lattice 42, against 15 on the all-to-all twins, and the predicted success drops to 0.44–0.87. With the default 16 trials, routing also costs 0.5–34.5 ms of router time per job; fewer `trials` cut that time at the price of extra SWAPs.

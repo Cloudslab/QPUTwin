@@ -93,7 +93,7 @@ From 10 qubits, QPUTwin is **3.2–15× faster than Aer** on one thread (GHZ 12�
 ![Relative speed](figures/figC8_relative_speed.svg)
 
 * **Shallow circuits (GHZ):** QPUTwin is the **fastest of six from 22 qubits** on one thread and at 24 qubits on four: at 24 qubits on one thread 3.9× faster than qsim, 5.6× than Qulacs and Braket, 6.9× than Cirq and 30× than Aer. Lazy activation means the chain touches a full-size state only once. Below that, Qulacs leads (its per-gate C++ calls cost microseconds), and qsim is ahead on four threads at 22 qubits.
-* **Deep circuits (QV-style, QFT adder):** QPUTwin is the **second-fastest of six** at large widths. At 20–24 qubits it is 1.4–2.8× faster than Qiskit Aer on one thread (on four, 1.9–2.5× on QV-style circuits, while Aer is up to 1.15× ahead on the QFT adder at 20–22 qubits), 1.2–5.8× faster than Braket, 3.9–9.9× faster than Qulacs and 9–29× faster than Cirq. Only **qsim** is faster: by 3.2–3.6× against QPUTwin's default double precision, and by **1.9–2.2× at matched (single) precision** on one thread (2.6–2.7× on four). qsim is hand-vectorised C++; QPUTwin's 5-qubit blocks are already dense BLAS products, so closing the rest would need hand-written SIMD kernels. A numba prototype was not faster than BLAS on one thread and was not adopted.
+* **Deep circuits (QV-style, QFT adder):** QPUTwin is the **second-fastest of six** at large widths. At 20–24 qubits it is 1.4–2.8× faster than Qiskit Aer on one thread (on four, 1.9–2.5× on QV-style circuits, while Aer is up to 1.15× ahead on the QFT adder at 20–22 qubits), 1.2–5.8× faster than Braket, 3.9–9.9× faster than Qulacs and 9–29× faster than Cirq. Only **qsim** is faster: by 3.2–3.6× against QPUTwin's default double precision, and by **1.9–2.2× at matched (single) precision** on one thread (2.6–2.7× on four). qsim is hand-vectorised C++; QPUTwin's 5-qubit blocks are already dense BLAS products, so closing the rest would need hand-written SIMD kernels.
 * **Small widths (10–14 qubits):** on deep circuits Qulacs, qsim and Aer are ahead; QPUTwin's engine takes tens of milliseconds there, mostly Python planning. A QPUTwin job costs milliseconds end to end anyway, dominated by HTTP, validation and native compilation, not simulation.
 
 #### All 16 vCPUs
@@ -136,7 +136,7 @@ With every simulator given all 16 threads of the host (QPUTwin in-process, up to
 * **Speed at the edge:** on the shallow GHZ circuit QPUTwin is fastest at 28–29 qubits and at the 32-qubit limit (22.3 s against 27.5 s for qsim), while qsim is ahead at 30 qubits (6.8 s against 10.5–12.9 s) and level at 31; on deep QV-style circuits qsim leads (31 qubits, complex64: 53 s, QPUTwin 94 s, Aer 437 s). The single-buffer mode costs time on deep circuits (31-qubit QV-style in complex128: 452 s, against 71 s at 30 qubits with two buffers).
 
 !!! note "Memory estimate"
-    The fused statevector writes its probabilities into the state's own memory, so its memory estimate is 2.25 × state + 128 MiB (measured peak 2.07 × at 25 qubits, 32.2 GiB of an estimated 36.1 GiB at 31 qubits). A 31-qubit complex64 QV-style circuit therefore runs with two buffers, in 94 s.
+    The fused statevector writes its probabilities into the state's own memory, so its memory estimate is 2.25 × state + 128 MiB (measured peak 32.2 GiB of an estimated 36.1 GiB at 31 qubits). A 31-qubit complex64 QV-style circuit therefore runs with two buffers, in 94 s.
 
 ### 4. The physics cross-validates
 
@@ -182,7 +182,7 @@ For the three twins built from vendor snapshots there is a stronger reference: t
 | Google Willow | Cirq, `willow_pink` | **0.0014** | 0.026 | 0.0040 | 0.0036 | 0.0468 / 0.161 |
 
 * **The twins reproduce the vendors' models.** The median fidelity difference is at most 0.0014 and the worst case 0.026. On Heron and Willow the total-variation distance is close to the sampling floor; on Nighthawk it is about two floors.
-* **Per-qubit data matter.** A twin built from the same snapshots' device medians has two to five times the total-variation distance and differs by up to 0.06–0.16 in fidelity. The compiled circuits are placed by the [calibration-aware re-layout](../docs/guide/routing.md#calibration-aware-re-layout), so they avoid the snapshots' poorest qubits, which the medians cannot see.
+* **Per-qubit data matter.** A twin built from the same snapshots' device medians has 2.8 (Heron) and 4.8 (Nighthawk) times the total-variation distance of the per-qubit twin and differs by up to 0.06–0.16 in fidelity. The compiled circuits are placed by the [calibration-aware re-layout](../docs/guide/routing.md#calibration-aware-re-layout), so they avoid the snapshots' poorest qubits, which the medians cannot see.
 * **Cirq double-counts readout-time decay.** Cirq's model also decays every qubit for the 600 ns of each measurement, on top of a measured readout error that already contains that decay. QPUTwin does not count it twice, so the table compares with Cirq's model with that decay off. Cirq as shipped predicts on average 0.027 lower fidelity (up to 0.095). The IBM rows compare QPUTwin without idle noise, because neither vendor model idles an unscheduled circuit.
 
 These are checks against the vendors' published models, not against hardware.
@@ -253,7 +253,7 @@ QPUTwin is not faster than *every* simulator at *everything*. qsim's hand-vector
 * QPUTwin's 4-thread numbers come from the service (engine time from telemetry); the others run in-process. Single-thread QPUTwin numbers use the identical code in-process.
 * QPUTwin simulates its compiled native sequence; the others simulate the U/CX list. Each simulates what it would in practice.
 * The noisy-speed test uses different noise models (§2): QPUTwin's is the more expensive one.
-* Vendor cloud emulators (Quantinuum Nexus, IonQ cloud simulator, IQM Resonance) need accounts and run remotely, so they are not included. For the four original twins the calibration-matched Aer model is the reproducible stand-in; for the IBM and Google twins the vendors' own SDK noise models are used.
+* Vendor cloud emulators (Quantinuum Nexus, IonQ cloud simulator, IQM Resonance) need accounts and run remotely, so they are not included. For the four median-based twins the calibration-matched Aer model is the reproducible stand-in; for the IBM and Google twins the vendors' own SDK noise models are used.
 * One host shared with the QPUTwin stack (except the capacity sweep, which stops it). Ratios transfer better than absolute times.
 * The vendor workflows use the vendors' public SDK emulation paths (Qiskit Aer, Cirq, qsim), not their cloud services; each tool used its own default engine choice.
 * qsim ran at its default fusion setting only.

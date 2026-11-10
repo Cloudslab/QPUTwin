@@ -52,7 +52,7 @@ Measured on a 16-vCPU, 62.8 GiB server against Qiskit Aer, the Amazon Braket loc
 
 * **Vendors' own workflows.** For the same OpenQASM program, a QPUTwin job was faster than IBM's (Qiskit transpile + Aer `from_backend`) and Google's (Cirq + qsim with Google's noise model) emulation workflows in 107 of 108 cases, by a geometric mean of 7.1× (Heron r3), 10.2× (Nighthawk) and 4.8× (Willow).
 * **Noisy density matrix.** From 10 qubits, 3.2–15× faster than Aer on one thread; Aer is level or ahead on smaller jobs.
-* **Ideal statevector.** Fastest on shallow GHZ circuits at 24 qubits (3.9× qsim on one thread); on deep circuits qsim leads, by 1.9–2.2× at matched single precision.
+* **Ideal statevector.** Fastest on shallow GHZ circuits at 24 qubits (3.9× qsim on one thread); on deep circuits qsim leads, by 1.9–2.2× at matched single precision on one thread.
 * **Vendors' own noise models.** The IBM and Google twins reproduce them to a median |Δ| of 0.0011–0.0014.
 * **Saturation.** With 21 workers on all 16 vCPUs for ten minutes, all 90 326 light and 5 756 heavy jobs completed, oversized jobs were refused, and no container ran out of memory.
 

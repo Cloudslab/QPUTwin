@@ -64,7 +64,7 @@ A real response (a single call for a 12-qubit GHZ on Helios, 1024 shots; abridge
 }
 ```
 
-This single call ran slower than the median of the [latency benchmark](../research/benchmarks.md#latency-decomposition) (7.65 ms for the same workload); always report distributions, not single calls.
+This single call ran slower than the median of the [latency benchmark](../research/benchmarks.md#latency-decomposition) (6.39 ms for the same workload on Helios); always report distributions, not single calls.
 
 ## The research dataset
 

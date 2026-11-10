@@ -25,7 +25,7 @@ This page drives the live Docker stack hard and measures how throughput, latency
 | Test | Result |
 |---|---|
 | Peak sync throughput, one worker, light jobs | **289 jobs/s** at 4–16 clients (client p50 14 ms at 4) |
-| Peak sync throughput, seven QPUs, 1 orchestrator | **374 jobs/s**; the orchestrator is the bottleneck |
+| Peak sync throughput, seven QPUs, 1 orchestrator | **374–378 jobs/s**; the orchestrator is the bottleneck |
 | … with 3 orchestrators behind nginx | **917 jobs/s** (2.6× one orchestrator behind nginx) |
 | Heavy jobs, 1 → 4 worker replicas | 10.2 → **25.2 jobs/s** (2.5×) |
 | Five-minute soak, 120 jobs/s | **36 155 jobs, 0 errors**, client p50 8.1 ms / p99 18.5 ms, memory flat after warm-up |
@@ -41,8 +41,8 @@ Each of *N* clients sends its next job as soon as the previous one returns.
 
 ![Closed-loop load](../assets/figures/fig17_load_closed_loop.svg)
 
-* **One worker saturates at its serial slot.** Light jobs reach 289 jobs/s from *N* = 4–16, so a worker spends about 3.5 ms per job: HTTP, JSON, parse and compile. The emulated QPU time is only 0.8 ms. Heavy jobs saturate at 10.2 jobs/s from *N* = 2. Their worker time (~100 ms) is parsing (35 ms), native compilation (31 ms) and the engine (29 ms) of a 1 400-gate circuit; the orchestrator's validation adds another 34 ms before dispatch.
-* **Past saturation, latency grows linearly in *N*** while throughput stays flat, which is the closed-loop signature of a single queue. For heavy jobs: 134 ms at *N* = 1, 6.4 s at *N* = 64.
+* **One worker saturates at its serial slot.** Light jobs reach 289 jobs/s from *N* = 4–16, so a worker spends about 3.5 ms per job: HTTP, JSON, parse and compile. The emulated QPU time is only 0.8 ms. Heavy jobs saturate at 10.2 jobs/s from *N* = 2. Their worker time (about 97 ms) is parsing (33 ms), native compilation (32 ms) and the engine (30 ms) of a 1 400-gate circuit; the orchestrator's validation adds another 38 ms before dispatch.
+* **Past saturation, latency grows linearly in *N*** while throughput stays flat, which is the closed-loop signature of a single queue. For heavy jobs: 136 ms at *N* = 1, 6.4 s at *N* = 64.
 * **Light-job throughput sags at high concurrency** (289 → 163 jobs/s at 256 clients). Every waiting request still costs the single-process Python services some event-loop time, so heavy oversubscription has a real overhead. Keep the concurrency per worker near its knee (about 8), or use the [asynchronous queue](../guide/async-jobs.md), which never sends a worker more than its capacity.
 * **Four worker replicas give 2.5× heavy throughput** (10.2 → 25.2 jobs/s) rather than 4×. The engine time per job does not grow (30 ms at 16 clients); the loss is outside the engine. Four replicas with four engine threads each fill the host's 16 vCPUs, which the orchestrator and the clients also use, and at 16 clients the orchestrator's ingress and the dispatch transit grow to 131 and 250 ms per job. Linear scale-out needs dedicated hosts or cores per replica.
 
@@ -76,8 +76,8 @@ The orchestrator is a single Python process, so with fast jobs spread over many 
 
 (p99 measured at the client.)
 
-* Three orchestrators give **2.5× the direct peak** and 2.6× one orchestrator behind the gateway, not 3×: the 16 vCPUs are shared by 3 orchestrators, 7 workers, nginx and 3 client processes. From 32 to 128 clients the three-orchestrator setup holds 898–917 jobs/s; at 256 clients it drops to 750 jobs/s with a 1.8 s p99, when the client processes (0.57 core each) and nginx compete with it for the host.
-* nginx costs about 4 % of peak throughput but **keeps a single overloaded orchestrator stable**: throughput holds at 341–353 jobs/s from 16 to 256 clients, while direct connections dip to 208 jobs/s with a 1.7 s client p99 at 128 clients (against 391 ms through nginx). nginx absorbs connection churn the Python event loop handles poorly.
+* Three orchestrators give **2.5× the direct peak** and 2.6× one orchestrator behind the gateway, not 3×: the 16 vCPUs are shared by 3 orchestrators, 7 workers, nginx and 3 client processes. From 32 to 128 clients the three-orchestrator setup holds 898–917 jobs/s; at 256 clients it drops to 750 jobs/s with a 1.8 s p99, when the client processes (0.64 core each) and nginx compete with it for the host.
+* nginx costs about 5 % of peak throughput but **keeps a single overloaded orchestrator stable**: throughput holds at 341–353 jobs/s from 16 to 256 clients, while direct connections dip to 208 jobs/s with a 1.7 s client p99 at 128 clients (against 391 ms through nginx). nginx absorbs connection churn the Python event loop handles poorly.
 
 ## Open loop: queueing theory check
 
@@ -100,8 +100,8 @@ The soak test sends 120 jobs/s as Poisson arrivals over all seven QPUs (36 155 j
 
 ![Soak](../assets/figures/fig20_soak.svg)
 
-* **No errors**, and no drift: the server p50 stays between 6.4 and 9.0 ms in every 10-s window (6.7 ms overall; p99 15.0 ms). Only the first window has a higher p99 (207 ms, against at most 24 ms afterwards), from cold connections and caches.
-* **Memory plateaus.** The freshly started orchestrator grows from 91 to 110 MiB during the first ~60 s, while its 10 000-record telemetry ring buffer fills (`QPUTWIN_TELEMETRY_BUFFER`). It then stays at 110–112 MiB for the remaining four minutes. The workers stay flat (60–74 MiB; Forte 108–112 MiB), so there is no leak in the request path, the ring buffer or the JSONL writer.
+* **No errors**, and no drift: the server p50 stays between 6.4 and 9.0 ms in every 10-s window (6.7 ms overall; p99 14.9 ms). Only the first window has a higher p99 (207 ms, against at most 24.4 ms afterwards), from cold connections and caches.
+* **Memory plateaus.** The freshly started orchestrator grows from 84–91 to 110 MiB during the first ~60 s, while its 10 000-record telemetry ring buffer fills (`QPUTWIN_TELEMETRY_BUFFER`). It then stays at 110–112 MiB for the remaining four minutes. The workers stay flat (60–74 MiB; Forte 108–112 MiB), so there is no leak in the request path, the ring buffer or the JSONL writer.
 
 ## Asynchronous burst
 
@@ -109,7 +109,7 @@ The soak test sends 120 jobs/s as Poisson arrivals over all seven QPUs (36 155 j
 
 ![Async burst](../assets/figures/fig21_async_burst.svg)
 
-* **Admission is fast:** 362 jobs/s accepted (p50 7.8 ms per `202` at 16 concurrent submitters), and the queue peaked at 2 193 jobs.
+* **Admission is fast:** 362 jobs/s accepted (p50 7.8 ms per `202` at 16 concurrent submitters), and the queue peaked at 2 188 jobs.
 * **Draining** runs at 209 jobs/s on average over seven one-slot QPUs, and at 269 jobs/s once submissions stop, because the same orchestrator both accepts and dispatches.
 * All 3 500 jobs completed within 16.8 s. The QPUs' median queue waits range from 5.0 s (Ankaa-3) to 7.0 s (Nighthawk): every QPU drains its 500 jobs through one slot, and the shared orchestrator interleaves them.
 
@@ -165,13 +165,13 @@ Host CPU and memory are sampled every second, and `docker stats` and the contain
 | Result | Value |
 |---|---|
 | Host CPU | **100 %** (median over 600 s) of 16 vCPUs |
-| Host memory | 34–37 GiB in use (36.7 GiB peak of 62.8 GiB) |
+| Host memory | 32–37 GiB in use (36.7 GiB peak of 62.8 GiB) |
 | Light jobs | **90 326 / 90 326** completed; server p50 67 ms, p99 0.90 s |
-| Heavy jobs | **5 756 / 5 756** completed: 62 dense 28-qubit statevectors (all in place, ~70 s each) and 5 694 density-matrix / QV jobs |
+| Heavy jobs | **5 756 / 5 756** completed: 62 dense 28-qubit statevectors (all in place, median 72 s each) and 5 694 density-matrix / QV jobs |
 | Oversized jobs | **66 / 66** refused with `422 ResourceLimitError` |
 | OOM kills, container restarts, 5xx | **0, 0, 0** |
 
-* **The service degrades, it does not fail.** With every core busy, light jobs still complete, all of them, and the server-side median stays at 57–84 ms in every minute of the run: there is no backlog.
+* **The service degrades, it does not fail.** With every core busy, light jobs still complete, all of them, and the server-side median stays at 56–85 ms in every minute of the run: there is no backlog.
 * **The memory guard holds.** A 28-qubit statevector needs 2 × 4 GiB with two buffers, more than a 7 GiB worker has left; the guard switched each of these jobs to the single-buffer executor (peak 1.5 × state) instead of refusing it, and refused every 30-qubit job. No worker was killed for memory.
 * **A refusal waits its turn.** An oversized job is refused only when it reaches a worker's single slot, so the 422 arrives after 0.5–10 s, behind the heavy job in progress.
 * **Client-side latency is not the service's.** The single `asyncio` load generator runs on the same saturated host as the 21 workers, so its own latency (client p50 4.9 s) includes waiting for CPU time. The server-side spans, which stay flat, are the service's latency here; when the host is not saturated the two agree within about 1.5 ms (soak test: server p50 6.7 ms, client 8.1 ms).

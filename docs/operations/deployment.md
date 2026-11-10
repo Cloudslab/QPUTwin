@@ -37,11 +37,11 @@ Editing code therefore never reinstalls numpy or scipy, and a fresh build reprod
 | Workload | Per-worker memory | Notes |
 |---|---|---|
 | ideal ≤ 20 qubits | 1 GiB | any machine |
-| ideal 27 qubits | 12 GiB (default) | `complex64` reaches 28 |
+| ideal 28 qubits | 12 GiB (default) | `complex64` reaches 29 |
 | exact noise ≤ 14 qubits | 12 GiB | density matrix |
 | wide noisy circuits | as ideal | trajectory engine; time grows with the trajectory count |
 
-CPU: workers run single-threaded numpy (`OMP_NUM_THREADS=1`). Large statevectors are **memory-bandwidth bound**: on one host, adding replicas raises throughput much less for 20-qubit jobs than for cache-resident ones (see the [scaling benchmark](../research/benchmarks.md#horizontal-scaling)).
+CPU: BLAS threading is off (`OMP_NUM_THREADS=1`); the fused engine uses the worker's CPU quota (`QPUTWIN_WORKER_CPUS`, default 4). On one host, adding worker replicas scales 20-qubit jobs linearly (3.10× with three replicas), while small, cache-resident jobs are limited by the orchestrator's dispatch path (1.41× with three) and need orchestrator replicas instead (see the [scaling benchmark](../research/benchmarks.md#horizontal-scaling)).
 
 ## Data
 

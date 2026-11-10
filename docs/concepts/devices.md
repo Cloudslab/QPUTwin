@@ -35,7 +35,7 @@ Every closed form is checked against `scipy.linalg.expm` of its generator in the
 
 ![Coupling graphs of the seven twins](../assets/diagrams/device_topologies.svg){ .qt-diagram }
 
-The figure shows the four original twins. The IBM and Google maps carry each qubit's position in `coupling_map.layout` (`coordinates` for Heron and Willow, `rows` × `cols` for Nighthawk); notebook 01 draws them.
+The figure shows all seven twins. The IBM and Google maps also carry each qubit's position in `coupling_map.layout` (`coordinates` for Heron and Willow, `rows` × `cols` for Nighthawk); notebook 01 draws them.
 
 * **Trapped ion.** Any pair of distinct qubits may interact; the complete graph is stored implicitly.
 * **Superconducting.** A symmetric boolean adjacency matrix `A` is held as a numpy array. Every pair of qubits touched by every multi-qubit operation, *after* library expansion, must satisfy `A[p, q] = 1`. A `ccx` therefore cannot run on a square lattice, because the lattice has no triangles.

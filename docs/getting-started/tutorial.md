@@ -63,7 +63,7 @@ for b in BACKENDS:
 
 ## Step 4: read the timing report
 
-`hardware_time_estimate.circuit_duration_us` is about **2 µs** per shot on the superconducting twins and **0.6–3 ms** on the trapped-ion twins, a gap of three orders of magnitude. IonQ Forte serialises entangling gates on its shared motional bus (`parallelism.max_parallel_two_qubit = 1`). `estimated_job_duration_s` multiplies by the shot count and flags that per-shot overhead is excluded, because no vendor publishes it.
+`hardware_time_estimate.circuit_duration_us` is about **2 µs** per shot on the superconducting twins and **0.7–4 ms** on the trapped-ion twins, a gap of three orders of magnitude. IonQ Forte serialises entangling gates on its shared motional bus (`parallelism.max_parallel_two_qubit = 1`). `estimated_job_duration_s` multiplies by the shot count and flags that per-shot overhead is excluded, because no vendor publishes it.
 
 ## Step 5: read the telemetry
 

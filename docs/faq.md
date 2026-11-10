@@ -20,7 +20,7 @@ description: Frequently asked questions about QPUTwin, the open-source quantum d
 ??? question "How many qubits can QPUTwin simulate?"
     In a 12 GiB worker:
 
-    * ideal and noisy-trajectory runs reach 27 qubits (28 at complex64);
+    * ideal and noisy-trajectory runs reach 28 qubits (29 at complex64);
     * exact density-matrix runs reach 14.
 
     Only qubits a circuit touches are simulated, so small circuits on the 98-qubit Helios twin are cheap. See [Simulation engines](guide/engines.md).

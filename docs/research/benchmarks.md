@@ -17,7 +17,7 @@ All figures are produced by `benchmarks/run_benchmarks.py` (data) and `benchmark
     | Date | 2026-11-10 |
     | Methods | live experiments go through the full HTTP stack; in-process experiments call the same simulator classes directly |
 
-    Absolute times depend on the host; ratios and trends are the transferable results. **Calibration values tagged `assumed`** (mainly the gate durations and the readout fidelity of the four original twins; the IBM and Google twins use the vendors' published snapshots) affect the noise and timing results; see [Emulated devices](../concepts/devices.md#calibration-at-a-glance).
+    Absolute times depend on the host; ratios and trends are the transferable results. **Calibration values tagged `assumed`** (mainly the gate durations and the readout fidelity of the four median-based twins; the IBM and Google twins use the vendors' published snapshots) affect the noise and timing results; see [Emulated devices](../concepts/devices.md#calibration-at-a-glance).
 
 !!! tip "More benchmarks"
     * [Circuit-family benchmarks](circuit-benchmarks.md): nine circuit families on all seven QPUs, a QV-style heavy-output test and routing overhead by algorithm.
@@ -40,7 +40,7 @@ All figures are produced by `benchmarks/run_benchmarks.py` (data) and `benchmark
 | IBM Nighthawk | 7.16 ms | 7.63 ms | 1.40 | 1.11 | 3.17 | 1.43 |
 | Google Willow | 6.19 ms | 6.86 ms | 1.39 | 1.11 | 2.62 | 1.04 |
 
-**Finding.** For small circuits the engine is only 17–20% of the round trip. Parsing, compilation and overhead in the worker (42–44%) and the orchestration path (35–40%: validation, routing, network) dominate. The emulation layer is therefore the bottleneck for small jobs, which matters when interpreting quantum-cloud latency studies.
+**Finding.** For small circuits the engine is only 17–20% of the round trip. Parsing, compilation and overhead in the worker (42–45%) and the orchestration path (35–41%: validation, routing, network) dominate. The emulation layer is therefore the bottleneck for small jobs, which matters when interpreting quantum-cloud latency studies.
 
 <figure markdown>
 ![Latency distribution](../assets/figures/fig11_latency_ecdf.svg){ width="520" }
@@ -83,10 +83,10 @@ Native entanglers (SWAPs) and estimated success probability (ESP):
 <figcaption>Live round trip on IQM Emerald: rejected without routing versus routed with SABRE (median, IQR band, 15 jobs per point).</figcaption>
 </figure>
 
-**Finding.** Rejection is cheap and nearly constant (2.5–3.1 ms). A star with more leaves than any physical qubit has neighbours cannot be embedded, so SABRE routes it. With 16 layout trials scored by the emitted circuit, routing costs 0.5–34.5 ms of router time and up to 44 ms of round trip at k = 14, and it inflates the entangler count 1.7–2.1× at k = 16 on the square lattices and 2.8× on Heron's heavy-hex lattice, where no qubit has more than three neighbours. The fidelity price is the larger one: the predicted success at k = 16 falls to 0.44–0.81 on the lattices, against 0.86–0.98 on the all-to-all twins. The [calibration-aware re-layout](../guide/routing.md#calibration-aware-re-layout) matters most where per-qubit data exist: without it the k = 16 route on Heron passed through qubit 46, which IBM's snapshot shows was poor that day (T1 = 8 µs, readout error 8 %), and the predicted success was 0.15; moving the same routed circuit to better-calibrated qubits raises it to 0.87, and Nighthawk's from 0.34 to 0.72, with the same SWAPs. The median-only twins (Ankaa-3, Emerald) are unchanged. The commutation-aware cancellation pass removed up to 12 entanglers per instance with k ≥ 6.
+**Finding.** Rejection is cheap and nearly constant (2.5–3.1 ms). A star with more leaves than any physical qubit has neighbours cannot be embedded, so SABRE routes it. With 16 layout trials scored by the emitted circuit, routing costs 0.5–34.5 ms of router time and up to 44 ms of round trip at k = 14, and it inflates the entangler count 1.7–2.1× at k = 16 on the square lattices and 2.8× on Heron's heavy-hex lattice, where no qubit has more than three neighbours. The fidelity price is the larger one: the predicted success at k = 16 falls to 0.44–0.87 on the lattices, against 0.86–0.98 on the all-to-all twins. On the twins with per-qubit data the [calibration-aware re-layout](../guide/routing.md#calibration-aware-re-layout) keeps the routed star on well-calibrated qubits, so Heron, despite the most entanglers, keeps the highest predicted success of the lattices (0.87, against 0.81 on Willow and 0.72 on Nighthawk). The commutation-aware cancellation pass removed up to 12 entanglers per instance with k ≥ 6.
 
 !!! note "Fewer SWAPs for more router time"
-    The previous router used 4 trials and kept the trial with the fewest SWAPs in a trial pass over the two-qubit gates alone, not the cheapest emitted circuit after cancellation. It needed 36–42 entanglers at k = 16 (ESP 0.40–0.47) in 1.0–7.2 ms of router time. Scoring 16 trials by their emitted two-qubit count removes 10–16 entanglers at k = 16 and costs about 4× the router time, which is still small next to the round trip. Set `routing.trials` to trade one for the other.
+    The router runs 16 SABRE trials on circuits of this size and keeps the one whose emitted circuit, after cancellation, has the fewest two-qubit gates. Its 0.5–34.5 ms of router time is still small next to the round trip. Set `routing.trials` to trade router time against entanglers.
 
 ## GHZ fidelity
 
@@ -132,7 +132,7 @@ Native entanglers (SWAPs) and estimated success probability (ESP):
 | 12 | 1.37 ms | 8.39 ms | 2.77 µs | 2.64 µs | 3.35 µs | 4.21 µs | 1.36 µs |
 | 36 | 4.01 ms | 26.0 ms | 5.46 µs | 5.04 µs | 5.75 µs | 8.19 µs | 2.97 µs |
 
-**Finding.** Superconducting shots take microseconds, trapped-ion shots milliseconds: a gap of **three orders of magnitude**. Willow's shots are the shortest, because its read-out takes 600 ns against 1.5–2.4 µs on the others. Forte is slower than Helios because of its (assumed, Aria-derived) gate times and serial entangling gates. The durations of the IBM and Google twins are published; for the four original twins most are `assumed`, so treat those as order-of-magnitude estimates. The per-shot circuit time excludes per-shot overhead; the job estimate of the IBM twins adds IBM's published repetition delay (250 µs on Heron, 4 ms on Nighthawk), which dominates a job.
+**Finding.** Superconducting shots take microseconds, trapped-ion shots milliseconds: a gap of **three orders of magnitude**. Willow's shots are the shortest, because its read-out takes 600 ns against 1.5–2.4 µs on the others. Forte is slower than Helios because of its (assumed, Aria-derived) gate times and serial entangling gates. The durations of the IBM and Google twins are published; for the four median-based twins most are `assumed`, so treat those as order-of-magnitude estimates. The per-shot circuit time excludes per-shot overhead; the job estimate of the IBM twins adds IBM's published repetition delay (250 µs on Heron, 4 ms on Nighthawk), which dominates a job.
 
 ## Noise sensitivity
 

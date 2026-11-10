@@ -42,17 +42,17 @@ QAOA uses a ring when *n* is odd, because a 3-regular graph needs an even number
 ![Circuit fidelity heatmap](../assets/figures/fig12_circuit_fidelity_heatmap.svg)
 
 **Reading.**
-- **(a)** The rows are ordered from easy to hard. Helios keeps fidelity at 0.89 or above on every family. Forte ranges from 0.99 (HEA) down to 0.42 (QFT adder). On the superconducting lattices fidelity collapses for the deep, entangler-heavy families: the QFT adder reaches 0.026 on Ankaa-3, 0.11 on Emerald, 0.46 on Nighthawk and Willow and 0.62 on Heron r3, whose gates and readout are the best of the five. On the three twins with per-qubit calibration the [calibration-aware re-layout](../guide/routing.md#calibration-aware-re-layout) is part of this result: placed by connectivity alone, the same routed QFT adder scored 0.10 on Nighthawk, 0.25 on Willow and 0.53 on Heron.
+- **(a)** The rows are ordered from easy to hard. Helios keeps fidelity at 0.89 or above on every family. Forte ranges from 0.99 (HEA) down to 0.42 (QFT adder). On the superconducting lattices fidelity collapses for the deep, entangler-heavy families: the QFT adder reaches 0.026 on Ankaa-3, 0.11 on Emerald, 0.46 on Nighthawk and Willow and 0.62 on Heron r3, whose gates and readout are the best of the five. On the three twins with per-qubit calibration the [calibration-aware re-layout](../guide/routing.md#calibration-aware-re-layout) is part of this result.
 - **(b)** On the square lattices, GHZ, BV and HEA embed without a single SWAP (the exact layout finds a chain or star), so their entangler count matches Helios; on Heron's heavy-hex lattice, where no qubit has four neighbours, BV needs 7 instead of 4. Routing raises the count by up to 4× for QAOA: 24 native two-qubit gates on Helios, 69–75 on the square lattices and 96 on Heron. Forte doubles the count for `rzz`-based circuits (Ising, QAOA), because each `rzz` takes two MS gates.
 
 ## Fidelity versus width
 
 ![Fidelity vs width, nine families](../assets/figures/fig13_circuit_fidelity_vs_width.svg)
 
-Helios leads every family and width. Among the others the order depends on the circuit, and on the twins with per-qubit data it also depends on placement, as on the device. Placed by connectivity alone, the routed GHZ family on Heron r3 reached qubit 46 from seven qubits (T1 = 8 µs, readout error 8 % in IBM's snapshot) and fell behind Willow and Nighthawk; the calibration-aware re-layout moves the routed circuit off it, and Heron r3 is now second only to Helios on GHZ, the QFT adder and the mirror circuits. The deep deterministic circuits fall fastest: at *n* = 10 on Ankaa-3 the QFT adder reaches 0.004, the Cuccaro adder 0.044 and the mirror circuit 0.066.
+Helios leads every family and width. Among the others the order depends on the circuit, and on the twins with per-qubit data it also depends on placement, as on the device. With the calibration-aware re-layout, which keeps routed circuits off poorly calibrated qubits, Heron r3 is second only to Helios on GHZ and the QFT adder at every width and on mirror circuits up to eight qubits. The deep deterministic circuits fall fastest: at *n* = 10 on Ankaa-3 the QFT adder reaches 0.004, the Cuccaro adder 0.044 and the mirror circuit 0.066.
 
 !!! note "One case at the edge of the exact engine"
-    Routed on Heron's heavy-hex lattice, the ten-qubit mirror circuit spreads over 15 physical qubits. Its density matrix is 16 GiB. With two buffers it would need 32 GiB, but the [single-buffer executor](../guide/engines.md#memory-and-width-limits) runs it at a 24 GiB peak, so this in-process run on the 62 GB host completed it in 60 s. A default 12 GiB worker still rejects it with `ResourceLimitError`; `engine: auto` sends such a job to trajectories instead.
+    Routed on Heron's heavy-hex lattice, the ten-qubit mirror circuit spreads over 15 physical qubits. Its density matrix is 16 GiB. With two buffers it would need 32 GiB, but the [single-buffer executor](../guide/engines.md#memory-and-width-limits) runs it at an estimated 24 GiB peak, so this in-process run on the 62 GB host completed it in 60 s. A default 12 GiB worker still rejects it with `ResourceLimitError`; `engine: auto` sends such a job to trajectories instead.
 
 !!! warning "Hellinger fidelity flatters high-entropy outputs"
     For families whose ideal output is spread over many bitstrings (QV-style, HEA, Ising, QAOA), noise pushes the output *towards* uniform. The ideal output is already close to uniform, so the Hellinger fidelity stays high even when the circuit is badly corrupted. For example, the QV-style circuit at *n* = 8 on Ankaa-3 has $F_H = 0.84$ but an estimated success probability of only 0.15. Use the **deterministic families** (GHZ, BV, adder, mirror, QFT adder) or the **heavy-output test** below to compare devices.
@@ -73,7 +73,7 @@ The test runs 12 random circuits per width *m* (depth = *m*). For each, it compu
 | IQM Emerald | 2–5 | 2⁵ = 32 |
 | Rigetti Ankaa-3 | 2–4 | 2⁴ = 16 |
 
-Placement decides the snapshot twins' results. Placed by connectivity alone, Heron r3 and Willow passed up to *m* = 7 and Nighthawk, with the highest median readout error of the three (1.8 %), only up to 3; with the calibration-aware re-layout all three pass every width tested, Nighthawk at *m* = 8 by a margin of 0.03. The median-only twins (Emerald, Ankaa-3) are unchanged.
+With the calibration-aware re-layout the three snapshot twins pass every width tested, Nighthawk at *m* = 8 by a margin of 0.03.
 
 !!! note "Not a certified quantum volume"
     The two-qubit blocks are generic random 3-CX circuits, not Haar-random SU(4). There are 12 circuits per width rather than ≥ 100, and the ideal HOP of these circuits is about 0.85. Treat the numbers as a *relative* comparison of the emulated noise models, not as a vendor QV claim.
@@ -85,7 +85,7 @@ Placement decides the snapshot twins' results. Placed by connectivity alone, Her
 Each cell is the native two-qubit count on the lattice divided by the count on all-to-all Helios, for the same logical circuit:
 
 * **mirror** circuits suffer most, at 3.6–3.7× at *n* = 20 on the four square lattices. Their random pairings put every interaction far apart, which leads to 175–181 SWAPs;
-* **QAOA** follows at 3.3–3.5×, because a 3-regular graph is not planar;
+* **QAOA** follows at 3.3–3.6×, because a 3-regular graph is not planar;
 * the **QFT adder**, **QV-style** and **Bernstein–Vazirani** circuits need about 2.0–2.2×, and the Cuccaro **adder** 1.7–1.8×;
 * **Heron r3's heavy-hex lattice** costs markedly more: 5.9× for mirror circuits (328 SWAPs), 4.9× for QAOA, 3.7× for BV and 2.8× for the QFT adder and QV-style circuits. A device with the best two-qubit gates can still lose on routed workloads to a better-connected one;
 * **GHZ** and **HEA** cost nothing extra (1.0×): their interaction graph is a path, and the exact layout places it on the lattice without SWAPs. **Ising** shows 2.0× on every device without any SWAP, because each `rzz` needs two native entanglers outside Helios;

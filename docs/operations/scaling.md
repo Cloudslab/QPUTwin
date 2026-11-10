@@ -66,7 +66,7 @@ From the [load tests](../research/load-testing.md), synchronous light jobs (GHZ�
 | Setup | Peak throughput |
 |---|---|
 | one worker | 289 jobs/s |
-| seven QPUs, one orchestrator | 374 jobs/s |
+| seven QPUs, one orchestrator | 374–378 jobs/s |
 | seven QPUs, three orchestrators behind the gateway | 917 jobs/s |
 | heavy QV-style 12-qubit jobs, 1 → 4 Forte replicas | 10.2 → 25.2 jobs/s |
 

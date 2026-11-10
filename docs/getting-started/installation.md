@@ -12,7 +12,7 @@ description: Install QPUTwin with Docker Compose or uv, verify the stack, and co
 | Docker Engine with Compose v2 | 24 or newer | the containerised stack (recommended) |
 | [`uv`](https://docs.astral.sh/uv/) | 0.12 or newer | local development, tests, benchmarks, docs |
 | Python | 3.12 or 3.13 (`uv` installs it) | the library and the tests |
-| Memory | 12 GiB per worker by default | statevector widths up to 27 qubits |
+| Memory | 12 GiB per worker by default | statevector widths up to 28 qubits (29 at complex64) |
 | OS | Linux (x86-64); macOS works with Docker Desktop | — |
 
 No quantum SDK is required. QPUTwin does not depend on Qiskit, Cirq, pyQuil, Braket or pytket.
