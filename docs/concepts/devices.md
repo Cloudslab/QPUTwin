@@ -79,7 +79,7 @@ The twins were checked against the vendors' own tools ([simulator comparison](..
 
 * every native operation the twins emit after SABRE routing is supported by IBM's `Target` for `ibm_boston` and `ibm_miami`, and every routed Willow circuit passes `cirq_google`'s `willow_pink` `device.validate_circuit`; the coupling maps equal the vendors' maps, minus IBM's inactive couplers;
 * compiled circuits equal their sources to about 10⁻¹⁵, computed with Qiskit's `Operator` and `cirq.unitary`;
-* on 33 circuits per twin, run unchanged on the same physical qubits, the twins reproduce the vendors' own noise models of the same snapshots to a median Hellinger-fidelity difference of 0.0014 (Heron, Qiskit Aer `from_backend`), 0.0011 (Nighthawk) and 0.0014 (Willow, Cirq), at most 0.026. A twin built from the same snapshots' device medians differs by up to 0.06–0.16, and by up to 0.68 when the circuit is placed by connectivity alone, because medians cannot see the poor qubits a circuit lands on.
+* on 33 circuits per twin, run unchanged on the same physical qubits, the twins reproduce the vendors' own noise models of the same snapshots to a median Hellinger-fidelity difference of 0.0014 (Heron, Qiskit Aer `from_backend`), 0.0011 (Nighthawk) and 0.0014 (Willow, Cirq), at most 0.026. A twin built from the same snapshots' device medians differs by up to 0.06–0.16, because medians cannot see which qubits are poor.
 * Cirq's model of Willow also decays qubits for the 600 ns of every measurement, on top of a measured readout error that already contains that decay; QPUTwin does not count it twice, so Cirq as shipped predicts 0.027 lower fidelity on average.
 
 These are checks against the vendors' published models, not against hardware.
