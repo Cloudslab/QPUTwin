@@ -30,7 +30,7 @@ src/qputwin_core/               shared physics + language core
 src/qputwin_orchestrator/       app, middleware, registry, jobs (durable queue), telemetry, metrics, schemas
 src/qputwin_worker/             worker app factory + vendors/{quantinuum_helios, ionq_forte, rigetti_ankaa_3, iqm_emerald, ibm_heron, ibm_nighthawk, google_willow}.py
 scripts/                        generate_coupling_maps.py, import_coupling_map.py, import_braket_device.py
-tests/                          615 unit + in-process integration tests
+tests/                          616 unit + in-process integration tests
 test_benchmark.py               47 live-stack integration + benchmark tests
 benchmarks/                     run_benchmarks.py (21 experiments), circuits.py, plot_figures.py, results/ (JSON + JUnit), figures/ (PDF/SVG/PNG + CSV)
 docs/                           documentation sources, assets/ (rendered diagrams, figures)

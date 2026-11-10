@@ -35,7 +35,29 @@ Open a notebook and choose **Run > Run All Cells**.
 | `06_async_jobs_and_scheduling` | Asynchronous jobs, a visible queue, priority, cancellation, fair share |
 | `07_telemetry_and_load` | Latency spans, additive identities, a live load test, and the resources it used |
 | `08_fault_tolerance` | **Kills the orchestrator with `SIGKILL`**, restarts it, and shows no job was lost |
-| `09_ibm_and_google_twins` | IBM Heron r3, IBM Nighthawk and Google Willow: published maps, per-qubit calibration, native gates, a poor qubit the router finds, and IBM's repetition delay |
+| `09_ibm_and_google_twins` | IBM Heron r3, IBM Nighthawk and Google Willow: published maps, per-qubit calibration, native gates, the poor qubit the calibration-aware re-layout avoids, and IBM's repetition delay |
+| `10_openqasm3` | OpenQASM 3 declarations, parameterised gate definitions, `ctrl`/`inv`/`pow` modifiers, feed-forward, portable vendor-native gates, typed parse errors |
+| `11_engines` | What `engine: auto` chooses, the two exact noisy engines agreeing, returned statevectors and density matrices, the memory guard |
+| `12_precision` | complex64 against complex128: identical counts, amplitude error, half the memory, speed on deep circuits |
+| `13_noise_channels` | The per-gate noise report, one channel at a time, an error budget on every twin, idle decoherence, estimated against executed success |
+| `14_noise_what_if` | Overriding calibration: better gates, readout and coherence, scaling all errors, the fidelity a device would need |
+| `15_coherent_errors` | Over-rotation growing quadratically, coherent against stochastic error, echoes, ZZ crosstalk on a spectator |
+| `16_leakage_and_drift` | Leakage and seepage, Markovian against quasi-static Ramsey decay, spin echoes, imperfect reset |
+| `17_trajectories` | Convergence with the number of trajectories, exact sampling, wide noisy circuits, batched and sequential trajectories |
+| `18_readout` | Readout error per twin and with width, calibrating confusion matrices, mitigating a GHZ result |
+| `19_timing` | Hardware time per shot and per job, IBM's repetition delay, parallel gates, busy time, shallow against deep GHZ circuits |
+| `20_routing_options` | SABRE trials, exact layout, initial layouts, cancellation, bridge gates, calibration-aware re-layout |
+| `21_entanglement_protocols` | Deutsch-Jozsa, superdense coding, a CHSH Bell test, entanglement swapping with feed-forward, Simon's algorithm |
+| `22_phase_estimation` | Phase estimation of exact and non-binary phases, under device noise, precision against depth |
+| `23_variational_h2` | A variational ground-state energy from counts in three bases, a parameter scan, each twin against the exact energy |
+| `24_grover` | Grover search on 2 to 4 qubits, the oscillation with iterations, every twin under noise, when noise changes the best iteration count |
+| `25_ghz_fidelity_witness` | GHZ fidelity from populations and parity oscillations, every twin, the width at which entanglement can no longer be certified |
+| `26_mirror_benchmarking` | Mirror circuits, decay with depth, an effective error per layer, the cost of routing |
+| `27_quantum_volume` | Heavy outputs, heavy-output probability on every twin, pass or fail by width, why few circuits are only a comparison |
+| `28_async_job_arrays` | A job array over every twin, long polling, listing and filtering jobs, asynchronous against one by one, queue timestamps |
+| `29_errors_and_limits` | A catalogue of typed errors, machine-readable details, validation errors, cancelling, each twin's limits |
+| `30_telemetry_analysis` | The `Server-Timing` header, exact span identities, latency distributions per twin, the telemetry summary, time by circuit width |
+| `31_reproducibility` | Seeds, replaying a server-drawn seed, per-shot memory, the calibration a result used, the software environment |
 
 Notebook 07 reads Prometheus when the [monitoring stack](../monitoring/README.md) is running, and still works without it.
 Open the Grafana dashboards beside it for the best live view.
@@ -44,9 +66,10 @@ Open the Grafana dashboards beside it for the best live view.
 
 - The twins follow published medians, and they have not been validated against hardware.
 - The Rigetti and IQM coupling maps are synthetic lattices, not vendor maps. The IBM and Google twins use the vendors' published maps and calibration snapshots.
-- Notebooks 00 to 08 compare the first four twins (`BACKENDS`). `ALL_BACKENDS` adds the three IBM and Google twins.
+- Notebooks 00 to 08 compare the first four twins (`BACKENDS`). Notebook 09 and most of notebooks 10 to 31 use all seven (`ALL_BACKENDS`).
 - Durations are mostly assumed, so times are order-of-magnitude estimates. Notebook 01 lists every assumption.
 - Notebook 07's load test uses Python threads on the same machine as the stack. It is a live illustration, not a benchmark.
+- Run the notebooks one at a time on a laptop: each twin's worker may use up to 12 GiB by default. Set `QPUTWIN_WORKER_MEM` lower before `docker compose up` on a machine with little memory.
 
 ## How compiled circuits are drawn
 

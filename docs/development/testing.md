@@ -5,7 +5,7 @@ description: Run and extend QPUTwin's test suites — unit and in-process integr
 
 # Testing
 
-## Unit and in-process integration (615 tests)
+## Unit and in-process integration (616 tests)
 
 ```bash
 uv run pytest                    # ~1 min, no Docker needed

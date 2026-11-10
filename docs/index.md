@@ -22,7 +22,7 @@ hide:
 <div class="qt-kpi" markdown>
 <div><b>7</b><span>quantum processors twinned: 2 trapped-ion, 5 superconducting</span></div>
 <div><b>3</b><span>simulation engines: statevector, density matrix, quantum trajectories</span></div>
-<div><b>615 + 47</b><span>unit and live-stack tests, all passing</span></div>
+<div><b>616 + 47</b><span>unit and live-stack tests, all passing</span></div>
 <div><b>0</b><span>vendor SDKs: everything below HTTP is written from scratch in numpy / scipy</span></div>
 </div>
 

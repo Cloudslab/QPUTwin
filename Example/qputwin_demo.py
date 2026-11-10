@@ -150,6 +150,11 @@ def _qasm(n: int, lines: Iterable[str], measure: bool = True) -> str:
     return text + "measure q -> c;\n" if measure else text
 
 
+def program(n: int, lines: Iterable[str], measure: bool = True) -> str:
+    """An OpenQASM 2 program on ``n`` qubits from gate lines (without semicolons), measuring all qubits by default."""
+    return _qasm(n, lines, measure)
+
+
 def bell() -> str:
     return _qasm(2, ["h q[0]", "cx q[0],q[1]"])
 
@@ -257,6 +262,10 @@ def ideal_counts(qasm: str, backend: str = "quantinuum_helios", shots: int = 200
 
 
 def success(result: dict[str, Any], outcomes: Sequence[str]) -> float:
+    """Fraction of shots that landed on ``outcomes``. Raises with the server's message if the job was rejected."""
+    if "result" not in result:
+        error = result.get("error", {})
+        raise RuntimeError(f"job rejected ({result.get('http_status')}): {error.get('type')}: {error.get('message')}")
     counts = result["result"]["counts"]
     return sum(counts.get(k, 0) for k in outcomes) / sum(counts.values())
 
@@ -400,13 +409,17 @@ def plot_spans(rows: dict[str, dict[str, float]], title: str = "Where the time g
     labels = list(rows)
     left = np.zeros(len(labels))
     palette = plt.colormaps["tab20"](np.linspace(0, 1, len(SPANS)))
+    small = np.zeros(len(labels))            # spans under 1 % of the largest bar, drawn together at the end
+    largest = max(1e-9, max(sum(rows[label].get(k, 0.0) for k in SPANS) for label in labels))
     for color, (key, name) in zip(palette, SPANS.items(), strict=True):
         values = np.array([rows[label].get(key, 0.0) for label in labels])
-        if values.max() < 0.01 * max(1e-9, max(sum(r.values()) for r in rows.values())):
-            left += values
+        if values.max() < 0.01 * largest:
+            small += values
             continue
         ax.barh(labels, values, left=left, label=name, color=color)
         left += values
+    if small.any():
+        ax.barh(labels, small, left=left, label="other small spans", color="#BBBBBB")
     ax.invert_yaxis()
     ax.set_xlabel("Milliseconds")
     ax.set_title(title)

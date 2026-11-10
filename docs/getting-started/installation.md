@@ -70,7 +70,7 @@ docker compose down --rmi local  # also remove the images
 
 ```bash
 uv sync                                    # Python env with every extra + dev tools
-uv run pytest                              # 615 unit + in-process integration tests
+uv run pytest                              # 616 unit + in-process integration tests
 ```
 
 Run the services without Docker, one terminal each:

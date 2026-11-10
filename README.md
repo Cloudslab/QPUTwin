@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/python-3.12%20%7C%203.13-blue)
 ![OpenQASM](https://img.shields.io/badge/OpenQASM-2.0%20%7C%203.x-6f42c1)
-![Tests](https://img.shields.io/badge/tests-615%20unit%20%2B%2047%20live-brightgreen)
+![Tests](https://img.shields.io/badge/tests-616%20unit%20%2B%2047%20live-brightgreen)
 ![Docker](https://img.shields.io/badge/docker-compose-2496ED)
 ![License](https://img.shields.io/badge/license-Apache--2.0-blue)
 

@@ -600,13 +600,19 @@ def _walk(ops: list[tuple[Any, ...]], levels: list[dict[int, tuple[list[Any], fl
                 for i in range(w, we):
                     jumps += _op_by_op(b, ops[i], u_of.get(i), rng, live)
 
-    run(0, 0, len(ops))
-    b.flush_all()
-    P = b.st.standard().reshape(rows, 1 << n)
-    p = np.square(P.real, dtype=np.float64)
-    p += np.square(P.imag, dtype=np.float64)
-    p /= p.sum(axis=1, keepdims=True)
-    return p, jumps
+    try:
+        run(0, 0, len(ops))
+        b.flush_all()
+        P = b.st.standard().reshape(rows, 1 << n)
+        p = np.square(P.real, dtype=np.float64)
+        p += np.square(P.imag, dtype=np.float64)
+        p /= p.sum(axis=1, keepdims=True)
+        return p, jumps
+    finally:
+        # ``run`` refers to itself through its closure, a reference cycle that would keep this sub-batch's
+        # state buffers alive until the cyclic garbage collector happens to run (gigabytes over a long job).
+        # Clearing the cell breaks the cycle, so the buffers are freed as soon as the sub-batch ends.
+        run = None  # type: ignore[assignment]
 
 
 def _run_batched(prog: Program, instrs: list[NoisyInstr], *, t_count: int, shots: int, rng: np.random.Generator,

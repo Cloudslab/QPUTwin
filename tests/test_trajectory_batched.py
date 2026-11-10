@@ -90,6 +90,33 @@ def test_wide_mode_one_trajectory_at_a_time_agrees(monkeypatch: pytest.MonkeyPat
     assert _tv(r.counts, exact) < 2.5 * np.sqrt(len(exact) / (2 * np.pi * 4000))
 
 
+def test_sub_batch_state_is_freed_without_the_cycle_collector(monkeypatch: pytest.MonkeyPatch) -> None:
+    """A finished sub-batch must free its state at once, not wait for the cyclic garbage collector.
+
+    A reference cycle once kept every finished sub-batch's buffers alive until a collection: a
+    16-qubit noisy job peaked at 1.6 GiB instead of about 0.1 GiB, and seven workers could exhaust a host.
+    """
+    import gc
+    import weakref
+
+    finished: list[weakref.ref] = []
+    original = T._Batch.__init__
+
+    def tracked(self, *args, **kwargs) -> None:
+        original(self, *args, **kwargs)
+        finished.append(weakref.ref(self))
+
+    monkeypatch.setattr(T._Batch, "__init__", tracked)
+    gc.collect()
+    gc.disable()
+    try:
+        r = _run("quantinuum_helios", C.FAMILIES["ghz"](8, seed=1), "trajectory", 2000, 1)
+        assert r.noise["batched"] and len(finished) > 1
+        assert all(ref() is None for ref in finished), "a sub-batch state outlived its sub-batch"
+    finally:
+        gc.enable()
+
+
 def test_leakage_and_mid_circuit_measurement_keep_the_sequential_walk() -> None:
     sim = simulator_for(DEVICES["iqm_emerald"])
     src = ('OPENQASM 2.0;\ninclude "qelib1.inc";\nqreg q[2]; creg c[2];\nh q[0];\nmeasure q[0] -> c[0];\n'

@@ -1,13 +1,13 @@
 ---
 title: Validation
-description: How QPUTwin's physics and system behaviour are validated — 615 unit and in-process tests and 47 live-stack tests, with the exact properties each proves.
+description: How QPUTwin's physics and system behaviour are validated — 616 unit and in-process tests and 47 live-stack tests, with the exact properties each proves.
 ---
 
 # Validation
 
 | Suite | Command | Tests | Result (2026-11-10) |
 |---|---|---|---|
-| Unit + in-process integration | `uv run pytest` | 615 | all pass |
+| Unit + in-process integration | `uv run pytest` | 616 | all pass |
 | Live stack | `uv run pytest test_benchmark.py -v -s` | 47 | all pass (with 2 Forte replicas) |
 
 JUnit reports are saved in `benchmarks/results/*.junit.xml`.
