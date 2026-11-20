@@ -1,7 +1,6 @@
-"""Abstract syntax tree for the supported OpenQASM 2.0 / 3.x language.
+"""Syntax-tree classes for OpenQASM programs.
 
-Every statement node carries ``line``/``col`` and ``text`` (the exact source slice)
-so that compiler diagnostics can quote the user's original statement.
+Usage: from qputwin_core.qasm.ast import Program
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

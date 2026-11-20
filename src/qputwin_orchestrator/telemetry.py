@@ -1,42 +1,6 @@
-"""Benchmark telemetry: per-request span recorder, additive decomposition, dataset sink.
+"""Records the latency spans of each request and stores them.
 
-Span model (docs/guide/telemetry.md)::
-
-    total_roundtrip ─┬─ ingress            (ASGI entry → handler entry: body read + request validation)
-                     ├─ validation         (QASM parse/flatten + resource checks)
-                     ├─ routing            (registry lookup + payload serialisation)
-                     ├─ orchestrator_queue (async jobs only: enqueue → dispatch; 0 for sync jobs)
-                     ├─ dispatch_rtt ──────┬─ network_transit  (= dispatch_rtt − worker_service)
-                     │                     └─ worker_service ─┬─ worker_queue
-                     │                                        ├─ worker_parse
-                     │                                        ├─ worker_route   (SABRE, when requested)
-                     │                                        ├─ worker_compile
-                     │                                        ├─ qpu_compute ─┬─ simulation
-                     │                                        │               └─ sampling
-                     │                                        └─ worker_unattributed
-                     ├─ response_assembly
-                     └─ unattributed
-
-Headline metrics::
-
-    qpu_compute_time_ms       = simulation_ms + sampling_ms          (inside the numpy engine)
-    orchestration_overhead_ms = total_roundtrip_ms − worker_service_ms
-    ⇒ total_roundtrip_ms     ≡ orchestration_overhead_ms + worker_service_ms   (by construction)
-
-All durations come from ``time.perf_counter_ns`` inside a single process; the
-worker reports *durations*, never timestamps, so container clock skew cannot
-enter the measurement.
-
-For an asynchronous job (``202`` + polling) the same recorder spans submission to
-completion: ``total_roundtrip_ms`` then runs from the submit request's arrival
-to the moment the result is ready, and the time spent waiting in the
-orchestrator's queue is reported as ``orchestrator_queue_ms``. The latency of the
-``202`` response itself is recorded in the dataset as ``submit_response_ms``.
-
-Schema history (purely additive): 1.0 → 1.1 added ``orchestrator_queue_ms``,
-``worker_route_ms``, ``execution_mode`` and ``environment.replica``; 1.2 added
-``queue_clock`` (``perf_counter`` when the accepting instance executed the job,
-``realtime`` when another instance did or after a restart) and ``attempt``.
+Usage: from qputwin_orchestrator.telemetry import TelemetryRecorder
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

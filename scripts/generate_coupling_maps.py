@@ -1,12 +1,6 @@
-"""Generate the packaged coupling-map JSON files for the superconducting emulators.
+"""Generates the packaged coupling-map JSON files of the superconducting twins.
 
-The maps are *synthetic* nearest-neighbour square lattices whose qubit count and
-connectivity class (planar square lattice, degree <= 4) match the vendors'
-published devices. They are NOT the vendors' calibrated coupling maps (which
-include defective qubits/couplers). Replace the generated JSON with a published
-map to emulate a specific calibration snapshot; no code change is required.
-
-Usage:  uv run python scripts/generate_coupling_maps.py
+Usage: uv run python scripts/generate_coupling_maps.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

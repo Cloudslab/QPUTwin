@@ -1,49 +1,6 @@
-"""Gate fusion and a lazily permuted, multithreaded tensor executor.
+"""Gate fusion and the multithreaded fused executor.
 
-Why
----
-Applying native gates one at a time costs several full passes over the state per
-gate. Here a gate sequence is first **fused** into blocks (the same idea as Qiskit
-Aer's and qsim's fusion), and each block is then applied in **one** pass.
-
-How
----
-* **Planner** (:func:`plan_blocks`) — greedy and DAG-aware: it keeps several open
-  blocks on pairwise-disjoint axes (which therefore commute), grows a block while
-  its axis set stays within the limit, merges open blocks a gate bridges when the
-  union fits, and otherwise emits the blocks that stop the gate fitting (dense ones
-  first when the gate is diagonal), carrying the rest into the gate's new block.
-  Dense blocks span at most ``max_axes`` axes. Blocks made only of diagonal gates
-  stay diagonal, are stored as their diagonal, and may grow to
-  ``max_diagonal_axes`` axes — a whole phase ladder (QFT, QAOA, Trotter ``rzz``
-  layers) then costs one multiply per amplitude.
-* **Executor** (:class:`FusedState`)
-
-  - *Lazy activation.* The state starts as the scalar 1: every axis no block has
-    touched yet is exactly ``|0⟩`` and is not stored. A block reaching new axes
-    uses only the matrix columns where those axes are 0, so the stored tensor
-    grows as the circuit spreads (a GHZ chain never touches a full-size state
-    until its last block), and diagonal blocks never activate anything.
-  - *Two buffers or one.* By default each block reads the current state and
-    writes the next one into a second buffer, and the stored axis order (``perm``)
-    changes lazily: a dense block whose axes are adjacent is one batched ``U @ X``
-    with no data movement; otherwise its axes are gathered next to the lowest
-    contiguous axes chunk by chunk (cache-resident) and multiplied in the same
-    pass. When two state-sized buffers do not fit the memory budget, the simulator
-    runs the executor **in place** (:func:`in_place_mode`): cache-sized chunks are
-    gathered, multiplied and written back to the same positions, so one ``2^N``
-    buffer suffices, and a block that activates new axes reads a copy of the (at
-    most half-size) current state. The peak then stays at 1.5× the state, which
-    buys one more qubit for the same memory at a cost of 5–20 % in speed.
-  - *Diagonal blocks* are a multiply by a phase table, gathered per cache chunk.
-  - *Read-out without reordering.* Measurement marginals are taken in the stored
-    order; samples are relabelled afterwards, so no final transpose is needed.
-  - Large products and copies are split across a thread pool (numpy releases
-    the GIL), so the engine uses the worker's CPU quota.
-
-Used for the statevector (``N = n``) and the density-matrix (``N = 2n``) engines; in
-the latter every gate, channel, depolarisation and reset is a superoperator on the
-(row, column) axes of its qubits, so noise fuses with the gates around it.
+Usage: from qputwin_core.fused import set_engine_threads
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

@@ -1,6 +1,6 @@
-"""From-scratch OpenQASM 2.0 / 3.x front-end (lexer, parser, flattener).
+"""OpenQASM 2.0 / 3.x front end: lexer, parser and flattener.
 
-Pure Python — importable without numpy so the orchestrator can validate circuits.
+Usage: from qputwin_core.qasm import load_circuit
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

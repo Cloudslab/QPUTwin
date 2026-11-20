@@ -1,35 +1,6 @@
-"""Turn Amazon Braket device properties into a dated QPUTwin coupling map + calibration snapshot.
+"""Converts Amazon Braket device properties into a QPUTwin coupling map and calibration.
 
-Fetch the properties with the AWS CLI (credentials required; the data are free)::
-
-    aws braket get-device --device-arn arn:aws:braket:eu-north-1::device/qpu/iqm/Emerald > emerald.json
-    aws braket get-device --device-arn arn:aws:braket:us-west-1::device/qpu/rigetti/Ankaa-3 > ankaa3.json
-    aws braket get-device --device-arn arn:aws:braket:us-east-1::device/qpu/ionq/Forte-1 > forte.json
-
-then convert::
-
-    uv run python scripts/import_braket_device.py emerald.json --device iqm_emerald -o config/devices
-
-and select the files in ``.env`` (``QPUTWIN_EMERALD_COUPLING_MAP`` / ``QPUTWIN_EMERALD_CALIBRATION``).
-
-What is read
-------------
-* ``paradigm.qubitCount`` and ``paradigm.connectivity`` (``fullyConnected`` or the
-  ``connectivityGraph`` adjacency lists) → coupling map. Vendor qubit labels are
-  mapped to dense indices in natural order and recorded in ``layout.labels``.
-* ``standardized`` gate-model properties (schema v1/v2): per qubit ``T1``, ``T2``
-  (any time unit) and ``oneQubitFidelity`` entries (``*RANDOMIZED_BENCHMARKING`` →
-  every physical native one-qubit gate, ``READOUT`` → readout fidelity); per pair
-  ``twoQubitGateFidelity`` entries whose ``gateName`` is a native of the device.
-  Device-wide defaults are the medians.
-* IonQ ``provider`` properties: ``fidelity`` (``1Q`` / ``2Q`` / ``spam`` means) and
-  ``timing`` (``1Q``, ``2Q``, ``readout``, ``reset``, ``T1``, ``T2`` in seconds).
-
-Everything imported is tagged ``published: Amazon Braket device properties
-(<ARN>, updated <timestamp>)``; every value Braket does not provide (typically gate
-durations of the superconducting devices) keeps the packaged value *and its
-packaged provenance tag*, so the gap stays visible. A measured ``T2 > 2·T1`` is
-clipped to ``2·T1`` and the clip is recorded.
+Usage: uv run python scripts/import_braket_device.py emerald.json --device iqm_emerald -o config/devices
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """
@@ -209,7 +180,7 @@ def convert(caps: dict[str, Any], meta: dict[str, Any], device: str) -> tuple[di
 
 
 def main(argv: list[str] | None = None) -> None:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     ap.add_argument("source", type=Path, help="output of `aws braket get-device` (or its deviceCapabilities)")
     ap.add_argument("--device", required=True, choices=sorted(DEVICES))
     ap.add_argument("-o", "--output-dir", type=Path, required=True)

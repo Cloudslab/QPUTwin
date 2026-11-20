@@ -1,4 +1,6 @@
-"""Amazon Braket device-properties importer (synthetic payloads shaped like the Braket v1 schema).
+"""Tests the Amazon Braket device importer.
+
+Usage: uv run pytest tests/test_braket_import.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

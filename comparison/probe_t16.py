@@ -1,7 +1,8 @@
-"""Scratch probe: deep ideal circuits at 16 threads, QPUTwin in-process vs qsim, Aer and Qulacs.
+"""Times deep ideal circuits at 16 threads: QPUTwin, qsim, Aer and Qulacs.
 
-Run from comparison/ with OMP_NUM_THREADS=16 so Qulacs uses all cores:
-    OMP_NUM_THREADS=16 uv run python probe_t16.py 24 26 28
+Usage: cd comparison && uv run python probe_t16.py
+
+Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """
 import os
 import sys

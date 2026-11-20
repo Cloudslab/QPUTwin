@@ -1,22 +1,6 @@
-"""Benchmark circuit families for QPUTwin (OpenQASM 2.0, qelib1 gates only).
+"""Benchmark circuit families (GHZ, QFT, QV and others) written as OpenQASM 2.0.
 
-Every generator takes a width ``n`` and an optional ``seed`` and returns a program on
-``qreg q[n]`` that measures ``q[i] -> c[i]``. The families cover the structures that
-stress a QPU emulator differently:
-
-========  ===================================================================
-ghz       linear CX chain — shallow, nearest-neighbour, two-outcome output
-qft       Draper QFT adder: QFT, phase addition, QFT† — all-to-all cu1 ladders,
-          deterministic output
-qv        quantum-volume style: n layers of random pairings, each pair a
-          random 3-CX two-qubit block (generic, not Haar-certified SU(4))
-qaoa      QAOA MaxCut, p = 2, on a seeded random 3-regular graph (ring if n < 4)
-hea       hardware-efficient VQE ansatz: 3 layers of ry·rz + linear CX ladder
-ising     Trotterised transverse-field Ising chain, 4 steps (rzz + rx)
-bv        Bernstein–Vazirani with a seeded secret — deterministic output
-adder     Cuccaro ripple-carry adder (Toffoli-heavy) — deterministic output
-mirror    random layered circuit followed by its exact inverse — ideal 0…0
-========  ===================================================================
+Usage: from circuits import FAMILIES
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

@@ -1,36 +1,6 @@
-"""From-scratch numpy statevector engine.
+"""Statevector engine for ideal circuits.
 
-State layout
-------------
-A dense vector ``ψ ∈ C^{2^n}`` (``complex128`` or ``complex64``) in little-endian
-order: bit ``q`` of the flat index is simulated qubit ``q``. A one-qubit kernel on
-qubit ``q`` views ψ as ``(2^{n-q-1}, 2, 2^q)``; a two-qubit kernel on ``(a, b)``
-views it as ``(2^{n-h-1}, 2, 2^{h-l-1}, 2, 2^l)`` with ``h = max(a, b)``,
-``l = min(a, b)``. Both kernels update ψ **in place** (peak working set ≈ 2× the
-state), and diagonal gates (``rz``, ``cz``, ``rzz``, ``zzmax`` …) reduce to
-element-wise phase multiplications with no extra memory.
-
-Sampling
---------
-*Terminal fast path* — when every measurement is terminal (its qubit is never
-touched again and its bit never read by a condition) the circuit is simulated
-once and all shots are drawn from the marginal with one multinomial draw:
-``O(2^n + shots)``.
-
-*Shot branching* — mid-circuit measurements, resets and classically-controlled
-operations are handled by splitting the shot budget at each projective event:
-``n1 ~ Binomial(n, p1)``, ``n0 = n − n1``, and continuing each non-empty branch
-with its collapsed state. This samples exactly the same distribution as
-independent per-shot trajectories, but costs one simulation per *distinct
-reachable classical branch* rather than one per shot.
-
-*Fused execution* — when no branching is needed (the common case) the gate list
-is fused into dense blocks of up to ``FUSION_MAX_QUBITS`` qubits and diagonal
-blocks of up to ``FUSION_MAX_DIAGONAL_QUBITS``, and executed by
-:class:`~qputwin_core.fused.FusedState`: one pass per block over a lazily
-activated, lazily permuted tensor, multithreaded. Terminal measurements are then
-sampled from the stored order without transposing the state back. The per-gate
-kernels below stay the reference implementation and serve the branching path.
+Usage: from qputwin_core.engine import StatevectorEngine
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

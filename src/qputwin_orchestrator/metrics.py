@@ -1,19 +1,6 @@
-"""Prometheus metrics (text exposition format 0.0.4), dependency-free.
+"""Prometheus metrics of the orchestrator.
 
-Counters and histograms are fed from the telemetry stream (every finished job,
-synchronous or asynchronous, passes through :class:`TelemetryStore.add`), so the
-metrics and the research dataset can never disagree. Gauges (queue depth,
-in-flight requests per replica) are computed at scrape time.
-
-Exposed at ``GET /metrics``:
-
-* ``qputwin_jobs_total{backend,status,mode}`` — finished jobs (status = COMPLETED | REJECTED | FAILED | CANCELLED);
-* ``qputwin_job_roundtrip_ms``, ``qputwin_job_orchestration_overhead_ms``,
-  ``qputwin_job_qpu_compute_ms`` — histograms per backend;
-* ``qputwin_async_jobs{backend,state}``, ``qputwin_async_capacity{backend}``;
-* ``qputwin_replica_in_flight``, ``qputwin_replica_dispatched_total``,
-  ``qputwin_replica_failures_total`` per ``{backend,replica}``;
-* ``qputwin_build_info{version,instance}``.
+Usage: from qputwin_orchestrator.metrics import Metrics
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

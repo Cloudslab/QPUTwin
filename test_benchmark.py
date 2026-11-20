@@ -1,45 +1,6 @@
-"""QPUTwin integration & benchmarking test-suite (runs against the live Docker stack).
+"""Integration and benchmark tests against the running Docker stack.
 
-    docker compose up -d --build
-    uv run pytest test_benchmark.py -v -s
-
-What is verified
-----------------
-1. A highly entangled 12-qubit star-GHZ circuit — interaction graph K_{1,11}, a hub
-   of degree 11 that no square lattice can host — runs on both trapped-ion
-   backends with exact GHZ statistics/amplitudes, and its ``telemetry`` object
-   satisfies the additive identities the research dataset relies on.
-2. The *same* circuit is mathematically rejected by both superconducting
-   backends: the reported qubit pair has adjacency-matrix entry 0, as
-   independently recomputed here from the device's published coupling map.
-3. Control experiment: an equally entangled GHZ built as a nearest-neighbour
-   chain is accepted by the superconducting backends — the rejection in (2) is
-   topological, not a blanket refusal.
-4. A complete-graph state (K_8, every pair interacts) matches its analytic
-   amplitudes 2^{-n/2}(-1)^{C(|x|,2)} on trapped-ion hardware.
-5. Per-container resource model: qubit caps default to the vendor sizes, and the
-   memory guard rejects an infeasible 36-qubit dense statevector with a precise
-   ``ResourceLimitError`` instead of crashing the worker.
-6. Benchmark: N repetitions per backend; median / p95 of the three headline
-   metrics are printed and cross-checked with ``/v1/telemetry/summary``.
-7. Asynchronous execution: ``202`` + polling returns the same physics and
-   telemetry obeying the same identities (plus ``orchestrator_queue_ms``).
-8. Routing vs rejection: the star-GHZ that (2) rejects is SABRE-routed into a
-   correct GHZ on both superconducting backends; the cost (SWAPs, latency) is
-   printed next to the rejection latency.
-9. Noise: the calibration-driven density-matrix engine degrades a Bell pair on
-   every backend, consistently with the reported estimated success probability.
-10. Gate-duration model: every job carries a hardware wall-clock estimate.
-11. Horizontal scaling: when a backend runs several replicas (``.env``
-    ``QPUTWIN_<DEVICE>_REPLICAS`` or ``--scale``), concurrent async jobs spread over
-    distinct worker containers.
-12. Wide noisy circuits run on the trajectory engine; coherent, crosstalk and
-    time-correlated noise terms are applied; every result lists the calibration
-    values it relied on that are not vendor-published.
-13. Operations: ``/ready`` and the Prometheus ``/metrics`` endpoint.
-
-Only ``pytest``, ``httpx`` and the standard library are used, so the suite runs
-from a fresh ``uv sync`` (dev group) without the scientific extras.
+Usage: docker compose up -d --build && uv run pytest test_benchmark.py -v -s
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

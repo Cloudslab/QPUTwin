@@ -1,8 +1,6 @@
-"""Quantinuum Helios (trapped ion, 98 qubits) emulator worker.
+"""Worker for the Quantinuum Helios twin.
 
-All-to-all connectivity (K_98). Natives: u1q(θ,φ), virtual rz(λ), zzmax, rzz(θ); CX is realised with one ZZMax.
-
-Run standalone:  ``QPUTWIN_VENDOR=quantinuum_helios uv run python -m qputwin_worker``
+Usage: QPUTWIN_VENDOR=quantinuum_helios python -m qputwin_worker
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

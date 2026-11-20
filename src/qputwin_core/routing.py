@@ -1,63 +1,6 @@
-"""Optional SABRE qubit router (Li, Ding & Xie, ASPLOS 2019), written from scratch.
+"""SABRE qubit router and calibration-aware re-layout.
 
-QPUTwin's default is still **no routing**: a circuit that violates the coupling
-graph is rejected with ``TopologicalCompilationError``. Passing
-``options.routing = {"method": "sabre"}`` instead treats the circuit's qubit
-indices as *logical* qubits, places them on physical qubits and inserts SWAPs
-until every two-qubit operation acts on a coupled pair. The cost of routing
-(SWAPs, extra entanglers, depth, and — with a noise model — fidelity) can then
-be compared directly against outright rejection.
-
-Algorithm
----------
-* **Dependency DAG** over qubit wires *and* classical-bit wires, so
-  measurements, resets and classically-controlled operations keep their
-  semantics.
-* **Front layer** ``F``: operations whose predecessors have all executed. Every
-  executable operation (one-qubit, measurement, barrier, or a two-qubit gate on
-  a coupled pair) is emitted immediately.
-* When ``F`` is blocked, every SWAP on a coupler touching a qubit of ``F`` is
-  scored with the SABRE heuristic::
-
-      H = max(decay[p], decay[q]) · ( Σ_{g∈F} D[π(g)] / |F|  +  W · Σ_{g∈E} D[π(g)] / |E| )
-
-  where ``D`` is the all-pairs shortest-path matrix of the coupling graph, ``E``
-  the extended (look-ahead) set of the next two-qubit gates, ``W`` the
-  look-ahead weight and ``decay`` a per-qubit penalty that discourages
-  serialising SWAPs on the same qubits. Ties are broken by a seeded RNG.
-* A **release valve** routes the closest blocked gate along a shortest path if
-  the heuristic stalls, so routing always terminates.
-* **Initial layout** ``"sabre"``: several trials (a compact BFS placement plus
-  seeded random placements), each refined by forward/backward passes over the
-  two-qubit gate sequence (the reverse-traversal trick of the SABRE paper); the
-  layout needing the fewest SWAPs wins. ``"trivial"`` (logical *i* → physical
-  *i*) and an explicit list are also accepted.
-
-**Final measurements** (the last operation on their qubit, writing bits that
-nothing later reads or overwrites) are held back and appended after routing,
-mapped through the *final* layout. Otherwise a later SWAP could route through an
-already-measured physical qubit, turning a terminal measurement into a
-mid-circuit one, which is wasteful on hardware and forces shot branching in the
-emulator.
-
-**Bridges** (``bridge: true``): a blocked CX at distance 2 may be executed in
-place through the middle qubit ``m`` as ``CX(a,m) CX(m,b) CX(a,m) CX(m,b)``. It
-costs the same four CX as SWAP + CX but leaves the layout untouched, so it is
-chosen only when the best SWAP would not bring the look-ahead set closer.
-
-**Cancellation** (``optimize: true``, the default): after routing, pairs of
-identical self-inverse two-qubit gates (CX, CZ, …) are removed when everything
-between them commutes with them. Commutation is decided exactly on the joint
-unitary of the two operations (≤ 4 qubits), not by pattern rules, so the
-optimised circuit is the same unitary, global phase included. This typically
-removes a CX of a SWAP that meets the user's own CX on the same pair.
-
-Logical qubits are placed only if some operation other than a barrier touches
-them, and only on *usable* qubits (defective qubits of a calibrated map are
-avoided) inside one connected component. A SWAP is emitted as three ``CX``
-operations, which the native compiler then lowers to the device entangler.
-
-Pure Python apart from the numpy commutation check of the cancellation pass.
+Usage: from qputwin_core.routing import RoutingOptions
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

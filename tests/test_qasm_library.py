@@ -1,7 +1,6 @@
-"""Embedded gate libraries and OpenQASM 3 modifiers vs. canonical matrices.
+"""Tests the built-in gate libraries and OpenQASM 3 gate modifiers.
 
-* ``stdgates.inc`` and the built-in (vendor-native) library must be **phase-exact**.
-* ``qelib1.inc`` (OpenQASM 2) is only defined up to global phase, as in the spec.
+Usage: uv run pytest tests/test_qasm_library.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

@@ -1,18 +1,6 @@
 """Qubit connectivity: coupling maps and adjacency matrices.
 
-A :class:`CouplingMap` stores the *undirected* coupling graph of a device as a
-symmetric boolean adjacency matrix ``A`` (``A[p, q] = 1`` iff a physical coupler
-joins qubits ``p`` and ``q``). Trapped-ion devices use the complete graph
-``K_n`` (``A = J − I``) which is represented implicitly, so a 98-qubit all-to-all
-device costs O(1) memory instead of O(n²).
-
-Coupling maps for superconducting devices are loaded from JSON files in
-``qputwin_core/devices_data`` so that published vendor calibration maps can be
-dropped in without code changes. A map may list ``disabled_qubits`` (defective
-qubits in a calibration snapshot): they lose every coupler, are excluded from
-routing layouts, and any operation addressing them is rejected by the emulator.
-A worker can also load a map at runtime from ``QPUTWIN_COUPLING_MAP`` (see
-:func:`load_coupling_map_file`).
+Usage: from qputwin_core.topology import CouplingMap
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

@@ -1,11 +1,6 @@
-"""Publication figures for the simulator comparison (``results/*.json`` → ``figures/``).
+"""Draws the simulator-comparison figures from comparison/results/*.json.
 
-Same conventions as ``benchmarks/plot_figures.py``: vector PDF + SVG and a 300-dpi PNG
-per figure, a CSV of exactly the plotted values in ``figures/data/``, DejaVu Sans at
-7–8.5 pt, and a validated categorical palette in fixed order with a distinct marker
-per series.
-
-    uv run python plot_comparison.py
+Usage: cd comparison && uv run python plot_comparison.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

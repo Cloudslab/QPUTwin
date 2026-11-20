@@ -1,4 +1,6 @@
-"""Statevector engine: kernels, bit order, sampling statistics, mid-circuit semantics.
+"""Tests the statevector engine.
+
+Usage: uv run pytest tests/test_engine.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

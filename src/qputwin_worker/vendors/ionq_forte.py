@@ -1,8 +1,6 @@
-"""IonQ Forte (trapped ion, 36 qubits) emulator worker.
+"""Worker for the IonQ Forte twin.
 
-All-to-all connectivity (K_36). Natives: gpi(φ), gpi2(φ), virtual rz, ms(φ0,φ1,θ), zz(θ); CX is realised with one MS.
-
-Run standalone:  ``QPUTWIN_VENDOR=ionq_forte uv run python -m qputwin_worker``
+Usage: QPUTWIN_VENDOR=ionq_forte python -m qputwin_worker
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

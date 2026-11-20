@@ -1,29 +1,6 @@
-"""Convert a vendor-published coupling map into QPUTwin's coupling-map JSON.
+"""Converts a vendor coupling map into the QPUTwin coupling-map JSON format.
 
-Accepted inputs (auto-detected):
-
-* a plain list of pairs ``[[0, 1], [1, 2], ...]`` (Qiskit ``coupling_map`` style;
-  directed duplicates are merged);
-* an object with one of the keys ``edges`` / ``coupling_map`` / ``couplers`` /
-  ``connectivity`` holding pairs, optionally with ``qubits`` listing every qubit
-  label (IQM-style ``"QB1"`` labels and Rigetti-style integer ids both work);
-* a QPUTwin coupling-map file (re-validated and normalised);
-* a text/CSV edge list, one ``a,b`` or ``a b`` pair per line (``#`` comments).
-
-Qubit labels are mapped to dense indices in natural order (``QB2`` < ``QB10``)
-unless ``--keep-indices`` is given for integer labels. The label of each index is
-recorded in ``layout.labels``. Defective qubits can be listed with
-``--disabled`` (by label); any qubit with no couplers can be disabled
-automatically with ``--disable-isolated``.
-
-Usage::
-
-    uv run python scripts/import_coupling_map.py vendor_map.json \\
-        --device rigetti_ankaa_3 --provenance "Rigetti Ankaa-3 calibration 2026-10-01" \\
-        --disabled 5 30 -o config/devices/ankaa3_2026-10-01.json
-
-then start the worker with ``QPUTWIN_COUPLING_MAP=/app/config/devices/ankaa3_2026-10-01.json``
-(``QPUTWIN_ANKAA3_COUPLING_MAP`` in ``.env``). No code change is needed.
+Usage: uv run python scripts/import_coupling_map.py vendor_map.json --help
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """
@@ -106,7 +83,7 @@ def build(pairs: list[tuple[str, str]], labels: list[str] | None, *, keep_indice
 
 
 def main(argv: list[str] | None = None) -> None:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     ap.add_argument("source", type=Path)
     ap.add_argument("-o", "--output", type=Path, required=True)
     ap.add_argument("--device", choices=sorted(DEVICES), help="check the size against a packaged device")

@@ -1,33 +1,6 @@
-"""Monte-Carlo quantum-trajectory engine (noisy execution beyond density-matrix widths).
+"""Monte-Carlo trajectory engine for noisy circuits too wide for a density matrix.
 
-Each trajectory evolves a *statevector* through the same noisy program the
-density-matrix engine uses (:func:`qputwin_core.noise.build_noisy_program`),
-unravelling every channel stochastically:
-
-* a one-qubit Kraus channel ``{K_k}`` picks ``k`` with the Born weight
-  ``p_k = Tr(K_k ρ_q K_k†)`` from the qubit's reduced density matrix ``ρ_q`` and
-  applies ``K_k / √p_k``;
-* depolarising ``D_p`` applies a uniformly random non-identity Pauli with
-  probability ``p·(d²−1)/d²`` (``D_p(ρ) = (1 − p + p/d²)ρ + p/d² Σ_{P≠I} PρP``);
-* **quasi-static detuning** draws ``δ_q ~ N(0, σ_q)`` once per trajectory and
-  applies ``Rz(2π·δ_q·t)`` over every scheduled window, which makes the noise
-  correlated in time (non-Markovian) and is why it is trajectory-only;
-* **leakage** (phenomenological): a leak event collapses the qubit and parks it
-  in ``|1⟩`` outside the computational dynamics, so gates and channels on it are
-  skipped, a 2Q partner receives a uniformly random Pauli, it reads out as ``1``,
-  and each later gate on it returns it with probability ``seepage``; a reset
-  returns it to ``|0⟩``.
-
-Measurements and resets keep the exact binomial shot-branching of the
-statevector engine, and readout errors (independent or correlated) are applied
-exactly to terminal distributions. The jumps of one trajectory are shared by the
-shots assigned to it, so sampling is **exact when every shot has its own
-trajectory** (``trajectories = shots``). With fewer trajectories the result
-samples the empirical mixture of the drawn trajectories (stratified, so every
-trajectory gets ``⌊shots/T⌋`` or ``⌈shots/T⌉`` shots), which converges to the
-noisy distribution as ``T`` grows. The run reports which regime applied.
-
-Cost: ``T × (circuit length) × O(2^n)``, with the memory of a statevector run.
+Usage: from qputwin_core.trajectory import run_trajectories
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

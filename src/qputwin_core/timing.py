@@ -1,8 +1,6 @@
-"""Monotonic, nanosecond-resolution timing primitives used for all telemetry.
+"""Nanosecond timers used for the telemetry.
 
-All QPUTwin latency measurements use :func:`time.perf_counter_ns`. Durations are
-measured *within one process*; no timestamps are ever compared across containers,
-which removes inter-container clock skew from the measurement error budget.
+Usage: from qputwin_core.timing import SpanTimer
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

@@ -1,4 +1,6 @@
-"""OpenQASM front-end: lexer, parser, semantic analysis and flattening.
+"""Tests the OpenQASM lexer, parser and flattener.
+
+Usage: uv run pytest tests/test_qasm_parser.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

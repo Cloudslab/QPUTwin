@@ -1,4 +1,6 @@
-"""Asynchronous job queue (202 + polling) and horizontally scaled worker replicas, in-process.
+"""Tests the asynchronous job queue and worker replicas.
+
+Usage: uv run pytest tests/test_async_jobs.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

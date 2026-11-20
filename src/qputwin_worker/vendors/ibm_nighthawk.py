@@ -1,8 +1,6 @@
-"""IBM Nighthawk r1 (superconducting, 120 qubits) emulator worker.
+"""Worker for the IBM Nighthawk twin.
 
-Nearest-neighbour connectivity on a 12x10 square lattice (IBM's ibm_miami snapshot) enforced via the adjacency matrix. Natives: sx, x, virtual rz, cz.
-
-Run standalone:  ``QPUTWIN_VENDOR=ibm_nighthawk uv run python -m qputwin_worker``
+Usage: QPUTWIN_VENDOR=ibm_nighthawk python -m qputwin_worker
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

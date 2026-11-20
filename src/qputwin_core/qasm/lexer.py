@@ -1,11 +1,6 @@
-"""Hand-written OpenQASM tokenizer.
+"""Splits OpenQASM source text into tokens.
 
-A single compiled master regular expression with named groups splits the source
-into tokens. Comments, whitespace and ``#pragma`` lines are discarded. Every token
-records its 1-based ``line``/``col`` and absolute ``pos`` so that diagnostics and
-IR provenance can always point back to the original source text.
-
-Pure Python (no numpy) so that the orchestrator can validate circuits cheaply.
+Usage: from qputwin_core.qasm.lexer import tokenize
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

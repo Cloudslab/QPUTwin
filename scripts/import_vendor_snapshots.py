@@ -1,46 +1,6 @@
-"""Build the packaged IBM Heron, IBM Nighthawk and Google Willow twins from the vendors' published snapshots.
+"""Builds the IBM Heron, IBM Nighthawk and Google Willow twins from the vendor snapshots.
 
-IBM and Google each ship real calibration snapshots of their processors inside their own SDKs:
-
-* ``qiskit-ibm-runtime`` (``fake_provider``) holds IBM's published backend configuration and
-  properties for real systems: per-qubit T1, T2, readout errors and lengths, per-qubit
-  ``sx`` / ``x`` errors and lengths, per-coupler ``cz`` errors and lengths, and the coupling map.
-  The Heron r3 twin uses ``ibm_boston`` and the Nighthawk r1 twin uses ``ibm_miami``.
-* ``cirq-google`` holds Google's published Willow device specification (``willow_pink``,
-  grid topology, gate set and gate durations) and its median calibration snapshot
-  (2024-08-16): per-qubit idle T1, readout errors and single-qubit randomized benchmarking
-  errors, and per-coupler CZ cross-entropy benchmarking errors.
-
-Run it from the project root with pinned SDKs, outside the project environment::
-
-    uv run --no-project --with qiskit-ibm-runtime==0.51.0 --with cirq-google==1.7.0 \\
-        python scripts/import_vendor_snapshots.py
-
-It writes ``src/qputwin_core/devices_data/<id>.json`` (coupling map) and
-``src/qputwin_core/devices_data/calibration/<id>.json`` for ``ibm_heron``, ``ibm_nighthawk``
-and ``google_willow``. Pass ``--heron`` / ``--nighthawk`` to import another IBM system of
-the same family (for example ``fake_pittsburgh``), and ``-o`` to write drop-in snapshots for
-``QPUTWIN_<DEVICE>_COUPLING_MAP`` / ``QPUTWIN_<DEVICE>_CALIBRATION`` instead.
-
-Conversions (each one is recorded in the file's provenance)
------------------------------------------------------------
-* IBM gate errors are randomized-benchmarking errors per gate, that is average gate
-  infidelity, so ``fidelity = 1 - error``.
-* IBM marks a coupler that is not working in the snapshot with ``gate_error = 1``. Such couplers
-  are removed from the coupling map and listed in ``layout.inactive_couplers``.
-* Google reports Pauli errors. Average gate error is ``d/(d+1)`` times the Pauli error
-  (2/3 for one qubit, 4/5 for two). Each CZ also has signed entangler angle errors θ (swap)
-  and φ (conditional phase). Google's ``GoogleNoiseProperties`` treats the per-cycle XEB Pauli
-  error as the CZ's *total* error and the ``PhasedFSim(θ, φ)`` angle error as a coherent part
-  of it, which it subtracts from the depolarising remainder. The file stores the total as the
-  CZ fidelity and θ, φ per coupler; QPUTwin's channel solver does the same subtraction. The
-  XEB cycle includes a layer of single-qubit gates, so it is slightly pessimistic for the CZ alone.
-* Willow has no T2 metric. T2 is derived from the incoherent part of the single-qubit RB
-  error with Cirq's formula: ``1/Tphi = 3 (e_inc - t_gate/(3 T1)) / t_gate`` and
-  ``1/T2 = 1/(2 T1) + 1/Tphi``, with ``t_gate = 25 ns``.
-* Google's ``p00`` error is P(read 1 | prepared 0), QPUTwin's ``p01``. ``p11`` error is
-  P(read 0 | prepared 1), QPUTwin's ``p10``.
-* A measured ``T2 > 2 T1`` is clipped to ``2 T1``, and the clip is listed.
+Usage: uv run --no-project --with qiskit-ibm-runtime==0.51.0 --with cirq-google==1.7.0 python scripts/import_vendor_snapshots.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

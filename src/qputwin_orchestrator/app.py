@@ -1,20 +1,6 @@
-"""QPUTwin central orchestrator (FastAPI).
+"""FastAPI application of the orchestrator.
 
-Accepts OpenQASM jobs, validates them with the pure-Python front-end of
-``qputwin_core``, routes them over a pooled HTTP/1.1 keep-alive connection to the
-selected vendor-emulator worker, and returns results with a ``telemetry`` object
-whose components add up exactly (see :mod:`qputwin_orchestrator.telemetry`).
-
-The orchestrator deliberately does **not** check topology or native gates: those
-are enforced by the emulator itself (as a vendor-side compiler would), which
-lets validation latency and emulator rejection latency be measured separately.
-
-Jobs run synchronously by default. ``POST /v1/jobs?mode=async`` (or the header
-``Prefer: respond-async``) validates the job, queues it and answers ``202`` with
-a job resource to poll at ``GET /v1/jobs/{id}`` (long-poll with ``?wait=``) or to
-cancel with ``DELETE /v1/jobs/{id}`` — see :mod:`qputwin_orchestrator.jobs`.
-Each backend may be served by several worker replicas
-(:mod:`qputwin_orchestrator.registry`).
+Usage: from qputwin_orchestrator.app import create_app
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

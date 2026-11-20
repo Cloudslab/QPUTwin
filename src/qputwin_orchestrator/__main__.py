@@ -1,7 +1,6 @@
-"""Run the QPUTwin orchestrator: ``python -m qputwin_orchestrator``.
+"""Starts the QPUTwin orchestrator server.
 
-Environment: ``QPUTWIN_HOST`` (0.0.0.0), ``QPUTWIN_PORT`` (8000), ``QPUTWIN_LOG_LEVEL`` (info),
-``QPUTWIN_ACCESS_LOG`` (0 — access logging is off by default because it perturbs latency).
+Usage: python -m qputwin_orchestrator
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

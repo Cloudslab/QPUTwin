@@ -1,65 +1,6 @@
-"""Device calibration data: gate fidelities, gate durations, coherence times, readout errors.
+"""Device calibration data: gate fidelities, gate durations, coherence times and readout errors.
 
-A :class:`Calibration` is the single source of numbers for both the **noise
-model** (:mod:`qputwin_core.noise`) and the **gate-duration model**
-(:mod:`qputwin_core.scheduling`). Each device ships a packaged file
-``devices_data/calibration/<device>.json`` with *nominal medians*; a worker can
-load a different snapshot at runtime from ``QPUTWIN_CALIBRATION`` (a vendor's
-published calibration, a historical snapshot, a what-if study…), with no code
-change.
-
-File format (all keys except ``device`` optional)::
-
-    {
-      "device": "iqm_emerald",
-      "label": "nominal medians",
-      "snapshot_date": "2026-08-01",
-      "fidelity_convention": "average_gate_fidelity",
-      "gates":    {"prx": {"fidelity": 0.9993, "duration_ns": 40}, "cz": {...}},
-      "readout":  {"fidelity": 0.97, "duration_ns": 1500},          # or p01 / p10
-      "reset":    {"duration_ns": 2000},
-      "coherence": {"t1_us": 54.7, "t2_us": 16.6},
-      "feedforward_latency_ns": null,
-      "shot_overhead_us": null,
-      "crosstalk": {"zz_rad_per_two_qubit_gate": 0.002, "pairs": {"3-4": 0.004}},
-      "leakage":  {"seepage_per_gate": 0.01},           # gates.<g>.leakage = leak probability
-      "readout_correlations": [{"qubits": [0, 1], "matrix": [[…4×4 column-stochastic…]]}],
-      "parallelism": {"max_parallel_one_qubit": null, "max_parallel_two_qubit": 1},
-      "qccd": {"transport_ns_per_two_qubit_gate": 0, "cooling_ns_per_two_qubit_gate": 0},
-      "qubits":   {"7": {"t1_us": 31.0, "readout_fidelity": 0.93,
-                         "gates": {"prx": {"fidelity": 0.998}}}},
-      "couplers": {"6-7": {"cz": {"fidelity": 0.981, "duration_ns": 70}}},
-      "provenance": {"gates.cz.fidelity": "published: …", "coherence.t1_us": "assumed: …"},
-      "sources": ["https://…"]
-    }
-
-Per-qubit and per-coupler entries override the device-wide defaults. Readout
-errors are ``p01 = P(read 1 | prepared 0)`` and ``p10 = P(read 0 | prepared 1)``;
-a symmetric ``fidelity`` F gives ``p01 = p10 = 1 − F``.
-
-Gate fidelities follow ``fidelity_convention``: ``average_gate_fidelity`` (what
-randomized / interleaved benchmarking report; the default) or
-``process_fidelity`` (entanglement fidelity ``F_e``), converted exactly with
-``F_avg = (d·F_e + 1)/(d + 1)``. :meth:`Calibration.gate_fidelity` always
-returns the *average* gate fidelity.
-
-Optional per-gate error terms (in ``gates.<g>``, ``qubits.<q>.gates.<g>`` or
-``couplers.<a-b>.<g>``): ``overrotation`` (fractional coherent over-rotation ε,
-the gate becomes ``U^{1+ε}``), ``fsim_theta_rad`` / ``fsim_phi_rad`` (two-qubit gates: a
-residual ``PhasedFSim(θ, φ)`` swap angle and conditional phase after the gate, as in Cirq's
-Google noise model), ``coherent_z_rad`` (a residual Z / ZZ phase after
-the gate) and ``leakage`` (probability of leaving the computational subspace per
-gate and qubit). Device-level blocks add spectator ZZ ``crosstalk``,
-``leakage.seepage_per_gate``, quasi-static detuning
-(``coherence.quasi_static_detuning_khz``), ``reset.fidelity``, joint
-``readout_correlations``, gate ``parallelism`` limits and ``qccd`` transport /
-cooling times. Everything absent is simply not modelled.
-
-**Research honesty.** Every number carries a provenance tag. Values marked
-``assumed`` are placeholders typical of the technology class, *not* vendor data,
-and must be replaced before being quoted in a publication.
-
-Pure Python (no numpy), so the orchestrator can parse calibration files too.
+Usage: from qputwin_core.calibration import load_calibration
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

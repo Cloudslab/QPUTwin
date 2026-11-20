@@ -1,20 +1,6 @@
-"""Semantic analysis and flattening of an OpenQASM AST into the primitive IR.
+"""Checks an OpenQASM syntax tree and flattens it into the circuit representation.
 
-Responsibilities
-----------------
-* register layout (declaration order -> physical qubit / clbit indices);
-* include resolution against the embedded libraries (:mod:`.stdlib`);
-* gate definitions with **lexical binding** — a gate body's references are bound
-  when the gate is defined, so later redefinitions cannot change its meaning;
-* recursive inlining down to ``{U, CX, gphase}`` plus caller-chosen *primitives*
-  (vendor-native library gates are kept opaque so the worker can map them 1:1);
-* register broadcasting (``h q;``, ``cx a, b;``, ``measure q -> c;``);
-* OpenQASM 3 modifiers: ``inv``, ``pow(k)`` (integer k), ``ctrl(n)`` / ``negctrl(n)``
-  on arbitrary gates, implemented exactly via :mod:`.su2` (ABC decomposition for
-  one control, Barenco Lemma 7.9 recursion for more);
-* classical conditions attached to every operation emitted from an ``if`` body.
-
-Pure Python (no numpy).
+Usage: from qputwin_core.qasm.flatten import load_circuit
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

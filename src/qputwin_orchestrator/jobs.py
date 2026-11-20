@@ -1,37 +1,6 @@
-"""Asynchronous job queue: ``POST /v1/jobs?mode=async`` → ``202`` + polling, durable and multi-instance.
+"""Asynchronous job queue with a durable SQLite job store.
 
-Life cycle::
-
-    QUEUED ──► RUNNING ──► COMPLETED | REJECTED | FAILED
-       ▲          │
-       └──────────┘ lease expired (instance lost) → re-queued, at most ``max_attempts`` times
-    QUEUED ──► CANCELLED            (DELETE /v1/jobs/{id})
-
-Design
-------
-* **Validation is synchronous**: malformed circuits, unknown backends and
-  resource violations are rejected at submission; only valid jobs are stored.
-* **Job store** (:class:`JobStore`): ``memory`` (single instance) or ``sqlite``
-  (WAL mode on a shared volume). The SQLite store makes jobs survive restarts
-  and lets several orchestrator instances on one host share one queue: every
-  state transition is a single atomic transaction (``BEGIN IMMEDIATE``).
-* **Claiming** enforces the *global* per-backend capacity
-  (``replicas × async_per_replica_concurrency``, counted over all instances) and
-  orders candidates by **priority** (high first), then **fair share** (the client
-  with the fewest running jobs on that backend, then the client served least
-  recently there: round-robin between active clients even with a single
-  dispatch slot), then submission order.
-* **Leases**: a claimed job carries ``lease_until``; its owner renews the lease
-  while it runs. If an instance dies, the lease expires and another instance
-  re-queues and re-runs the job. Delivery is therefore at-least-once, but
-  re-execution is *idempotent*: the PRNG seed is fixed at submission, so a retry
-  reproduces the identical result. A finish from a stale owner is ignored.
-* **Telemetry**: when the instance that accepted a job also executes it, the
-  original ``perf_counter_ns`` recorder spans submission → completion exactly.
-  Otherwise the recorder is rebuilt from the stored pre-dispatch spans and the
-  queue time is measured with the host's realtime clock (containers on one host
-  share it); the record says so in ``queue_clock``. The additive identities hold
-  either way.
+Usage: from qputwin_orchestrator.jobs import JobManager
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

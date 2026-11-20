@@ -1,8 +1,6 @@
-"""IBM Heron r3 (superconducting, 156 qubits) emulator worker.
+"""Worker for the IBM Heron r3 twin.
 
-Nearest-neighbour connectivity on a heavy-hex lattice (IBM's ibm_boston snapshot) enforced via the adjacency matrix. Natives: sx, x, virtual rz, cz.
-
-Run standalone:  ``QPUTWIN_VENDOR=ibm_heron uv run python -m qputwin_worker``
+Usage: QPUTWIN_VENDOR=ibm_heron python -m qputwin_worker
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

@@ -1,8 +1,6 @@
-"""Pydantic request/response models for the public orchestrator API.
+"""Request and response models of the orchestrator API.
 
-Response models document the API (OpenAPI at ``/docs``); handlers return
-pre-built ``JSONResponse`` objects so that response validation never sits on the
-measured hot path.
+Usage: from qputwin_orchestrator.schemas import JobRequest
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

@@ -1,4 +1,6 @@
-"""Vendor simulators: topology enforcement, resource limits and the memory guard.
+"""Tests the QPU emulators: topology checks, resource limits and the memory guard.
+
+Usage: uv run pytest tests/test_simulators.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

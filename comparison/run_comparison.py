@@ -1,29 +1,6 @@
-"""Comparative benchmark: QPUTwin vs Qiskit Aer, Amazon Braket local, Cirq, qsim and Qulacs.
+"""Compares QPUTwin with Qiskit Aer, Amazon Braket, Cirq, qsim and Qulacs.
 
-QPUTwin is the **already running** Docker stack (``QPUTWIN_BASE_URL``, default
-http://localhost:8000); this script never starts, stops or reconfigures it.
-
-Experiments (each writes ``results/<name>.json`` with environment metadata):
-
-* ``correctness``  exact ideal output distributions of nine circuit families, every
-                   simulator against Qiskit Aer (and QPUTwin), 4–16 qubits
-* ``sv_speed``     ideal statevector run time (simulate + 1024 shots) vs width for GHZ,
-                   QV-style and QFT-adder circuits; ``COMPARE_THREADS`` = 1 (default), 4 (QPUTwin as
-                   the running stack) or 16 (all in-process, widths to 28)
-* ``dm_speed``     noisy density-matrix run time vs width (same thread budgets)
-* ``noise_xval``   QPUTwin's calibrated noise vs an independent calibration-matched Aer
-                   model, run on QPUTwin's identical compiled circuit, all seven devices
-* ``vendor_xval``  the IBM and Google twins vs the vendors' own noise models (Aer
-                   ``from_backend`` of IBM's snapshots, Cirq's ``willow_pink`` model)
-* ``vendor_workflow``  device emulation end to end: each vendor's own local-emulation
-                   workflow (Qiskit transpile + Aer from_backend; Cirq routing + qsim) vs QPUTwin
-* ``workflow_throughput``  96 emulation jobs on the whole host (``WORKFLOW_BACKEND``), vendor
-                   workflows in a process pool vs QPUTwin worker replicas (configured by the driver)
-
-Usage (from this folder)::
-
-    uv run python run_comparison.py correctness sv_speed dm_speed noise_xval vendor_xval
-    COMPARE_THREADS=4 uv run python run_comparison.py sv_speed dm_speed
+Usage: cd comparison && uv run python run_comparison.py correctness sv_speed dm_speed
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """
@@ -590,7 +567,7 @@ EXPERIMENTS = {"correctness": exp_correctness, "sv_speed": exp_sv_speed, "dm_spe
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     ap.add_argument("experiments", nargs="+", choices=[*EXPERIMENTS, "all"])
     args = ap.parse_args()
     httpx.get(f"{A.BASE_URL}/health", timeout=5).raise_for_status()       # the stack must already be running

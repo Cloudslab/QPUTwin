@@ -1,25 +1,6 @@
-"""Vendor device specifications for the seven emulated QPUs.
+"""Device specifications of the seven emulated QPUs.
 
-Each :class:`DeviceSpec` fixes a device's physical size, its native gate set, the
-native entangler used to realise ``CX``, the one-qubit synthesis basis, and its
-coupling graph. Gate sets follow the vendors' public documentation. ``rz`` is
-modelled as a *virtual* (frame-change, zero-duration) native on every platform,
-mirroring how each vendor's compiler realises Z rotations.
-
-Topology fidelity note: the Rigetti and IQM coupling maps are synthetic square
-lattices matching published qubit counts and connectivity class — see
-``scripts/generate_coupling_maps.py`` and the README's methods section. The IBM
-Heron, IBM Nighthawk and Google Willow maps and calibrations are the vendors' own
-published snapshots, imported from their SDKs by ``scripts/import_vendor_snapshots.py``
-(IBM ``ibm_boston`` and ``ibm_miami``, Google ``willow_pink``), with per-qubit and
-per-coupler values.
-
-Each spec also carries a :class:`~qputwin_core.calibration.Calibration`
-(fidelities, durations, coherence, readout) loaded from
-``devices_data/calibration/<id>.json``. A worker container can replace the
-coupling map and/or the calibration at start-up with ``QPUTWIN_COUPLING_MAP`` and
-``QPUTWIN_CALIBRATION`` (see :func:`apply_overrides`) — calibrated vendor data is a
-drop-in replacement, not a code change.
+Usage: from qputwin_core.devices import DEVICES, get_device
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

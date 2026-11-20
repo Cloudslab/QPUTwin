@@ -1,11 +1,6 @@
-"""Safe evaluation of OpenQASM classical parameter expressions.
+"""Evaluates OpenQASM classical parameter expressions.
 
-Expressions are evaluated by walking the AST: Python's ``eval`` is never used, so
-untrusted QASM cannot execute code. Supported: real/integer literals, the constants
-``pi``/``π``, ``tau``/``τ`` and ``euler``/``ℇ``, the operators ``+ - * / ^ **``
-(``^`` is exponentiation, as in OpenQASM 2), unary ``-``/``+``, and the functions
-``sin cos tan exp ln sqrt arcsin arccos arctan`` (``asin``/``acos``/``atan`` also
-accepted).
+Usage: from qputwin_core.qasm.expr import evaluate
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

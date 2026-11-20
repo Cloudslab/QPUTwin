@@ -1,9 +1,6 @@
-"""Batched, window-fused trajectory executor (``qputwin_core.trajectory._run_batched``).
+"""Tests the batched trajectory executor.
 
-Every trajectory is still an exact unravelling of the calibrated noise: the batched executor must
-reproduce the exact density-matrix distribution, take the same number of jumps as the sequential
-walk, give results that do not depend on the thread count, and step aside for leakage and
-mid-circuit measurement.
+Usage: uv run pytest tests/test_trajectory_batched.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

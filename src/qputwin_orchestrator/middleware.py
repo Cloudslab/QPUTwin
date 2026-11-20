@@ -1,20 +1,6 @@
-"""Benchmarking middleware (pure ASGI).
+"""Middleware that measures the time of every request.
 
-Implemented as a raw ASGI callable rather than Starlette's ``BaseHTTPMiddleware``,
-which adds measurable per-request overhead and buffers response bodies. The
-middleware:
-
-1. stamps ``t0 = perf_counter_ns()`` the instant the request enters the
-   application and attaches a :class:`TelemetryRecorder` to ``scope["state"]``
-   (visible to handlers as ``request.state.qputwin_telemetry``);
-2. on ``http.response.start`` injects a W3C ``Server-Timing`` header — whose
-   ``total`` is measured *after* JSON serialisation, complementing the in-body
-   ``total_roundtrip_ms`` which cannot include the time taken to serialise
-   itself — plus ``X-QPUTwin-Job-Id``;
-3. after the final body chunk is sent, appends the request's record to the
-   :class:`TelemetryStore` (ring buffer + JSONL research dataset). Asynchronous
-   jobs are recorded by the job manager when they *finish* instead, so a ``202``
-   never produces a record of its own.
+Usage: from qputwin_orchestrator.middleware import BenchmarkingMiddleware
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

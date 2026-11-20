@@ -1,4 +1,6 @@
-"""Closed-form gate matrices vs. their Hamiltonian generators (scipy.linalg.expm).
+"""Tests the gate matrices against their generators.
+
+Usage: uv run pytest tests/test_gates.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

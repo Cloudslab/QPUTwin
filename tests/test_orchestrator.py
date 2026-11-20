@@ -1,7 +1,6 @@
-"""Orchestrator + workers wired in-process (httpx ASGI transport, no Docker).
+"""Tests the orchestrator and workers together in one process.
 
-Verifies routing, error mapping and — most importantly — the additive telemetry
-identities that the research dataset relies on.
+Usage: uv run pytest tests/test_orchestrator.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

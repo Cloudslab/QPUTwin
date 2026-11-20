@@ -1,4 +1,6 @@
-"""One module per emulated vendor QPU; each exposes ``SPEC``, ``SIMULATOR_CLASS`` and ``app``.
+"""One module per emulated QPU; each provides SPEC, SIMULATOR_CLASS and app.
+
+Usage: from qputwin_worker.vendors import VENDORS
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

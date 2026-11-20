@@ -1,20 +1,6 @@
-"""Device-emulation workflows: how each vendor's own tools emulate their device, and QPUTwin.
+"""Runs the IBM and Google emulation workflows and the matching QPUTwin job.
 
-A *device-emulation job* takes a logical OpenQASM program and returns counts as the named
-device would: compile and route to the device's native gates and coupling map, then simulate
-with the device's calibrated noise, then sample. Each pipeline below is the workflow its vendor
-documents for local emulation of that device, using the same published calibration snapshot:
-
-* **IBM** (Heron r3 ``ibm_boston``, Nighthawk ``ibm_miami``): ``qiskit.transpile(backend=FakeBackend,
-  optimization_level=1)`` then ``AerSimulator.from_backend(FakeBackend)`` (Aer picks its method).
-* **Google** (Willow ``willow_pink``): Cirq's ``RouteCQC`` on the device graph, ``optimize_for_target_gateset``
-  with ``CZTargetGateset``, then qsim (``qsimcirq``) with ``NoiseModelFromGoogleNoiseProperties`` — Google's
-  fast noisy simulator. ``google_dm`` swaps qsim for Cirq's exact ``DensityMatrixSimulator``.
-* **QPUTwin**: one HTTP job to the running stack (SABRE routing with the calibration-aware re-layout,
-  calibrated noise, engine ``auto``); ``qputwin_plain`` turns the re-layout off.
-
-Simulator objects that are built once per device (``from_backend``, the noise model) are built
-outside the timed region. Counts use QPUTwin's key order (``c[n-1] … c[0]``).
+Usage: from workflows import ibm_job, google_job, qputwin_job
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

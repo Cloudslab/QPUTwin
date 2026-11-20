@@ -1,8 +1,6 @@
-"""Shared test helpers for QPUTwin.
+"""Shared helpers for the QPUTwin tests.
 
-The reference unitary builder below is deliberately implemented *differently*
-from the production engine (full-unitary ``tensordot`` contraction instead of
-in-place sliced kernels), so that each implementation cross-validates the other.
+Usage: loaded automatically by pytest
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

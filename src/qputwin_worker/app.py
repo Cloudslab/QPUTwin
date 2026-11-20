@@ -1,25 +1,6 @@
-"""Vendor-emulator worker API (FastAPI) wrapping one QPUTwin physics engine.
+"""FastAPI application of a worker that wraps one QPU emulator.
 
-``create_worker_app(spec, simulator_cls)`` builds the HTTP service for one vendor;
-each module in :mod:`qputwin_worker.vendors` instantiates it for its device.
-
-Endpoints
----------
-``GET /health``      liveness + vendor id
-``GET /v1/device``   full device specification (topology, natives, emulator limits)
-``POST /v1/execute`` run an OpenQASM job; returns ``result``, ``compilation``,
-                     ``workload`` and a ``timing`` block of *durations* measured
-                     inside this process (``service_ms`` spans ASGI entry → response
-                     ready, so the orchestrator can derive network transit exactly).
-
-At start-up the device spec is passed through
-:func:`~qputwin_core.devices.apply_overrides`, so ``QPUTWIN_COUPLING_MAP`` /
-``QPUTWIN_CALIBRATION`` load a calibrated coupling map or calibration snapshot.
-
-Jobs execute one at a time per worker by default (``QPUTWIN_WORKER_CONCURRENCY=1``),
-modelling a QPU's serial job queue; time spent waiting is reported as
-``queue_ms``. The CPU-bound engine runs in Starlette's threadpool (sync endpoint),
-keeping the event loop responsive for health checks.
+Usage: from qputwin_worker.app import create_worker_app
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

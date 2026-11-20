@@ -1,15 +1,6 @@
-"""Publication figures from ``benchmarks/results/*.json``.
+"""Draws the benchmark figures from benchmarks/results/*.json.
 
-Every figure is written as vector PDF + SVG and a 300-dpi PNG to ``benchmarks/figures/``,
-together with a CSV of exactly the values plotted (``benchmarks/figures/data/``) so each
-chart has a table view. Figures are sized for a two-column paper (3.5 in single, 7.2 in
-double column) and copied into the documentation site.
-
-Colour: the seven devices take the first seven slots of the validated categorical palette
-in fixed order (adjacent-pair CVD ΔE ≥ 9.1, normal-vision ΔE ≥ 19.6 on white); every series
-also has its own marker and line style, so identity never relies on colour alone.
-
-    uv run --group bench python benchmarks/plot_figures.py
+Usage: uv run --group bench python benchmarks/plot_figures.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

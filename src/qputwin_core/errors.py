@@ -1,10 +1,6 @@
-"""Structured exception hierarchy for QPUTwin.
+"""Exception classes used across QPUTwin.
 
-Every error that can cross a process boundary (worker -> orchestrator -> client)
-is a :class:`QPUTwinError`. It carries an HTTP status, a stable machine-readable
-``type`` and a JSON-serialisable ``details`` mapping. Workers serialise errors
-with :meth:`QPUTwinError.to_dict` and the orchestrator rebuilds them with
-:func:`error_from_dict`, so the type is preserved end-to-end.
+Usage: from qputwin_core.errors import QPUTwinError
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

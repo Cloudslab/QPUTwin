@@ -1,8 +1,6 @@
-"""Calibration-aware placement after routing (``qputwin_core.routing.calibrated_relayout``).
+"""Tests the calibration-aware re-layout after routing.
 
-The routed circuit may move to other physical qubits whose calibrated gates and read-out are
-better, but it must stay executable (every two-qubit gate on a coupler), keep its ideal output,
-never get more expensive, and leave median-only calibrations and pinned layouts alone.
+Usage: uv run pytest tests/test_calibrated_layout.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

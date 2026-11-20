@@ -1,18 +1,6 @@
-"""Recursive-descent parser for OpenQASM 2.0 and a practical OpenQASM 3.x subset.
+"""Parser for OpenQASM 2.0 and a subset of OpenQASM 3.x.
 
-Grammar coverage (docs/guide/openqasm.md):
-
-* OpenQASM 2.0 — complete: ``qreg``/``creg``, ``gate`` definitions, ``U``/``CX``,
-  ``measure a -> b``, ``reset``, ``barrier``, ``if (creg == n)``; ``opaque`` is
-  rejected because it has no defined unitary.
-* OpenQASM 3.x subset — ``qubit``/``bit`` declarations, hardware qubits ``$n``,
-  ``c = measure q`` assignment form, ``gphase``, gate modifiers ``inv @``,
-  ``ctrl(n) @``, ``negctrl(n) @`` and ``pow(k) @``, ``if (...) { ... }`` blocks with
-  ``==``/``!=`` and bare-bit conditions, ``delay`` (accepted as identity) and
-  ``barrier`` without operands. Everything else raises
-  :class:`~qputwin_core.errors.UnsupportedFeatureError` with a line number.
-
-Pure Python (no numpy).
+Usage: from qputwin_core.qasm.parser import parse
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

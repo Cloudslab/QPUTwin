@@ -1,9 +1,6 @@
-"""Helpers for the QPUTwin notebooks: API client, example circuits and plots.
+"""Helper functions for the QPUTwin example notebooks: API client, example circuits and plots.
 
-Every job in the notebooks runs in the Docker stack through the HTTP API. The one local
-computation is :func:`native_plan`, which calls the same compiler the workers use so
-that a compiled circuit can be drawn, because the API returns its statistics rather
-than the circuit itself. :func:`draw_native` checks the two agree.
+Usage: from qputwin_demo import *  (inside a notebook in Example/)
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

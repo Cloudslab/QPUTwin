@@ -1,16 +1,7 @@
 #!/usr/bin/env python3
-"""Per-job QPUTwin metrics, derived from the telemetry dataset. Standard library only.
+"""Prometheus exporter for per-job QPUTwin metrics from the telemetry dataset.
 
-``GET /metrics`` on the orchestrator publishes job counts and three latency
-histograms. The telemetry record of every job holds much more: fourteen additive
-latency spans, the engine and execution path, the simulated width, memory and gate
-counts. This exporter tails ``data/telemetry.jsonl`` and publishes those fields, so
-no QPUTwin code changes, the measured request path gains nothing, and every
-orchestrator replica is covered, because they all append to the same file.
-
-Only records written after the exporter starts are counted (``QPUTWIN_TEL_START=begin``
-replays the whole file). Counters restart from zero with the process, which
-Prometheus ``rate()`` handles.
+Usage: python -u exporter.py  (run by the monitoring docker compose file)
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

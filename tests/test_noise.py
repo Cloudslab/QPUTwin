@@ -1,10 +1,6 @@
-"""Density-matrix engine and calibration-driven noise model.
+"""Tests the density-matrix engine and the noise model.
 
-The engine is cross-checked against an independent dense-matrix reference
-(explicit ``UρU†``, ``Σ KρK†`` and partial traces with ``einsum``), and every
-channel against its analytic action. The depolarising calibration is verified
-end-to-end: the *composite* gate channel reproduces the published average gate
-fidelity exactly.
+Usage: uv run pytest tests/test_noise.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

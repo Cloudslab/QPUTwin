@@ -1,7 +1,6 @@
-"""Gate fusion and the lazily permuted tensor executor (``qputwin_core.fused``).
+"""Tests gate fusion and the fused executor.
 
-The fused statevector and density-matrix paths must reproduce the per-gate
-reference kernels exactly, for every device, block width and thread count.
+Usage: uv run pytest tests/test_fused.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

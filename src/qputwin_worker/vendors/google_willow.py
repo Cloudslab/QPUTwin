@@ -1,8 +1,6 @@
-"""Google Willow (superconducting, 105 qubits) emulator worker.
+"""Worker for the Google Willow twin.
 
-Nearest-neighbour connectivity on a 105-qubit square grid (Google's willow_pink snapshot) enforced via the adjacency matrix. Natives: phased_xz(θ,φ,ζ), virtual rz, cz.
-
-Run standalone:  ``QPUTWIN_VENDOR=google_willow uv run python -m qputwin_worker``
+Usage: QPUTWIN_VENDOR=google_willow python -m qputwin_worker
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

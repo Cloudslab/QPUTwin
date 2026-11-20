@@ -1,58 +1,6 @@
-"""Calibration-driven noise model.
+"""Noise model built from the device calibration.
 
-Channels and error terms (applied by :mod:`qputwin_core.density` and :mod:`qputwin_core.trajectory`)
-------------------------------------------------------------------------------------------------------
-After every **physical** gate ``U`` the error channel ``E = D_p ∘ R ∘ V`` is applied:
-
-* ``V`` — **coherent error** (unitary): a fractional over-rotation ``U^ε``
-  (``overrotation`` ε, via the principal matrix logarithm, so a rotation by θ
-  becomes a rotation by θ(1+ε)) followed by a residual Z (1Q) or ZZ (2Q) phase
-  ``coherent_z_rad`` and, on two-qubit gates, a residual ``PhasedFSim(θ, φ)``
-  (``fsim_theta_rad`` swap angle, ``fsim_phi_rad`` conditional phase; Google publishes
-  both per coupler);
-* ``R`` — **thermal relaxation** on each gate qubit for the gate duration ``t``:
-  amplitude damping ``γ = 1 − e^{−t/T1}`` then pure dephasing with
-  ``√(1−λ) = e^{−t/T2} / e^{−t/(2T1)}``, so coherences decay exactly as
-  ``e^{−t/T2}`` (requires ``T2 ≤ 2·T1``)::
-
-      K₀ᴬᴰ = [[1, 0], [0, √(1−γ)]],  K₁ᴬᴰ = [[0, √γ], [0, 0]]
-      K₀ᴾᴰ = [[1, 0], [0, √(1−λ)]],  K₁ᴾᴰ = [[0, 0], [0, √λ]]
-
-* ``D_p`` — **depolarising** ``(1−p)·ρ + p·Tr_Q(ρ) ⊗ I/d``, with ``p`` fixed so
-  that the *whole* error channel reproduces the published average gate fidelity
-  ``F`` exactly. With ``F_e = ((d+1)·F − 1)/d`` and the exact identities
-  ``F_e(D_p ∘ X) = (1−p)·F_e(X) + p/d²`` and ``F_e(R ∘ V) = Σ_k |Tr(K_k V)|² / d²``::
-
-      p = (F_e(R∘V) − F_e(target)) / (F_e(R∘V) − 1/d²)
-
-  so neither relaxation nor coherent error is double counted. If they alone
-  exceed the published error, ``p = 0`` and the gate is listed under
-  ``budget_limited_gates``.
-
-Further terms (each only if calibrated or overridden, each with its own toggle):
-
-* **Crosstalk** — during a 2Q gate on ``(a, b)`` every coupled spectator ``n``
-  picks up ``exp(−iθ/2·Z_x Z_n)`` (``x`` the adjacent gate qubit). An unsimulated
-  spectator is exactly ``|0⟩``, so its term reduces to ``Rz(θ)`` on ``x``.
-* **Idle relaxation** in every idle window of the ASAP schedule. Controllers run a
-  fixed timeline, so a classically-controlled gate that does *not* fire still
-  occupies its slot: its qubits then relax for the slot duration (negated condition).
-* **Reset error** — after a reset the qubit is ``|1⟩`` with probability ``1 − F_reset``.
-* **Readout** — per-qubit confusion ``[[1−p01, p10], [p01, 1−p10]]`` or, for a
-  group of simultaneously read qubits, a joint ``readout_correlations`` matrix.
-* **Leakage** (trajectory engine) — a phenomenological model: with probability
-  ``L`` per gate a qubit leaves the computational subspace; while leaked, gates on
-  it are skipped, a 2Q partner is fully depolarised, it reads out as ``1``, and it
-  returns to ``|1⟩`` with probability ``seepage_per_gate`` per gate.
-* **Quasi-static (non-Markovian) detuning** (trajectory engine) — each
-  trajectory draws a frequency offset ``δ_q ~ N(0, σ_q)`` per qubit, constant over
-  the shot, giving phase ``2π·δ_q·t`` over every window: correlated in time, so it
-  is not representable as a product of per-window channels.
-
-Virtual gates (``rz`` frame changes) are noiseless and take zero time. ``scale``
-multiplies every error rate, decay rate and coherent angle, for noise sweeps.
-Every calibration parameter a job uses is reported with its provenance class
-(``published`` / ``assumed`` / ``untagged``).
+Usage: from qputwin_core.noise import NoiseOptions
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

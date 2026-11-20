@@ -1,33 +1,6 @@
-"""From-scratch numpy density-matrix engine (noisy execution path).
+"""Density-matrix engine for noisy circuits.
 
-Representation
---------------
-``ρ ∈ C^{2^n × 2^n}`` is stored row-major as a flat vector of length ``4^n``:
-flat index ``= row·2^n + col``, so bit ``n+q`` of the index is the *row* bit of
-qubit ``q`` and bit ``q`` its *column* bit. The vector is driven by the very
-same in-place kernels as the statevector engine
-(:class:`~qputwin_core.engine.StatevectorEngine` on ``2n`` "qubits"):
-
-* unitary ``ρ → UρU†``: apply ``U`` on the row qubits and ``conj(U)`` on the column qubits;
-* one-qubit channel with Kraus ``{K}``: one 4×4 kernel ``S = Σ K ⊗ conj(K)`` on the
-  (row, column) pair of the qubit — no Kraus-sum temporaries;
-* ``k``-qubit depolarising ``(1−p)ρ + p·Tr_Q(ρ) ⊗ I/2^k`` by slicing the partial trace;
-* reset as the channel ``|0⟩⟨0|ρ|0⟩⟨0| + |0⟩⟨1|ρ|1⟩⟨0|`` (no branching needed);
-* measurement probabilities from the real diagonal of ``ρ``.
-
-When no shot branching is needed, every instruction is turned into a superoperator
-on the (row, column) axes of its qubits and the whole noisy program is fused into
-blocks of at most ``FUSION_MAX_AXES`` axes (two qubits; diagonal blocks — phases and
-dephasing — up to ``FUSION_MAX_DIAGONAL_AXES``) and executed by
-:class:`~qputwin_core.fused.FusedState` — gates and the noise that follows them
-become a single matrix product.
-
-Sampling mirrors the statevector engine: terminal measurements are sampled once
-from the diagonal (after applying the readout confusion matrices exactly), and
-mid-circuit measurements or classical feed-forward use binomial shot branching
-on the *recorded* bit, carrying ``Σ_m P(r|m) Π_m ρ Π_m`` in each branch.
-
-Memory: ``4^n`` amplitudes (16 B each for complex128) — ``n = 13`` needs 1 GiB.
+Usage: from qputwin_core.density import DensityMatrixEngine
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

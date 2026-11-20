@@ -1,10 +1,6 @@
-"""Pure-Python algebra on 2x2 unitaries (no numpy).
+"""Small helpers for 2x2 unitary matrices without numpy.
 
-Used by the flattener to implement the OpenQASM 3 ``ctrl @`` modifier exactly:
-a controlled single-qubit unitary needs its OpenQASM ``U(θ,φ,λ)`` parameters and
-global phase, and multi-controlled gates need principal square roots (Barenco et
-al., *Phys. Rev. A* 52, 3457 (1995), Lemma 7.9). Matrices are row-major 4-tuples
-``(m00, m01, m10, m11)``.
+Usage: from qputwin_core.qasm.su2 import u_matrix
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

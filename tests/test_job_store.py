@@ -1,5 +1,6 @@
-"""Durable, multi-instance async queue: SQLite store, restart survival, lease recovery, priority,
-fair share, API-key isolation, Prometheus metrics and readiness.
+"""Tests the durable job store: restarts, leases, priorities and fair share.
+
+Usage: uv run pytest tests/test_job_store.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

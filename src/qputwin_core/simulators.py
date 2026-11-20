@@ -1,40 +1,6 @@
-"""Vendor QPU emulators: ``TrappedIonSimulator`` and ``SuperconductingSimulator``.
+"""Trapped-ion and superconducting QPU emulators that run OpenQASM jobs.
 
-A :class:`QPUSimulator` owns one :class:`~qputwin_core.devices.DeviceSpec` and
-executes OpenQASM end-to-end::
-
-    parse+flatten ─► resource checks ─► [optional SABRE routing] ─► topology check
-                  ─► native compile ─► ASAP gate-duration schedule
-                  ─► memory-feasibility guard ─► statevector | density-matrix run ─► counts
-
-Engines: the ideal statevector engine (default); with ``options.noise`` the
-density-matrix engine (exact, ≤ ``QPUTWIN_DENSITY_AUTO_MAX_QUBITS`` qubits under
-``engine="auto"``) or the Monte-Carlo trajectory engine (wide circuits, and the
-time-correlated noise terms — leakage, quasi-static detuning — that a density
-matrix of per-window channels cannot represent). See :mod:`qputwin_core.noise`.
-
-The two subclasses differ only in how they enforce connectivity:
-
-* :class:`TrappedIonSimulator` — complete graph ``K_n``: any pair of distinct
-  physical qubits may interact.
-* :class:`SuperconductingSimulator` — explicit symmetric adjacency matrix ``A``;
-  every pair of qubits in every multi-qubit operation must satisfy
-  ``A[p, q] = 1`` or a :class:`~qputwin_core.errors.TopologicalCompilationError`
-  is raised, quoting the user's original statement and line. By default **no
-  routing or SWAP insertion is performed** (the emulator enforces hardware
-  constraints rather than hiding them); a request may opt in to the SABRE router
-  (:mod:`qputwin_core.routing`) to measure the cost of routing instead.
-
-Both reject any operation on a qubit that the (calibrated) coupling map lists as disabled.
-
-Resource model (docs/guide/engines.md)
----------------------------------
-``max_sim_qubits`` defaults to the vendor's physical qubit count and can be set
-per container via ``QPUTWIN_MAX_SIM_QUBITS``. Independently, a memory-feasibility
-guard estimates the peak working set of the dense statevector run and compares
-it with the memory actually available to the process (cgroup v2 limit or
-``MemAvailable``), raising :class:`~qputwin_core.errors.ResourceLimitError`
-instead of letting the kernel's OOM killer terminate the worker.
+Usage: from qputwin_core.simulators import simulator_for, ExecutionOptions
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

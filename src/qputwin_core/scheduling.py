@@ -1,38 +1,6 @@
-"""Gate-duration model: an ASAP schedule of a native circuit → estimated hardware wall-clock time.
+"""ASAP gate schedule and estimated hardware time of a native circuit.
 
-Every native operation gets a duration from the device
-:class:`~qputwin_core.calibration.Calibration`: virtual gates (``rz`` frame
-changes) take zero time, physical gates their calibrated ``duration_ns``
-(per-coupler / per-qubit overrides first), measurements the readout time and
-resets the reset time. Operations are then placed **as soon as possible**:
-
-* an operation starts when every qubit it touches is free;
-* a barrier synchronises its qubits (zero duration);
-* a classically-controlled operation additionally waits for the measurements
-  that wrote its condition bits, plus ``feedforward_latency_ns`` when known;
-* **final measurements** — the last operation on their qubit, whose bits no
-  later condition reads — are aligned to start together once every other
-  operation has finished, as on hardware that reads out all qubits at the end.
-  A qubit that finishes early therefore idles (and, with the noise model,
-  relaxes) until read-out;
-* **parallelism limits** (``parallelism.max_parallel_one_qubit`` /
-  ``max_parallel_two_qubit``) delay an operation until a slot of its kind is
-  free, e.g. one entangling gate at a time on a shared motional bus;
-* **QCCD transport and cooling** (``qccd.transport_ns_per_two_qubit_gate``,
-  ``cooling_ns_per_two_qubit_gate``) precede every two-qubit gate: the ions are
-  busy being shuttled and re-cooled, so the gate starts that much later, and the
-  noise model treats the window as idle time (relaxation, detuning).
-
-The makespan is the estimated duration of **one shot**. The job estimate is
-``shots × (makespan + shot_overhead)``, where the per-shot overhead (cooling,
-state preparation, repetition delay) is included only if the calibration
-provides it. The flags in the report say exactly what is and is not included.
-
-The same schedule supplies the idle windows used by the noise model's idle
-relaxation (:mod:`qputwin_core.noise`).
-
-Assumption (stated in every report): the controller runs a fixed timeline, so a
-classically-controlled operation reserves its slot whether or not it fires.
+Usage: from qputwin_core.scheduling import asap_schedule
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

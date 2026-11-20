@@ -1,21 +1,6 @@
-"""QPUTwin benchmark suite: collects the data behind every benchmark figure in the docs.
+"""Runs the QPUTwin benchmark experiments and saves their results.
 
-Each experiment writes ``benchmarks/results/<name>.json`` with the raw measurements and
-the environment they were taken in (CPU, load average, library versions, configuration).
-
-* Live experiments talk to the Docker stack over HTTP (``QPUTWIN_BASE_URL``,
-  default ``http://localhost:8000``) and measure the full request path.
-* In-process experiments call the same simulator classes directly, which isolates
-  engine behaviour from transport.
-
-Usage::
-
-    uv run --group bench python benchmarks/run_benchmarks.py all
-    uv run --group bench python benchmarks/run_benchmarks.py latency scaling ...
-
-Experiments: latency, scaling, routing, routing_latency, fidelity, hwtime, budget,
-convergence, async_scaling, noise_sweep, ramsey (core); circuits, qv (circuit families);
-load_closed, load_ha, load_open, soak, async_burst, fairshare, shots, gate_scaling (load and stress).
+Usage: uv run --group bench python benchmarks/run_benchmarks.py all
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """
@@ -1178,7 +1163,7 @@ EXPERIMENTS = {"latency": exp_latency, "scaling": exp_scaling, "routing": exp_ro
 
 
 def main(argv: list[str] | None = None) -> None:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     ap.add_argument("experiments", nargs="+", choices=[*EXPERIMENTS, "all"])
     args = ap.parse_args(argv)
     names = list(EXPERIMENTS) if "all" in args.experiments else args.experiments

@@ -1,11 +1,6 @@
-"""Flat intermediate representation produced by the OpenQASM front-end.
+"""Flat circuit representation produced by the OpenQASM front end.
 
-A :class:`Circuit` is a linear list of :class:`Operation` objects over *physical*
-qubit indices. The primitive gate basis is ``{U, CX, gphase}`` — exactly the
-basis the OpenQASM specification defines its standard library in — plus any
-vendor-native gate names the caller asked the flattener to keep opaque.
-
-Pure Python (no numpy).
+Usage: from qputwin_core.ir import Circuit, Operation
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

@@ -1,8 +1,6 @@
-"""Rigetti Ankaa-3 (superconducting, 84 qubits) emulator worker.
+"""Worker for the Rigetti Ankaa-3 twin.
 
-Nearest-neighbour connectivity on a 7x12 square lattice enforced via the adjacency matrix. Natives: rx(kπ/2), virtual rz, cz, iswap.
-
-Run standalone:  ``QPUTWIN_VENDOR=rigetti_ankaa_3 uv run python -m qputwin_worker``
+Usage: QPUTWIN_VENDOR=rigetti_ankaa_3 python -m qputwin_worker
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

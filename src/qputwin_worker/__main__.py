@@ -1,9 +1,6 @@
-"""Run a vendor worker: ``QPUTWIN_VENDOR=<backend_id> python -m qputwin_worker``.
+"""Starts a QPUTwin worker for the device named in QPUTWIN_VENDOR.
 
-Environment: ``QPUTWIN_VENDOR`` (required; one of qputwin_worker.vendors.VENDORS),
-``QPUTWIN_HOST`` (0.0.0.0), ``QPUTWIN_PORT`` (8001), ``QPUTWIN_LOG_LEVEL`` (info), ``QPUTWIN_ACCESS_LOG`` (0),
-plus the simulator settings read by ``SimulatorConfig.from_env`` (``QPUTWIN_MAX_SIM_QUBITS``,
-``QPUTWIN_PRECISION``, ``QPUTWIN_MEMORY_GUARD``, ``QPUTWIN_MEMORY_BUDGET_BYTES``, ...).
+Usage: QPUTWIN_VENDOR=ionq_forte python -m qputwin_worker
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

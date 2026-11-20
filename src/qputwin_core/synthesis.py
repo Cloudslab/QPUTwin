@@ -1,40 +1,6 @@
-"""Phase-exact native-gate compiler.
+"""Compiles circuits exactly into each device's native gates.
 
-Pipeline (docs/guide/compilation.md)::
-
-    IR{U, CX, gphase, device natives}
-      ─► (strict) reject non-native gates / off-grid angles        → NativeGateError
-      ─► fuse runs of one-qubit gates per qubit into one 2×2 matrix
-      ─► CX → (L1⊗L2) · E · (R1⊗R2) · e^{iφ}  with E the device entangler
-      ─► re-fuse; synthesise each 2×2 block in the vendor's one-qubit basis
-      ─► NativeCircuit + statistics + numerical-equivalence certificate
-
-**Phase exactness.** Every rewrite tracks its global phase, so the compiled
-native circuit reproduces the source unitary *exactly* (not merely up to phase):
-``U_src = e^{i·global_phase} · U_native``. Each one-qubit block's synthesis error
-is measured on the fly and the maximum is reported as ``max_synthesis_error`` —
-a per-job numerical certificate. The entangler identities are verified once at
-import time.
-
-One-qubit synthesis uses the phased-X normal form
-``V = e^{iα} · Rz(ζ) · R(θ, φ)`` (θ ∈ [0, π]) obtained from a ZYZ Euler
-decomposition ``V = e^{iα} Rz(β) Ry(γ) Rz(δ)`` with ``θ = γ``, ``φ = π/2 − δ``,
-``ζ = β + δ``, then realised per vendor:
-
-==========  ===============================================================
-quantinuum  ``u1q(θ, φ)``, ``rz(ζ)``
-iqm         ``prx(θ, φ)``, ``rz(ζ)``
-ionq        ``gpi2(φ)`` (θ=π/2) · ``gpi(φ)`` (θ=π) · otherwise
-            ``gpi2(φ−π/2) rz(θ) gpi2(φ+π/2)``; then ``rz(ζ)``
-rigetti     ``rz(−φ) rx(π/2|π) rz(φ)`` or the two-pulse form
-            ``rz(π/2−φ) rx(π/2) rz(θ−π) rx(π/2) rz(φ+π/2)``; then ``rz(ζ)``
-ibm         as rigetti with ``sx`` for ``rx(π/2)`` and ``x`` for ``rx(π)``
-            (IBM's ``rz · sx · rz · sx · rz`` form)
-google      ``phased_xz(θ, φ, ζ)`` (one PhasedXZ pulse, Z folded in), or
-            ``rz(ζ)`` alone when θ = 0
-==========  ===============================================================
-
-(``rz`` runs are merged and angles wrapped to (−π, π] with exact phase correction.)
+Usage: from qputwin_core.synthesis import NativeCompiler
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

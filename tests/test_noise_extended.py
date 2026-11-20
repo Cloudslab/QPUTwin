@@ -1,8 +1,6 @@
-"""Extended noise physics: coherent errors, crosstalk, reset errors, correlated readout, leakage,
-quasi-static detuning, the trajectory engine, fixed-timeline idling and provenance enforcement.
+"""Tests the extended noise terms: coherent errors, crosstalk, reset, readout and leakage.
 
-Every term is checked against its analytic prediction; the trajectory engine is
-cross-validated against the exact density-matrix engine with all Markovian terms on.
+Usage: uv run pytest tests/test_noise_extended.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

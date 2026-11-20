@@ -1,34 +1,6 @@
-"""A calibration-matched Qiskit Aer noise model, built independently of QPUTwin's code.
+"""Qiskit Aer noise models built from the same calibration as the QPUTwin twins.
 
-The calibration (gate fidelities and durations, T1/T2, readout errors, coupling map) is
-read from the running QPUTwin orchestrator (``GET /v1/backends/{id}``), so both
-simulators see identical numbers. The model is the conventional per-gate recipe:
-
-    error(gate) = D_λ ∘ R(t_gate)        (thermal relaxation first, then depolarising)
-
-where λ is solved, with Qiskit's own channel algebra, so that the composite channel's
-average gate fidelity equals the published value:
-
-    F_pro(D_λ ∘ R) = (1 − λ)·F_pro(R) + λ/d²   ⇒   λ = (F_pro(R) − F_pro*) / (F_pro(R) − 1/d²)
-
-plus a symmetric readout confusion matrix. It deliberately has **no idle-window
-decoherence**; QPUTwin adds that from its ASAP gate schedule, and the comparison runs
-QPUTwin both with and without it.
-
-Native gates are mapped to Qiskit gates of the same action:
-
-| QPUTwin device | 1Q (noisy) | virtual | 2Q |
-|---|---|---|---|
-| quantinuum_helios | u1q → ``r`` | rz | zzmax → ``rzz`` |
-| ionq_forte | gpi, gpi2 → ``r`` | rz | ms → ``rxx`` |
-| rigetti_ankaa_3 | rx → ``rx`` | rz | cz → ``cz`` |
-| iqm_emerald | prx → ``r`` | rz | cz → ``cz`` |
-| ibm_heron, ibm_nighthawk | sx, x → ``sx``, ``x`` | rz | cz → ``cz`` |
-| google_willow | phased_xz → ``r`` then ``rz`` | rz | cz → ``cz`` |
-
-``device_model`` (device medians, Qiskit transpiler) is kept for the compiler comparison.
-The noise comparison uses ``native_circuit`` + ``matched_model_for`` below: QPUTwin's own
-compiled circuit on the same physical qubits, with every qubit's and coupler's calibration.
+Usage: from noise_models import device_model
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

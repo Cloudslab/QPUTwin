@@ -1,4 +1,6 @@
-"""The IBM Heron, IBM Nighthawk and Google Willow twins carry the vendors' published snapshots.
+"""Tests the IBM and Google twins built from the vendor snapshots.
+
+Usage: uv run pytest tests/test_vendor_snapshots.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

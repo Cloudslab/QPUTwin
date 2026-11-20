@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Generates the Grafana dashboards in this folder from one readable definition.
+"""Generates the Grafana dashboard JSON files in this folder.
 
-    python3 monitoring/grafana/build_dashboards.py
+Usage: python3 monitoring/grafana/build_dashboards.py
 
-Grafana reloads the JSON files within 30 s. Standard library only.
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """
 

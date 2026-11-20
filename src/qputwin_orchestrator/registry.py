@@ -1,26 +1,6 @@
-"""Backend registry: maps backend IDs to worker URLs and caches device specifications.
+"""Backend registry: maps backend IDs to worker addresses.
 
-Configuration is read from a TOML file (``QPUTWIN_BACKENDS_CONFIG``, default
-``config/backends.toml``) and can be overridden per backend with environment
-variables ``QPUTWIN_BACKEND_URL_<BACKEND_ID_UPPERCASE>`` — e.g.
-``QPUTWIN_BACKEND_URL_IONQ_FORTE=http://localhost:8102`` — which is how the test-suite
-and local development point the orchestrator at differently-hosted workers.
-
-Horizontal scaling
-------------------
-A backend may be served by several identical worker **replicas**:
-
-* *static* — ``urls = ["http://a:8001", "http://b:8001"]`` in the TOML file, or a
-  comma-separated ``QPUTWIN_BACKEND_URL_<ID>``;
-* *DNS discovery* — with ``discovery = "dns"`` each configured URL's host name is
-  resolved to **all** of its addresses (re-resolved every
-  ``discovery_interval_s``), so ``docker compose up --scale worker-ionq-forte=3``
-  is picked up without reconfiguration.
-
-Each job goes to the replica with the fewest in-flight requests (round-robin
-among ties). A replica that refuses the connection is skipped and the job fails
-over to the next one; a timeout is never retried, because the worker may already
-be executing the job.
+Usage: from qputwin_orchestrator.registry import BackendRegistry
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

@@ -1,7 +1,6 @@
-"""Native compilation correctness — the proof obligation of docs/guide/compilation.md.
+"""Tests that native compilation is exact.
 
-For random circuits and every vendor, the compiled native circuit must reproduce
-the source unitary **exactly** (global phase included).
+Usage: uv run pytest tests/test_synthesis.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

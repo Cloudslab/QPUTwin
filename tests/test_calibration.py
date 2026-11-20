@@ -1,4 +1,6 @@
-"""Calibration data, the gate-duration (ASAP) model, defective-qubit topology and drop-in overrides.
+"""Tests the calibration data, the gate-duration model and calibration overrides.
+
+Usage: uv run pytest tests/test_calibration.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

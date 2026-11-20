@@ -1,33 +1,6 @@
-"""Embedded OpenQASM gate libraries.
+"""Built-in OpenQASM gate libraries (qelib1.inc and stdgates.inc).
 
-``include`` statements never touch the filesystem: only the names below resolve,
-to texts embedded in this module. This removes a whole class of path-traversal
-issues from a network-facing service and makes every circuit's semantics fully
-determined by the request payload plus this (version-controlled) file.
-
-Libraries
----------
-``qelib1.inc``
-    The OpenQASM 2 standard header (Cross et al., arXiv:1707.03429), followed by
-    the de-facto extensions in common use (``p``, ``sx``, ``swap``, ``cswap``,
-    ``crx``/``cry``, ``cp``, ``cu``, ``csx``, ``rxx``, ``rzz``, ``rccx``). As in the
-    specification, gates are defined only up to global phase.
-
-``stdgates.inc``
-    OpenQASM 3 standard gates, written so that every definition equals its
-    canonical matrix **exactly** (including global phase, via ``gphase``). Exact
-    phases matter in OpenQASM 3 because ``ctrl @`` turns a global phase into an
-    observable relative phase.
-
-Built-in library (always loaded, QPUTwin extension)
-    The native gates of all seven emulated devices plus a few common two-qubit
-    interactions, defined exactly in terms of ``U``/``CX``/``gphase``. Because
-    every native gate has a portable definition, a circuit written in one
-    vendor's native gates can still be compiled for another vendor. Helper gates
-    are prefixed ``_qputwin_`` so user includes can never alter their meaning.
-
-Library definitions are verified against the closed-form matrices of
-:mod:`qputwin_core.gates` in ``tests/test_qasm_library.py``.
+Usage: from qputwin_core.qasm import stdlib
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

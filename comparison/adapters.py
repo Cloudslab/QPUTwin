@@ -1,16 +1,6 @@
-"""Uniform adapters over the simulators compared with QPUTwin.
+"""Common interface to the simulators compared with QPUTwin.
 
-Every adapter takes the same OpenQASM 2.0 program (from ``benchmarks/circuits.py``)
-and returns results in QPUTwin's convention: bitstrings ``c[n-1]…c[0]``, i.e. the
-character for logical qubit 0 is the rightmost.
-
-* QPUTwin is reached over HTTP on the **already running** Docker stack
-  (``QPUTWIN_BASE_URL``, default ``http://localhost:8000``); nothing is started or
-  stopped here.
-* The other simulators run in-process. The program is parsed with Qiskit and
-  flattened once to the common gate set {U(θ, φ, λ), CX} without optimisation
-  (``optimization_level=0``); every simulator then receives that identical gate list.
-  The flattening is timed separately (``convert_s``) and excluded from ``run_s``.
+Usage: import adapters as A  (then A.QPUTwin, A.Aer, A.Braket, A.Cirq, A.Qsim, A.Qulacs)
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

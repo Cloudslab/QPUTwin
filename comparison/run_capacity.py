@@ -1,18 +1,6 @@
-"""Capacity stress test: the widest circuits each simulator runs on the whole host.
+"""Finds the widest circuit each simulator can run on the whole host.
 
-Every point runs in a **fresh subprocess** with all host threads, so its peak resident memory
-(``ru_maxrss``) is its own and a crash or out-of-memory kill does not stop the sweep. A series
-stops at the first width that fails (out of memory, refused, crashed) or exceeds the time cap.
-
-Simulators (ideal statevector, 1024 shots): QPUTwin complex128 and complex64 (in-process, the
-worker's own memory policy: two buffers when they fit, otherwise in place, otherwise refused),
-qsim (complex64), Qiskit Aer complex128 and complex64, Qulacs (complex128). Noisy density matrix:
-QPUTwin (calibrated Helios model) and Aer (depolarising λ = 1e-3 / 1e-2 per U / CX).
-
-Usage (from this folder; ``capacity`` = statevector + density matrix)::
-
-    uv run python run_capacity.py            # writes results/capacity.json
-    uv run python run_capacity.py --point qputwin_c128 qv 28 sv     # one point, prints JSON
+Usage: cd comparison && uv run python run_capacity.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

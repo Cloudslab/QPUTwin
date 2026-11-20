@@ -1,17 +1,6 @@
-"""Closed-form unitary library.
+"""Unitary matrices of the supported quantum gates.
 
-Conventions
------------
-* Single-qubit rotations: ``R_P(θ) = exp(-i θ/2 · P)`` for ``P ∈ {X, Y, Z}``.
-* Equatorial rotation: ``R(θ, φ) = exp(-i θ/2 · σ_φ)`` with ``σ_φ = cos φ X + sin φ Y``.
-* OpenQASM ``U(θ, φ, λ) = [[cos θ/2, -e^{iλ} sin θ/2], [e^{iφ} sin θ/2, e^{i(φ+λ)} cos θ/2]]``.
-* Multi-qubit matrices are written with the **first listed qubit as the most
-  significant** index bit (textbook order: ``CX = |0⟩⟨0|⊗I + |1⟩⟨1|⊗X``,
-  control first). The statevector engine maps this onto its little-endian
-  state layout, so the two conventions never mix.
-
-Every closed form here is cross-checked against ``scipy.linalg.expm`` of its
-generator in ``tests/test_gates.py``.
+Usage: from qputwin_core.gates import rx, ry, rz
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

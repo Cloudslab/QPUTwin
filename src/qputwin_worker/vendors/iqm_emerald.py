@@ -1,8 +1,6 @@
-"""IQM Emerald (superconducting, 54 qubits) emulator worker.
+"""Worker for the IQM Emerald twin.
 
-Nearest-neighbour connectivity on a 6x9 square lattice enforced via the adjacency matrix. Natives: prx(θ,φ), virtual rz, cz.
-
-Run standalone:  ``QPUTWIN_VENDOR=iqm_emerald uv run python -m qputwin_worker``
+Usage: QPUTWIN_VENDOR=iqm_emerald python -m qputwin_worker
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """

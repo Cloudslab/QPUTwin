@@ -1,9 +1,6 @@
-"""SABRE router: correctness, topology compliance, layout handling and calibrated-map defects.
+"""Tests the SABRE router.
 
-Proof obligation: for random circuits, the routed circuit's output state equals
-the unrouted circuit's output state with every logical qubit relabelled to its
-*final* physical position (ancillas stay |0⟩) — exactly, global phase included,
-because the native compiler is phase-exact.
+Usage: uv run pytest tests/test_routing.py
 
 Koustav Kumar Mondal <erkoustavkumar@gmail.com>
 """
