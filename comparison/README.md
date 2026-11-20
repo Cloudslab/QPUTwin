@@ -27,7 +27,7 @@ QPUTwin is measured on the **running Docker stack** (`http://localhost:8000`). T
 * **No denormals.** Fused matrix entries below 10⁻¹⁵ (rounding noise such as cos π/2) are set to zero, so they never decay into denormal numbers, which the CPU processes about 100× more slowly.
 * **Sampling without reordering.** Probabilities are taken in the stored axis order and written into the state's own memory; only the drawn outcomes are relabelled. A two-level inverse CDF avoids a full cumulative sum.
 * **Direct planning.** Gates are contracted directly into a block's rows instead of being embedded into a full matrix.
-* **Batched, fused trajectories** for wide noisy circuits (see [engines](../docs/guide/engines.md#batched-fused-trajectories)).
+* **Batched, fused trajectories** for wide noisy circuits (see [engines](https://koustav.isroot.in/qputwin-docs/guide/engines/#batched-fused-trajectories)).
 * The results match the per-gate reference kernels to < 1e-12 (30 regression tests, including every large-state branch on small states).
 * **Exact layout before SABRE.** A VF2-style search places the circuit with zero SWAPs whenever its interaction graph embeds in the coupling graph.
 * **SABRE trials scored by their real output.** Each trial routes the whole circuit, and the one with the fewest two-qubit gates is kept. Trial counts are automatic (16 / 8 / 4 / 2 by circuit size).
@@ -131,7 +131,7 @@ With every simulator given all 16 threads of the host (QPUTwin in-process, up to
 | Qulacs, complex128 | 31 GHZ (17.4 s); 30 QV-style (1 047 s) | 48 GiB | GHZ 32: **killed**; QV-style 31: over 20 min |
 | Noisy density matrix: QPUTwin / Aer | 15 / 15 (QV-style 40.5 s / 139 s) | 32 / 16 GiB | 16: both refused |
 
-* **Everyone reaches about the same width**: the state, not the code, sets it. QPUTwin needs its [single-buffer mode](../docs/guide/engines.md#memory-and-width-limits) to get there; with two buffers it would stop one qubit earlier.
+* **Everyone reaches about the same width**: the state, not the code, sets it. QPUTwin needs its [single-buffer mode](https://koustav.isroot.in/qputwin-docs/guide/engines/#memory-and-width-limits) to get there; with two buffers it would stop one qubit earlier.
 * **How a run ends differs.** QPUTwin and Aer check memory first and return an error. qsim and Qulacs allocate and are killed by the kernel, which in a shared service takes the worker, and every job queued on it, down.
 * **Speed at the edge:** on the shallow GHZ circuit QPUTwin is fastest at 28–29 qubits and at the 32-qubit limit (22.3 s against 27.5 s for qsim), while qsim is ahead at 30 qubits (6.8 s against 10.5–12.9 s) and level at 31; on deep QV-style circuits qsim leads (31 qubits, complex64: 53 s, QPUTwin 94 s, Aer 437 s). The single-buffer mode costs time on deep circuits (31-qubit QV-style in complex128: 452 s, against 71 s at 30 qubits with two buffers).
 
@@ -182,7 +182,7 @@ For the three twins built from vendor snapshots there is a stronger reference: t
 | Google Willow | Cirq, `willow_pink` | **0.0014** | 0.026 | 0.0040 | 0.0036 | 0.0468 / 0.161 |
 
 * **The twins reproduce the vendors' models.** The median fidelity difference is at most 0.0014 and the worst case 0.026. On Heron and Willow the total-variation distance is close to the sampling floor; on Nighthawk it is about two floors.
-* **Per-qubit data matter.** A twin built from the same snapshots' device medians has 2.8 (Heron) and 4.8 (Nighthawk) times the total-variation distance of the per-qubit twin and differs by up to 0.06–0.16 in fidelity. The compiled circuits are placed by the [calibration-aware re-layout](../docs/guide/routing.md#calibration-aware-re-layout), so they avoid the snapshots' poorest qubits, which the medians cannot see.
+* **Per-qubit data matter.** A twin built from the same snapshots' device medians has 2.8 (Heron) and 4.8 (Nighthawk) times the total-variation distance of the per-qubit twin and differs by up to 0.06–0.16 in fidelity. The compiled circuits are placed by the [calibration-aware re-layout](https://koustav.isroot.in/qputwin-docs/guide/routing/#calibration-aware-re-layout), so they avoid the snapshots' poorest qubits, which the medians cannot see.
 * **Cirq double-counts readout-time decay.** Cirq's model also decays every qubit for the 600 ns of each measurement, on top of a measured readout error that already contains that decay. QPUTwin does not count it twice, so the table compares with Cirq's model with that decay off. Cirq as shipped predicts on average 0.027 lower fidelity (up to 0.095). The IBM rows compare QPUTwin without idle noise, because neither vendor model idles an unscheduled circuit.
 
 These are checks against the vendors' published models, not against hardware.
@@ -218,7 +218,7 @@ A batch of 96 jobs (six families × 4, 6, 8, 10 qubits × four seeds) runs 16 at
 | IBM Nighthawk | **12.2 jobs/s** | 2.6 jobs/s | **4.8×** | 0.15 s / 2.53 s |
 | Google Willow | **24.3 jobs/s** | 6.5 jobs/s | **3.8×** | 0.15 s / 0.88 s |
 
-Noisy jobs above the density-matrix limit run on the [batched, fused trajectory executor](../docs/guide/engines.md#batched-fused-trajectories), and the cost model picks the cheaper engine per job.
+Noisy jobs above the density-matrix limit run on the [batched, fused trajectory executor](https://koustav.isroot.in/qputwin-docs/guide/engines/#batched-fused-trajectories), and the cost model picks the cheaper engine per job.
 
 ### 8. Compilation: QPUTwin's router against the Qiskit transpiler (O1)
 

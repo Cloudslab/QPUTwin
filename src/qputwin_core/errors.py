@@ -62,7 +62,7 @@ class QASMSemanticError(QASMError):
 
 
 class UnsupportedFeatureError(QASMSemanticError):
-    """Valid OpenQASM 3 that lies outside the supported subset (see docs/guide/openqasm.md)."""
+    """Valid OpenQASM 3 that lies outside the supported subset (see https://koustav.isroot.in/qputwin-docs/guide/openqasm/)."""
 
 
 class InvalidRequestError(QPUTwinError):

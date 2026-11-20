@@ -27,13 +27,14 @@ The IBM and Google twins are built from the vendors' own published calibration s
 * **Three engines, built from scratch.** Fused statevector, density-matrix and batched quantum-trajectory engines in `numpy`, chosen per job by a cost model, with no vendor or third-party quantum SDK.
 * **A real service.** Durable asynchronous jobs with leases, fair sharing and priorities, worker auto-discovery, API keys, Prometheus metrics and an HA gateway.
 
-![QPUTwin system architecture](docs/assets/diagrams/architecture.svg)
+![QPUTwin system architecture](https://koustav.isroot.in/qputwin-docs/assets/diagrams/architecture.svg)
 
 ## Quick start
 
 Prerequisites: Docker with Compose v2, and [`uv`](https://docs.astral.sh/uv/).
 
 ```bash
+git clone https://github.com/Cloudslab/QPUTwin.git qputwin && cd qputwin
 docker compose up -d --build                                   # orchestrator + seven twins
 curl -s localhost:8000/v1/backends | python3 -m json.tool      # list the emulated QPUs
 
@@ -48,7 +49,7 @@ Interactive API documentation is served at <http://localhost:8000/docs>. Run the
 
 ## Results at a glance
 
-Measured on a 16-vCPU, 62.8 GiB server against Qiskit Aer, the Amazon Braket local simulators, Cirq, qsim and Qulacs ([details](docs/research/simulator-comparison.md)):
+Measured on a 16-vCPU, 62.8 GiB server against Qiskit Aer, the Amazon Braket local simulators, Cirq, qsim and Qulacs ([details](https://koustav.isroot.in/qputwin-docs/research/simulator-comparison/)):
 
 * **Vendors' own workflows.** For the same OpenQASM program, a QPUTwin job was faster than IBM's (Qiskit transpile + Aer `from_backend`) and Google's (Cirq + qsim with Google's noise model) emulation workflows in 107 of 108 cases, by a geometric mean of 7.1× (Heron r3), 10.2× (Nighthawk) and 4.8× (Willow).
 * **Noisy density matrix.** From 10 qubits, 3.2–15× faster than Aer on one thread; Aer is level or ahead on smaller jobs.
@@ -58,20 +59,16 @@ Measured on a 16-vCPU, 62.8 GiB server against Qiskit Aer, the Amazon Braket loc
 
 ## Documentation
 
-Everything else (installation, the full API, the physics, operations and the benchmark results) is in the documentation site under [`docs/`](docs/index.md). Browse it locally with:
-
-```bash
-uv run --group docs mkdocs serve      # http://127.0.0.1:8088
-```
+Everything else (installation, the full API, the physics, operations and the benchmark results) is in the documentation site: **<https://koustav.isroot.in/qputwin-docs/>**.
 
 | Start here | |
 |---|---|
-| [Getting started](docs/getting-started/index.md) | installation, quick start, tutorial |
-| [Concepts](docs/concepts/index.md) | digital twins, architecture, execution pipeline, devices |
-| [User guide](docs/guide/index.md) | jobs, OpenQASM, compilation, noise, engines, routing, timing, calibration, telemetry |
-| [Reference](docs/reference/index.md) | HTTP API, parameters, responses, errors, configuration |
-| [Operations](docs/operations/index.md) | deployment, scaling, security, monitoring |
-| [Research](docs/research/index.md) | benchmarks, simulator comparison, validation, reproducibility, limitations |
+| [Getting started](https://koustav.isroot.in/qputwin-docs/getting-started/) | installation, quick start, tutorial |
+| [Concepts](https://koustav.isroot.in/qputwin-docs/concepts/) | digital twins, architecture, execution pipeline, devices |
+| [User guide](https://koustav.isroot.in/qputwin-docs/guide/) | jobs, OpenQASM, compilation, noise, engines, routing, timing, calibration, telemetry |
+| [Reference](https://koustav.isroot.in/qputwin-docs/reference/) | HTTP API, parameters, responses, errors, configuration |
+| [Operations](https://koustav.isroot.in/qputwin-docs/operations/) | deployment, scaling, security, monitoring |
+| [Research](https://koustav.isroot.in/qputwin-docs/research/) | benchmarks, simulator comparison, validation, reproducibility, limitations |
 
 ## License
 

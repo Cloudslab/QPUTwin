@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import csv
 import json
-import shutil
 import statistics
 from pathlib import Path
 from typing import Any
@@ -26,7 +25,6 @@ ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "benchmarks" / "results"
 OUT = ROOT / "benchmarks" / "figures"
 DATA = OUT / "data"
-DOCS = ROOT / "docs" / "assets" / "figures"
 
 SLOTS = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
 INK, INK2, MUTED, GRID = "#1f2328", "#52514e", "#8a8984", "#e3e2dd"
@@ -65,11 +63,8 @@ def load(name: str) -> dict[str, Any]:
 def save(fig: plt.Figure, name: str, rows: list[dict[str, Any]]) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     DATA.mkdir(parents=True, exist_ok=True)
-    DOCS.mkdir(parents=True, exist_ok=True)
     for ext in ("pdf", "svg", "png"):
         fig.savefig(OUT / f"{name}.{ext}")
-    shutil.copy(OUT / f"{name}.svg", DOCS / f"{name}.svg")
-    shutil.copy(OUT / f"{name}.png", DOCS / f"{name}.png")
     if rows:
         with (DATA / f"{name}.csv").open("w", newline="") as fh:
             w = csv.DictWriter(fh, fieldnames=list(dict.fromkeys(k for r in rows for k in r)))   # tables can mix row kinds
@@ -1062,7 +1057,7 @@ def main(argv: list[str] | None = None) -> None:
             f()
         except FileNotFoundError as e:                    # experiment not run yet
             print(f"  skip {f.__name__}: {e.filename}")
-    print(f"wrote {len(FIGURES)} figures to {OUT.relative_to(ROOT)} (+ docs/assets/figures)")
+    print(f"wrote {len(FIGURES)} figures to {OUT.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

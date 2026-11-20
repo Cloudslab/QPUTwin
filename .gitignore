@@ -21,9 +21,6 @@ dist/
 *.egg-info/
 *.whl
 
-# --- documentation site (rebuilt by `mkdocs build`)
-site/
-
 # --- runtime state written by the Docker stack (job store, telemetry dataset)
 data/*
 !data/.gitkeep

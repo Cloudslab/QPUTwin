@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import csv
 import json
-import shutil
 import statistics
 from pathlib import Path
 from typing import Any
@@ -25,7 +24,6 @@ from matplotlib.ticker import FuncFormatter, LogLocator  # noqa: E402
 HERE = Path(__file__).resolve().parent
 RES, OUT = HERE / "results", HERE / "figures"
 DATA = OUT / "data"
-DOCS = HERE.parent / "docs" / "assets" / "figures" / "comparison"      # copied for the documentation site
 
 SLOTS = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
 INK, INK2, MUTED, GRID = "#1f2328", "#52514e", "#8a8984", "#e3e2dd"
@@ -61,11 +59,8 @@ def load(name: str) -> dict[str, Any]:
 def save(fig: plt.Figure, name: str, rows: list[dict[str, Any]]) -> None:
     OUT.mkdir(exist_ok=True)
     DATA.mkdir(exist_ok=True)
-    DOCS.mkdir(parents=True, exist_ok=True)
     for ext in ("pdf", "svg", "png"):
         fig.savefig(OUT / f"{name}.{ext}")
-    for ext in ("svg", "png"):
-        shutil.copy(OUT / f"{name}.{ext}", DOCS / f"{name}.{ext}")
     if rows:
         with (DATA / f"{name}.csv").open("w", newline="") as fh:
             w = csv.DictWriter(fh, fieldnames=list(dict.fromkeys(k for r in rows for k in r)))   # tables can mix row kinds
