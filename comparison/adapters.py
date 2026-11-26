@@ -2,7 +2,7 @@
 
 Usage: import adapters as A  (then A.QPUTwin, A.Aer, A.Braket, A.Cirq, A.Qsim, A.Qulacs)
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

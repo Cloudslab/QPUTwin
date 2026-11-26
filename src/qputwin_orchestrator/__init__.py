@@ -2,7 +2,7 @@
 
 Usage: python -m qputwin_orchestrator
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 __all__: list[str] = []

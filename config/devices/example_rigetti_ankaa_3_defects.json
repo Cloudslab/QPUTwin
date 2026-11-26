@@ -8,7 +8,7 @@
   "index": "r*cols + c"
  },
  "provenance": "EXAMPLE ONLY - synthetic defect snapshot of the 7x12 lattice (qubits 5 and 30 disabled, couplers 13-25 and 40-41 removed). Not vendor data; demonstrates the calibrated-map drop-in.",
- "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>",
+ "contact": "Koustav Kumar Mondal <koustav@koustavmondal.com>",
  "disabled_qubits": [
   5,
   30

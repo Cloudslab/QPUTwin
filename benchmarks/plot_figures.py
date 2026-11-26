@@ -2,7 +2,7 @@
 
 Usage: uv run --group bench python benchmarks/plot_figures.py
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

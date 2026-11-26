@@ -2,7 +2,7 @@
 
 Usage: uv run --no-project --with qiskit-ibm-runtime==0.51.0 --with cirq-google==1.7.0 python scripts/import_vendor_snapshots.py
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations
@@ -17,7 +17,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "src" / "qputwin_core" / "devices_data"
-CONTACT = "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+CONTACT = "Koustav Kumar Mondal <koustav@koustavmondal.com>"
 
 
 def _median(xs: list[float]) -> float:

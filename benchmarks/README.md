@@ -1,6 +1,6 @@
 # QPUTwin benchmarks
 
-Koustav Kumar Mondal · erkoustavkumar@gmail.com
+Koustav Kumar Mondal · koustav@koustavmondal.com
 
 | Path | Contents |
 |---|---|

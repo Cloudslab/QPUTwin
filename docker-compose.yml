@@ -1,6 +1,6 @@
 # =============================================================================
 # QPUTwin — multi-vendor QPU emulator stack
-# Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# Koustav Kumar Mondal <koustav@koustavmondal.com>
 #
 #   docker compose up -d --build        # build with uv and start all services
 #   curl localhost:8000/v1/backends     # list emulated QPUs
@@ -39,7 +39,7 @@ x-worker: &worker
         cpus: "${QPUTWIN_WORKER_CPUS:-4}"
         memory: "${QPUTWIN_WORKER_MEM:-12g}"
   labels:
-    org.qputwin.contact: "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+    org.qputwin.contact: "Koustav Kumar Mondal <koustav@koustavmondal.com>"
     org.qputwin.role: "vendor-worker"
 
 x-worker-env: &worker-env
@@ -192,7 +192,7 @@ services:
       worker-ibm-nighthawk: { condition: service_healthy }
       worker-google-willow: { condition: service_healthy }
     labels:
-      org.qputwin.contact: "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+      org.qputwin.contact: "Koustav Kumar Mondal <koustav@koustavmondal.com>"
       org.qputwin.role: "orchestrator"
 
   gateway:
@@ -207,7 +207,7 @@ services:
     depends_on:
       orchestrator: { condition: service_healthy }
     labels:
-      org.qputwin.contact: "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+      org.qputwin.contact: "Koustav Kumar Mondal <koustav@koustavmondal.com>"
       org.qputwin.role: "gateway"
 
 networks:

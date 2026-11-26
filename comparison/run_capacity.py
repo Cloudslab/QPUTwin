@@ -2,7 +2,7 @@
 
 Usage: cd comparison && uv run python run_capacity.py
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

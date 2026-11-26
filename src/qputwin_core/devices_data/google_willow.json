@@ -430,7 +430,7 @@
   "note": "GridQubit (row, column) of each index, as on Google's Willow spec sheet"
  },
  "provenance": "Published: Google's Willow coupling graph from willow_pink_d7v1-2024_08_16_device_spec_for_grid_device.proto.txt, shipped in cirq-google 1.7.0: 105 GridQubits, 182 CZ pairs (average connectivity 3.47; spec sheet: 3.47). Index i is the i-th GridQubit in (row, column) order.",
- "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>",
+ "contact": "Koustav Kumar Mondal <koustav@koustavmondal.com>",
  "edges": [
   [
    0,

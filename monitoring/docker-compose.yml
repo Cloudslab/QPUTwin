@@ -1,5 +1,5 @@
 # =============================================================================
-# QPUTwin monitoring stack. Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# QPUTwin monitoring stack. Koustav Kumar Mondal <koustav@koustavmondal.com>
 #
 #   ./up.sh     # creates secrets, installs Node Exporter, starts this stack
 #   ./down.sh   # stops it; add --volumes to delete stored metrics as well
@@ -17,7 +17,7 @@ x-defaults: &defaults
   restart: unless-stopped
   init: true
   labels:
-    org.qputwin.contact: "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+    org.qputwin.contact: "Koustav Kumar Mondal <koustav@koustavmondal.com>"
     org.qputwin.role: "monitoring"
 
 services:

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Starts QPUTwin monitoring. Safe to run repeatedly.
-# Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# Koustav Kumar Mondal <koustav@koustavmondal.com>
 set -euo pipefail
 cd "$(dirname "$0")"
 

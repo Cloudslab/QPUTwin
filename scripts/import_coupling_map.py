@@ -2,7 +2,7 @@
 
 Usage: uv run python scripts/import_coupling_map.py vendor_map.json --help
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

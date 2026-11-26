@@ -1,6 +1,6 @@
 # QPUTwin vs other quantum simulators
 
-Koustav Kumar Mondal · erkoustavkumar@gmail.com
+Koustav Kumar Mondal · koustav@koustavmondal.com
 
 A comparative benchmark of **QPUTwin** against **Qiskit Aer**, the **Amazon Braket local simulators**, **Cirq**, **qsim** and **Qulacs**:
 

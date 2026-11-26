@@ -2,7 +2,7 @@
 
 Usage: QPUTWIN_VENDOR=google_willow python -m qputwin_worker
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from qputwin_core.devices import GOOGLE_WILLOW

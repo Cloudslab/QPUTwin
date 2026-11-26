@@ -2,7 +2,7 @@
 
 Usage: uv run --group bench python benchmarks/run_benchmarks.py all
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

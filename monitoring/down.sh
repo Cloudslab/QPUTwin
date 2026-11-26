@@ -4,7 +4,7 @@
 #
 #   ./down.sh             keep stored metrics, dashboards state and Portainer data
 #   ./down.sh --volumes   delete them too
-# Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# Koustav Kumar Mondal <koustav@koustavmondal.com>
 set -euo pipefail
 cd "$(dirname "$0")"
 docker compose down "$@"

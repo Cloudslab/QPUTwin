@@ -41,7 +41,7 @@
  "feedforward_latency_ns": null,
  "shot_overhead_us": null,
  "note": "Nominal device-median values for QPUTwin's noise and gate-duration models. Every field is tagged in 'provenance' as 'published' (with its source) or 'assumed' (placeholder typical of the technology class, NOT vendor data). Replace with a calibration snapshot via QPUTWIN_CALIBRATION before quoting results.",
- "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>",
+ "contact": "Koustav Kumar Mondal <koustav@koustavmondal.com>",
  "qubits": {
   "0": {
    "t1_us": 12.0,

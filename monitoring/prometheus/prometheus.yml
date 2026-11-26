@@ -1,4 +1,4 @@
-# QPUTwin monitoring. Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# QPUTwin monitoring. Koustav Kumar Mondal <koustav@koustavmondal.com>
 global:
   scrape_interval: 5s
   scrape_timeout: 4s

@@ -3269,5 +3269,5 @@
   "dt_ns": 4.0
  },
  "note": "Calibration of IBM ibm_miami as IBM published it. Device-wide values are medians; per-qubit and per-coupler values override them. Fractional gates (rx(theta), rzz(theta)) are opt-in on IBM hardware, are not in this snapshot, and are not modelled. Leakage, crosstalk and drift are not modelled.",
- "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+ "contact": "Koustav Kumar Mondal <koustav@koustavmondal.com>"
 }
