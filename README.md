@@ -27,7 +27,7 @@ The IBM and Google twins are built from the vendors' own published calibration s
 * **Three engines, built from scratch.** Fused statevector, density-matrix and batched quantum-trajectory engines in `numpy`, chosen per job by a cost model, with no vendor or third-party quantum SDK.
 * **A real service.** Durable asynchronous jobs with leases, fair sharing and priorities, worker auto-discovery, API keys, Prometheus metrics and an HA gateway.
 
-![QPUTwin system architecture](https://koustav.isroot.in/qputwin-docs/assets/diagrams/architecture.svg)
+![QPUTwin system architecture](https://koustavmondal.com/qputwin-docs/assets/diagrams/architecture.svg)
 
 ## Quick start
 
@@ -49,7 +49,7 @@ Interactive API documentation is served at <http://localhost:8000/docs>. Run the
 
 ## Results at a glance
 
-Measured on a 16-vCPU, 62.8 GiB server against Qiskit Aer, the Amazon Braket local simulators, Cirq, qsim and Qulacs ([details](https://koustav.isroot.in/qputwin-docs/research/simulator-comparison/)):
+Measured on a 16-vCPU, 62.8 GiB server against Qiskit Aer, the Amazon Braket local simulators, Cirq, qsim and Qulacs ([details](https://koustavmondal.com/qputwin-docs/research/simulator-comparison/)):
 
 * **Vendors' own workflows.** For the same OpenQASM program, a QPUTwin job was faster than IBM's (Qiskit transpile + Aer `from_backend`) and Google's (Cirq + qsim with Google's noise model) emulation workflows in 107 of 108 cases, by a geometric mean of 7.1× (Heron r3), 10.2× (Nighthawk) and 4.8× (Willow).
 * **Noisy density matrix.** From 10 qubits, 3.2–15× faster than Aer on one thread; Aer is level or ahead on smaller jobs.
@@ -59,19 +59,19 @@ Measured on a 16-vCPU, 62.8 GiB server against Qiskit Aer, the Amazon Braket loc
 
 ## Documentation
 
-Everything else (installation, the full API, the physics, operations and the benchmark results) is in the documentation site: **<https://koustav.isroot.in/qputwin-docs/>**.
+Everything else (installation, the full API, the physics, operations and the benchmark results) is in the documentation site: **<https://koustavmondal.com/qputwin-docs/>**.
 
 | Start here | |
 |---|---|
-| [Getting started](https://koustav.isroot.in/qputwin-docs/getting-started/) | installation, quick start, tutorial |
-| [Concepts](https://koustav.isroot.in/qputwin-docs/concepts/) | digital twins, architecture, execution pipeline, devices |
-| [User guide](https://koustav.isroot.in/qputwin-docs/guide/) | jobs, OpenQASM, compilation, noise, engines, routing, timing, calibration, telemetry |
-| [Reference](https://koustav.isroot.in/qputwin-docs/reference/) | HTTP API, parameters, responses, errors, configuration |
-| [Operations](https://koustav.isroot.in/qputwin-docs/operations/) | deployment, scaling, security, monitoring |
-| [Research](https://koustav.isroot.in/qputwin-docs/research/) | benchmarks, simulator comparison, validation, reproducibility, limitations |
+| [Getting started](https://koustavmondal.com/qputwin-docs/getting-started/) | installation, quick start, tutorial |
+| [Concepts](https://koustavmondal.com/qputwin-docs/concepts/) | digital twins, architecture, execution pipeline, devices |
+| [User guide](https://koustavmondal.com/qputwin-docs/guide/) | jobs, OpenQASM, compilation, noise, engines, routing, timing, calibration, telemetry |
+| [Reference](https://koustavmondal.com/qputwin-docs/reference/) | HTTP API, parameters, responses, errors, configuration |
+| [Operations](https://koustavmondal.com/qputwin-docs/operations/) | deployment, scaling, security, monitoring |
+| [Research](https://koustavmondal.com/qputwin-docs/research/) | benchmarks, simulator comparison, validation, reproducibility, limitations |
 
 ## License
 
 Apache License 2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
-Koustav Kumar Mondal · erkoustavkumar@gmail.com
+Koustav Kumar Mondal · koustav@koustavmondal.com
