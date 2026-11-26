@@ -2,7 +2,7 @@
 
 Usage: QPUTWIN_VENDOR=iqm_emerald python -m qputwin_worker
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from qputwin_core.devices import IQM_EMERALD

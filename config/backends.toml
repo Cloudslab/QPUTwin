@@ -1,5 +1,5 @@
 # QPUTwin backend registry
-# Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# Koustav Kumar Mondal <koustav@koustavmondal.com>
 #
 # Each backend maps to one or more vendor-emulator worker replicas. URLs use
 # Docker Compose service names on the internal `qputwin-net` network. Override

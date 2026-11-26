@@ -2,7 +2,7 @@
 
 Usage: QPUTWIN_VENDOR=ionq_forte python -m qputwin_worker
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 __all__: list[str] = []

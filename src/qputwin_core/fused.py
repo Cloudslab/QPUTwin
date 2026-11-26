@@ -2,7 +2,7 @@
 
 Usage: from qputwin_core.fused import set_engine_threads
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

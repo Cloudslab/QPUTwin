@@ -2,7 +2,7 @@
 
 Usage: from qputwin_core.errors import QPUTwinError
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations
@@ -62,7 +62,7 @@ class QASMSemanticError(QASMError):
 
 
 class UnsupportedFeatureError(QASMSemanticError):
-    """Valid OpenQASM 3 that lies outside the supported subset (see https://koustav.isroot.in/qputwin-docs/guide/openqasm/)."""
+    """Valid OpenQASM 3 that lies outside the supported subset (see https://koustavmondal.com/qputwin-docs/guide/openqasm/)."""
 
 
 class InvalidRequestError(QPUTwinError):

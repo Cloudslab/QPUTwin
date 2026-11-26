@@ -2,7 +2,7 @@
 
 Usage: QPUTWIN_VENDOR=quantinuum_helios python -m qputwin_worker
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from qputwin_core.devices import QUANTINUUM_HELIOS

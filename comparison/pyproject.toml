@@ -2,7 +2,7 @@
 name = "qputwin-comparison"
 version = "0.1.0"
 description = "Comparative benchmark of QPUTwin against Qiskit Aer, Amazon Braket local simulators and Cirq."
-authors = [{ name = "Koustav Kumar Mondal", email = "erkoustavkumar@gmail.com" }]
+authors = [{ name = "Koustav Kumar Mondal", email = "koustav@koustavmondal.com" }]
 license = "Apache-2.0"
 requires-python = ">=3.13,<3.14"
 dependencies = [

@@ -2,7 +2,7 @@
 
 Usage: from qputwin_core.gates import rx, ry, rz
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

@@ -2,7 +2,7 @@
 
 Usage: cd comparison && uv run python probe_t16.py
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 import os
 import sys

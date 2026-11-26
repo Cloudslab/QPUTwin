@@ -2,7 +2,7 @@
 
 Usage: uv run python scripts/import_braket_device.py emerald.json --device iqm_emerald -o config/devices
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

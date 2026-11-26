@@ -1,5 +1,5 @@
 # QPUTwin: Calibration-Faithful Digital Twins of Trapped-Ion and Superconducting Quantum Processors
-# Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# Koustav Kumar Mondal <koustav@koustavmondal.com>
 [project]
 name = "qputwin"
 version = "0.1.0"
@@ -8,10 +8,10 @@ readme = "README.md"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 authors = [
-    { name = "Koustav Kumar Mondal", email = "erkoustavkumar@gmail.com" }
+    { name = "Koustav Kumar Mondal", email = "koustav@koustavmondal.com" }
 ]
 maintainers = [
-    { name = "Koustav Kumar Mondal", email = "erkoustavkumar@gmail.com" }
+    { name = "Koustav Kumar Mondal", email = "koustav@koustavmondal.com" }
 ]
 keywords = [
     "QPUTwin", "digital twin", "quantum digital twin", "quantum computing", "quantum emulator",

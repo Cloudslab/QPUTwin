@@ -2535,5 +2535,5 @@
   "t2_clipped_to_2t1": []
  },
  "note": "Calibration of Google Willow as Google published it in Cirq. Native gates are PhasedXZ microwave pulses (25 ns), virtual Z and CZ (42 ns). Leakage, leakage removal and crosstalk are not modelled.",
- "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>"
+ "contact": "Koustav Kumar Mondal <koustav@koustavmondal.com>"
 }

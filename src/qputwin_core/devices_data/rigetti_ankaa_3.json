@@ -8,7 +8,7 @@
   "index": "r*cols + c"
  },
  "provenance": "Synthetic 7x12 nearest-neighbour square lattice matching the published qubit count and connectivity class of Rigetti Ankaa-3. Not a vendor calibration map.",
- "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>",
+ "contact": "Koustav Kumar Mondal <koustav@koustavmondal.com>",
  "edges": [
   [
    0,

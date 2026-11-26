@@ -2,7 +2,7 @@
 # =============================================================================
 # QPUTwin — central orchestrator image (FastAPI + benchmarking middleware).
 # Installs only the `orchestrator` extra: no numpy/scipy (the QASM front-end used
-# for validation is pure Python). Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# for validation is pure Python). Koustav Kumar Mondal <koustav@koustavmondal.com>
 # =============================================================================
 ARG PYTHON_IMAGE=python:3.13.16-slim-trixie
 ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.12.23
@@ -34,7 +34,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 FROM ${PYTHON_IMAGE} AS runtime
 LABEL org.opencontainers.image.title="QPUTwin orchestrator" \
       org.opencontainers.image.description="Routing API and benchmark telemetry for the QPUTwin QPU emulators" \
-      org.opencontainers.image.authors="Koustav Kumar Mondal <erkoustavkumar@gmail.com>" \
+      org.opencontainers.image.authors="Koustav Kumar Mondal <koustav@koustavmondal.com>" \
       org.opencontainers.image.vendor="Koustav Kumar Mondal" \
       org.opencontainers.image.version="0.1.0" \
       org.opencontainers.image.licenses="Apache-2.0"

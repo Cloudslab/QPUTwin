@@ -2,7 +2,7 @@
 
 Usage: from qputwin_demo import *  (inside a notebook in Example/)
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

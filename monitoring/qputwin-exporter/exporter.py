@@ -3,7 +3,7 @@
 
 Usage: python -u exporter.py  (run by the monitoring docker compose file)
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

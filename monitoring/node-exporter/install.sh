@@ -8,7 +8,7 @@
 #
 # It listens on loopback and on the Docker bridge gateway, where the Prometheus
 # container reaches it, so it is not exposed on your LAN.
-# Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# Koustav Kumar Mondal <koustav@koustavmondal.com>
 set -euo pipefail
 
 VERSION=1.12.1

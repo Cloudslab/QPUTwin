@@ -1,4 +1,4 @@
-# QPUTwin build context — Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# QPUTwin build context — Koustav Kumar Mondal <koustav@koustavmondal.com>
 # The images only need pyproject.toml, uv.lock, README.md, LICENSE, NOTICE, src/ and config/.
 .git
 .venv

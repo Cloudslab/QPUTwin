@@ -1,6 +1,6 @@
 # QPUTwin benchmarks
 
-Koustav Kumar Mondal · erkoustavkumar@gmail.com
+Koustav Kumar Mondal · koustav@koustavmondal.com
 
 | Path | Contents |
 |---|---|
@@ -60,4 +60,4 @@ uv run --group bench python benchmarks/plot_figures.py           # or: plot_figu
 | fig23 | latency and sampling time vs shots (1–10⁶) |
 | fig24 | parse / route / compile time vs circuit size (100–30 000 gates) |
 
-Interpretation and numbers: [benchmarks](https://koustav.isroot.in/qputwin-docs/research/benchmarks/), [circuit benchmarks](https://koustav.isroot.in/qputwin-docs/research/circuit-benchmarks/) and [load testing](https://koustav.isroot.in/qputwin-docs/research/load-testing/) in the documentation site.
+Interpretation and numbers: [benchmarks](https://koustavmondal.com/qputwin-docs/research/benchmarks/), [circuit benchmarks](https://koustavmondal.com/qputwin-docs/research/circuit-benchmarks/) and [load testing](https://koustavmondal.com/qputwin-docs/research/load-testing/) in the documentation site.

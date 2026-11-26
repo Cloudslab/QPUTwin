@@ -2,5 +2,5 @@
 
 Usage: import qputwin_core.devices_data
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """

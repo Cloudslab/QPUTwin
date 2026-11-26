@@ -1,6 +1,6 @@
 # Calibrated device data (drop-in)
 
-QPUTwin — Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+QPUTwin — Koustav Kumar Mondal <koustav@koustavmondal.com>
 
 This directory is mounted read-only into every worker container at
 `/app/config/devices`. Put vendor-published coupling maps and calibration

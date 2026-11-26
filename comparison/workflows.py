@@ -2,7 +2,7 @@
 
 Usage: from workflows import ibm_job, google_job, qputwin_job
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

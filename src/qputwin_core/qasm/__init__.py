@@ -2,7 +2,7 @@
 
 Usage: from qputwin_core.qasm import load_circuit
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from qputwin_core.qasm.flatten import BASE_PRIMITIVES, DEFAULT_MAX_OPS, flatten, load_circuit

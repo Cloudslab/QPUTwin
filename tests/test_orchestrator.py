@@ -2,7 +2,7 @@
 
 Usage: uv run pytest tests/test_orchestrator.py
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations
@@ -67,7 +67,7 @@ def _check_identities(t: dict) -> None:
 def test_meta_endpoints(client: TestClient) -> None:
     assert client.get("/health").json()["status"] == "ok"
     root = client.get("/").json()
-    assert root["contact"] == {"name": "Koustav Kumar Mondal", "email": "erkoustavkumar@gmail.com"}
+    assert root["contact"] == {"name": "Koustav Kumar Mondal", "email": "koustav@koustavmondal.com"}
     backends = {b["id"]: b for b in client.get("/v1/backends").json()["backends"]}
     assert backends["ionq_forte"]["status"] == "online" and backends["ghost"]["status"] == "offline"
     assert backends["rigetti_ankaa_3"]["n_physical"] == 84

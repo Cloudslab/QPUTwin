@@ -2,7 +2,7 @@
 
 Usage: python -m qputwin_orchestrator
 
-Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+Koustav Kumar Mondal <koustav@koustavmondal.com>
 """
 
 from __future__ import annotations

@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 # =============================================================================
 # QPUTwin — vendor-emulator worker image (one image, four containers; QPUTWIN_VENDOR
-# selects the device). Koustav Kumar Mondal <erkoustavkumar@gmail.com>
+# selects the device). Koustav Kumar Mondal <koustav@koustavmondal.com>
 # =============================================================================
 ARG PYTHON_IMAGE=python:3.13.16-slim-trixie
 ARG UV_IMAGE=ghcr.io/astral-sh/uv:0.12.23
@@ -33,7 +33,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 FROM ${PYTHON_IMAGE} AS runtime
 LABEL org.opencontainers.image.title="QPUTwin vendor-emulator worker" \
       org.opencontainers.image.description="From-scratch numpy statevector QPU emulator (trapped-ion / superconducting)" \
-      org.opencontainers.image.authors="Koustav Kumar Mondal <erkoustavkumar@gmail.com>" \
+      org.opencontainers.image.authors="Koustav Kumar Mondal <koustav@koustavmondal.com>" \
       org.opencontainers.image.vendor="Koustav Kumar Mondal" \
       org.opencontainers.image.version="0.1.0" \
       org.opencontainers.image.licenses="Apache-2.0"

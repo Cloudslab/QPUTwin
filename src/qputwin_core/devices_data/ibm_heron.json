@@ -640,7 +640,7 @@
   ]
  },
  "provenance": "Published: IBM's ibm_boston coupling map from its calibration snapshot (2026-04-17T12:19:24+02:00), shipped in qiskit-ibm-runtime 0.51.0. 176 couplers on the chip; 1 reported not working (cz gate_error = 1) in the snapshot are removed.",
- "contact": "Koustav Kumar Mondal <erkoustavkumar@gmail.com>",
+ "contact": "Koustav Kumar Mondal <koustav@koustavmondal.com>",
  "edges": [
   [
    0,
